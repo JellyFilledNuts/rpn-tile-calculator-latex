@@ -7,11 +7,11 @@
 \newcommand{\dokumententyp}{Studienarbeit}
 \newcommand{\abgabedatum}{\today} 
 \newcommand{\ort}{Bergisch Gladbach} 
-\newcommand{\dokumententitel}{RPN Tile Calculator}
+\newcommand{\dokumententitel}{Reverse Polish Notation Tile Calculator}
 \newcommand{\dokumentenuntertitel}{Teilprüfungsleistung in WIP}
 \newcommand{\dokumentenautor}{Max Mustermann}
 \newcommand{\dokumentenautoradress}{Musterweg 123\\33102 Paderborn}
-\newcommand{\dokumentenpruefer}{Prof. Dr. Weis-Alles\\Prof. Dr. Besser}
+\newcommand{\dokumentenpruefer}{Prof. Dr. Thomas Seifert}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,6 +45,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Inhaltsverzeichnis
+\setcounter{todepth}{3}
 \tableofcontents\newpage
 
 % Abkürzungsverzeichnis
@@ -59,14 +60,6 @@
 \fancyhead[R]{\listfigurename}
 \listoffigures\newpage
 
-% Tabellenverzeichnis
-\fancyhead[R]{\listtablename}
-\listoftables\newpage
-
-% Quelltextverzeichnis
-\fancyhead[R]{\lstlistlistingname}
-\lstlistoflistings\newpage
-
 % Kapitelüberschriften für den Arbeitstext
 \fancyhead[R]{\leftmark}
 
@@ -77,6 +70,36 @@
 % Arabische Seitennummerierung
 \pagenumbering{arabic} 
 
+\include{chapter/Das_Team_mit_Namen_und_Bild}
+
+\include{chapter/Ziel_des_Projekts}
+
+\include{chapter/Projektplanung}
+
+\include{chapter/Beschreibung_des_Projektverlaufs}
+
+\include{chapter/Dokumentation_der_Software}
+
+\include{chapter/Dokumentation_der_sonstigen_Beiträge_der_Teammitglieder}
+
+\include{chapter/Fazits_aller_Teammitglieder}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Anhang
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{chapter/Anhang_Quelltext}
+
+\include{chapter/Anhang_Verzeichnis_der_verwendeten_Tools_und_Hilfsprogramme}
+
+\include{chapter/Quellenverzeichnis}
+
+\include{chapter/Ehrenwoertliche_Erklaerung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Old Stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \include{chapter/Einleitung}
 
 \include{chapter/Installation}
@@ -85,17 +108,6 @@
 
 \include{chapter/Zusammenfassung}
 	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\include{chapter/Anhang}
-
-\include{chapter/Quellenverzeichnis}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\include{chapter/Ehrenwoertliche_Erklaerung}
- 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
