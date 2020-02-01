@@ -19,7 +19,7 @@ paper=A4,         % alle weiteren Papierformat einstellbar
 fontsize=12pt,    % Schriftgröße (12pt, 11pt (Standard))
 BCOR12mm,         % Bindekorrektur, bspw. 1 cm
 DIV14,            % breiter Satzspiegel
-parskip=half*,    % Absatzformatierung s. scrguide 3.1
+%parskip=half*,    % Absatzformatierung s. scrguide 3.1
 headsepline,      % Trennline zum Seitenkopf  
 %footsepline,     % Trennline zum Seitenfuß
 %normalheadings,  % Überschriften etwas kleiner (smallheadings)
@@ -31,6 +31,8 @@ headinclude=true, % Kopfzeile in die Satzspiegelberechnung einbeziehen
 final             % draft beschleunigt die Kompilierung
 ]
 {scrartcl}
+
+\usepackage{parskip}
 
 %\setuptoc{toc}{totoc} % Inhaltsverzeichnis ins Inhaltsverzeichnis
 
@@ -100,9 +102,6 @@ final             % draft beschleunigt die Kompilierung
   
 % Bibliograpthy
 \bibliography{library/library}
-
-% Keine Einrückung bei einem neuen Absatz 
-\parindent 0pt 
 
 % Ebenentiefe der Nummerierung
 \setcounter{secnumdepth}{3}
@@ -236,7 +235,7 @@ final             % draft beschleunigt die Kompilierung
 
 % Create code command
 \usepackage{xcolor}
-\definecolor{light-gray}{gray}{0.95}
+\definecolor{light-gray}{gray}{0.97}
 \newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
 
 % Create paragraph command with line-break
