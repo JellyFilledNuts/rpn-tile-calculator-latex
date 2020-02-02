@@ -154,15 +154,14 @@ final             % draft beschleunigt die Kompilierung
 % Macro für Quellenangaben unter Abbildungen und Tabellen
 \newcommand{\source}[1]{{\vspace{-1mm}\\\footnotesize\textsf{\textbf{Quelle:}} \textsf{#1}\par}}
 
-% Anpassungen der Formatierung an Eclipse-Aussehen 
-% http://jevopi.blogspot.de/2010/03/nicely-formatted-listings-in-latex-with.html
-%\definecolor{sh_comment}{rgb}{0.12, 0.38, 0.18 } %adjusted, in Eclipse: {0.25, 0.42, 0.30 } = #3F6A4D
-%\definecolor{sh_keyword}{rgb}{0.37, 0.08, 0.25}  % #5F1441
-%\definecolor{sh_string}{rgb}{0.06, 0.10, 0.98} % #101AF9
+% Anpassungen der Formatierung
+\definecolor{shcomment}{rgb}{0.12, 0.38, 0.18 }
+\definecolor{shkeyword}{rgb}{0.37, 0.08, 0.25}
+\definecolor{shstring}{rgb}{0.06, 0.10, 0.98}
 % Für Druckausgabe sollte alles schwarz sein
-\definecolor{sh_comment}{rgb}{0.0, 0.0, 0.0 }
-\definecolor{sh_keyword}{rgb}{0.0, 0.0, 0.0 }
-\definecolor{sh_string}{rgb}{0.0, 0.0, 0.0 }
+%\definecolor{sh_comment}{rgb}{0.0, 0.0, 0.0 }
+%\definecolor{sh_keyword}{rgb}{0.0, 0.0, 0.0 }
+%\definecolor{sh_string}{rgb}{0.0, 0.0, 0.0 }
 
 \lstset{ %
   language=Java,
@@ -170,14 +169,15 @@ final             % draft beschleunigt die Kompilierung
   fontadjust, 
   xrightmargin=1mm,
   xleftmargin=5mm,
-  tabsize=2,
+  tabsize=4,
   columns=flexible,
   showstringspaces=false,
-  rulesepcolor=\color{black},
-  showspaces=false,showtabs=false,tabsize=2,
-  stringstyle=\color{sh_string},
-  keywordstyle=\color{sh_keyword}\bfseries,
-  commentstyle=\color{sh_comment}\itshape,
+  %rulesepcolor=\color{black},
+  showspaces=false,
+  showtabs=false,
+  %stringstyle=\color{sh_string},
+  %keywordstyle=\color{sh_keyword}\bfseries,
+  %commentstyle=\color{sh_comment}\itshape,
   captionpos=t,
   lineskip=-0.3em
 }

@@ -13,21 +13,87 @@
 
 \subsubsection{Tom Bockhorn}
 
+\newpage
+
 \subsubsection{Hendrik Falk}
+
+\newpage
 
 \subsubsection{Dennis Gentges}
 
+\newpage
+
 \subsubsection{Getuart Istogu}
+
+\newpage
 
 \subsubsection{Jannis Keienburg}
 
+\newpage
+
 \subsubsection{Tim Jonas Meinerzhagen}
+
+\newpage
 
 \subsubsection{Khang Pham}
 
+\newpage
+
 \subsubsection{Tim Schwenke}
 
+\para{Umsetzung der generischen Kalkulationsorchestrierung}
 
+Wie schon im Kapitel zur Projektplanung erwähnt, stellt die Strukturierung und Architektur der Rechnungsumsetzung im Backend eine der vielen Anforderungen des Projekts dar. Identifiziert wurden zwei Hauptarten von Kalkulationen. 
 
+Die erste Art ist generisch und wird in einer großen Anzahl benötigt. Ein Beispiel dafür ist die Addition. Da der Taschenrechner viele unterschiedliche Operanden-Typen unterstützt (Matrizen, Brüche, Mengen, usw.) sind enorm viele Methoden notwendig, um alle Möglichkeiten der Addition abdecken zu können. Auch muss irgendwo vom Programm entschieden werden, welche Methode genau aufgerufen werden soll. Statt dies mit komplexen If-Else-Bedingungen zu lösen, wurde in der Planungsphase entschieden Reflektion zu nutzen. Somit kann man in sich geschlossene kleine Methoden programmieren, die - sofern die Schnittstellenanforderungen erfüllt sind - automatisch erkannt und von der Reflektionsmethode aufgerufen werden können. Der Nutzer im Frontend muss lediglich entscheiden, was für eine Art von generischer Kalkulation er ausführen möchte. Zum Beispiel Addition oder Multiplikation. 
 
+Die zweite Art von Kalkulationen sind sehr spezifisch, z.B. ein bestimmter Algorithmus zum Lösen von kubischen Gleichungen. Hier sind keine/kaum Kombinationen möglich und können somit direkt aufgerufen werden, ohne Reflektion zu verwenden.
+
+Implementiert ist die Reflektion in der abstrakten Klasse \code{Action}. Die Klassenvariable \code{scopedAction} zeigt zur Laufzeit auf eine konkrete Implementierung einer \code{Action}, also z.B. \code{Plus}. Auf \code{scopedAction} wird die Reflektion ausgeführt. Letztere ist in der Methode \code{with()} umgesetzt. Diese stellt die Schnittstelle zu den generischen Kalkulationen erster Art dar. Hier ist der Methodenkopf zu sehen:
+
+\begin{figure}[bht]
+	\begin{lstlisting}[
+	caption=Methodenkopf der generischen Schnittstelle,
+	label=list:methodenkopf-der-generischen-schnittstelle,
+	language=Java]
+@Contract(pure = true) public @NotNull 
+Operand with(@NotNull Operand... operands) 
+throws CalculationException
+	\end{lstlisting}    
+\end{figure}
+
+Die erste Zeile definiert einige Eigenschaften der Methode. \code{@Contract} sagt aus, dass die Funktion \textit{pure} ist. Sie gibt für Tupel von Operanden immer das gleiche Ergebnis zurück und ist grundsätzlich ohne Nebeneffekte. Das ist hilfreich für das automatische Testen. Als Parameter wird ein beliebig gro"ses Array von Operanden übergeben. Das Ergebnis ist immer eine valide Instanz von \code{Operand}. Wird versucht eine nicht unterstützte Kalkulation auszuführen, wird \code{CalculationException} geworfen. Diese Ausnahme ist keine \code{RunTimeException} und muss deswegen explizit behandelt werden. Alternativ hätte man hier auch Optionals nutzen. Jedoch unterstützt die genutzte Version der Android API dieses Java-Feature nicht.
+
+\begin{figure}[bht]
+	\begin{lstlisting}[
+	caption=Implementierung der generischen Schnittstelle,
+	label=list:implementierung-der-generischen-schnittstelle,
+	language=Java]
+Class[] operandClasses = new Class[operands.length];
+Operand resultOperand;
+
+for (int i = 0; i < operands.length; i++)
+	operandClasses[i] = operands[i].getClass();
+
+try {
+	resultOperand = (Operand) scopedAction.getClass()
+		.getDeclaredMethod(
+			"on",
+			operandClasses
+		).invoke(
+			scopedAction,
+			(Object[]) operands
+		);
+} catch (SeveralExceptions e) {
+	throw new CalculationException(e.getMessage());
+}
+
+if (resultOperand != null) return resultOperand;
+else throw new CalculationException();
+	\end{lstlisting}    
+\end{figure}
+
+Die Reflektion in Listing~\ref{list:implementierung-der-generischen-schnittstelle} beginnt mit der Extraktion der Klasse jedes übergebenen Operands. Das kann z.B. die Klasse \code{Matrix} oder \code{Fraction} sein, die alle von \code{Operand} erben. Die extrahierten Klassen werden in Array \code{operandClasses} gespeichert. Die hier vorliegende Sequenz liefert die Antwort auf die Frage, welche konkrete Methode aufgerufen werden soll. Die Entscheidung basiert alleine auf dieser Sequenz und der konkreten \code{Action} auf die \code{scopedAction} zeigt. Aus letzterer Variable wird die Klasse extrahiert und die Methode \code{getDeclaredMethod()} aufgerufen. Damit kann man eine Methode in einer Klasse auf Basis des Namens (in unserem Falle immer \code{on}) und eine Sequenz von Parametertypen finden. Diese wird anschlie"send mit \code{invoke()} aufgerufen, wobei die Operanden übergeben werden. Kommt es zu einem Fehler werden alle Fehlertypen in \code{CalculationException} zusammengefasst und weitergegeben. Ansonsten wird das Ergebnis zurückgegeben.
+
+\newpage
 
