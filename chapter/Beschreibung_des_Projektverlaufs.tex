@@ -3,175 +3,179 @@
 
 \subsection{Tatsächliche Aufgabenverteilung im Team (tabellarisch)}
 
+\pagebreak
+
 \subsection{Teammeeting-Protokolle}
-https://tex.stackexchange.com/questions/119304/longtable-with-multicolumn-and-parbox-spacing-issues
-\begin{longtable}
-	{
-		|p{0.2\linewidth}
-		|p{0.2\linewidth}
-		|p{0.6\linewidth}|
-	}
-	A & B & C
+
+{\def\arraystretch{1.5}\tabcolsep=5pt
+\begin{longtable}{|l|l|p{11cm}|}
+	\hline
+	\textbf{Datum} & \textbf{Dauer} & \textbf{Beschreibung}
+	\\ \hline \hline
+	\endfirsthead
+	
+	\hline
+	\multicolumn{3}{|c|}{\textit{...Forsetzung der Tabelle}}
+	\\ \hline \hline
+	\textbf{Datum} & \textbf{Dauer} & \textbf{Beschreibung}
+	\\ \hline \hline
+	\endhead
+	
+	\hline \hline
+	\multicolumn{3}{|c|}{\textit{Tabelle wird auf der nächsten Seite fortgesetzt...}}
+	\\ \hline
+	\endfoot
+	
+	\hline \hline
+	% 1210 Minuten
+	\multicolumn{3}{|c|}{\textit{Summe der Dauer aller Meetings beträgt 21 Stunden}}
+	\\ \hline
+	\endlastfoot
+	
+		03.09.2019 & 200 Min. &
+			Auswahl des Projekttyps. Entscheidung für die Entwicklung einer Android-App.
+			\\ & &
+			Erste Einarbeitung in die Thematik. Lesen des bereitgestellten Dokuments mit Aufgabenstellung, groben Anforderungen und weiteres. 
+			\\ & &
+			Konzepterarbeitung auf Papier. Vorstellung und Diskussion verschiedener Ansätze.
+	\\\hline
+		04.09.2019 & 110 Min. &
+			Einigung mit dem Dozenten auf einen Ansatz für den Taschenrechner.
+			\\ & &
+			Workflow für Git, Meeting-Protokolle, Studienarbeit und Projekttagebücher festlegen.
+			\\ & &
+			Ausarbeitung des Konzepts für den Taschenrechner. Hier wurden dem Auftraggeber Herr Seifert mehrere Konzepte vorgestellt und gemeinsam mit ihm genaue Anforderungen erarbeitet.
+	\\\hline
+		05.09.2019 & 20 Min. &
+			Fertigstellung des Konzeptes.
+			\\ & &
+			Fortschritte beim Paper-Prototypen.
+			\\ & &
+			Android-Umgebung ist bei allen Team-Mitgliedern komplett aufgesetzt und lauffähig.
+	\\ \cline{2-3}
+		& 60 Min. &
+			Besprechung des aktuellen Stands des Konzepts und des Prototypen.
+			\\ & &
+			Erstellung eines Mid-Fidelity Prototypen.
+			\\ & &
+			Diskussion über Umsetzung und Workflow der App.
+			\begin{itemize}\renewcommand\labelitemi{--}
+				\item  Wie sollen die einzelnen Kacheln funktionieren?
+				\item Wie sollen die Kacheln miteinander interagieren?
+				\item Wie könnte die Architektur der App aussehen?
+			\end{itemize}
+	\\ \cline{2-3}
+		& 40 Min. &
+			Projektplanung mithilfe von Projektstrukturplan und weiteren Methoden.
+			\\ & &
+			Übertragen der Ergebnisse in den Teams-Planner.
+			\\ & &
+			Grobe Verteilung der Arbeitspakete innerhalb des Teams.
+	\\\hline
+		17.09.2019 &  60 Min. &
+			Erweiterung UML-Klassendiagramm. Die Klasse Operand wird abstrakt und wird von konkreten Operanden wie Vector geerbt. Diese stellen Extensions dar die neben den eigentlichen mathematischen Werten weitere Daten und Verhalten mitbringen.
+			\\ & &
+			Welche Library soll für Mathe-Funktionalitäten benutzt werden? JScience und die bereits mitgelieferte Standardbibliothek.
+	\\\hline
+		17.09.2019 & 90 Min. &
+			Wie sollen Elemente in der GUI dargestellt werden? Als Character oder gerendert in LaTeX. Letzteres ist mit höherer Komplexität verbunden sieht aber auch besser aus. 
+			\\ & &
+			Wie soll das Layout funktionieren? Gridlayout fällt raus, weil nicht dynamisch genug? Relative-Layout ist eine Option. Hier darf aber die Anordnung beim Rotieren nicht unkontrolliert verändert werden. UI Team möchte, dass alle Komponenten gleich groß sind. In dem Fall kann man Gridlayout benutzen.
+			\\ & &
+			Wie soll die Eingabe von Funktionen im Graph Operand funktionieren? Nur möglich mit bereits vorhandenen Elementen in der Oberfläche. Es öffnet sich keine Tastatur.
+	\\\hline
+		09.10.2019 & 90 Min. &
+			Vorstellung des Backend-Entwurfs für Teammitglieder, die für das Frontend zuständig sind.
+			\\ & &
+			Vorstellung des Frontend-Entwurfs für Teammitglieder, die für das Backend zuständig sind.
+			\\ & &
+			Diskussion über Verbindung von Frontend und Backend. Wie abgekoppelt lässt sich der Calculator wirklich realisieren?
+			\\ & &
+			Vorstellung der Hauptbibliothek die für die (aufwändigen) Rechnungen wie Nullstellenberechnung benutzt werden soll.
+			\\ & &
+			Warum Apache Commons Math und nicht JScience?
+			\\ & &
+			Diskussion des Programm-Workflows.
+	\\ \hline
+		05.01.2020 & 120 Min. &
+			Aufnahme des aktuellen Projektstands.
+			\\ & &
+			Besprechung des weiteren Vorgehens.
+			\\ & &
+			Aufgabenabstimmung.
+			\\ & &
+			Besprechung des geplanten Frontends.
+			\\ & &
+			Besprechung/ Lösung von Problemen.
+	\\ \hline
+		14.01.2019 & 90 Min. &
+			Zusammenführung Frontend Backend
+			\\ & &
+			Präsentation des Frontends durch das GUI-Team.
+			\\ & &
+			Besprechen von MVC-Umsetzung in Android.
+			\\ & &
+			Backend Unit-Testing Fortschritte.
+			\\ & &
+			Serialisierung der Stacks zur Session-Sicherung.
+	\\ \hline
+		24.01.2019 & 240 Min. &
+			Detaillierte Ausarbeitung der Architektur im Backend.
+			\\ & &
+			Programmieren im Team. 
+			\\ & &
+			Zusammenführen mehrere Features.
+			\\ & &
+			Umbau der Programmstruktur.
+	\\ \hline
+		28.01.2019 & 90 Min. &
+			Gespräch mit Herr Prof. Dr. Thomas Seifert über den aktuellen Stand des Projekts und im Anschluss daran eine Nachbesprechung innerhalb des Teams.
+			\\ & &
+			Vorstellung:
+			\begin{itemize}\renewcommand\labelitemi{--}
+				\item Vorstellung der bereits implementierten Grundfunktionen der App.
+				\item Vorstellung des verwendeten Design-Patterns.
+				\item Abgleich von Umsetzung mit den Anforderungen des Dozenten.
+				\item Ansatz des Backends erklärt.
+				\item Gerät ausleihen, um nicht nur mit Emulator testen zu können.
+				\item Serialisierung der Daten (Speichern und Laden).
+			\end{itemize}
+			\\ & &
+			Ergebnis:
+			\begin{itemize}\renewcommand\labelitemi{--}
+				\item Projekt ist auf einem guten Weg. Priorisiert werden sollen differenzierende Funktionen anstatt wenige Features sehr detailliert auszuarbeiten (Prototypische Arbeit).
+				\item Ternäre, Quaternäre usw. Operationen sind gewünscht.
+				\item Vektoren in Bestandteile lösen.
+				\item Eingabe von Matrizen.
+				\item Jeder Klasse muss ein Verantwortlicher zugeordnet sein.
+			\end{itemize}
+			\\ & &
+			Ideen aus der Nachbesprechung:
+
+			\begin{itemize}\renewcommand\labelitemi{--}
+				\item ''Vektor bauen'' / ''Vektoren auflösen'' Action. 
+				\item Summe von Stack Action.
+				\item 1x Triple Operator einfügen.
+				\item Operanden Eingabe via einzelne Menüs.
+				\item Ranks der Stacks anpassen.
+				\item Format des ersten Stacks anpassen.
+			\end{itemize}
+	\\ \hline
+		03.02.2019 & 90 Min. &
+			Besprechen des aktuellen Stands der App.
+			\\ & &
+			Was muss noch unbedingt umgesetzt werden?
+			\\ & &
+			Aufteilung der noch offenen Kapitel in der Ausarbeitung.
+			\\ & &
+			Neues Kapitel ''Einleitung'' mit Motivation.
+			\\ & &
+			Anpassung einiger Kapitelbezeichnungen an Gegebenheiten des Projekts.
+			\\ & &
+			Koordination der Ausarbeitung.
+	\\
 \end{longtable}
-
-\para{03.09.2019 :: 200 Minuten}
-
-\begin{itemize}
-	\item Auswahl des Projekttyps. Das Team hat sich für die Entwicklung einer Android  App entschieden.
-	\item Erste Einarbeitung in die Thematik. Lesen des bereitgestellten Dokuments mit Aufgabenstellung, groben Anforderungen und weiteres.
-	\item Konzepterarbeitung auf Papier. Vorstellung und Diskussion verschiedener Ansätze.
-\end{itemize}
-
-\para{04.09.2019 :: 110 Minuten}
-
-\begin{itemize}
-	\item Sich mit Herr Seifert auf einen Ansatz für den Taschenrechner einigen.
-	\item Workflow für Git, Meeting-Protokolle, Studienarbeit und Projekttagebücher festlegen.
-	\item Ausarbeitung des Konzepts für den Taschenrechner. Hier wurden dem Auftraggeber Herr Seifert mehrere Konzepte vorgestellt und gemeinsam mit ihm genaue Anforderungen erarbeitet.
-\end{itemize}
-
-\para{05.09.2019 :: 20 Minuten}
-
-Besprechen der Tagesziele:
-
-\begin{itemize}
-	\item Fertigstellung des Konzeptes.
-	\item Fortschritte beim Paper-Prototypen machen bzw. erstellt haben.
-	\item Android-Umgebung soll bei allen Team-Mitgliedern komplett aufgesetzt und lauffähig sein.
-\end{itemize}
-
-\para{05.09.2019 :: 60 Minuten}
-
-Besprechen aktueller Stand des Konzepts und Prototypen:
-
-\begin{itemize}
-	\item Es wurde ein Mid-Fidelity Prototyp erstellt. 
-	\item Diskussion über Umsetzung und Workflow der App.
-	\begin{itemize}
-		\item Wie sollen die einzelnen Kacheln funktionieren?
-		\item Wie sollen die Kacheln miteinander interagieren?
-		\item Wie könnte die Architektur der App aussehen?
-	\end{itemize}
-\end{itemize}
-
-\para{05.09.2019 :: 40 Minuten}
-
-\begin{itemize}
-	\item Aufbau des Scrumboards mit Backlog, Doing, Review und Done.
-	\begin{itemize}
-		\item Backlog: Architektur Basics, Konzept (Paper Prototype, Mid-Fidelity-PPT-Prototyp), Rechenmodule, Zeitmanagement, UI-Coding-Design.
-		\item Doing: Paper Mid Fidelity
-		\item Review:
-		\item Done: Git Projekt aufsetzen
-	\end{itemize}
-	\item Übertragen in Teams Planner und dort weitere Ausarbeitung.
-	\item Grobe Verteilung der Einträge im Backlog um Konzepte zu erarbeiten.
-\end{itemize}
-
-\para{17.09.2019 :: 150 Minuten}
-
-Backend-Architektur und App-Workflow:
-
-\begin{itemize}
-	\item Erweiterung UML-Klassendiagramm. Die Klasse Operand wird abstrakt und wird von konkreten Operanden wie Vector geerbt. Diese stellen Extensions dar die neben den eigentlichen mathematischen Werten weitere Daten und Verhalten mitbringen.
-	\item Welche Library soll für Mathe-Funktionalitäten benutzt werden? JScience und die bereits mitgelieferte Standardbibliothek.
-	\item Wie sollen Elemente in der GUI dargestellt werden? Als ASCII oder gerendert in LaTeX. Letzteres ist mit höherer Komplexität verbunden sieht aber auch besser aus. 
-	\item Wie soll das Layout funktionieren? Gridlayout fällt raus, weil nicht dynamisch genug? Relative-Layout ist eine Option. Hier darf aber die Anordnung beim Rotieren nicht unkontrolliert verändert werden. UI Team möchte, dass alle Komponenten gleich groß sind. In dem Fall kann man Gridlayout benutzen.
-	\item Wie soll die Eingabe von Funktionen im Graph Operand funktionieren? Nur möglich mit bereits vorhandenen Elementen in der Oberfläche. Es öffnet sich keine Tastatur.
-\end{itemize}
-
-\para{09.10.2019 :: 90 Minuten}
-
-Verteilung von Programmieraufgaben und Diskussion:
-
-\begin{itemize}
-	\item Vorstellung des Backend-Entwurfs für Teammitglieder, die für das Frontend zuständig sind. 
-	\item Vorstellung des Frontend-Entwurfs für Teammitglieder, die für das Backend zuständig sind.
-	\item Diskussion über Verbindung von Frontend und Backend. Wie abgekoppelt lässt sich der Calculator wirklich realisieren?
-	\item Vorstellung der Hauptbibliothek die für die (aufwändigen) Rechnungen wie Nullstellenberechnung benutzt werden soll.
-	\item Warum Apache Commons Math und nicht JScience?
-	\item Diskussion des Programm-Workflows.
-	\item Diskussion ob ASCII-Darstellung oder LaTeX-Rendering für Frontend benutzt werden soll
-\end{itemize}
-
-\para{05.01.2020 :: 120 Minuten}
-
-Arbeit am Projekt:
-
-\begin{itemize}
-	\item Aufnahme des aktuellen Projektstands.
-	\item Besprechen des weiteren Vorgehens.
-	\item Aufgabenabstimmung.
-	\item Besprechung des geplanten Frontends.
-	\item Besprechung/ Lösung von Problemen.
-\end{itemize}
-
-\para{14.01.2019 :: 90 Minuten}
-
-Zusammenführung Frontend Backend:
-
-\begin{itemize}
-	\item Präsentation des Frontends durch das GUI-Team.
-	\item Besprechen von MVC-Umsetzung in Android.
-	\item Backend Unit-Testing Fortschritte.
-	\item Serialisierung der Stacks zur Session-Sicherung.
-\end{itemize}
-
-\para{24.01.2019 :: 240 Minuten}
-
-\begin{itemize}
-	\item Detaillierte Ausarbeitung der Architektur im Backend.
-	\item Programmieren im Team. 
-	\item Zusammenführen mehrere Features.
-	\item Umbau der Programmstruktur.
-\end{itemize}
-
-\para{28.01.2019 :: 90 Minuten}
-
-Gespräch mit Herr Prof. Dr. Thomas Seifert über den aktuellen Stand des Projekts und im Anschluss daran eine Nachbesprechung innerhalb des Teams.
-
-Vorstellung:
-
-\begin{itemize}
-	\item Vorstellung der bereits implementierten Grundfunktionen der App.
-	\item Vorstellung des verwendeten Design-Patterns.
-	\item Abgleich von Umsetzung mit den Anforderungen des Dozenten.
-	\item Ansatz des Backends erklärt.
-	\item Gerät ausleihen, um nicht nur mit Emulator testen zu können.
-	\item Serialisierung der Daten (Speichern und Laden).
-\end{itemize}
-
-Ergebnis:
-
-\begin{itemize}
-	\item Projekt ist auf einem guten Weg. Priorisiert werden sollen differenzierende Funktionen anstatt wenige Features sehr detailliert auszuarbeiten (Prototypische Arbeit).
-	\item Ternäre, Quaternäre usw. Operationen sind gewünscht.
-	\item Vektoren in Bestandteile lösen.
-	\item Eingabe von Matrizen.
-	\item Jeder Klasse muss ein Verantwortlicher zugeordnet sein.
-\end{itemize}
-
-Ideen aus der Nachbesprechung:
-
-\begin{itemize}
-	\item ''Vektor bauen'' / ''Vektoren auflösen'' Action. 
-	\item Summe von Stack Action.
-	\item 1x Triple Operator einfügen.
-	\item Operanden Eingabe via einzelne Menüs.
-	\item Ranks der Stacks anpassen.
-	\item Format des ersten Stacks anpassen (Format nicht 0,00).
-\end{itemize}
-
-\para{03.02.2019 :: 90 Minuten}
-
-\begin{itemize}
-	\item Besprechen des aktuellen Stands der App.
-	\item Was muss noch unbedingt umgesetzt werden?
-	\item Aufteilung der noch offenen Kapitel in der Ausarbeitung.
-	\item Neues Kapitel ''Einleitung'' mit Motivation.
-	\item Anpassung einiger Kapitelbezeichnungen an Gegebenheiten des Projekts.
-	\item Koordination der Ausarbeitung.
-\end{itemize}
+}
 
 \subsection{Projekttagebücher aller Teammitglieder (tabellarisch)}
 
