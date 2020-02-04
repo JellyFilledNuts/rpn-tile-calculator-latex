@@ -48,10 +48,6 @@
 \setcounter{tocdepth}{3}
 \tableofcontents\newpage
 
-% Abkürzungsverzeichnis
-\printglossary[type=\acronymtype, style=mylist, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]\newpage
-\setcounter{table}{0} % printglossary erzeugt eine Tabelle, die die Nummerierung der "echten" Tabellen durcheinander bringt. 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Verzeichnisse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,6 +56,10 @@
 \fancyhead[R]{\listfigurename}
 \listoffigures\newpage
 
+% Quelltextverzeichnis
+\fancyhead[R]{\lstlistlistingname}
+\lstlistoflistings\newpage
+
 % Kapitelüberschriften für den Arbeitstext
 \fancyhead[R]{\leftmark}
 
@@ -67,7 +67,6 @@
 %% Inhalt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Arabische Seitennummerierung
 \pagenumbering{arabic} 
 
 \include{chapter/Das_Team_mit_Namen_und_Bild}
@@ -88,26 +87,12 @@
 %% Anhang
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\include{chapter/Quellenverzeichnis}
+
 \include{chapter/Anhang_Quelltext}
 
 \include{chapter/Anhang_Verzeichnis_der_verwendeten_Tools_und_Hilfsprogramme}
 
-\include{chapter/Quellenverzeichnis}
-
 \include{chapter/Ehrenwoertliche_Erklaerung}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Old Stuff
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\include{chapter/Einleitung}
-
-\include{chapter/Installation}
-
-\include{chapter/Grundlagen}
-
-\include{chapter/Zusammenfassung}
-	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}

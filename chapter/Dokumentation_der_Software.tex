@@ -77,13 +77,8 @@ for (int i = 0; i < operands.length; i++)
 
 try {
 	resultOperand = (Operand) scopedAction.getClass()
-		.getDeclaredMethod(
-			"on",
-			operandClasses
-		).invoke(
-			scopedAction,
-			(Object[]) operands
-		);
+		.getDeclaredMethod("on", operandClasses)
+		.invoke(scopedAction, (Object[]) operands);
 } catch (SeveralExceptions e) {
 	throw new CalculationException(e.getMessage());
 }
