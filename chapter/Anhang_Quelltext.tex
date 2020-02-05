@@ -4204,7 +4204,7 @@ public class TurnAroundSign extends Setting {
 
 \subsubsection{Stack}   
 
-\begin{lstlisting}[caption=StackInterface (Schwenke),label=list:StackInterface,language=Java]
+\begin{lstlisting}[caption=StackInterface (Keienburg),label=list:StackInterface,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.stack;
 
 import org.jetbrains.annotations.NotNull;
@@ -4214,7 +4214,8 @@ import java.util.List;
 
 /**
  * Summary: Stack interface for stacks in this project
- * Author:  Tim Schwenke
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/03 & 2020/01/04
  */
 public interface StackInterface<T> {
 
@@ -4323,9 +4324,10 @@ public interface StackInterface<T> {
     int size();
 
 }
+}
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=OperandStack (Schwenke),label=list:OperandStack,language=Java]
+\begin{lstlisting}[caption=OperandStack (Keienburg),label=list:OperandStack,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.stack;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
@@ -4340,7 +4342,8 @@ import java.util.List;
 
 /*
  * Summary: The Stack for the operands that is used for calculating
- * Author:  Tim Schwenke
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/03 & 2020/01/04
  */
 public final class OperandStack implements StackInterface<Operand> {
 
@@ -4448,7 +4451,6 @@ public final class OperandStack implements StackInterface<Operand> {
     }
 
 }
-
 \end{lstlisting} 
 
 \begin{lstlisting}[caption=ArcCosinusTest (Keienburg),label=list:ArcCosinusTest,language=Java]
