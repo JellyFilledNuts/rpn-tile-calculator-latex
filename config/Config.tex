@@ -45,6 +45,9 @@ final             % draft beschleunigt die Kompilierung
 % So that figures don't fly around.
 \usepackage[section]{placeins}
 
+% Fight footnotes flying around.
+\usepackage[bottom]{footmisc}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Rest							                                     %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,7 +106,7 @@ final             % draft beschleunigt die Kompilierung
 \usepackage[
     bibstyle=authoryear,
     citestyle=authoryear-fhdw,  
-    firstinits=false,         % false = Vornamen werden ausgeschrieben
+    firstinits=true,         % false = Vornamen werden ausgeschrieben
     natbib=true,
     urldate=long,             % "besucht am" - Datum
     %url=false,
