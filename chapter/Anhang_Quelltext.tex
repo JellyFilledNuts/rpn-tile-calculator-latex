@@ -4463,6 +4463,7 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the arc cosinus function
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
  */
 
 public class ArcCosinusTest {
@@ -4509,6 +4510,7 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the arc sinus function
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
  */
 
 public class ArcSinusTest {
@@ -4555,6 +4557,7 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the arc tangens function
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
  */
 
 public class ArcTangensTest {
@@ -4647,6 +4650,7 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the derivation
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
  */
 
 public class DerivationTest {
@@ -4680,15 +4684,6 @@ public class DerivationTest {
     }
 
     @Test
-    public void derivation_isCorrect4() {
-        double[] functionValues = new double[] {-3, 4, 12};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[] {-6, 4};
-        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
-        assertEquals(DERIVATION.on(function), derivation);
-    }
-
-    @Test
     public void derivation_isCorrect5() {
         double[] functionValues = new double[] {1.5, 2, 7};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
@@ -4713,6 +4708,7 @@ import static org.junit.Assert.assertEquals;
 /*
  * Summary: Unit test for the calculation of high and low points
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
  */
 
 public class HighAndLowPointsTest {
@@ -4731,7 +4727,7 @@ public class HighAndLowPointsTest {
     public void highAndLowPoints_isCorrect2() {
         double[] functionValues = new double[]{3, 6,-4};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[]{-1, -1};
+        double[] resultValues = new double[]{-1, -7};
         OTuple extremPoints = new OTuple(resultValues);
         assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
     }
@@ -4741,15 +4737,6 @@ public class HighAndLowPointsTest {
         double[] functionValues = new double[]{-2, 4, 12};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
         double[] resultValues = new double[]{1, 14};
-        OTuple extremPoints = new OTuple(resultValues);
-        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
-    }
-
-    @Test
-    public void highAndLowPoints_isCorrect4() {
-        double[] functionValues = new double[]{1, 2, 6, 5};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[]{};
         OTuple extremPoints = new OTuple(resultValues);
         assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
     }
@@ -4766,13 +4753,14 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the logarithm with base 10. 
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
  */
 
 public class Logarithm10Test {
     private Logarithm10 LOGARITHM10 = Logarithm10.getInstance();
 
     @Test
-    public void naturalLogarithm_isCorrect1() {
+    public void logarithm10_isCorrect1() {
         System.out.println(LOGARITHM10.on(
                 new ODouble(10)));
         assertTrue(LOGARITHM10.on(
@@ -4781,7 +4769,7 @@ public class Logarithm10Test {
     }
 
     @Test
-    public void naturalLogarithm_isCorrect2() {
+    public void logarithm10_isCorrect2() {
         System.out.println(LOGARITHM10.on(
                 new ODouble(5)));
         assertTrue(LOGARITHM10.on(
@@ -4790,7 +4778,7 @@ public class Logarithm10Test {
     }
 
     @Test
-    public void naturalLogarithm_isCorrect3() {
+    public void logarithm10_isCorrect3() {
         System.out.println(LOGARITHM10.on(
                 new ODouble(97)));
         assertTrue(LOGARITHM10.on(
@@ -4812,6 +4800,7 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the natural logarithm and logatithm with specific base
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
  */
 
 public class LogarithmTest {
@@ -4901,6 +4890,7 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the sinus function
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
  */
 
 public class SinusTest {
@@ -4989,6 +4979,7 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the calculation of the zeros
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
  */
 
 public class ZerosTest {
@@ -4998,7 +4989,7 @@ public class ZerosTest {
     public void zeros_isCorrect1() {
         double[] functionValues = new double[] {2, 4};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        OTuple result = new OTuple(2, 0);
+        OTuple result = new OTuple(-2);
         System.out.println(ZEROS.on(function));
         assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
                 .equalsValue(result));
@@ -5006,9 +4997,9 @@ public class ZerosTest {
 
     @Test
     public void zeros_isCorrect2() {
-        double[] functionValues = new double[] {3, 4, 6};
+        double[] functionValues = new double[] {2, 4, 0};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        OTuple result = new OTuple();
+        OTuple result = new OTuple(-2, 0);
         System.out.println(ZEROS.on(function));
         assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
                 .equalsValue(result));
