@@ -129,7 +129,7 @@ public class ArcCosinus extends Action {
 
     /**
      * Calculates the arc cosinus with a given angle.
-     * 
+     *
      * @param angle Representing the angle.
      * @return Result
      */
@@ -306,15 +306,15 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the derivate of a function
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23, updated 2020/02/02
+ * Date:    2020/01/14
  */
 
 public class Derivation extends Action {
 
-    @NotNull public static final Derivation DERIVATION = new Derivation();
+    @NotNull private static final Derivation DERIVATION = new Derivation();
 
     @Contract(pure = true) @NotNull public static Derivation getInstance() { return DERIVATION; }
-    public Derivation() {
+    private Derivation() {
         requiredNumOfOperands = new int[]{1};
     }
 
@@ -369,7 +369,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the high and the low points of a function( up to third grade)
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23 (initialy) updates at the 02/02/20
+ * Date:    2020/01/16, updated on 2020/01/17
  */
 
 public class HighAndLowPoints extends Action {
@@ -663,15 +663,61 @@ public class Logarithm extends Action {
 
     //Natural Logarithm
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble oDouble) {
+        if(oDouble.getDouble() <= 0)
+            throw new IllegalArgumentException("Value must be higher than Zero.");
         return new ODouble(Math.log(oDouble.getDouble()));
     }
 
     //Logarithm with specific base
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble base, ODouble logartihmOf) {
+        if(base.getDouble() <= 0 || logartihmOf.getDouble() <= 0)
+            throw new IllegalArgumentException("Value must be higher than Zero.");
         return new ODouble(Math.log(logartihmOf.getDouble()) / Math.log(base.getDouble()));
     }
 }
 \end{lstlisting}    
+
+\begin{lstlisting}[caption=Logarithm10 (Keienburg),label=list:Logarithm10,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+
+/*
+ * Summary: A Class that can calculate the natural logarithm.
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/19
+ */
+public class Logarithm10 extends Action {
+
+    @NotNull
+    private static final Logarithm10 LOGARITHM10 = new Logarithm10();
+
+    /*
+     * Singleton for Logarithm with the base of 10
+     * @return singleton object
+     */
+    @Contract(pure = true) @NotNull public static Logarithm10 getInstance() { return LOGARITHM10; }
+    private Logarithm10() {
+        requiredNumOfOperands = new int[]{1};
+    }
+
+    @NotNull @Override
+    public Operand with(@NotNull Operand... operands) throws CalculationException {
+        scopedAction = this;
+        return super.with(operands);
+    }
+
+    //Logarithm to the base of 10
+    @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble oDouble) {
+        if(oDouble.getDouble() <= 0)
+            throw new IllegalArgumentException("Value must be higher than Zero.");
+        return new ODouble(Math.log10(oDouble.getDouble()));
+    }
+}
+\end{lstlisting}  
 
 \begin{lstlisting}[caption=MatrixUtil (Istogu),label=list:MatrixUtil,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
@@ -1719,14 +1765,14 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the zeros of functions and quadratic functions.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/19, updated on 02.02.2020
+ * Date:    2020/01/15
  */
 public class Zeros extends Action {
 
-    @NotNull public static final Zeros ZEROS = new Zeros();
+    @NotNull private static final Zeros ZEROS = new Zeros();
 
     @Contract(pure = true) @NotNull public static Zeros getInstance() { return ZEROS; }
-    public Zeros() {requiredNumOfOperands = new int[] {1}; }
+    private Zeros() {requiredNumOfOperands = new int[] {1}; }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
@@ -3495,6 +3541,592 @@ public final class OperandStack implements StackInterface<Operand> {
 
 }
 
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=ArcCosinusTest (Keienburg),label=list:ArcCosinusTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the arc cosinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class ArcCosinusTest {
+    private ArcCosinus ARC_COSINUS = ArcCosinus.getInstance();
+
+    @Test
+    public void arcCosinusAngle_isCorrect1() {
+        System.out.println(ARC_COSINUS.on(
+                new ODouble(10)));
+        assertTrue(ARC_COSINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(1.3953649341158527))
+        );
+    }
+
+    @Test
+    public void arcCosinusAngle_isCorrect2() {
+        System.out.println(ARC_COSINUS.on(
+                new ODouble(45)));
+        assertTrue(ARC_COSINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.6674572160283838))
+        );
+    }
+
+    @Test
+    public void arcCosinusAngle_isCorrect3() {
+        System.out.println(ARC_COSINUS.on(
+                new ODouble(-45)));
+        assertTrue(ARC_COSINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.6674572160283838))
+        );
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=ArcSinusTest (Keienburg),label=list:ArcSinusTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the arc sinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class ArcSinusTest {
+    private ArcSinus ARC_SINUS = ArcSinus.getInstance();
+
+    @Test
+    public void arcSinusAngle_isCorrect1() {
+        System.out.println(ARC_SINUS.on(
+                new ODouble(10)));
+        assertTrue(ARC_SINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.17543139267904395))
+        );
+    }
+
+    @Test
+    public void arcSinusAngle_isCorrect2() {
+        System.out.println(ARC_SINUS.on(
+                new ODouble(45)));
+        assertTrue(ARC_SINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.9033391107665127))
+        );
+    }
+
+    @Test
+    public void arcSinusAngle_isCorrect3() {
+        System.out.println(ARC_SINUS.on(
+                new ODouble(-45)));
+        assertTrue(ARC_SINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.9033391107665127))
+        );
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=ArcTangensTest (Keienburg),label=list:ArcTangensTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the arc tangens function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class ArcTangensTest {
+    private ArcTangens ARC_TANGENS = ArcTangens.getInstance();
+
+    @Test
+    public void arcTangensAngle_isCorrect1() {
+        System.out.println(ARC_TANGENS.on(
+                new ODouble(10)));
+        assertTrue(ARC_TANGENS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.1727924348551592))
+        );
+    }
+
+    @Test
+    public void arcTangensAngle_isCorrect2() {
+        System.out.println(ARC_TANGENS.on(
+                new ODouble(45)));
+        assertTrue(ARC_TANGENS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.6657737500283538))
+        );
+    }
+
+    @Test
+    public void arcTangensAngle_isCorrect3() {
+        System.out.println(ARC_TANGENS.on(
+                new ODouble(-45)));
+        assertTrue(ARC_TANGENS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.6657737500283538))
+        );
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=CosinusTest (Keienburg),label=list:CosinusTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the cosinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class CosinusTest {
+    private Cosinus COSINUS = Cosinus.getInstance();
+
+    @Test public void cosinusAngle_isCorrect1() {
+        System.out.println(COSINUS.on(
+                new ODouble(10)));
+        assertTrue(COSINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.984807753012208))
+        );
+    }
+
+    @Test public void cosinusAngle_isCorrect2() {
+        System.out.println(COSINUS.on(
+                new ODouble(45)));
+        assertTrue(COSINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.7071067811865476))
+        );
+    }
+
+    @Test public void cosinusAngle_isCorrect3() {
+        System.out.println(COSINUS.on(
+                new ODouble(-45)));
+        assertTrue(COSINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.7071067811865476))
+        );
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=DerivationTest (Keienburg),label=list:DerivationTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the derivation
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
+
+public class DerivationTest {
+    private Derivation DERIVATION = Derivation.getInstance();
+
+    @Test
+    public void derivation_isCorrect1() {
+        double[] functionValues = new double[] {2, 4, 6};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {4, 4};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+
+    @Test
+    public void derivation_isCorrect2() {
+        double[] functionValues = new double[] {7, 9};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {7};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+
+    @Test
+    public void derivation_isCorrect3() {
+        double[] functionValues = new double[] {12, -3, 12};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {24, -3};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+
+    @Test
+    public void derivation_isCorrect4() {
+        double[] functionValues = new double[] {-3, 4, 12};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {-6, 4};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+
+    @Test
+    public void derivation_isCorrect5() {
+        double[] functionValues = new double[] {1.5, 2, 7};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {2,25, 2};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=HighAndLowPointsTest (Keienburg),label=list:HighAndLowPointsTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+
+import static org.junit.Assert.assertEquals;
+
+/*
+ * Summary: Unit test for the calculation of high and low points
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
+
+public class HighAndLowPointsTest {
+    private HighAndLowPoints HIGHANDLOWPOINTS = HighAndLowPoints.getInstance();
+
+    @Test
+    public void highAndLowPoints_isCorrect1() {
+        double[] functionValues = new double[]{2, 4, 6};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[]{-1, 4};
+        OTuple extremPoints = new OTuple(resultValues);
+        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
+    }
+
+    @Test
+    public void highAndLowPoints_isCorrect2() {
+        double[] functionValues = new double[]{3, 6,-4};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[]{-1, -1};
+        OTuple extremPoints = new OTuple(resultValues);
+        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
+    }
+
+    @Test
+    public void highAndLowPoints_isCorrect3() {
+        double[] functionValues = new double[]{-2, 4, 12};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[]{1, 14};
+        OTuple extremPoints = new OTuple(resultValues);
+        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
+    }
+
+    @Test
+    public void highAndLowPoints_isCorrect4() {
+        double[] functionValues = new double[]{1, 2, 6, 5};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[]{};
+        OTuple extremPoints = new OTuple(resultValues);
+        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=Logarithm10Test (Keienburg),label=list:Logarithm10Test,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the logarithm with base 10. 
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class Logarithm10Test {
+    private Logarithm10 LOGARITHM10 = Logarithm10.getInstance();
+
+    @Test
+    public void naturalLogarithm_isCorrect1() {
+        System.out.println(LOGARITHM10.on(
+                new ODouble(10)));
+        assertTrue(LOGARITHM10.on(
+                new ODouble(10)).equalsValue(new ODouble(1.0))
+        );
+    }
+
+    @Test
+    public void naturalLogarithm_isCorrect2() {
+        System.out.println(LOGARITHM10.on(
+                new ODouble(5)));
+        assertTrue(LOGARITHM10.on(
+                new ODouble(5)).equalsValue(new ODouble(0.6989700043360189))
+        );
+    }
+
+    @Test
+    public void naturalLogarithm_isCorrect3() {
+        System.out.println(LOGARITHM10.on(
+                new ODouble(97)));
+        assertTrue(LOGARITHM10.on(
+                new ODouble(97)).equalsValue(new ODouble(1.9867717342662448))
+        );
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=LogarithmTest (Keienburg),label=list:LogarithmTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the natural logarithm and logatithm with specific base
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class LogarithmTest {
+    private Logarithm LOGARITHM = Logarithm.getInstance();
+
+    @Test
+    public void naturalLogarithm_isCorrect1() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(10)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(10)).equalsValue(new ODouble(2.302585092994046))
+        );
+    }
+
+    @Test
+    public void naturalLogarithm_isCorrect2() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(5)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(5)).equalsValue(new ODouble(1.6094379124341003))
+        );
+    }
+
+    @Test
+    public void naturalLogarithm_isCorrect3() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(97)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(97)).equalsValue(new ODouble(4.574710978503383))
+        );
+    }
+
+    @Test
+    public void naturalLogarithm_isCorrect4() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(Math.exp(1))));
+        assertTrue(LOGARITHM.on(
+                new ODouble(Math.exp(1))).equalsValue(new ODouble(1))
+        );
+    }
+
+    @Test
+    public void logarithmOfChoosenBase_isCorrect1() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(5),
+                new ODouble(10)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(5),
+                new ODouble(10))
+                .equalsValue(new ODouble(1.4306765580733933))
+        );
+    }
+
+    @Test
+    public void logarithmOfChoosenBase_isCorrect2() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(10),
+                new ODouble(10)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(10),
+                new ODouble(10))
+                .equalsValue(new ODouble(1.0))
+        );
+    }
+
+    @Test
+    public void logarithmOfChoosenBase_isCorrect3() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(Math.exp(1)),
+                new ODouble(10)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(Math.exp(1)),
+                new ODouble(10))
+                .equalsValue(new ODouble(2.302585092994046))
+        );
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=SinusTest (Keienburg),label=list:SinusTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the sinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class SinusTest {
+    private Sinus SINUS = Sinus.getInstance();
+
+    @Test public void sinusAngle_isCorrect1() {
+        System.out.println(SINUS.on(
+                new ODouble(10)));
+        assertTrue(SINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.17364817766693033))
+        );
+    }
+
+    @Test public void sinusAngle_isCorrect2() {
+        System.out.println(SINUS.on(
+                new ODouble(45)));
+        assertTrue(SINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.7071067811865475))
+        );
+    }
+
+    @Test public void sinusAngle_isCorrect3() {
+        System.out.println(SINUS.on(
+                new ODouble(-45)));
+        assertTrue(SINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.7071067811865475))
+        );
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=TangensTest (Schwenke),label=list:TangensTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the tangens
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class TangensTest {
+    private Tangens TANGENS = Tangens.getInstance();
+
+    @Test
+    public void tangensAngle_isCorrect1() {
+        System.out.println(TANGENS.on(
+                new ODouble(10)));
+        assertTrue(TANGENS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.17632698070846498))
+        );
+    }
+
+    @Test
+    public void tangensAngle_isCorrect2() {
+        System.out.println(TANGENS.on(
+                new ODouble(45)));
+        assertTrue(TANGENS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.9999999999999999))
+        );
+    }
+
+    @Test
+    public void tangensAngle_isCorrect3() {
+        System.out.println(TANGENS.on(
+                new ODouble(-45)));
+        assertTrue(TANGENS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.9999999999999999))
+        );
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=ZerosTest (Schwenke),label=list:ZerosTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.junit.Test;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the calculation of the zeros
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
+
+public class ZerosTest {
+    private Zeros ZEROS = Zeros.getInstance();
+
+    @Test
+    public void zeros_isCorrect1() {
+        double[] functionValues = new double[] {2, 4};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        OTuple result = new OTuple(2, 0);
+        System.out.println(ZEROS.on(function));
+        assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
+                .equalsValue(result));
+    }
+
+    @Test
+    public void zeros_isCorrect2() {
+        double[] functionValues = new double[] {3, 4, 6};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        OTuple result = new OTuple();
+        System.out.println(ZEROS.on(function));
+        assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
+                .equalsValue(result));
+    }
+
+    @Test
+    public void zeros_isCorrect3() {
+        double[] functionValues = new double[] {1, 4, -4};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        OTuple result = new OTuple(-4.828, 0.828);
+        System.out.println(ZEROS.on(function));
+        assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
+                .equalsValue(result));
+    }
+}
 \end{lstlisting} 
 
 \subsection{View}
