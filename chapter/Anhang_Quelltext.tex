@@ -20,7 +20,6 @@ import java.util.List;
 /**
  * Summary: The framework for defining Actions. Actions are able to work with operands from the stack or executor functions.
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public abstract class Action {
 
@@ -104,7 +103,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Defines the arc Cosinus action.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/04
  */
 
 public class ArcCosinus extends Action {
@@ -151,7 +149,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Defines the arc Sinus action.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/04
  */
 
 public class ArcSinus extends Action {
@@ -193,7 +190,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Defines the arc Tangens action.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/04
  */
 
 public class ArcTangens  extends Action {
@@ -229,7 +225,6 @@ package de.fhdw.wip.rpntilecalculator.model.calculation;
 /**
  * Summary: Main Exception for a failed Calculation
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public class CalculationException extends Exception {
 
@@ -262,7 +257,6 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Defines the Cosinus action.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/04
  */
 @SuppressWarnings({"unused"})
 public class Cosinus extends Action {
@@ -306,7 +300,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the derivate of a function
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/14
  */
 
 public class Derivation extends Action {
@@ -369,7 +362,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the high and the low points of a function( up to third grade)
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/16, updated on 2020/01/17
  */
 
 public class HighAndLowPoints extends Action {
@@ -455,7 +447,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Calculate the antiderivative and integral
  * Author:  Getuart Istogu
- * Date:    2020/01/27
  */
 
 public class Integral extends Action {
@@ -532,7 +523,6 @@ import static org.junit.Assert.*;
 /*
  * Summary: Test for the class 'Integral'
  * Author:  Getuart Istogu
- * Date:    2020/01/27
  */
 
 public class IntegralTest {
@@ -584,7 +574,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Determine limit
  * Author:  Getuart Istogu
- * Date:    2020/01/04
  */
 public class Limes extends Action {
 
@@ -687,7 +676,6 @@ import static org.junit.Assert.assertEquals;
 /*
  * Summary: Test for the class 'Limes'
  * Author:  Getuart Istogu
- * Date:    2020/01/27
  */
 
 public class LimesTest {
@@ -724,7 +712,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the natural logarithm.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/19
  */
 public class Logarithm extends Action {
 
@@ -773,7 +760,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the natural logarithm.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/19
  */
 public class Logarithm10 extends Action {
 
@@ -818,7 +804,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Solving systems of linear equations with "LR decomposition with column pivot search"
  * Author:  Getuart Istogu
- * Date:    2020/01/27
  */
 
 public class MatrixUtil extends Action {
@@ -929,7 +914,6 @@ import static org.junit.Assert.assertEquals;
 /*
  * Summary: Test for the class 'MatrixUtil'
  * Author:  Getuart Istogu
- * Date:    2020/01/27
  */
 
 public class MatrixUtilTest {
@@ -959,7 +943,7 @@ public class MatrixUtilTest {
 }
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Minus (Schwenke),label=list:Minus,language=Java]
+\begin{lstlisting}[caption=Minus (Falk),label=list:Minus,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
@@ -975,8 +959,7 @@ import org.jetbrains.annotations.NotNull;
 
 /*
  * Summary: Defines the Minus click. Lets the user subtract operands.
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 public class Minus extends Action {
 
@@ -1105,7 +1088,6 @@ import static org.junit.Assert.*;
 /*
  * Summary: Test for the class 'MinusTest'
  * Author:  Tim Schwenke
- * Date:    2020/01/27
  */
 
 public class MinusTest {
@@ -1267,7 +1249,7 @@ public class MinusTest {
 }
 \end{lstlisting} 
 
-\begin{lstlisting}[caption=Modulo (Istogu),label=list:Modulo,language=Java]
+\begin{lstlisting}[caption=Modulo (Falk),label=list:Modulo,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
@@ -1278,8 +1260,7 @@ import org.jetbrains.annotations.Contract;
 
 /*
  * Summary: Defines the Modulo click.
- * Author:  Getuart Istogu
- * Date:    2020/01/05
+ * Author:  Hendrik Falk
  */
 public class Modulo extends Action {
     @NotNull private static final Modulo MODULO = new Modulo();
@@ -1329,7 +1310,6 @@ import java.util.Set;
 /*
  * Summary: Defines the Plus click. Lets the user subtract operands.
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public class Plus extends Action {
 
@@ -1487,7 +1467,6 @@ import static org.junit.Assert.*;
 /*
  * Summary: Test for the class 'PlusTest'
  * Author:  Tim Schwenke
- * Date:    2020/01/27
  */
 
 public class PlusTest {
@@ -1719,7 +1698,7 @@ public class PlusTest {
 }
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Power (Istogu),label=list:Power,language=Java]
+\begin{lstlisting}[caption=Power (Falk),label=list:Power,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
@@ -1736,8 +1715,7 @@ import org.jetbrains.annotations.Contract;
 
 /*
  * Summary: Defines the Power click.
- * Author:  Getuart Istogu
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 
 public class Power extends Action{
@@ -1833,7 +1811,6 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Defines the Sinus action.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/04
  */
 public class Sinus extends Action {
 
@@ -1862,7 +1839,7 @@ public class Sinus extends Action {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Slash (Schwenke),label=list:Slash,language=Java]
+\begin{lstlisting}[caption=Slash (Falk),label=list:Slash,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.DoubleComparator;
@@ -1879,8 +1856,7 @@ import org.jetbrains.annotations.NotNull;
 
 /*
  * Summary: Defines the Slash action.
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 public class Slash extends Action {
 
@@ -2033,7 +2009,6 @@ import static org.junit.Assert.*;
 /*
  * Summary: Test for the class 'SlashTest'
  * Author:  Tim Schwenke
- * Date:    2020/01/27
  */
 
 public class SlashTest {
@@ -2227,7 +2202,6 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Defines the Tangens action.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/04
  */
 public class Tangens extends Action {
 
@@ -2256,7 +2230,7 @@ public class Tangens extends Action {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Times (Schwenke),label=list:Times,language=Java]
+\begin{lstlisting}[caption=Times (Falk),label=list:Times,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
@@ -2276,8 +2250,7 @@ import java.util.Set;
 
 /*
  * Summary: Defines the Times click. Lets the user Multiplies operands.
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Hendrik
  */
 @SuppressWarnings({"unused"})
 public class Times extends Action {
@@ -2523,7 +2496,6 @@ import static org.junit.Assert.*;
 /*
  * Summary: Test for the class 'TimesTest'
  * Author:  Tim Schwenke
- * Date:    2020/01/27
  */
 
 public class TimesTest {
@@ -2694,7 +2666,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the zeros of functions and quadratic functions.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/15
  */
 public class Zeros extends Action {
 
@@ -2768,7 +2739,7 @@ public class Zeros extends Action {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Root (Istogu),label=list:Root,language=Java]
+\begin{lstlisting}[caption=Root (Falk),label=list:Root,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
@@ -2781,8 +2752,7 @@ import org.jetbrains.annotations.Contract;
 
 /*
  * Summary: Defines the Root click.
- * Author:  Getuart Istogu
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 
 public class Root extends Action{
@@ -2846,7 +2816,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 /*
  * Summary: Test for the class 'RootTest'
  * Author:  Khang Pham
- * Date:    2020/01/27
  */
 public class RootTest {
 
@@ -2883,7 +2852,6 @@ import java.util.Set;
 /*
  * Summary: Utility to compare Doubles.
  * Author:  Tim Schwenke
- * Date:    2020/01/08
  */
 public class DoubleComparator {
 
@@ -2984,7 +2952,6 @@ import java.text.DecimalFormat;
 /*
  * Summary: Util for formatting all Double Values
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public final class DoubleFormatter {
 
@@ -3010,7 +2977,6 @@ package de.fhdw.wip.rpntilecalculator.model.operands;
 /*
  * Summary: Main Element Wrapper for all kinds
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public abstract class Element {
 
@@ -3028,7 +2994,6 @@ import org.jetbrains.annotations.Nullable;
 /*
  * Summary: Wrapper for the Double Operand
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public class ODouble extends Operand {
 
@@ -3125,7 +3090,6 @@ import org.jetbrains.annotations.Nullable;
 /*
  * Summary: Wrapper for the Double Operand
  * Author:  Tim Jonas Meinerzhagen
- * Date:    2020/01/04
  */
 public class OEmpty extends Operand {
 
@@ -3185,7 +3149,6 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Wrapper for the Fraction Operand
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public class OFraction extends Operand {
 
@@ -3280,7 +3243,6 @@ import java.util.regex.Pattern;
 /*
  * Summary: Wrapper for the Matrix Operand
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 @SuppressWarnings("unused")
 public class OMatrix extends Operand {
@@ -3395,7 +3357,6 @@ import java.util.ArrayList;
 /*
  * Summary: Wrapper for the Polynom Operand
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public class OPolynom extends Operand {
 
@@ -3490,7 +3451,6 @@ import java.util.regex.Pattern;
 /*
  * Summary: Every entry can only exist one time
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public class OSet extends Operand {
 
@@ -3614,7 +3574,6 @@ import java.util.regex.Pattern;
 /*
  * Summary: Wrapper for the Tuple Operand
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public class OTuple extends Operand {
 
@@ -3737,7 +3696,6 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Main class for all operands that can be used for calculating
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public abstract class Operand extends Element {
 
@@ -3771,7 +3729,6 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 /**
  * Summary: Empties the stack of the presenter
  * Author:  Hendrik Falk
- * Date:    2020/01/26
  */
 public class AllClear extends Setting {
 
@@ -3803,7 +3760,6 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 /**
  * Summary: Empties the history stack of the presenter
  * Author:  Hendrik Falk
- * Date:    2020/01/26
  */
 public class ClearHistory extends Setting {
 
@@ -3834,7 +3790,6 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 /**
  * Summary: Deletes the last input of the stack
  * Author:  Hendrik Falk
- * Date:    2020/01/26
  */
 public class DeleteEntry extends Setting {
 
@@ -3866,7 +3821,6 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 /**
  * Summary: Places a '.' in the input term to create decimal values
  * Author:  Hendrik Falk
- * Date:    2020/02/03
  */
 public class Dot extends Setting {
 
@@ -3899,7 +3853,6 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 /**
  * Summary: Finishes the current input term so that a new input can be created
  * Author:  Hendrik Falk
- * Date:    2020/01/27
  */
 public class Enter extends Setting {
 
@@ -3934,7 +3887,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /**
  * Summary: Calculates the inverse of an operand
  * Author:  Hendrik Falk
- * Date:    2020/01/29
  */
 public class Inverse extends Setting {
 
@@ -3981,7 +3933,6 @@ import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 /**
  * Summary: Creates a load layout menu to load a new layout design
  * Author:  Tim Jonas Meinerzhagen
- * Date:    2020/01/26
  */
 public class LoadLayout extends Setting {
 
@@ -4042,7 +3993,6 @@ import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 /**
  * Summary: Creates a save layout menu to save the current design
  * Author:  Tim Jonas Meinerzhagen
- * Date:    2020/01/26
  */
 public class SaveLayout extends Setting {
 
@@ -4093,7 +4043,6 @@ import org.jetbrains.annotations.Contract;
 /**
  * Summary: Super class for settings
  * Author:  Hendrik Falk
- * Date:    2020/01/26
  */
 public abstract class Setting {
 
@@ -4125,7 +4074,6 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 /**
  * Summary: Splits the current loaded operand into several ODoubles
  * Author:  Hendrik Falk
- * Date:    2020/02/03
  */
 public class Split extends Setting {
 
@@ -4192,7 +4140,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /**
  * Summary: Swaps the last two stack operands
  * Author:  Hendrik Falk
- * Date:    2020/01/30
  */
 public class Swap extends Setting {
 
@@ -4232,7 +4179,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /**
  * Summary: Changes positive operands to negative ones and vice versa
  * Author:  Hendrik Falk
- * Date:    2020/01/30
  */
 public class TurnAroundSign extends Setting {
 
@@ -4269,7 +4215,6 @@ import java.util.List;
 /**
  * Summary: Stack interface for stacks in this project
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public interface StackInterface<T> {
 
@@ -4396,7 +4341,6 @@ import java.util.List;
 /*
  * Summary: The Stack for the operands that is used for calculating
  * Author:  Tim Schwenke
- * Date:    2020/01/04
  */
 public final class OperandStack implements StackInterface<Operand> {
 
@@ -4519,7 +4463,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the arc cosinus function
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
  */
 
 public class ArcCosinusTest {
@@ -4566,7 +4509,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the arc sinus function
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
  */
 
 public class ArcSinusTest {
@@ -4613,7 +4555,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the arc tangens function
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
  */
 
 public class ArcTangensTest {
@@ -4660,7 +4601,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the cosinus function
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
  */
 
 public class CosinusTest {
@@ -4707,7 +4647,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the derivation
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23
  */
 
 public class DerivationTest {
@@ -4774,7 +4713,6 @@ import static org.junit.Assert.assertEquals;
 /*
  * Summary: Unit test for the calculation of high and low points
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23
  */
 
 public class HighAndLowPointsTest {
@@ -4828,7 +4766,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the logarithm with base 10. 
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
  */
 
 public class Logarithm10Test {
@@ -4875,7 +4812,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the natural logarithm and logatithm with specific base
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
  */
 
 public class LogarithmTest {
@@ -4965,7 +4901,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the sinus function
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
  */
 
 public class SinusTest {
@@ -5007,7 +4942,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the tangens
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
  */
 
 public class TangensTest {
@@ -5055,7 +4989,6 @@ import static org.junit.Assert.assertTrue;
 /*
  * Summary: Unit test for the calculation of the zeros
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23
  */
 
 public class ZerosTest {
