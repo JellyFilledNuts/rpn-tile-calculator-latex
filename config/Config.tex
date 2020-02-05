@@ -122,10 +122,10 @@ final             % draft beschleunigt die Kompilierung
 \bibliography{library/library}
 
 % Ebenentiefe der Nummerierung
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{4}
 
 % Gliederungstiefe im Inhaltsverzeichnis 
-\setcounter{tocdepth}{3} 
+\setcounter{tocdepth}{4} 
 
 % Tabellen- und Abbildungsverzeichnis mit Bezeichnung:
 \usepackage[titles]{tocloft}
@@ -260,3 +260,8 @@ final             % draft beschleunigt die Kompilierung
 
 % Create paragraph command with line-break
 \newcommand{\para}[1]{\paragraph{#1}\mbox{}}
+
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+	{-2.5ex\@plus -1ex \@minus -.25ex}%
+	{1.25ex \@plus .25ex}%
+	{\normalfont\normalsize\bfseries}}

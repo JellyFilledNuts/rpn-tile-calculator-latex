@@ -15,6 +15,8 @@ Danach wird die persistente Datenhaltung auf das Projekt angewendet und beschrie
 
 Zuletzt wird neben der Planung des Presenters, der View sowie der eigentlichen Menüsteuerung eine grobe Übersicht über die geplante Aufgabenverteilung im Team gegeben. 
 
+\clearpage
+
 \subsection{Funktionsumfangs [Falk]}
 
 Im Rahmen dieses Projekts muss eine Android-App entwickelten werden, welche die Funktion eines kachelbasierten UPN-Taschenrechners zur Verfügung stellt. 
@@ -135,7 +137,7 @@ GANTT Diagramme sind im Projektmanagement ein gängiges Tool, um Aktivitäten in
 
 \subsubsection{Planung des Mockups [Pham]}
 
-Um ein erstes Konzept für eine mögliche Umsetzung des Projektes zu erstellen, wurde zunächst ein Mockup in Form eines Paper-Prototyps erstellt. Bei der Erstellung des Mockups sollten die grundlegenden Regeln des Usability Engineerings eingehalten werden. Unter Usability Engineering ''versteht man den Prozess, der parallel zur klassischen Planungs- und Entwicklungsarbeit die spätere Gebrauchstauglichkeit eines Systems sicherstellt.''\footnote{\cite[][S.~204]{jhammondtgrossjwesson2002}} Das heißt, um für eine möglichst hohe Usability des Endproduktes zu sorgen, wurden bereits während der Konzeptionierung des Mockups Usability Aspekte mit in Betrachtung gezogen. 
+Um ein erstes Konzept für eine mögliche Umsetzung des Projektes zu erstellen, wurde zunächst ein Mockup in Form eines Paper-Prototyps erstellt. Bei der Erstellung des Mockups sollten die grundlegenden Regeln des Usability Engineerings eingehalten werden. Unter Usability Engineering ''versteht man den Prozess, der parallel zur klassischen Planungs- und Entwicklungsarbeit die spätere Gebrauchstauglichkeit eines Systems sicherstellt.''\footnote{\cite[][S.~204]{handbuchusability2007}} Das heißt, um für eine möglichst hohe Usability des Endproduktes zu sorgen, wurden bereits während der Konzeptionierung des Mockups Usability Aspekte mit in Betrachtung gezogen. 
 
 Um sicherstellen zu können, dass das Konzept für die Umsetzung des Projektes sich mit den Vorstellungen des späteren Benutzers und Auftraggeber (Prof. Dr. Thomas Seifert) deckt, wurde das gegebene Material analysiert sowie ein Gespräch mit dem Benutzer geführt, um die generellen Anforderungen ableiten zu können. 
 
@@ -220,15 +222,127 @@ Der User interagiert in jedem Design Pattern mit der View und gibt dort seine Ei
 
 An den Darstellungen kann man sehen, dass sich die MVP und MVC Pattern sehr stark ähneln. Es unterscheidet sich nur die Kommunikation zwischen Model und View. Während beim MVC Pattern Model und View direkt miteinander kommunizieren, findet dies beim MVP Pattern über den Presenter statt. Aufgrund der hier kleinen Projektgröße war Simplizität ein sehr wichtiges Kriterium bei der Auswahl des UI Design Patterns. Da Android Usereingaben eventgetrieben verarbeitet, hielten die Teammitglieder eine MVP Implementierung für die geeignetste Lösung dieses Problems.
 
-\para{Singleton Pattern [Schwenke] XXX}
+\clearpage
+
+\paragraph{Singleton Pattern [Schwenke] XXX}
 
 XXX
 
-\para{Factory Loader Pattern [Schwenke] XXX}
+\clearpage
+
+\paragraph{Factory Loader Pattern [Bockhorn] XXX}
 
 XXX
+
+\clearpage
 
 \subsubsection{Planung der Datenstrukturen und Schnittstellen}
+
+\interfootnotelinepenalty=10000
+
+\enlargethispage{3\baselineskip}
+
+\begin{figure}[!h]
+	\includegraphics[width=\textwidth,height=50em,keepaspectratio]{img/schnittstellen-klassendiagramm}
+	\caption[Klassendiagramm]{Klassendiagramm XXX\footnotemark}
+\end{figure}
+\footnotetext{eigene Darstellung}
+
+\interfootnotelinepenalty=100
+
+\clearpage
+
+\paragraph{Persistente Datenhaltung\protect\footnote{\cite[vgl.][]{ogbo2016}} [Meinerzhagen]}
+
+Im Rahmen der persistenten Datenspeicherung wurde zuerst betrachtet, was dauerhaft gespeichert werden muss und welche Elemente beim Start der Anwendung neu generiert werden können. Anschließend wurden die verfügbaren Speichermethoden betrachtet und im Anwendungskontext evaluiert. Die passendste Methode wurde letztlich ausgewählt.
+
+Entsprechend den erarbeiteten Anforderungen wurden in diesem Bereich das Speichern und Laden des aktuellen Zustandes der Kacheln und deren Layout in den Vordergrund gesetzt. Das Layout soll einem Gitternetz entsprechend aufgebaut sein.
+
+Zum Abspeichern dieser Daten wurden die verschiedenen Optionen betrachtet. Android bietet vier Varianten zur persistenten Datenspeicherung nativ an. Diese sind Shared Preferences, interne Speicher, externe Speicher und eine Datenbank. Mit Shared Preferences können einfache Key-Value-Paare gespeichert werden. Für diese wird automatisch eine Datei erstellt, welche Android verwaltet. Der interne Speicher bietet ein, vom restlichen Android System abgekapseltes, Dateisystem. Nur die App selbst ist erlaubt dort Daten zu speichern und lesen. Dagegen beschreibt der externe Speicher das bestehende Dateisystem von Android, auf welches der Nutzer und andere Apps freien Zugriff haben. Letztlich kann eine Datenbank zum Speichern verwendet werden. Android bietet dazu eine SQLite Datenbank an.
+
+Auf Grund der tabellenähnlichen Struktur der zu speichernden Daten wurde zum Speichern ein Tabellenformat angedacht. Dabei fiel die Wahl auf das gängige CSV Format. Mit der Wahl dieses waren die Shared Preferences und die Datenbank nicht mehr nutzbar. Somit lag die Wahl zwischen dem internen und externen Speicher. Da ein Zugriff auf die gespeicherten Daten von außerhalb nicht notwendig ist, fiel die Wahl auf die Nutzung des internen Speichers. 
+
+\clearpage
+
+\subsubsection{Planung des Presenters [Tom]}
+
+XXX
+
+Der Presenter agiert als Bindeglied zwischen der View und dem Model, sodass alle Bereiche ihre Funktionalitäten im vollen Maß erfüllen können und eine Separierung der Anwenderschnittstelle und der Geschäftslogik gewährleistet werden kann. Der Presenter koordiniert die Kommunikation zwischen View und Model, also steuert Rechnungen im Backend und sorgt für die korrekte Darstellung der Ergebnisse in den einzelnen Kacheln der View.
+
+Mit der View kommuniziert er über eine Container Klasse (XXX), welche die einzelnen Kacheln koordiniert. Aufrufe der View in Richtung des Presenters werden durch Events realisiert. Dabei wird die in Android native Listener Funktionalität verwendet, wobei der Presenter als \code{OnClickListener} dient. Er ist sich über die Instanz der Container Klasse bewusst und interagiert direkt mit dessen Attributen und Methoden.
+
+Das Model besteht aus verschiedenen Klassen, welche die Kacheltypen aus den Vorgaben widerspiegeln. Da diese dezentral vorliegen und es gemäß der geplanten MVP-Implementierung hier zu einer sehr komplexen Struktur von Events kommen würde, wurde sich dazu entschieden, die Kommunikation von Model zu Presenter über Rückgabewerte einzelner Methoden zu gestalten. Die entgegengerichtete Kommunikation verläuft nach Entwurf, also über direkte Aufrufe von Methoden und Attributen. Die aktuellen Operanden im Stack und die zuvor eingetragenen Operanden in der Historie werden jeweils als Listen im Presenter geführt.
+
+Um mit dem Presenter jegliche Eingabe verarbeiten zu können, wird diesem die Kachelidentität im Event übergeben. Diese wird ihm übergeben und er führt je nach Typ verschiedene Operationen durch.
+
+\begin{itemize}
+\item Bei Identifikation einer Kachel vom Typ Operand, wird dieser entweder an die aktuelle Eingabe zur Anlage von neuen Operanden angehängt, z.B. 2 und 3 zu 23, oder in den Stack und in die Historie geschoben. 
+\item Bei einer Operation wird diese mit so vielen Operanden wie möglich ausgeführt und das Ergebnis in Stack und Historie geschoben.
+\item Die Verarbeitung von Einstellung ist sehr individuell und nur gegebenenfalls werden Inhalte in Stack und Historie geschoben. Ein Beispiel für eine Einstellung ist die Taste \code{AC} (All Clear) im Taschenrechner. Diese entfernt jegliche Eingaben aus dem aktuellen Stack.
+\item Identifiziert der Presenter eine Kachel vom Typ Stack oder Historie, so wird diese wie ein Operand behandelt.
+\end{itemize}
+
+\interfootnotelinepenalty=10000
+
+\begin{figure}[!h]
+	\includegraphics[width=1\columnwidth]{img/click-event-handling-vom-presenter}
+	\caption[Click Event Handling vom Presenter]{Click Event Handling vom Presenter\footnotemark}
+\end{figure}
+\footnotetext{eigene Darstellung}
+
+\interfootnotelinepenalty=100
+
+\clearpage
+
+\subsubsection{Planung der View [Tom]}
+
+Für die Planung der View entschieden wir zuerst, dass die Applikation beim Start eine Kachelgestaltung in die Main Activity lädt. Dadurch erhält man eine Gridstruktur, in welcher die Kacheln unabhängig voneinander liegen. Diese Kachel geben ihren Inhalt an den Presenter weiter.
+
+Dadurch, dass die Layouts angepasst werden können, muss das Laden dynamisch implementiert werden. Die Kacheln werden durch das Layout als Buttons mit Text generiert und setzt dann die Listeners aus dem Observer Pattern. Es gibt einen Kachelcontainer, welcher eine Liste aller Kacheln hat und eine Liste beider benötigten Stacks. Der Kachelcontainer soll mit Hilfe des Factory Patterns erstellt werden. Dabei wird ein String aus dem Speicher geladen und in den Container umgewandelt. Die Factory kann auch aus einem Layout den dazu passenden String erstellen und mit einer Bezeichnung versehen. 
+
+Da die Kachel vom Kontext abhängig sind können diese nicht im Voraus geladen werden und es können keine Layouts gleichzeitig geladen werden. 
+
+Es gibt ein Schema für Kacheln, damit diese nicht vom Kontext abhängig sind. Die Factory erstellt aus den Schemata konkrete Kacheln mit Typ und Inhalt. Der Inhalt muss an den Typ angepasst werden und damit die Kacheln nicht überladen werden können, werden Untertypen erstellt, die mit Hilfe eines Mappings ausgewählt werden können. Es werden erst beim Laden eines Layout die Schemata in tatsächliche Kacheln übertragen. Änderungen der Kacheln laufen auch exklusiv über die Schemata.
+
+XXX ganz viele punkte
+
+\clearpage
+
+\subsubsection{Planung der Menüsteuerung [Istogu]}
+
+Nachdem beschrieben wurde, wie die Planung für die Umsetzung der Anforderung erfolgte (''alle Kacheln sind gleichbedeutend, das heißt keine Kachel besitzt einen unveränderlichen Sonderstatus''\footnote{\cite[vgl.][]{seifert2020a}}) beschäftigt sich das folgende Unterkapitel mit der Anforderung, dass jeder Kachel jede Rolle zugewiesen werden kann.
+
+In der Planungsphase wurde sich stärker an den Anforderung orientiert, zumal sie mögliche Implementierung skizzieren. Laut der Anforderung existiert ein Kacheltyp \code{CalculatorFunction}, der unter anderem ''auch die Zuordnung einer Funktionalität zu einer Kachel'' beinhaltet. Daher war die Idee, dass die Applikation zwei Activities beinhalten soll. Einmal eine Activity, die die Nutzung des Taschenrechners ermöglicht, und eine andere Activity, die einen ''Bearbeiten-Modus'' darstellen soll. Von dort aus könnte der Anwender sein Layout anpassen. Jedoch wurde diese Idee verworfen, weil sie auch mit den Anforderung teilweise kollidiert, dass die Funktionalitäten über eine minimale Menge von Interaktion erreicht werden soll. Stattdessen wurde entschieden den Ansatz zu verfolgen, der in der XXX Abbildung 7 zu sehen ist. Dieses Menü soll aufgerufen werden, wenn der Anwender eine Kachel länger gedrückt hält. 
+Dabei soll ein Menü geöffnet werden, dass eine Auswahl an unterstützte Kacheltypen anbietet. Abhängig davon was ausgewählt wird, erscheint ein weiteres Untermenü. In der nachfolgende Abbildung wird dies anhand der Zuweisung eines Bruches verdeutlich. Die letzten Untermenüs dabei sind den Operanden vorbehalten.
+ 
+\interfootnotelinepenalty=10000
+
+\begin{figure}[!h]
+	\includegraphics[width=1\columnwidth]{img/ablaufdiagramm-fuer-zuweisung}
+	\caption[Ablaufdiagramm für die Zuweisung eines Bruches an einer Kachel]{Ablaufdiagramm für die Zuweisung eines Bruches an einer Kachel\footnotemark}
+\end{figure}
+\footnotetext{eigene Darstellung}
+
+\interfootnotelinepenalty=100
+
+XXX
+
+%Nur eine Activity, die dynamisch aufgebaut und aktualisiert wird
+%Dialoge, die zur Menüführung drübergelegt werden
+%Argumente: Performance, Übersichtlichkeit, Lernzeit…
+
+
+
+
+
+
+
+
+
+
+
+
 
 \para{Nutzung von Stack für Notation [Schwenke]}
 
