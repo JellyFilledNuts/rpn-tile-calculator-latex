@@ -31,11 +31,11 @@ Im MVP Pattern ist die \code{Activity} der View zugeordnet. Sie lädt unter ande
 
 \textbf{Beschreibung:} Activity, die beim Starten der Anwendung aufgerufen wird und das Layout \code{activity\_main.xml} aufruft. Dieses Layout ist jedoch leer, da alle Inhalte dynamisch geladen werden. Es lädt auch Taschenrechner-Layouts vor und stellt Methoden zur Darstellung dieser bereit.
 
-\textbf{Methode} \code{onCreate} lädt die Layouts vor, erstellt einen \code{Listener} ob die Orientierung sich verändert und öffnet das erste Layout.
+\textbf{Methode} \code{onCreate()} lädt die Layouts vor, erstellt einen \code{Listener} ob die Orientierung sich verändert und öffnet das erste Layout.
 
-\textbf{Methode} \code{setTileLayout} lädt ein Layout in die View.
+\textbf{Methode} \code{setTileLayout()} lädt ein Layout in die View.
 
-\subsubsection{Generische Kachelgestaltung [Tom]}
+\subsubsection{Generische Kachelgestaltung [Bockhorn]}
 
 Die generische Gestaltung der Kacheln wurde gemäß dem Entwurf so umgesetzt, dass eine Trennung zwischen Kacheln, die als Buttons vom Kontext der Applikation abhängig sind, und Kacheln, die vom Kontext unabhängig sind, ermöglicht wird. Dies dient unter anderem dem Vorladen von Layouts zur Optimierung der Ladeperformance. Außerdem wird so die Definition des Kacheltypen und dessen spezialisierte Inhalte auf die vom Kontext unabhängigen Kachelschemata (\code{TileSchemes}) ausgelagert. 
 
@@ -67,7 +67,7 @@ Die Informationen über den Kacheltypen des \code{Tiles} befindet sich im \code{
 
 \subsubsection{Kontextfremde Kacheln [Gentges]}
 
-Die \code{TileSchemes} stehen in keiner Beziehung zum Kontext der Anwendung. Dennoch wird in ihnen der Text und das Design des letztendlichen \code{Tiles} gespeichert. Im Gegensatz zu den \code{Tiles} differenzieren \code{TileSchemes} hier zwischen Kachelarten. Die Grundeigenschaften eines \code{TileSchemes}, also die Information darüber um welche Art von Kachel es sich handelt, und was genau der Inhalt ist, werden in der Superklasse \code{TileScheme} definiert. Ersteres liegt in Form eines sogenannten \code{s} vor, welches in einem folgenden Kapitel näher erläutert wird XXX. Für jede der bestehenden Kachelarten wurde eine Unterklasse implementiert, welche die Eigenschaften von \code{TileScheme} erbt und weitere artbezogene Inhalte definiert. In Kombination mit einem \code{Tile} können so andere Komponenten der Applikation, wie beispielsweise der \code{Presenter}, die Kachelart des \code{TileScheme} erfragen und den vorliegenden Inhalt für die auszuführenden Prozesse extrahieren.
+Die \code{TileSchemes} stehen in keiner Beziehung zum Kontext der Anwendung. Dennoch wird in ihnen der Text und das Design des letztendlichen \code{Tiles} gespeichert. Im Gegensatz zu den \code{Tiles} differenzieren \code{TileSchemes} hier zwischen Kachelarten. Die Grundeigenschaften eines \code{TileSchemes}, also die Information darüber um welche Art von Kachel es sich handelt, und was genau der Inhalt ist, werden in der Superklasse \code{TileScheme} definiert. Ersteres liegt in Form eines sogenannten \code{TileMappings} vor. Für jede der bestehenden Kachelarten wurde eine Unterklasse implementiert, welche die Eigenschaften von \code{TileScheme} erbt und weitere artbezogene Inhalte definiert. In Kombination mit einem \code{Tile} können so andere Komponenten der Applikation, wie beispielsweise der \code{Presenter}, die Kachelart des \code{TileScheme} erfragen und den vorliegenden Inhalt für die auszuführenden Prozesse extrahieren.
 
 \begin{itemize}
 	\item Das \code{ActionTileScheme} ist die Implementierung eines \code{TileScheme} vom Typ Action, (auch \code{Operator}) der Inhalt und Typ um eine instanziierte Action erweitert. Dank der ähnlich polymorphen Struktur der \code{Action}s, kann so mit einem simplen Methodenaufruf jede Form von \code{Action}, die im Schema hinterlegt ist, angesprochen und ausgeführt werden.
@@ -77,15 +77,15 @@ Die \code{TileSchemes} stehen in keiner Beziehung zum Kontext der Anwendung. Den
 	\item Ein \code{HistoryStackTile} ist ebenfalls so aufgebaut, wie ein \code{StackTileScheme}, und erbt daher dessen \code{Attribute}.
 \end{itemize}
 
-Die Erstellung einzelner \code{TileSchemes} erfolgt mithilfe des Factory Method Design-Pattern. Hierzu stellt die abtrakte Superklasse \code{TileScheme} zwei Methoden zur Verfügung. Innerhalb dieser Methoden wird anhand des '\code{TileMappings} zwischen den verschiedenen Kachelarten differenziert und der passende Konstruktor der Unterklasse aufgerufen. In einer Methode erfolgt die Erstellung des \code{TileScheme} Inhalts durch die Einlese eines Zeichenkette. Dies findet beispielsweise bei der Kreierung von \code{TileSchemes}, nach der Auslese eines im internen Speicher gespeicherten Layouts, Anwendung. Als zweite Option kann aus einem bereits bestehenden Operanden ein \code{TileScheme} der Art Operand, Stack oder Historie erstellt werden. Dadurch, dass Stack und Historie eines Layouts regelmäßig aktualisiert werden müssen, bietet sich die performante Erstellung von \code{TileSchemes} mithilfe bestehender Operanden, gegenüber der aufwendigen erneuten Auslese aus einem String, an.
+Die Erstellung einzelner \code{TileSchemes} erfolgt mithilfe des Factory-Method-Design-Pattern. Hierzu stellt die abtrakte Superklasse \code{TileScheme} zwei Methoden zur Verfügung. Innerhalb dieser Methoden wird anhand des \code{TileMappings} zwischen den verschiedenen Kachelarten differenziert und der passende Konstruktor der Unterklasse aufgerufen. In einer Methode erfolgt die Erstellung des \code{TileScheme} Inhalts durch die Einlese eines Zeichenkette. Dies findet beispielsweise bei der Kreierung von \code{TileSchemes}, nach der Auslese eines im internen Speicher gespeicherten Layouts, Anwendung. Als zweite Option kann aus einem bereits bestehenden Operanden ein \code{TileScheme} der Art Operand, Stack oder Historie erstellt werden. Dadurch, dass Stack und Historie eines Layouts regelmäßig aktualisiert werden müssen, bietet sich die performante Erstellung von \code{TileSchemes} mithilfe bestehender Operanden, gegenüber der aufwendigen erneuten Auslese aus einem String, an.
 
 Im Kontrast zu den Tiles, die eine Methode zum Aktualisieren der Inhalte bereitstellen, müssen \code{TileSchemes} mithilfe der genannten Methoden rekreiert werden. Kann eine Kachelart nicht identifiziert werden, oder sind die Angaben über den Inhalt der Kachel unkorrekt, so wird ein \code{ErrorTileScheme} erstellt, das visuell von jeder anderen Art zu unterscheiden ist und den Entwicklern somit über den Fehler Bescheid gibt.
 
 \paragraph{Abstrakte Klasse: TileScheme}
 
-\textbf{Beschreibung: }Abstrakte Superklasse, die neben den artübergreifenden Inhalten der \code{TileSchemes}, Methoden zur Kreierung dieser gemäß des Factory Method Design-Pattern bereitstellt.
+\textbf{Beschreibung: }Abstrakte Superklasse, die neben den artübergreifenden Inhalten der \code{TileSchemes}, Methoden zur Kreierung dieser gemäß des Factory-Method-Design-Pattern bereitstellt.
 
-\textbf{Methode} \code{createTileScheme} liefert in Abhängigkeit vom angegebenen \code{TileMapping} eine Instanz einer Unterklasse des \code{TileSchemes}. Die Erstellung von \code{TileSchemes} für \code{Actions} und \code{Settings} ist lediglich durch die Eingabe von Zeichenketten möglich. \code{TileSchemes} der Arten \code{Operanden}, \code{Stack} und \code{Historie} können zusätzlich aus bestehenden \code{Operanden} erstellt werden. 
+\textbf{Methode} \code{createTileScheme()} liefert in Abhängigkeit vom angegebenen \code{TileMapping} eine Instanz einer Unterklasse des \code{TileSchemes}. Die Erstellung von \code{TileSchemes} für \code{Actions} und \code{Settings} ist lediglich durch die Eingabe von Zeichenketten möglich. \code{TileSchemes} der Arten \code{Operanden}, \code{Stack} und \code{Historie} können zusätzlich aus bestehenden \code{Operanden} erstellt werden. 
 
 \paragraph{Klasse: ActionTileScheme}
 
@@ -103,7 +103,7 @@ Im Kontrast zu den Tiles, die eine Methode zum Aktualisieren der Inhalte bereits
 
 \textbf{Superklasse:} \code{TileScheme}
 
-\code{Beschreibung:} \code{TileScheme} für Operanden. Bei der Erstellung aus Text wird der String mithilfe Reflections (XXX) zu einem Operanden übersetzt.
+\code{Beschreibung:} \code{TileScheme} für Operanden. Bei der Erstellung aus Text wird der String mithilfe \textit{Reflections} zu einem Operanden übersetzt.
 
 \paragraph{Klasse: StackTileScheme}
 
@@ -137,7 +137,7 @@ Durch die Deklaration als Enum werden diese Informationen mit einer Zeichenkette
 
 Für den Operator \code{-} (\code{Minus}) ist dies beispielsweise die Kachelart (\code{Action} / \code{Operator}), eine Referenz auf die passende \code{Action} Klasse und den Anzeigetext der Kachel \code{-}, die mit dem Text \code{A\_MINUS} betitelt werden. 
 
-Die einzelnen Definitionen liegen in Form einer Java Enumeration vor, da diese Ein Beispiel für eine solche Definition sieht wie folgt aus:
+Die einzelnen Definitionen liegen in Form einer Java-Enumeration vor, da diese Ein Beispiel für eine solche Definition sieht wie folgt aus:
 
 \code{A\_MINUS(TileType.ACTION, Minus.getInstance(), "-")}
 
@@ -152,7 +152,7 @@ Neben Operatoren werden im Enum die anderen Datentypen ebenfalls angelegt. Techn
 	\item \code{Error}
 \end{itemize}
 
-Zu den Kachelarten sind Design Ressourcen hinterlegt, welche die Gestaltung der Kacheln je nach Typ definiert.
+Zu den Kachelarten sind Design-Ressourcen hinterlegt, welche die Gestaltung der Kacheln je nach Typ definiert.
 
 \paragraph{Enumeration: TileMapping}
 
@@ -167,35 +167,33 @@ Zu den Kachelarten sind Design Ressourcen hinterlegt, welche die Gestaltung der 
 \textbf{Bsp:} \code{ACTION(R.drawable.tile \_operator \_blue)}
 
 \subsubsection{Gruppierung der Kacheln im Layout Container [Bockhorn]}
-Gemäß dem Entwurf werden die Kacheln, sowohl Tiles als auch TileSchemes, in einem einheitlichen Container gespeichert. Das sogenannte TileLayout beinhaltet und bietet so dem Presenter eine zentralisierte Stelle zur Kommunikation mit Kacheln.
+Gemäß dem Entwurf werden die Kacheln, sowohl \code{Tiles} als auch \code{TileSchemes}, in einem einheitlichen Container gespeichert. Das sogenannte \code{TileLayout} beinhaltet und bietet so dem Presenter eine zentralisierte Stelle zur Kommunikation mit Kacheln.
 
 Insgesamt werden drei Bereiche unterstützt:
 \begin{enumerate}
-	\item Das Laden von kontextfremden TileSchemes in kontextbezogene Tiles. Grundsätzlich ist das TileLayout zwar unabhängig vom Applikationskontext, kann jedoch per Methode eine View für einen Kontext erstellen. Die Übersetzung erfolgt mit einer Darstellung in einer sogenannten TableView von Android. Neben der zweidimensionalen Liste an Tiles werden Listen für Stack und Historie geführt, die dann getrennt adressierbar sind.
-	\item Die Aktualisierung von Tiles bei Änderungen im Stack, der Historie oder Anpassungen des Layouts. Hierbei ist zu erwähnen, dass nie das gesamte Layout aktualisiert wird, sondern nur Stack oder Historie. Beide werden mithilfe der korrespondierenden Listen im Presenter verglichen und aufgefüllt. Die Aktualisierung eines Tiles erfolgt durch die Kreierung eines neuen TileSchemes.
-	\item Das Speichern des aktuellen TileLayouts durch die Zurückübersetzung von kontextbezogenen Tiles in kontextfremde TileSchemes zur Weiterverarbeitung durch den sogenannten TileLayoutLoader.
+	\item Das Laden von kontextfremden \code{TileSchemes} in kontextbezogene \code{Tiles}. Grundsätzlich ist das \code{TileLayout} zwar unabhängig vom Applikationskontext, kann jedoch per Methode eine View für einen Kontext erstellen. Die Übersetzung erfolgt mit einer Darstellung in einer sogenannten \code{TableView} von Android. Neben der zweidimensionalen Liste an \code{Tiles} werden Listen für Stack und Historie geführt, die dann getrennt adressierbar sind.
+	\item Die Aktualisierung von \code{Tiles} bei Änderungen im Stack, der Historie oder Anpassungen des Layouts. Hierbei ist zu erwähnen, dass nie das gesamte Layout aktualisiert wird, sondern nur Stack oder Historie. Beide werden mithilfe der korrespondierenden Listen im Presenter verglichen und aufgefüllt. Die Aktualisierung eines \code{Tiles} erfolgt durch die Kreierung eines neuen \code{TileSchemes}.
+	\item Das Speichern des aktuellen \code{TileLayouts} durch die Zurückübersetzung von kontextbezogenen \code{Tiles} in kontextfremde \code{TileSchemes} zur Weiterverarbeitung durch den sogenannten \code{TileLayoutLoader}.
 \end{enumerate}
-Das TileLayout selbst wird mithilfe der TileLayoutFactory unter Verwendung des Factory Design-Patterns aus einer Zeichenkette geladen. Das persistente Speichern und Laden dieser Zeichenkette und der Bezeichnung des TileLayouts selbst wird vom TileLayoutLoader orchestriert (siehe Kapitel XXX).
+Das \code{TileLayout} selbst wird mithilfe der \code{TileLayoutFactory} unter Verwendung des Factory-Design-Patterns aus einer Zeichenkette geladen. Das persistente Speichern und Laden dieser Zeichenkette und der Bezeichnung des \code{TileLayouts} selbst wird vom \code{TileLayoutLoader} orchestriert (siehe Kapitel~\ref{subsection:dokumentation-der-persistenten-datenhaltung}).
 
 \para{Klasse: TileLayout}
-\textit{Beschreibung: }
+\textbf{Methode} \code{createView} erstellt eine zweidimensionale Liste an \code{Tiles} aus der zweidimensionalen Liste an \code{TileSchemes}. Währenddessen werden eine \code{TableView} zusammengebaut und zurückgegeben und den eigenen Stack und die Historie Listen gesetzt.
 
-Methode \textit{createView} erstellt eine zweidimensionale Liste an Tiles aus der zweidimensionalen Liste an TileSchemes. Währenddessen werden eine TableView zusammengebaut und zurückgegeben und den eigenen Stack und die Historie Listen gesetzt.
+\textbf{Methode} \code{pushStack2Presenter} übergibt dem Presenter den aktuellen Stack, z.B. zum Laden der Anwendung
 
-Methode pushStack2Presenter übergibt dem Presenter den aktuellen Stack, z.B. zum Laden der Anwendung
+\textbf{Methode} \code{pushHistoryStack2Presenter} übergibt den aktuellen History Stack, z.B. zum Laden der Anwendung
 
-Methode \textit{pushHistoryStack2Presenter} übergibt den aktuellen History Stack, z.B. zum Laden der Anwendung
+\textbf{Methode} \code{updateStack} aktualisiert jegliche \code{Tiles} im Stack durch den im Presenter geführten Stack an Operanden
 
-Methode \textit{updateStack} aktualisiert jegliche Tiles im Stack durch den im Presenter geführten Stack an Operanden
+\textbf{Methode} \code{updateHistoryStack} aktualisiert jegliche \code{Tiles} im History Stack durch die im Presenter geführte Historie
 
-Methode \textit{updateHistoryStack} aktualisiert jegliche Tiles im History Stack durch die im Presenter geführte Historie
-
-Methode \textit{generateLayoutText} Generiert eine Zeichenkette im CSV Format anhand der zweidimensionalen Liste an Tiles
+\textbf{Methode} \code{generateLayoutText} Generiert eine Zeichenkette im CSV-Format anhand der zweidimensionalen Liste an \code{Tiles}
 
 \para{TileLayoutFactory}
-\textit{Beschreibung}: Factory für TileLayouts, die anhand einer Zeichenkette ein passendes Layout erstellt
-Methode \textit{createView} erstellt eine zweidimensionale Liste an Tiles aus der zweidimensionalen Liste an TileSchemes. Währenddessen werden eine TableView zusammengebaut und zurückgegeben und den eigenen Stack und die Historie Listen gesetzt.
+\textbf{Beschreibung}: Factory für \code{TileLayouts}, die anhand einer Zeichenkette ein passendes Layout erstellt
 
+\textbf{Methode} \code{createView} erstellt eine zweidimensionale Liste an \code{Tiles} aus der zweidimensionalen Liste an \code{TileSchemes}. Währenddessen werden eine \code{TableView} zusammengebaut und zurückgegeben und den eigenen Stack und die Historie-Listen gesetzt.
 
 \subsubsection{Implementierung der Menüsteuerung [Istogu]}
 
@@ -203,7 +201,13 @@ In diesem Abschnitt wird die Umsetzung der Planung für die Menüsteuerung aufge
 
 \paragraph{Klasse: Dialogmenu [Istogu]}
 
-Bei der \code{DialogMenu} handelt es sich um eine abstrakte Klasse, das von \code{View.OnClickListener} implementiert. Der Konstruktor erwartet folgende Parameter: \code{MainActivity} \code{context}, \code{Tile}, \code{displayTile}, \code{DialogMenu}, \code{last}).
+Bei der \code{DialogMenu} handelt es sich um eine abstrakte Klasse, das von \code{View.OnClickListener} implementiert. Der Konstruktor erwartet folgende Parameter:
+
+\begin{itemize}
+	\item \code{MainActivity context}
+	\item \code{Tile displayTile}
+	\item \code{DialogMenu last}
+\end{itemize}
 
 In dem Konstruktor wird ein \code{Dialog}-Objekt erstellt. Dabei werden initial bestimmte Attribute für das \code{Dialog} festgelegt, die für alle nachfolgenden Menüs gelten soll. Als Beispiel kann hier aufgeführt werden, dass der Titel festgelegt wird. Zudem wird bestimmt, dass das Fenster zentral erscheint. Dieser Dialog wird erst angezeigt, wenn der \code{OnClickListener} ein Click vom vorherigen Dialog registriert. Zusätzlich wird \code{ContentViewID} über die Methode \code{setContentView()} festgelegt, die auf die einzelne \code{xml}-Dateien referenzieren. 
 
@@ -218,64 +222,78 @@ Die Klasse erbt von der abstrakte Klasse \code{DialogMenu} und verweist über de
 Zu den Ressourcen zählen unteranderem Bilder, \code{XML}-Ansichten und deren Komponenten wie Buttons. Die Referenzen zu den Buttons werden danach verwendet, um auf die Objekte über die Methode \code{dialog.findViewById()} zuzugreifen. In dem Konstruktor werden zu den jeweiligen Buttons ein \code{OnClickListener} festgesetzt, der ein neues Objekt vom Typ \code{InputTileMapping} erzeugt.
 
 \paragraph{Klasse: InputTileMapping [Pham]}
-Die Klasse InputTileMapping erbt ebenfalls vom DialogMenü und dient der Eingabe von konkreten, in TileMapping definierten, Kacheln. Durch die generische Implementierung und dynamische Befüllung des Menüs wird dem Nutzer eine einheitliche Eingabefunktionalität für unterschiedliche Kacheltypen ermöglicht. 
+Die Klasse \code{InputTileMapping} erbt ebenfalls vom \code{DialogMenu} und dient der Eingabe von konkreten, in \code{TileMapping} definierten, Kacheln. Durch die generische Implementierung und dynamische Befüllung des Menüs wird dem Nutzer eine einheitliche Eingabefunktionalität für unterschiedliche Kacheltypen ermöglicht. 
 
 \begin{figure}[h]
 	\includegraphics[scale=1]{img/relation-tiletype-tilemapping}
 	\caption[Relation zwischen InputTileType und InputTileMapping]{Relation zwischen InputTileType und InputTileMapping\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
 
 Dabei haben sich zwei Use Cases herauskristallisiert:
 
-Die Grundidee ist, dass alle in TileMapping definierten Kacheln eines bestimmten TileTypes dem Anwender zur Auswahl präsentiert werden. Diese werden dabei dynamisch aus der TileMapping Klasse ausgelesen. Der passende OnClickListener wird mithilfe der InputMenuFactory gesetzt. Bei den Kacheltypen Action und Einstellung wird lediglich die bearbeitete Kachel durch die neue, ausgewählte Kachel vom Typ Action oder Einstellung ersetzen. Bei der Eingabe eines Operanden wird jedoch ein weiteres Menü aufgerufen, welches dies handhabt. Erst nach erfolgreicher Eingabe kann die bearbeitete Kachel ersetzt werden.
+Die Grundidee ist, dass alle in \code{TileMapping} definierten Kacheln eines bestimmten \code{TileTypes} dem Anwender zur Auswahl präsentiert werden. Diese werden dabei dynamisch aus der \code{TileMapping}-Klasse ausgelesen. Der passende \code{OnClickListener} wird mithilfe der \code{InputMenuFactory} gesetzt. Bei den Kacheltypen-Action und Einstellung wird lediglich die bearbeitete Kachel durch die neue, ausgewählte Kachel vom Typ \code{Action} oder Einstellung ersetzen. Bei der Eingabe eines Operanden wird jedoch ein weiteres Menü aufgerufen, welches dies handhabt. Erst nach erfolgreicher Eingabe kann die bearbeitete Kachel ersetzt werden.
 
 \begin{figure}[h]
 	\includegraphics[width=\columnwidth]{img/inputtilemapping-for-operators}
 	\caption[InputTileMapping for Operators]{InputTileMapping for Operators\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
 
-Im Kontrast zu den vielen Kacheldefinitionen, die es in TileMapping zu Einstellungen oder Operatoren gibt, findet man dort für den Stack und die Historie lediglich eine Definition wieder. (S\_STACK, H\_HISTORY)
+Im Kontrast zu den vielen Kacheldefinitionen, die es in \code{TileMapping} zu Einstellungen oder Operatoren gibt, findet man dort für den Stack und die Historie lediglich eine Definition wieder. (\code{S\_STACK}, \code{H\_HISTORY})
 
-Was bei der Erstellung von sowohl Stack, als auch Historie von Relevanz ist, ist der Rang der Kachel. Dieser legt gemäß TileScheme-Definition fest, zu welchem Zeitpunkt Daten hineingeschoben oder gelöscht werden. Im InputTileMapping wird also für jeden möglichen Position in der Liste ein Eintrag angelegt. Gemäß der, vom InputMenuFactory erstellten Listener, wird dann das Historie- bzw. Stack-Tile an die ausgewählte Stelle gesetzt.
+Was bei der Erstellung von sowohl Stack, als auch Historie von Relevanz ist, ist der Rang der Kachel. Dieser legt gemäß \code{TileScheme}-Definition fest, zu welchem Zeitpunkt Daten hineingeschoben oder gelöscht werden. Im \code{InputTileMapping} wird also für jeden möglichen Position in der Liste ein Eintrag angelegt. Gemäß der, vom \code{InputMenuFactory} erstellten Listener, wird dann das Historie- bzw. Stack-Tile an die ausgewählte Stelle gesetzt.
 
 \begin{figure}[h]
-	\includegraphics[width=\columnwidth]{img/inputtilemapping-for-stack-with-3-tiles}
+	\includegraphics[width=0.7\columnwidth]{img/inputtilemapping-for-stack-with-3-tiles}
 	\caption[InputTileMapping for Stack with 3 tiles]{InputTileMapping for Stack with 3 tiles\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
 \paragraph{Klasse: InputDouble [Gentges]}
 
-Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFraction} und \code{OPolynom}) für die Eingabe vom User möglich sein. Die XML-Ansicht ist simpel gehalten und verwendet ein RelativeLayout hat, welches die relative Position zu den einzelnen Objekte verwendet. Dadurch wird die Layouthierarchie reduziert und die Performance der Applikation verbessert. Für das Eingabefeld wird ein EditText verwendet, das als Eingabetyp Dezimalzahlen unterstützt wird. In Android muss hier noch explizit erwähnt werden, dass erst über den Keyword „numberSigned“ auch die Eingabe von negative Zahlen möglich ist.
+Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFraction} und \code{OPolynom}) für die Eingabe vom User möglich sein. Die XML-Ansicht ist simpel gehalten und verwendet ein \code{RelativeLayout} hat, welches die relative Position zu den einzelnen Objekte verwendet. Dadurch wird die Layout-Hierarchie reduziert und die Performance der Applikation verbessert. Für das Eingabefeld wird ein \code{EditText} verwendet, das als Eingabetyp Dezimalzahlen unterstützt wird. In Android muss hier noch explizit erwähnt werden, dass erst über den Keyword \code{numberSigned} auch die Eingabe von negative Zahlen möglich ist.
 
 \begin{figure}[h]
-	\includegraphics[width=\columnwidth]{img/xml_InputDouble}
+	\includegraphics[width=0.6\columnwidth]{img/xml_InputDouble}
 	\caption[XML-Designer für die Klassen InputDouble]{XML-Designer für die Klasse InputDouble\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
 Die korrespondierende Java-Datei liest nach dem Bestätigen des Buttons den Wert aus dem \code{EditText} und kreiert ein \code{ODouble}-Objekt. Dieses Objekt wird mit seinem zugehörigen \code{TileMapping} einem \code{TileScheme} zugewiesen. Das vorher ausgewählte \code{Tile} aktualisiert seinen \code{TileScheme}. Abschließend schließt der Konstruktor die Dialog über die Methode \code{dismissAll()}, die vorher erklärt wurde.
 
 \paragraph{Klasse: InputFraction [Gentges]}
 
-Diese Klasse deckt die Funktionalität der Benutzereingabe von Brüchen. Dabei ähnelt sie der Klasse InputDouble. Die Unterschiede beruhen dahingehend, dass ein zweites EditText integriert wurde, um sowohl als Zähler als auch Nenner abzufragen. Der ausgewählten Tile wird respektiv ein TileScheme mit OFraction übergeben. 
+Diese Klasse deckt die Funktionalität der Benutzereingabe von Brüchen. Dabei ähnelt sie der Klasse \code{InputDouble}. Die Unterschiede beruhen dahingehend, dass ein zweites \code{EditText} integriert wurde, um sowohl als Zähler als auch Nenner abzufragen. Der ausgewählten \code{Tile} wird respektiv ein \code{TileScheme} mit \code{OFraction} übergeben. 
 
 \begin{figure}[h]
-	\includegraphics[width=\columnwidth]{img/xml_InputFraction}
-	\caption[XML-Designer für die Klasse InputFraction]{XML-Designer für die Klasse InputFraction\footnotemark}
+\includegraphics[width=0.5\columnwidth]{img/xml_InputFraction}
+\caption[XML-Designer für die Klasse InputFraction]{XML-Designer für die Klasse InputFraction\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
 \paragraph{Klasse: InputPolynomial [Gentges]}
 
 Die Klasse ist grundsätzlich gleich aufgebaut, wie die vorherigen Eingabeklassen der Operanden. In der Abbildung lässt sich erkennen, dass die einzelne Polynome vom Nutzer eingegeben werden können.
 
 \begin{figure}[h]
-	\includegraphics[width=\columnwidth]{img/xml_InputPolynomial}
+	\includegraphics[width=0.6\columnwidth]{img/xml_InputPolynomial}
 	\caption[XML-Designer für die Klasse InputPolynomial]{XML-Designer für die Klasse InputPolynomial\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
-\paragraph{Klasse: 6.2.5.8	Darstellung der Beziehungen von den Menüsteuerungsklassen [Istogu]}
+\paragraph{Darstellung der Beziehungen von den Menüsteuerungsklassen [Istogu]}
 
-XXX
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{img/klassendiagramm_Menusteuerung}
+	\caption[Klassendiagramm: Menüsteuerung]{Klassendiagramm: Menüsteuerung\footnotemark}
+\end{figure}
 
+Wie aus dem Klassendiagramm entnommen werden kann, wurde die Menüsteuerung soweit wie möglich dynamisch gestaltet. Somit wird die Erweiterbarkeit vereinfacht und es können dadurch weitere Funktionalitäten bzgl. Operanden bzw. Operationen hinzugefügt werden. Zusätzlich sind die einzelne Menüs wie folgt gestaltet. Die einzelne Menüs bauen aufeinander und somit ist der Ablauf der einzelnen Menüs definiert. 
 \clearpage
 
 \subsection{Dokumentation der Models }
@@ -325,26 +343,26 @@ Implementierung eines Bruchs. Die Zähler und Nenner sind durch \code{Doubles} u
 
 \paragraph{Klasse: OSet [Meinerzhagen]}
 
-\textit{Wrapper für ein \code{Double}-\code{Set}}
+\textit{Wrapper für ein} \code{Double}-\code{Set}
 
 Implementierung einer Menge. Das gleiche Element kann nicht mehrmals enthalten sein. Die Reihenfolge spielt keine Rolle. Umgesetzt ist die Klasse mit einem angepassten \code{Set}. Erstellen kann man ein \code{OSet} aus einem \code{Array} von \code{Doubles} oder einem String.
 
 \paragraph{Klasse: OTuple [Meinerzhagen]}
 
-\textit{Wrapper für ein \code{Double}-\code{Array}}
+\textit{Wrapper für ein} \code{Double}-\code{Array}
 
 Implementierung eines Tupels. Das gleiche Element kann mehrmals enthalten sein. Die Reihenfolge spielt eine Rolle. Erstellen kann man ein \code{OTuple} aus einer übergebenen Liste oder einem String.
 
 \paragraph{Klasse: OMatrix [Meinerzhagen]}
 
-\textit{Wrapper für eine Apache Commons \code{Array2DRowRealMatrix}}
+\textit{Wrapper für eine Apache Commons} \code{Array2DRowRealMatrix}
 
 Implementierung einer Matrix. Das darunterliegende Objekt ist eine \code{RealMatrix}, die wiederrum eine \code{Array2DRowRealMatrix} enthält. Die Matrix an sich ist in einem zweidimensionalen Array von \code{Doubles} umgesetzt. Erstellen kann man eine \code{OMatrix} aus einem String oder einem zweidimensionalen \code{Array} von \code{Doubles}.
 
 
 \paragraph{Klasse: OPolynom [Meinerzhagen]}
 
-\textit{Wrapper für eine Apache Commons \code{PolynomialFunction}}
+\textit{Wrapper für eine Apache Commons} \code{PolynomialFunction}
 
 Implementierung eines Polynoms. Grundsätzlich entspricht das Polynom einer einer Sequenz von Dezimalzahlen. Abhängig von der Position in der Sequenz entscheidet sich, was der Exponent der jeweiligen Dezimalzahl ist. Somit müssen Funktionen immer in dieser Normalform vorliegen. Erstellen kann man ein \code{OPolynom} aus einem String oder einem \code{Array} von \code{Doubles}.
 
@@ -411,21 +429,21 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 \textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Minuend, der zweite der Subtrahend. Die erlaubten Kombinationen sind: 
 
 \begin{itemize}
-	\item ODouble und ODouble 
-	\item ODouble und OFraction
-	\item OFraction und OFraction 
-	\item OFraction und ODouble 
-	\item OSet und ODouble
-	\item OSet und OFraction 
-	\item OMatrix und OMatrix
-	\item OMatrix und ODouble
-	\item OMatrix und OFraction
-	\item OPolynom und OPolynom 
-	\item OPolynom und ODouble
-	\item OPolynom und OFraction 
-	\item OTuple und OTuple
-	\item OTuple und ODouble
-	\item OTuple und OFraction
+	\item \code{ODouble} und \code{ODouble} 
+	\item \code{ODouble} und \code{OFraction}
+	\item \code{OFraction} und \code{OFraction} 
+	\item \code{OFraction} und \code{ODouble}
+	\item \code{OSet} und \code{ODouble}
+	\item \code{OSet} und \code{OFraction }
+	\item \code{OMatrix} und \code{OMatrix}
+	\item \code{OMatrix} und \code{ODouble}
+	\item \code{OMatrix} und \code{OFraction}
+	\item \code{OPolynom} und \code{OPolynom }
+	\item \code{OPolynom} und \code{ODouble}
+	\item \code{OPolynom} und \code{OFraction }
+	\item \code{OTuple} und \code{OTuple}
+	\item \code{OTuple} und \code{ODouble}
+	\item \code{OTuple} und \code{OFraction}
 \end{itemize} 
 
 \textbf{Rückgabewerte: }Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes. 
@@ -437,20 +455,20 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 \textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Dividend, der zweite der Divisor. Die erlaubten Kombinationen sind: 
 
 \begin{itemize}
-	\item ODouble und ODouble
-	\item ODouble und OFraction
-	\item OFraction und OFraction 
-	\item OFraction und ODouble 
-	\item OSet und ODouble
-	\item OSet und OFraction
-	\item OMatrix und ODouble 
-	\item OMatrix und OFraction
-	\item OPolynom und OPolynom 
-	\item OPolynom und ODouble
-	\item OPolynom und OFraction 
-	\item OTuple und OTuple
-	\item OTuple und ODouble
-	\item OTuple und OFraction 
+	\item \code{ODouble} und \code{ODouble}
+	\item \code{ODouble} und \code{OFraction}
+	\item \code{OFraction} und \code{OFraction} 
+	\item \code{OFraction} und \code{ODouble} 
+	\item \code{OSet} und \code{ODouble}
+	\item \code{OSet} und \code{OFraction}
+	\item \code{OMatrix} und \code{ODouble}
+	\item \code{OMatrix} und \code{OFraction}
+	\item \code{OPolynom} und \code{OPolynom}
+	\item \code{OPolynom} und \code{ODouble}
+	\item \code{OPolynom} und \code{OFraction}
+	\item \code{OTuple} und \code{OTuple}
+	\item \code{OTuple} und \code{ODouble}
+	\item \code{OTuple} und \code{OFraction} 
 \end{itemize}
 
 \textbf{Rückgabewerte:} Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes.
@@ -1013,6 +1031,7 @@ Bei den Setting-Kacheln muss lediglich die hinterlegte Aktion aufgerufen werden.
 Zum Ausrechnen von Aktionen wird die Funktion calculate aufgerufen. Dort wird versucht mit der größten definierten Anzahl von Operanten vom Operand Stack eine Operation durchzuführen. Wenn eine Operation erfolgreich ausgeführt werden konnte werden die verwendeten Operanden vom Operand Stack gelöscht und das ermittelte Ergebnis wird anschließend dort hinzugefügt.
 
 \subsection{Dokumentation der persistenten Datenhaltung [Meinerzhagen]}
+\label{subsection:dokumentation-der-persistenten-datenhaltung}
 
 Das Speichern der Layouts wurde wie geplant durch die Ablage von CSV Dateien im internen Speicher des Gerätes durchgeführt. 
 

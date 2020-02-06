@@ -13,21 +13,29 @@ Die Rechnungen sollen in einer bestimmten Reihenfolge geschehen. Zuerst wählt m
 
 Ein grober Überblick über die zu implementierenden Aktionen des Nutzers sind  nachfolgend dargestellt.
 
+\interfootnotelinepenalty=10000
+
 \begin{figure}[h]
 	\includegraphics[width=0.75\columnwidth]{img/funktionsumfang-grundanforderungen-use-case-diagramm}
 	\caption[Grundanforderungen Use-Case-Diagramm]{Grundanforderungen Use-Case-Diagramm\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
 
+\interfootnotelinepenalty=100
+
 Während der Bearbeitung des Projekts soll ein besonderes Augenmerk auf drei Aspekte gelegt werden. Der erste ist die komfortable Festlegung von Operanden-Kacheln. Dazu zählt auch das Ändern selbiger und derer Reigenfolge. Der zweite Punkt ist die Konfiguration der Ergebniskacheln. Der dritte Punkt sagt aus, dass die App so benutzerfreundlich wie möglich gestaltet werden soll. Dies soll zum Beispiel durch intuitive Bedienung, minimale Userinteraktion und übersichtliche Gestaltung erreicht werden. 
 
 Die App soll für Android in Java entwickelt werden. Prinzipien des objektorientierten Software Entwurfs sollen hierbei eingehalten werden. Während der Durchführung des Projektes soll das Team nach dem erweiterten Wasserfallmodell arbeiten. Nach Möglichkeit sollen etablierte Entwurfsmuster eingesetzt werden. Es soll eine strikte und stark ausgeprägte Modularisierung durchgeführt werden. Hierbei soll die App das Samsung Galaxy Note 8.0 unterstützten. Die Unterstützung weiterer Geräte ist optional. Sowohl der Portrait Modus als auch der Landscape Modus sollen unterstützt werden. Ein Wechsel während der Nutzung der App soll möglich sein. Generell sollen Änderungen der Konfiguration des Androidsystems während der App-Ausführung unterstützt werden. Das Projekt soll in Android Studio importiert werden können. Der Import soll lokal, das heißt ohne eine bestehende Netzwerkverbindung möglich sein.
+
+\interfootnotelinepenalty=10000
 
 \begin{figure}[h]
 	\includegraphics[width=0.9\columnwidth]{img/funktionsumfang-grobe-darstellung-der-funktionen}
 	\caption[Grobe Darstellung der Funktionen]{Grobe Darstellung der Funktionen\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
+
+\interfootnotelinepenalty=100
 
 \subsection{Projektablaufplan [Gentges]}
 
@@ -97,7 +105,8 @@ Den einzelnen Arbeitspaketen und Teilaufgaben sind weitere, kleinere Arbeitspake
 11&	Präsentation&	08.02.2020
 \\ \hline
 \end{tabularx}
-
+\vspace{1em}
+\\
 ''Meilensteine gliedern und strukturieren Projekte. Ein Meilensteinplan ist ein häufig genutztes Werkzeug im Projektmanagement und zeigt die Meilensteine eines oder mehrerer Projekte in chronologischer Reihung an.''\footnote{\cite[][]{t2informatik}}
 
 Der Meilensteinplan wurde dabei unmittelbar nach dem Kick-Off Meeting an das Team kommuniziert. Dabei konnten die Daten der Meilensteine eingehalten werden. Zusammenfassend wird dies in einem Soll-Ist-Vergleich von meinem Kollegen Hendrik Falk näher beleuchtet.
@@ -125,7 +134,7 @@ GANTT Diagramme sind im Projektmanagement ein gängiges Tool, um Aktivitäten in
 
 \subsubsection{Planung des Mockups [Pham]}
 
-Um ein erstes Konzept für eine mögliche Umsetzung des Projektes zu erstellen, wurde zunächst ein Mockup in Form eines Paper-Prototyps erstellt. Bei der Erstellung des Mockups sollten die grundlegenden Regeln des Usability Engineerings eingehalten werden. Unter Usability Engineering ''versteht man den Prozess, der parallel zur klassischen Planungs- und Entwicklungsarbeit die spätere Gebrauchstauglichkeit eines Systems sicherstellt.''\footnote{\cite[][S.~204]{handbuchusability2007}} Das heißt, um für eine möglichst hohe Usability des Endproduktes zu sorgen, wurden bereits während der Konzeptionierung des Mockups Usability Aspekte mit in Betrachtung gezogen. 
+Um ein erstes Konzept für eine mögliche Umsetzung des Projektes zu erstellen, wurde zunächst ein Mockup in Form eines Paper-Prototyps erstellt. Bei der Erstellung des Mockups sollten die grundlegenden Regeln des Usability Engineerings eingehalten werden. Unter Usability Engineering ''versteht man den Prozess, der parallel zur klassischen Planungs- und Entwicklungsarbeit die spätere Gebrauchstauglichkeit eines Systems sicherstellt.''\footnote{\cite[][]{handbuchusability2007}} Das heißt, um für eine möglichst hohe Usability des Endproduktes zu sorgen, wurden bereits während der Konzeptionierung des Mockups Usability Aspekte mit in Betrachtung gezogen. 
 
 Um sicherstellen zu können, dass das Konzept für die Umsetzung des Projektes sich mit den Vorstellungen des späteren Benutzers und Auftraggeber (Prof. Dr. Thomas Seifert) deckt, wurde das gegebene Material analysiert sowie ein Gespräch mit dem Benutzer geführt, um die generellen Anforderungen ableiten zu können. 
 
@@ -143,7 +152,7 @@ Die spezifischen Anforderungen, die sich während des Interviews ergaben, wurden
 
 Ein Low-Fidelity Prototyp dient hierbei lediglich als ein erstes Proof of concept, in dem das grundlegende Konzept und das erste Design festgehalten werden sollen. Eine Funktionalität des Konzeptes ist hierbei nicht notwendig.\footnote{\cite[vgl.][S.~204]{jhammondtgrossjwesson2002}}
 
-Auf die genaueren Details des Low-Fidelity Paper Prototyp wird in Kapitel 7.1.5.3 XXX„Erstellung des Low-Fidelity ‚Paper Prototyps‘ “ eingegangen. Ziel des Low-Fidelity Paper Prototyps war es, mit möglichst geringem Aufwand so nah wie möglich an die Vorstellungen des Benutzers zu kommen und den Prototypen iterativ zu verbessern. Aus diesem Grund wurde das erste entwickelte Mockup dem Benutzer erneut präsentiert, um Feedback einzuholen und das Konzept iterativ verbessern zu können. Die dabei identifizierten Diskrepanzen zwischen dem Konzept und den Vorstellungen des Benutzers wurden festgehalten und mithilfe des gesammelten Feedbacks konnte ein zweiter Paper Prototyp erstellt werden. Nachdem die Zwischenergebnisse mit dem Benutzer verifiziert wurde, wurde ein Mid-Fidelity Prototype in MS PowerPoint angefertigt.
+Auf die genaueren Details des Low-Fidelity Paper Prototyp wird in Kapitel ~\ref{subsubsection:erstellung-low-fidelity-paper} eingegangen. Ziel des Low-Fidelity Paper Prototyps war es, mit möglichst geringem Aufwand so nah wie möglich an die Vorstellungen des Benutzers zu kommen und den Prototypen iterativ zu verbessern. Aus diesem Grund wurde das erste entwickelte Mockup dem Benutzer erneut präsentiert, um Feedback einzuholen und das Konzept iterativ verbessern zu können. Die dabei identifizierten Diskrepanzen zwischen dem Konzept und den Vorstellungen des Benutzers wurden festgehalten und mithilfe des gesammelten Feedbacks konnte ein zweiter Paper Prototyp erstellt werden. Nachdem die Zwischenergebnisse mit dem Benutzer verifiziert wurde, wurde ein Mid-Fidelity Prototype in MS PowerPoint angefertigt.
 
 Der Mid-Fidelity-Prototyp ist hierbei interaktiv, relativ detailliert und simuliert das erwünschte Verhalten des finalen Produktes. Es soll im Mid-Fidelity-Prototyp bereits auf Aspekte wie Funktionalität, finales Design oder Navigation eingegangen werden.\footnote{\cite[vgl.][S.~204]{jhammondtgrossjwesson2002}}
 
@@ -157,9 +166,9 @@ Der Mid-Fidelity-Prototyp ist hierbei interaktiv, relativ detailliert und simuli
 
 \interfootnotelinepenalty=100
 
-Im Beispiel unseres Mid-Fidelity Prototyps wurde genauer auf die Umsetzung des Kachelkonzept des Taschenrechners eingegangen ebenso wie die Anforderung für die ''Minimierung der Anzahl der für die Ausführung einer Rechnung erforderlichen Interaktionen'' mithilfe einer hohen Usability umgesetzt werden sollte. Auf diese Aspekte des Mid-Fidelity Paper Prototyp wird näher in Kapitel XXX 7.1.3.1	„Erstellung der Funktionalitäten des Mid-Fidelity Prototyps“ eingegangen. 
+Im Beispiel unseres Mid-Fidelity Prototyps wurde genauer auf die Umsetzung des Kachelkonzept des Taschenrechners eingegangen ebenso wie die Anforderung für die ''Minimierung der Anzahl der für die Ausführung einer Rechnung erforderlichen Interaktionen'' mithilfe einer hohen Usability umgesetzt werden sollte. Auf diese Aspekte des Mid-Fidelity Paper Prototyp wird näher in Kapitel ~\ref{subsubsection:erstellung-funktionalitäten-mid-fidelity} ''Erstellung der Funktionalitäten des Mid-Fidelity Prototyps'' eingegangen. 
 
-Weiterhin wurde ein Standardlayout für den Taschenrechner entworfen und designt, welches beim Aufruf des Taschenrechners angezeigt werden sollte. Detaillierter wird dieses Design in Kapitel XXX 7.1.7.1	''Erstellung des Design Konzeptes des Mid-Fidelity Prototyps'' beschrieben. 
+Weiterhin wurde ein Standardlayout für den Taschenrechner entworfen und designt, welches beim Aufruf des Taschenrechners angezeigt werden sollte. Detaillierter wird dieses Design in Kapitel~\ref{subsubsection:erstellung-des-design-konzeptes-des-mid-fidelity} beschrieben. 
 
 Insgesamt ließ sich bei dem Mid-Fidelity-Prototyp das geplante Layout bereits sehr detailliert visualisieren, so dass eine Umsetzung und das finale Design in Android Studio auf Basis des Prototyps bereits möglich gewesen wären. Auch konnten durch die Interaktionsfähigkeit des Prototyps die verschiedenen Use-Cases interaktiv durchgespielt und getestet werden. Nach Fertigstellung des Mid-Fidelity-Prototyps in PowerPoint durch das GUI-Team, wurde das Design und das allgemeine Benutzeroberflächenkonzept des Prototyps dem gesamten Projekt-Team vorgestellt und anschließend vom allen Teammitgliedern in einem der Zwischen-Meetings abgesegnet. 
 
@@ -190,7 +199,7 @@ Zuerst betrachteten die Teammitglieder das modernste dieser Pattern, das MVVM-Pa
 
 \interfootnotelinepenalty=100
 
-Der User interagiert in jedem Design Pattern mit der View und gibt dort seine Eingaben ein. An diesem Diagramm sieht man, dass bei MVVM die Kommunikation von Model zu Viewmodel über das Observer Pattern funktioniert und das Viewmodel direkt Methode aus dem Model aufruft. Viewmodel und View kommunizieren über DataBinding. Dabei werden Attribute des Viewmodels direkt mit Feldern der View verbunden. Dies führt dazu, dass man in der View lediglich die Anmeldung dieser Felder beim Viewmodel implementiert werden muss. Dieses Pattern kann teilweise bei der Implementierung des Viewmodels sehr kompliziert sein, bietet aber dafür die loseste Kopplung zu der View. Da eine so strenge Trennung für dieses Projekt allerdings nicht benötigt wurde, entschieden sich die Teammitglieder gegen dieses Pattern und betrachteten die nächsten Pattern MVP und MVC. 
+Der User interagiert in jedem Design Pattern mit der View und gibt dort seine Eingaben ein. An diesem Diagramm sieht man, dass bei MVVM die Kommunikation von Model zu Viewmodel über das Observer Pattern funktioniert und das Viewmodel direkt Methode aus dem Model aufruft. Viewmodel und View kommunizieren über Data-Binding. Dabei werden Attribute des Viewmodels direkt mit Feldern der View verbunden. Dies führt dazu, dass man in der View lediglich die Anmeldung dieser Felder beim Viewmodel implementiert werden muss. Dieses Pattern kann teilweise bei der Implementierung des Viewmodels sehr kompliziert sein, bietet aber dafür die loseste Kopplung zu der View. Da eine so strenge Trennung für dieses Projekt allerdings nicht benötigt wurde, entschieden sich die Teammitglieder gegen dieses Pattern und betrachteten die nächsten Pattern MVP und MVC. 
 
 \interfootnotelinepenalty=10000
 
@@ -218,12 +227,6 @@ XXX
 
 \clearpage
 
-\paragraph{Factory Loader Pattern [Bockhorn] XXX}
-
-XXX
-
-\clearpage
-
 \subsubsection{Planung der Datenstrukturen und Schnittstellen}
 
 \interfootnotelinepenalty=10000
@@ -232,7 +235,7 @@ XXX
 
 \begin{figure}[!h]
 	\includegraphics[width=\textwidth,height=50em,keepaspectratio]{img/schnittstellen-klassendiagramm}
-	\caption[Klassendiagramm]{Klassendiagramm XXX\footnotemark}
+	\caption[Klassendiagramm]{Klassendiagramm\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
 
@@ -240,7 +243,8 @@ XXX
 
 \clearpage
 
-\para{Nutzung von Stack für Notation [Schwenke]}
+\paragraph{Nutzung von Stack für Notation [Keienburg]}
+
 Der Taschenrechner soll als Eingabelogik für die Anwendung von Operationen die umgekehrte polnische Notation verwenden. Hierbei werden immer zunächst die Operanden und im Anschluss daran die darauf auszuführenden Operatoren angegeben. Dieser Ansatz ermöglicht eine stapelbasierte Abarbeitung. 
 
 Stacks werden, wie von den meisten Programmiersprachen, auch in Java in der Standardbibliothek unterstützt. Mit dabei sind Methoden wie \code{push} (für das Ablegen eines Objekts auf dem Stapel), \code{pop} (für das Entfernen und die Wiedergabe eines Objekts auf dem Stapel), \code{peek} (für die Wiedergabe ohne Entfernen eines Objekts auf dem Stapel) und \code{empty} (für das Leeren des Stapels). 
@@ -277,17 +281,17 @@ Auf Grund der tabellenähnlichen Struktur der zu speichernden Daten wurde zum Sp
 \subsubsection{Planung des Presenters [Meinerzhagen]}
 Der Presenter agiert als Bindeglied zwischen der View und dem Model, sodass alle Bereiche ihre Funktionalitäten im vollen Maß erfüllen können und eine Separierung der Anwenderschnittstelle und der Geschäftslogik gewährleistet werden kann. Der Presenter koordiniert die Kommunikation zwischen View und Model, also steuert Rechnungen im Backend und sorgt für die korrekte Darstellung der Ergebnisse in den einzelnen Kacheln der View.
 
-Mit der View kommuniziert er über eine Container Klasse (XXX), welche die einzelnen Kacheln koordiniert. Aufrufe der View in Richtung des Presenters werden durch Events realisiert. Dabei wird die in Android native Listener Funktionalität verwendet, wobei der Presenter als \code{OnClickListener} dient. Er ist sich über die Instanz der Container Klasse bewusst und interagiert direkt mit dessen Attributen und Methoden.
+Mit der View kommuniziert er über eine Container-Klasse, welche die einzelnen Kacheln koordiniert. Aufrufe der View in Richtung des Presenters werden durch Events realisiert. Dabei wird die in Android native Listener Funktionalität verwendet, wobei der Presenter als \code{OnClickListener} dient. Er ist sich über die Instanz der Container Klasse bewusst und interagiert direkt mit dessen Attributen und Methoden.
 
 Das Model besteht aus verschiedenen Klassen, welche die Kacheltypen aus den Vorgaben widerspiegeln. Da diese dezentral vorliegen und es gemäß der geplanten MVP-Implementierung hier zu einer sehr komplexen Struktur von Events kommen würde, wurde sich dazu entschieden, die Kommunikation von Model zu Presenter über Rückgabewerte einzelner Methoden zu gestalten. Die entgegengerichtete Kommunikation verläuft nach Entwurf, also über direkte Aufrufe von Methoden und Attributen. Die aktuellen Operanden im Stack und die zuvor eingetragenen Operanden in der Historie werden jeweils als Listen im Presenter geführt.
 
 Um mit dem Presenter jegliche Eingabe verarbeiten zu können, wird diesem die Kachelidentität im Event übergeben. Diese wird ihm übergeben und er führt je nach Typ verschiedene Operationen durch.
 
 \begin{itemize}
-\item Bei Identifikation einer Kachel vom Typ Operand, wird dieser entweder an die aktuelle Eingabe zur Anlage von neuen Operanden angehängt, z.B. 2 und 3 zu 23, oder in den Stack und in die Historie geschoben. 
-\item Bei einer Operation wird diese mit so vielen Operanden wie möglich ausgeführt und das Ergebnis in Stack und Historie geschoben.
-\item Die Verarbeitung von Einstellung ist sehr individuell und nur gegebenenfalls werden Inhalte in Stack und Historie geschoben. Ein Beispiel für eine Einstellung ist die Taste \code{AC} (All Clear) im Taschenrechner. Diese entfernt jegliche Eingaben aus dem aktuellen Stack.
-\item Identifiziert der Presenter eine Kachel vom Typ Stack oder Historie, so wird diese wie ein Operand behandelt.
+	\item Bei Identifikation einer Kachel vom Typ Operand, wird dieser entweder an die aktuelle Eingabe zur Anlage von neuen Operanden angehängt, z.B. \code{2} und \code{3} zu \code{23}, oder in den Stack und in die Historie geschoben. 
+	\item Bei einer Operation wird diese mit so vielen Operanden wie möglich ausgeführt und das Ergebnis in Stack und Historie geschoben.
+	\item Die Verarbeitung von Einstellung ist sehr individuell und nur gegebenenfalls werden Inhalte in Stack und Historie geschoben. Ein Beispiel für eine Einstellung ist die Taste \code{AC} (All Clear) im Taschenrechner. Diese entfernt jegliche Eingaben aus dem aktuellen Stack.
+	\item Identifiziert der Presenter eine Kachel vom Typ Stack oder Historie, so wird diese wie ein Operand behandelt.
 \end{itemize}
 
 \interfootnotelinepenalty=10000
@@ -302,25 +306,11 @@ Um mit dem Presenter jegliche Eingabe verarbeiten zu können, wird diesem die Ka
 
 \clearpage
 
-\subsubsection{Planung der View [Tom]}
-
-Für die Planung der View entschieden wir zuerst, dass die Applikation beim Start eine Kachelgestaltung in die Main Activity lädt. Dadurch erhält man eine Gridstruktur, in welcher die Kacheln unabhängig voneinander liegen. Diese Kachel geben ihren Inhalt an den Presenter weiter.
-
-Dadurch, dass die Layouts angepasst werden können, muss das Laden dynamisch implementiert werden. Die Kacheln werden durch das Layout als Buttons mit Text generiert und setzt dann die Listeners aus dem Observer Pattern. Es gibt einen Kachelcontainer, welcher eine Liste aller Kacheln hat und eine Liste beider benötigten Stacks. Der Kachelcontainer soll mit Hilfe des Factory Patterns erstellt werden. Dabei wird ein String aus dem Speicher geladen und in den Container umgewandelt. Die Factory kann auch aus einem Layout den dazu passenden String erstellen und mit einer Bezeichnung versehen. 
-
-Da die Kachel vom Kontext abhängig sind können diese nicht im Voraus geladen werden und es können keine Layouts gleichzeitig geladen werden. 
-
-Es gibt ein Schema für Kacheln, damit diese nicht vom Kontext abhängig sind. Die Factory erstellt aus den Schemata konkrete Kacheln mit Typ und Inhalt. Der Inhalt muss an den Typ angepasst werden und damit die Kacheln nicht überladen werden können, werden Untertypen erstellt, die mit Hilfe eines Mappings ausgewählt werden können. Es werden erst beim Laden eines Layout die Schemata in tatsächliche Kacheln übertragen. Änderungen der Kacheln laufen auch exklusiv über die Schemata.
-
-XXX ganz viele punkte
-
-\clearpage
-
 \subsubsection{Planung der Menüsteuerung [Istogu]}
 
 Nachdem beschrieben wurde, wie die Planung für die Umsetzung der Anforderung erfolgte (''alle Kacheln sind gleichbedeutend, das heißt keine Kachel besitzt einen unveränderlichen Sonderstatus''\footnote{\cite[vgl.][]{seifert2020a}}) beschäftigt sich das folgende Unterkapitel mit der Anforderung, dass jeder Kachel jede Rolle zugewiesen werden kann.
 
-In der Planungsphase wurde sich stärker an den Anforderung orientiert, zumal sie mögliche Implementierung skizzieren. Laut der Anforderung existiert ein Kacheltyp \code{CalculatorFunction}, der unter anderem ''auch die Zuordnung einer Funktionalität zu einer Kachel'' beinhaltet. Daher war die Idee, dass die Applikation zwei Activities beinhalten soll. Einmal eine Activity, die die Nutzung des Taschenrechners ermöglicht, und eine andere Activity, die einen ''Bearbeiten-Modus'' darstellen soll. Von dort aus könnte der Anwender sein Layout anpassen. Jedoch wurde diese Idee verworfen, weil sie auch mit den Anforderung teilweise kollidiert, dass die Funktionalitäten über eine minimale Menge von Interaktion erreicht werden soll. Stattdessen wurde entschieden den Ansatz zu verfolgen, der in der XXX Abbildung 7 zu sehen ist. Dieses Menü soll aufgerufen werden, wenn der Anwender eine Kachel länger gedrückt hält. 
+In der Planungsphase wurde sich stärker an den Anforderung orientiert, zumal sie mögliche Implementierung skizzieren. Laut der Anforderung existiert ein Kacheltyp \code{CalculatorFunction}, der unter anderem ''auch die Zuordnung einer Funktionalität zu einer Kachel'' beinhaltet. Daher war die Idee, dass die Applikation zwei Activities beinhalten soll. Einmal eine Activity, die die Nutzung des Taschenrechners ermöglicht, und eine andere Activity, die einen ''Bearbeiten-Modus'' darstellen soll. Von dort aus könnte der Anwender sein Layout anpassen. Jedoch wurde diese Idee verworfen, weil sie auch mit den Anforderung teilweise kollidiert, dass die Funktionalitäten über eine minimale Menge von Interaktion erreicht werden soll. Stattdessen wurde entschieden den Ansatz zu verfolgen, der in der Abbildung~\ref{fig:ablaufdiagramm-fuer-zuweisung} zu sehen ist. Dieses Menü soll aufgerufen werden, wenn der Anwender eine Kachel länger gedrückt hält. 
 Dabei soll ein Menü geöffnet werden, dass eine Auswahl an unterstützte Kacheltypen anbietet. Abhängig davon was ausgewählt wird, erscheint ein weiteres Untermenü. In der nachfolgende Abbildung wird dies anhand der Zuweisung eines Bruches verdeutlich. Die letzten Untermenüs dabei sind den Operanden vorbehalten.
  
 \interfootnotelinepenalty=10000
@@ -328,20 +318,17 @@ Dabei soll ein Menü geöffnet werden, dass eine Auswahl an unterstützte Kachel
 \begin{figure}[!h]
 	\includegraphics[width=1\columnwidth]{img/ablaufdiagramm-fuer-zuweisung}
 	\caption[Ablaufdiagramm für die Zuweisung eines Bruches an einer Kachel]{Ablaufdiagramm für die Zuweisung eines Bruches an einer Kachel\footnotemark}
+	\label{fig:ablaufdiagramm-fuer-zuweisung}
 \end{figure}
 \footnotetext{eigene Darstellung}
 
 \interfootnotelinepenalty=100
 
-XXX
-
-%Nur eine Activity, die dynamisch aufgebaut und aktualisiert wird
-%Dialoge, die zur Menüführung drübergelegt werden
-%Argumente: Performance, Übersichtlichkeit, Lernzeit…
+Gründe für die Entscheidung Dialoge, statt weitere Aktivitäten zu verwenden, war, dass Dialoge im Vergleich zu den Aktivitäten eine bessere Performance aufweisen. Dies lässt sich darauf zurückführen, dass Dialoge keinen großen Overhead besitzen. Dies trägt dazu bei, dass die Übersichtlichkeit erhöht wird und die Implementierung vereinfacht wird. Zudem bieten Dialoge von ihrer Definition aus, dass sie als Overlay dienen sollen. Dies wäre bei der Applikation der Fall. 
 
 \clearpage
 
-\subsection{Geplante Aufgabenverteilung im Team }
+\subsection{Geplante Aufgabenverteilung im Team}
 
 {\def\arraystretch{1.25}\tabcolsep=5pt
 \begin{longtable}{|l|p{26em}|}

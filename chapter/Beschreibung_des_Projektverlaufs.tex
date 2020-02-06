@@ -28,7 +28,7 @@ XXX
 	\\ \hline\hline
 	\multicolumn{3}{|c|}{\textit{Summe der Dauer aller Architektur-Team-Meetings: 360 Minuten}}
 	\\ \hline\hline
-	\multicolumn{3}{|c|}{\textit{Summe der Dauer aller GUI-Team-Meetings: 110 Minuten}}
+	\multicolumn{3}{|c|}{\textit{Summe der Dauer aller Backend-Meetings: 110 Minuten}}
 	\\ \hline
 	\endlastfoot
 	
@@ -991,16 +991,11 @@ Nach der Einarbeitung versuchte ich mich an ersten Codierungsaufgaben, was jedoc
 Leider kam es hierbei bei der Codeimplementierung meinerseits zu Fehlern weshalb der Code nicht kompiliert werden konnte und zusätzlicher Aufwand bei der Fehlerfindung und Erklärung angefallen ist. 
 
 \subsubsection{Vergleich von Doubles [Meinerzhagen]}
-Beim Arbeiten mit Double Werten ist im Entwicklungsprozess immer wieder aufgefallen, dass Vergleiche zweier Doubles nicht das erwartete Ergebnis lieferten. Nach einiger Recherche konnte das Problem identifiziert werden. So wird mit der Standard Vergleichsmethode von Java sogar ein  Vergleich der zwei Doubles „1.1“ und „1.1“ ein false zurückgeben.
+Beim Arbeiten mit Double Werten ist im Entwicklungsprozess immer wieder aufgefallen, dass Vergleiche zweier Doubles nicht das erwartete Ergebnis lieferten. Nach einiger Recherche konnte das Problem identifiziert werden. So wird mit der Standard Vergleichsmethode von Java sogar ein  Vergleich der zwei Doubles \code{1.1} und \code{1.1} ein \code{false} zurückgeben.
 
 Dies ist durch das verbreitete IEE 754 Format für die Implementierung von Dezimalzahlen zu erklären. Dies hat zur Folge, dass Konversionen und Änderungen einer konkreten Dezimalzahl zu Rundungsfehlern führen. Das ist auch in Java der Fall.
 
-Da innerhalb dieses Projekts alles auf Doubles basiert ist es notwendig für dieses Problem eine Lösung zu finden. So wurde die neue Klasse DoubleComparator erstellt. Alle Vergleiche von Doubles werden über diese Klasse durchgeführt.
-
-
-\subsubsection{Implementierung generischer Kacheln}
-
-XXX
+Da innerhalb dieses Projekts alles auf Doubles basiert ist es notwendig für dieses Problem eine Lösung zu finden. So wurde die neue Klasse DoubleComparator erstellt. Alle Vergleiche müssen über diese Klasse erfolgen.
 
 \subsubsection{Teamkommunikation in unterschiedlichen Umgebungen [Falk]}
 
