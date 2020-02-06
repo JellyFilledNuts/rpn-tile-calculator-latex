@@ -245,17 +245,18 @@ Im Kontrast zu den vielen Kacheldefinitionen, die es in \code{TileMapping} zu Ei
 Was bei der Erstellung von sowohl Stack, als auch Historie von Relevanz ist, ist der Rang der Kachel. Dieser legt gemäß \code{TileScheme}-Definition fest, zu welchem Zeitpunkt Daten hineingeschoben oder gelöscht werden. Im \code{InputTileMapping} wird also für jeden möglichen Position in der Liste ein Eintrag angelegt. Gemäß der, vom \code{InputMenuFactory} erstellten Listener, wird dann das Historie- bzw. Stack-Tile an die ausgewählte Stelle gesetzt.
 
 \begin{figure}[h]
-	\includegraphics[width=\columnwidth]{img/inputtilemapping-for-stack-with-3-tiles}
+	\includegraphics[width=0.7\columnwidth]{img/inputtilemapping-for-stack-with-3-tiles}
 	\caption[InputTileMapping for Stack with 3 tiles]{InputTileMapping for Stack with 3 tiles\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
+\FloatBarrier
 
 \paragraph{Klasse: InputDouble [Gentges]}
 
 Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFraction} und \code{OPolynom}) für die Eingabe vom User möglich sein. Die XML-Ansicht ist simpel gehalten und verwendet ein \code{RelativeLayout} hat, welches die relative Position zu den einzelnen Objekte verwendet. Dadurch wird die Layout-Hierarchie reduziert und die Performance der Applikation verbessert. Für das Eingabefeld wird ein \code{EditText} verwendet, das als Eingabetyp Dezimalzahlen unterstützt wird. In Android muss hier noch explizit erwähnt werden, dass erst über den Keyword \code{numberSigned} auch die Eingabe von negative Zahlen möglich ist.
 
 \begin{figure}[h]
-	\includegraphics[width=\columnwidth]{img/xml_InputDouble}
+	\includegraphics[width=0.6\columnwidth]{img/xml_InputDouble}
 	\caption[XML-Designer für die Klassen InputDouble]{XML-Designer für die Klasse InputDouble\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
@@ -271,6 +272,7 @@ Diese Klasse deckt die Funktionalität der Benutzereingabe von Brüchen. Dabei �
 \includegraphics[width=0.5\columnwidth]{img/xml_InputFraction}
 \caption[XML-Designer für die Klasse InputFraction]{XML-Designer für die Klasse InputFraction\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
 \FloatBarrier
 
 \paragraph{Klasse: InputPolynomial [Gentges]}
@@ -281,6 +283,7 @@ Die Klasse ist grundsätzlich gleich aufgebaut, wie die vorherigen Eingabeklasse
 	\includegraphics[width=0.6\columnwidth]{img/xml_InputPolynomial}
 	\caption[XML-Designer für die Klasse InputPolynomial]{XML-Designer für die Klasse InputPolynomial\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
 \FloatBarrier
 
 \paragraph{Darstellung der Beziehungen von den Menüsteuerungsklassen [Istogu]}
@@ -439,7 +442,6 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 	\item \code{OTuple} und \code{OFraction}
 \end{itemize} 
 
-
 \textbf{Rückgabewerte: }Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes. 
 
 \textbf{Beschreibung: }Die Klasse verfügt über 15 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Anschließend wird die Berechnung durchgeführt. 
@@ -449,20 +451,20 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 \textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Dividend, der zweite der Divisor. Die erlaubten Kombinationen sind: 
 
 \begin{itemize}
-	\item ODouble und ODouble
-	\item ODouble und OFraction
-	\item OFraction und OFraction 
-	\item OFraction und ODouble 
-	\item OSet und ODouble
-	\item OSet und OFraction
-	\item OMatrix und ODouble 
-	\item OMatrix und OFraction
-	\item OPolynom und OPolynom 
-	\item OPolynom und ODouble
-	\item OPolynom und OFraction 
-	\item OTuple und OTuple
-	\item OTuple und ODouble
-	\item OTuple und OFraction 
+	\item \code{ODouble} und \code{ODouble}
+	\item \code{ODouble} und \code{OFraction}
+	\item \code{OFraction} und \code{OFraction} 
+	\item \code{OFraction} und \code{ODouble} 
+	\item \code{OSet} und \code{ODouble}
+	\item \code{OSet} und \code{OFraction}
+	\item \code{OMatrix} und \code{ODouble}
+	\item \code{OMatrix} und \code{OFraction}
+	\item \code{OPolynom} und \code{OPolynom}
+	\item \code{OPolynom} und \code{ODouble}
+	\item \code{OPolynom} und \code{OFraction}
+	\item \code{OTuple} und \code{OTuple}
+	\item \code{OTuple} und \code{ODouble}
+	\item \code{OTuple} und \code{OFraction} 
 \end{itemize}
 
 \textbf{Rückgabewerte:} Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes.
