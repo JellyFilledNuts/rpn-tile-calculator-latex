@@ -327,9 +327,9 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 
 \subsubsection{Operationen}
 
-\paragraph{Plus [Falk]}
+\paragraph{Klasse: Plus [Falk]}
 
-Eingabeparameter: Zwei Werte, der erste Wert ist der erste Summand, der zweite der zweite Summand. Die erlaubten Kombinationen sind: 
+\textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der erste Summand, der zweite der zweite Summand. Die erlaubten Kombinationen sind: 
 
 \begin{itemize}
 	\item \code{ODouble} und \code{ODouble}
@@ -357,29 +357,303 @@ Eingabeparameter: Zwei Werte, der erste Wert ist der erste Summand, der zweite d
 	\item \code{OTuple} und \code{OTuple}
 \end{itemize}
 
-Rückgabewerte: Der berechnete Wert mit dem Datentyp des ersten Summanden. 
-Beschreibung: Die Klasse verfügt über 23 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Anschließend wird die Berechnung durchgeführt. 
+\textbf{Rückgabewerte: }Der berechnete Wert mit dem Datentyp des ersten Summanden. 
 
-\paragraph{Minus [Falk]}
+\textbf{Beschreibung: }Die Klasse verfügt über 23 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Anschließend wird die Berechnung durchgeführt. 
 
-Eingabeparameter: Zwei Werte, der erste Wert ist der Minuend, der zweite der Subtrahend. Die erlaubten Kombinationen sind: 
-•	ODouble und ODouble 
-•	ODouble und OFraction
-•	OFraction und OFraction 
-•	OFraction und ODouble 
-•	OSet und ODouble
-•	OSet und OFraction 
-•	OMatrix und OMatrix
-•	OMatrix und ODouble
-•	OMatrix und OFraction
-•	OPolynom und OPolynom 
-•	OPolynom und ODouble
-•	OPolynom und OFraction 
-•	OTuple und OTuple
-•	OTuple und ODouble
-•	OTuple und OFraction 
-Rückgabewerte: Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes. 
-Beschreibung: Die Klasse verfügt über 15 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Anschließend wird die Berechnung durchgeführt. 
+\paragraph{Klasse: Minus [Falk]}
+
+\textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Minuend, der zweite der Subtrahend. Die erlaubten Kombinationen sind: 
+
+\begin{itemize}
+	\item ODouble und ODouble 
+	\item ODouble und OFraction
+	\item OFraction und OFraction 
+	\item OFraction und ODouble 
+	\item OSet und ODouble
+	\item OSet und OFraction 
+	\item OMatrix und OMatrix
+	\item OMatrix und ODouble
+	\item OMatrix und OFraction
+	\item OPolynom und OPolynom 
+	\item OPolynom und ODouble
+	\item OPolynom und OFraction 
+	\item OTuple und OTuple
+	\item OTuple und ODouble
+	\item OTuple und OFraction
+\end{itemize} 
+
+\textbf{Rückgabewerte: }Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes. 
+
+\textbf{Beschreibung: }Die Klasse verfügt über 15 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Anschließend wird die Berechnung durchgeführt. 
+
+\paragraph{Klasse: Minus [Falk]}
+
+\textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Dividend, der zweite der Divisor. Die erlaubten Kombinationen sind: 
+
+\begin{itemize}
+	\item ODouble und ODouble
+	\item ODouble und OFraction
+	\item OFraction und OFraction 
+	\item OFraction und ODouble 
+	\item OSet und ODouble
+	\item OSet und OFraction
+	\item OMatrix und ODouble 
+	\item OMatrix und OFraction
+	\item OPolynom und OPolynom 
+	\item OPolynom und ODouble
+	\item OPolynom und OFraction 
+	\item OTuple und OTuple
+	\item OTuple und ODouble
+	\item OTuple und OFraction 
+\end{itemize}
+
+\textbf{Rückgabewerte:} Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes.
+ 
+\textbf{Beschreibung: }Die Klasse verfügt über 14 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Bevor die Berechnung durchgeführt wird, wird bestimmt ob der Divisor null ist. Wenn ja wird eine Fehlermeldung ausgegeben. Andernfalls wird die Berechnung durchgeführt. 
+
+\paragraph{Klasse: Times [Falk]}
+
+\textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Multiplikator, der zweite Wert der Multiplikand. Die erlaubten Kombinationen sind: 
+
+\begin{itemize}
+\item ODouble und ODouble
+\item ODouble und OFraction
+\item OFraction und ODouble
+\item ODouble und OSet
+\item OSet und ODouble
+\item ODouble und OMatrix
+\item OMatrix und ODouble
+\item ODouble und OPolynom
+\item OPolynom und ODouble
+\item ODouble und OTupel,
+\item OTupel und ODouble
+\item OFraction und OFraction
+\item OFraction und OSet
+\item OFraction und OMatrix
+\item OMatrix und OFraction
+\item OFraction und OPolynom
+\item OFraction und OTupel
+\item OMatrix und OMatrix
+\item OPolynom und OPolynom 
+\item OTupel und OTupel 
+\end{itemize}
+
+\textbf{Rückgabewerte: }Der berechnete Wert. 
+
+\textbf{Beschreibung: }Die Klasse verfügt über 20 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Anschließend wird die Berechnung durchgeführt. 
+
+\paragraph{Klasse: Root [Falk]}
+
+\textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Radikand, der zweite Wert der Wurzelexponent. Die erlaubten Kombinationen sind: 
+
+\begin{itemize}
+\item ODouble und ODouble
+\item ODouble und OFraction
+\item OFraction und ODouble 
+\item OFraction und OFraction
+\item OMatrix und ODouble
+\item OMatrix und OFraction
+\end{itemize}
+
+\textbf{Rückgabewerte:} Der berechnete Wert, Datentyp ist der des Radikanden. 
+
+\textbf{Beschreibung: }Die Klasse verfügt über 6 öffentliche Methoden. Anhand der übergebenen Parameter wird bestimmt, welche öffentliche Methode aufgerufen wird. In der Methode wird die Wurzel berechnet und zurückgegeben. 
+
+\paragraph{Klasse: Modulo [Falk]}
+
+\textbf{Eingabeparameter:} Zwei Werte des Typs \code{ODouble}, der erste Wert ist der Dividend, der zweite der Divisor. 
+
+\textbf{Rückgabewerte:} Der berechnete Wert als \code{ODouble}. 
+
+\textbf{Beschreibung:} Die Klasse verfügt über eine öffentliche Methode. In der Methode wird der Modulo-Wert der beiden übergebenen Parameter berechnet. 
+
+\paragraph{Klasse: Zeros [Keienburg]}
+
+\textbf{Eingabeparameter: }Eine Funktion des Typs \code{OPolynom}
+
+\textbf{Rückgabewerte:} Ein Set des Typs \code{OSet} mit den berechneten Nullstellen. Die Nullstellen werden als \code{Set} zurückgegeben, da so verhindert wird das für Funktionen wie \code{x\^2+0*x+0} zweimal die gleiche Nullstelle zurückgegeben wird. 
+
+\textbf{Einstieg in die Klasse:} Öffentliche Methode, die die übergebenen Parameter entgegennimmt. Die weiteren Methoden für die Berechnung werden anschließend von der Öffentlichen Methode aus aufgerufen. 
+Methoden der Klasse \code{Zeros}:
+
+\code{calculateZeros}: Die Methode erhält eine Funktion vom Typ \code{OPolynom}. Anschließend wird bestimmt, von welchem Grad die übergebene Funktion ist. Wenn die Funktion ersten Grades ist, wird die Methode \code{zerosTypeOne} aufgerufen, ansonsten die Methode \code{zerosTypeTwo}. Die beiden Methoden geben die gefundenen Nullstellen als 
+Array zurück, das Array wird anschließend von \code{calculateZeros} zurückgegeben.
+ 
+\code{normalOrQuadraticFunction}: Bestimmt, ob eine, als \code{Double} Array übergebene Funktion, ersten oder zweiten Grades ist. Dabei wird die Länge des Arrays getestet. Ist die Länge des Arrays 3, so wird die Funktion als Quadratische Funktion bestimmt. Wenn die Länge 2 ist, als einfache Funktion. 
+
+\code{zerosTypeOne}: Die Methode berechnet die Nullstellen für Funktionen ersten Grades. Die Funktion wird als Double Array übergeben. Die berechnete Nullstelle wird als Double Array zurückgegeben. 
+
+\code{zerosTypeTwo}: Die Methode berechnet die Nullstellen für Funktionen zweiten Grades. Die Funktion wird als Double Array übergeben. Mithilfe der Mitternachtsformel wird die erste und die zweite Nullstelle bestimmt. Die gefundenen Nullstellen werden als Double Array zurückgegeben. 
+
+\textbf{Anmerkung:} Wenn eine übergebene Funktion keine Nullstellen besitzt, der Rückgabewert in Java also \code{NaN} ist, wird eine Fehlermeldung ausgegeben, dass eine Nullstellenberechnung nicht möglich ist. 
+
+\textbf{Einschränkungen:} Die Nullstellenberechnung ist nur für Funktionen ersten und zweiten Grades möglich. 
+
+Unit-Tests für die Klasse: 
+
+\begin{enumerate}
+	\item Eingabe Funktion: \code{2x + 4}. Erwartetes Ergebnis: \code{(-2)}
+	\item Eingabe Funktion: \code{2x\^{}2+4x+0}. Erwartetes Ergebnis: \code{(-2, 0)}
+	\item Eingabe Funktion: \code{x\^{}2+4x-4}. Erwartetes Ergebnis: \code{(-4,828, 0,828)}
+\end{enumerate}
+
+Die Tests waren erfolgreich.
+
+\paragraph{Klasse: HighAndLowPoints [Keienburg]}
+
+\textbf{Eingabeparameter:} Eine Funktion des Typs \code{OPolynom}
+
+\textbf{Rückgabewerte: }Ein Tupel des Typs \code{OTupel} mit den berechneten Extremwerten. Die Werte an den geraden Positionen innerhalb des Tupels sind die X-Werte, der jeweils folgende Wert ist der zugehörige Y-Wert. Bsp.: Tupel [0] = X-Wert des ersten Extremwertes, Tupel [1] = Y-Wert des ersten Extremwertes, Tupel [2] = X-Wert des zweiten Extremwertes, Tupel [3] = Y-Wert des zweiten Extremwertes. 
+
+Beschreibung: Die Klasse erhält eine Funktion vom Typ \code{ODouble}. Zuerst wird die Ableitung der Funktion bestimmt, anschließend die Nullstellen der Abteilung. Für die erhaltenen Nullstellen wird der zugehörige Y-Wert berechnet. Die berechneten Werte werden als \code{OTupel} zurückgegeben. 
+
+Einstieg in die Klasse: Öffentliche Methode, die die übergebenen Parameter entgegennimmt. Die weiteren Methoden für die Berechnung werden anschließend von der Öffentlichen Methode aus aufgerufen. 
+
+\textbf{Methoden der Klasse \code{HighAndLowPoints}:}
+
+\code{getHighAndLowPoints}: Einstiegspunkt der Klasse, ruft die Methode \code{calculateHighAndLowPoints} für die weitere Berechnung der Extremwerte auf. Gibt sie als Double Array zurück. 
+
+\code{getFunctionAsDouble}: Wandelt eine übergebene Funktion vom Typ \code{OPolynom} in ein Double Array um.
+
+\code{calculateHighAndLowPoints}: Berechnet die Nullstellen einer übergebenen Funktion vom Typ \code{OPolynom}. Berechnet zuerst die Ableitung der Funktion, anschließend die Nullstellen der Ableitung. Die Werte der Nullstellen werden anschließend in die ursprüngliche Funktion eingesetzt und so die Y-Werte berechnet. Die berechneten Nullstellen werden als Double Array zurückgegeben. 
+
+\code{Einschränkungen}: Die Nullstellenberechnung ist nur für Funktionen zweiten Grades möglich. Demnach ist eine Berechnung der Hoch- und Tiefpunkte nur für Funktionen dritten oder zweiten Grades möglich.
+
+Unit-Tests für die Klasse:
+
+\begin{itemize}
+\item Eingabe Funktion: 2x\^{}2+4x+6. Erwartetes Ergebnis: (-1|4)
+\item Eingabe Funktion: 3x\^{}2+6x-4. Erwartetes Ergebnis: (-1|-7)
+\item Eingabe Funktion: -2*x\^{}2+4x+12. Erwartetes Ergebnis: (1|14)
+\end{itemize}
+
+Die Tests waren erfolgreich.
+
+\paragraph{Logarithm [Keienburg]}
+
+\textbf{Eingabeparameter:} Ein Wert des Typs ODouble oder zwei Werte vom Typ ODouble (erster ist die Basis) 
+
+\textbf{Rückgabewerte:} Ein Wert des Typs ODouble
+
+\textbf{Beschreibung:} Die Klasse berechnet den Logarithmus. Die Art des Logarithmus ist abhängig von den übergebenen Parametern. Wird nur ein Wert übergeben, wird der natürliche Logarithmus der Zahl berechnet. Wenn zwei Parameter übergeben werden, ist der erste Parameter die Basis des Logarithmus, der zweite der Wert, zu für den der Logarithmus berechnet werden soll. 
+
+Der Einstieg in die Klasse erfolgt über zwei öffentliche Methoden. Die Methode wird anhand der übergebenen Parameter (ein oder zwei Werte vom Typ \code{ODouble}) ausgewählt. In der Öffentlichen Methode findet die Berechnung des Logarithmus (Natürlicher oder Logarithmus zu einer bestimmten Basis) statt. Wenn ein Wert kleiner gleich null eingegeben wird, wird eine Fehlermeldung ausgegeben.
+
+Unit-Tests für die Klasse: 4 Unit-Test für die Berechnung der des natürlichen Logarithmus (ersten 4), 3 Unit-Tests für die Berechnung des Logarithmus für eine beliebige Basis. 
+
+\begin{itemize}
+\item Eingabe 10. Erwartetes Ergebnis: 2.302585092994046
+\item Eingabe: 5. Erwartetes Ergebnis: 1.6094379124341003
+\item Eingabe: 97. Erwartetes Ergebnis: 4.574710978503383
+\item Eingabe: e. Erwartetes Ergebnis: 1
+\item Eingabe: Basis 5, Wert 10. Erwartetes Ergebnis: 1.4306765580733933
+\item Eingabe: Basis 10, Wert 10. Erwartetes Ergebnis: 1
+\item Eingabe: Basis e, Wert 10. Erwartetes Ergebnis: 2.302585092994046
+\end{itemize}
+
+Die Tests waren erfolgreich.
+
+\paragraph{Logarithm10 [Keienburg]}
+
+\textbf{Eingabeparameter:} Ein Wert des Typs ODouble
+
+\textbf{Ausgabeparameter:} Ein Wert des Typs ODouble
+
+\textbf{Beschreibung:} Die Klasse berechnet den Logarithmus zur Basis 10. Wenn ein Wert kleiner gleich null eingegeben wird, wird eine Fehlermeldung ausgegeben. 
+
+Unit-Tests für die Klasse: 
+
+\begin{itemize}
+\item Eingabe 10. Erwartetes Ergebnis: 1
+\item Eingabe: 5. Erwartetes Ergebnis: 0.6989700043360189
+\item Eingabe: 97. Erwartetes Ergebnis: 1.9867717342662448
+\end{itemize}
+
+Die Tests waren erfolgreich.
+
+\paragraph{Derivation [Keienburg]}
+
+\textbf{Eingabeparameter: }Eine Funktion des Typs OPolynom
+
+\textbf{Rückgabewert:} Eine Funktion des Typs OPolynom
+
+\textbf{Beschreibung:} Die Klasse berechnet die Ableitung zu einer übergebenen Funktion des Typs OPolynom und gibt sie als Funktion vom Typ OPolynom zurück. 
+
+\textbf{Einstieg in die Klasse: }Öffentliche Methode, die die übergebenen Parameter entgegennimmt. Die weiteren Methoden für die Berechnung werden anschließend von der Öffentlichen Methode aus aufgerufen. 
+
+\textbf{Methoden der Klasse Derivation: }
+
+\code{getFunctionAsDouble:} Wandelt eine gegebene Funktion vom Typ OPolynom in ein Double Array um. 
+
+\code{derivate: }Berechnet die Ableitung einer gegebenen Funktion. Die Funktion wird zuerst in ein Double Array umgewandelt, anschließend abgeleitet und als Funktion vom Typ OPolynom zurückgegeben. 
+
+Unit-Tests für die Klasse: 
+
+\begin{itemize}
+\item Eingabe 2x\^{}2+4x+6. Erwartetes Ergebnis: 4x+4
+\item Eingabe: 7x+9. Erwartetes Ergebnis: 7
+\item Eingabe: 12x\^{}2-3+12. Erwartetes Ergebnis: 24x-1
+\item Eingabe: 1.5x\^{}2+2x+7. Erwartetes Ergebnis: 2.25x+2
+\end{itemize}  
+
+Die Tests waren erfolgreich.
+
+\paragraph{Integral [Istogu]}
+
+Diese Klasse erbt von der Klasse ‘‘Action’‘. Daher sind die Methoden „with()“ bereits implementiert. Diese Klasse berechnet entweder die Stammfunktion von dem übergebene Polynomialfunktion oder das Integral der Funktion. 
+
+Für die Bildung der Stammfunktion benötigt die Methode „getAntiderivative()“ eine „OPolynom“ und gibt die Stammfunktion als Typ „OPolynom“ zurück. Beim „Aufleiten“ entsteht eine Konstante, die jede Wert annehmen kann. In der App wird festgelegt, dass diese Konstante immer 0 ist. Zweck hinter der Definition ist, dass mit dem OPolynom weitergerechnet werden kann, da diese nicht mit weiteren Variablen arbeiten kann.
+
+Für das Berechnen des Integrals getSimpsonIntegrator() werden folgende Parametertypen erwartet: OPolynom oPolynom, double lowerBound, double upperBound. Das Integral für den vorgegebenen Bereich wird als ODouble zurückgegeben. Diese Methode realisiert die Simpsonregel für die Integration von realen Funktionen, die in dem genutzten Mathebibliothek als Klasse SimpsonIntegrator implementiert wurde. 
+
+Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
+
+\code{getSimpsonsIntegrator()}
+\quad 1.	Eingabe: OPolynom: x\^{}2 – 8x + 17, untere Grenze: 2, obere Grenze 5
+
+\quad Erwartetes Ergebnis: 6
+
+\code{getAntiderivative()}
+1.	Eingabe: OPolynom: -3,21x\^{}3 + 3x + 7
+Erwartetes Ergebnis: OPolynom: -0,8025x\^{}4 + 1,5x\^{}2 + 7x + c
+
+\textbf{Bestimmung des Grenzwertes einer Funktion [Istogu]}
+
+Für die Umsetzung wurde die Funktion ‘‘value(double x)’‘ der Klasse ‘‘PolynomialFunction’‘ verwendet, die aus der Mathebibliothek ‘‘Apache Commons Math’‘ hervorgeht. Zudem bietet die Double-Klasse die Repräsentierung von positiv und negativ Unendlich an, die auch für die Methoden verwendet wurde.
+
+Für die Bestimmung des Grenzwertes wurde sich an der Methode der numerischen Annäherung orientiert. Hierbei wird der Grenzwert durch die Annäherung von links und rechts des untersuchten Punktes bestimmt. Daher wurde die Anforderung in drei Methoden untergliedert, einmal die Methode ‘‘limitFromBelow(…)’‘ und ‘‘limitFromAbove(…)’‘, die jeweils die Annäherung von verschiedenen Richtung bestimmt. Die Rückgabewerte der beiden Methoden werden in der Methode ‘‘limit(…)’‘ miteinander verglichen. Zweck der Vergleichsabfrage ist es Definitionslücken abzufangen. Als Beispiel wird folgende Funktion angenommen:
+
+f(x)=1/x
+
+\begin{figure}[!h]
+	\includegraphics[scale=1]{img/funktion-grafik}
+	\caption[Grafische Darstellung der Funktion]{Grafische Darstellung der Funktion\footnotemark}
+\end{figure}
+\footnotetext{eigene Darstellung}
+
+Wenn für die Funktion sowohl der linksseitige als auch der rechtsseitige Grenzwert bestimmt wird, folgt folgendes:  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
