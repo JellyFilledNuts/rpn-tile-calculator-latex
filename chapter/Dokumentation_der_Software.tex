@@ -67,7 +67,7 @@ Die Informationen über den Kacheltypen des \code{Tiles} befindet sich im \code{
 
 \subsubsection{Kontextfremde Kacheln [Gentges]}
 
-Die \code{TileSchemes} stehen in keiner Beziehung zum Kontext der Anwendung. Dennoch wird in ihnen der Text und das Design des letztendlichen \code{Tiles} gespeichert. Im Gegensatz zu den \code{Tiles} differenzieren \code{TileSchemes} hier zwischen Kachelarten. Die Grundeigenschaften eines \code{TileSchemes}, also die Information darüber um welche Art von Kachel es sich handelt, und was genau der Inhalt ist, werden in der Superklasse \code{TileScheme} definiert. Ersteres liegt in Form eines sogenannten \code{TileMappings} vor, welches in einem folgenden Kapitel näher erläutert wird XXX. Für jede der bestehenden Kachelarten wurde eine Unterklasse implementiert, welche die Eigenschaften von \code{TileScheme} erbt und weitere artbezogene Inhalte definiert. In Kombination mit einem \code{Tile} können so andere Komponenten der Applikation, wie beispielsweise der \code{Presenter}, die Kachelart des \code{TileScheme} erfragen und den vorliegenden Inhalt für die auszuführenden Prozesse extrahieren.
+Die \code{TileSchemes} stehen in keiner Beziehung zum Kontext der Anwendung. Dennoch wird in ihnen der Text und das Design des letztendlichen \code{Tiles} gespeichert. Im Gegensatz zu den \code{Tiles} differenzieren \code{TileSchemes} hier zwischen Kachelarten. Die Grundeigenschaften eines \code{TileSchemes}, also die Information darüber um welche Art von Kachel es sich handelt, und was genau der Inhalt ist, werden in der Superklasse \code{TileScheme} definiert. Ersteres liegt in Form eines sogenannten \code{s} vor, welches in einem folgenden Kapitel näher erläutert wird XXX. Für jede der bestehenden Kachelarten wurde eine Unterklasse implementiert, welche die Eigenschaften von \code{TileScheme} erbt und weitere artbezogene Inhalte definiert. In Kombination mit einem \code{Tile} können so andere Komponenten der Applikation, wie beispielsweise der \code{Presenter}, die Kachelart des \code{TileScheme} erfragen und den vorliegenden Inhalt für die auszuführenden Prozesse extrahieren.
 
 \begin{itemize}
 	\item Das \code{ActionTileScheme} ist die Implementierung eines \code{TileScheme} vom Typ Action, (auch \code{Operator}) der Inhalt und Typ um eine instanziierte Action erweitert. Dank der ähnlich polymorphen Struktur der \code{Action}s, kann so mit einem simplen Methodenaufruf jede Form von \code{Action}, die im Schema hinterlegt ist, angesprochen und ausgeführt werden.
@@ -167,8 +167,35 @@ Zu den Kachelarten sind Design Ressourcen hinterlegt, welche die Gestaltung der 
 \textbf{Bsp:} \code{ACTION(R.drawable.tile \_operator \_blue)}
 
 \subsubsection{Gruppierung der Kacheln im Layout Container [Bockhorn]}
+Gemäß dem Entwurf werden die Kacheln, sowohl Tiles als auch TileSchemes, in einem einheitlichen Container gespeichert. Das sogenannte TileLayout beinhaltet und bietet so dem Presenter eine zentralisierte Stelle zur Kommunikation mit Kacheln.
 
-XXX
+Insgesamt werden drei Bereiche unterstützt:
+\begin{enumerate}
+	\item Das Laden von kontextfremden TileSchemes in kontextbezogene Tiles. Grundsätzlich ist das TileLayout zwar unabhängig vom Applikationskontext, kann jedoch per Methode eine View für einen Kontext erstellen. Die Übersetzung erfolgt mit einer Darstellung in einer sogenannten TableView von Android. Neben der zweidimensionalen Liste an Tiles werden Listen für Stack und Historie geführt, die dann getrennt adressierbar sind.
+	\item Die Aktualisierung von Tiles bei Änderungen im Stack, der Historie oder Anpassungen des Layouts. Hierbei ist zu erwähnen, dass nie das gesamte Layout aktualisiert wird, sondern nur Stack oder Historie. Beide werden mithilfe der korrespondierenden Listen im Presenter verglichen und aufgefüllt. Die Aktualisierung eines Tiles erfolgt durch die Kreierung eines neuen TileSchemes.
+	\item Das Speichern des aktuellen TileLayouts durch die Zurückübersetzung von kontextbezogenen Tiles in kontextfremde TileSchemes zur Weiterverarbeitung durch den sogenannten TileLayoutLoader.
+\end{enumerate}
+Das TileLayout selbst wird mithilfe der TileLayoutFactory unter Verwendung des Factory Design-Patterns aus einer Zeichenkette geladen. Das persistente Speichern und Laden dieser Zeichenkette und der Bezeichnung des TileLayouts selbst wird vom TileLayoutLoader orchestriert (siehe Kapitel XXX).
+
+\para{Klasse: TileLayout}
+\textit{Beschreibung: }
+
+Methode \textit{createView} erstellt eine zweidimensionale Liste an Tiles aus der zweidimensionalen Liste an TileSchemes. Währenddessen werden eine TableView zusammengebaut und zurückgegeben und den eigenen Stack und die Historie Listen gesetzt.
+
+Methode pushStack2Presenter übergibt dem Presenter den aktuellen Stack, z.B. zum Laden der Anwendung
+
+Methode \textit{pushHistoryStack2Presenter} übergibt den aktuellen History Stack, z.B. zum Laden der Anwendung
+
+Methode \textit{updateStack} aktualisiert jegliche Tiles im Stack durch den im Presenter geführten Stack an Operanden
+
+Methode \textit{updateHistoryStack} aktualisiert jegliche Tiles im History Stack durch die im Presenter geführte Historie
+
+Methode \textit{generateLayoutText} Generiert eine Zeichenkette im CSV Format anhand der zweidimensionalen Liste an Tiles
+
+\para{TileLayoutFactory}
+\textit{Beschreibung}: Factory für TileLayouts, die anhand einer Zeichenkette ein passendes Layout erstellt
+Methode \textit{createView} erstellt eine zweidimensionale Liste an Tiles aus der zweidimensionalen Liste an TileSchemes. Währenddessen werden eine TableView zusammengebaut und zurückgegeben und den eigenen Stack und die Historie Listen gesetzt.
+
 
 \subsubsection{Implementierung der Menüsteuerung [Istogu]}
 
@@ -190,13 +217,31 @@ Die Klasse erbt von der abstrakte Klasse \code{DialogMenu} und verweist über de
 
 Zu den Ressourcen zählen unteranderem Bilder, \code{XML}-Ansichten und deren Komponenten wie Buttons. Die Referenzen zu den Buttons werden danach verwendet, um auf die Objekte über die Methode \code{dialog.findViewById()} zuzugreifen. In dem Konstruktor werden zu den jeweiligen Buttons ein \code{OnClickListener} festgesetzt, der ein neues Objekt vom Typ \code{InputTileMapping} erzeugt.
 
-\paragraph{Klasse: InputTileMapping [Bockhorn]}
+\paragraph{Klasse: InputTileMapping [Pham]}
+Die Klasse InputTileMapping erbt ebenfalls vom DialogMenü und dient der Eingabe von konkreten, in TileMapping definierten, Kacheln. Durch die generische Implementierung und dynamische Befüllung des Menüs wird dem Nutzer eine einheitliche Eingabefunktionalität für unterschiedliche Kacheltypen ermöglicht. 
 
-XXX
+\begin{figure}[h]
+	\includegraphics[scale=1]{img/relation-tiletype-tilemapping}
+	\caption[Relation zwischen InputTileType und InputTileMapping]{Relation zwischen InputTileType und InputTileMapping\footnotemark}
+\end{figure}
 
-\paragraph{Klasse: InputMenuFactory [Bockhorn]}
+Dabei haben sich zwei Use Cases herauskristallisiert:
 
-XXX
+Die Grundidee ist, dass alle in TileMapping definierten Kacheln eines bestimmten TileTypes dem Anwender zur Auswahl präsentiert werden. Diese werden dabei dynamisch aus der TileMapping Klasse ausgelesen. Der passende OnClickListener wird mithilfe der InputMenuFactory gesetzt. Bei den Kacheltypen Action und Einstellung wird lediglich die bearbeitete Kachel durch die neue, ausgewählte Kachel vom Typ Action oder Einstellung ersetzen. Bei der Eingabe eines Operanden wird jedoch ein weiteres Menü aufgerufen, welches dies handhabt. Erst nach erfolgreicher Eingabe kann die bearbeitete Kachel ersetzt werden.
+
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{img/inputtilemapping-for-operators}
+	\caption[InputTileMapping for Operators]{InputTileMapping for Operators\footnotemark}
+\end{figure}
+
+Im Kontrast zu den vielen Kacheldefinitionen, die es in TileMapping zu Einstellungen oder Operatoren gibt, findet man dort für den Stack und die Historie lediglich eine Definition wieder. (S\_STACK, H\_HISTORY)
+
+Was bei der Erstellung von sowohl Stack, als auch Historie von Relevanz ist, ist der Rang der Kachel. Dieser legt gemäß TileScheme-Definition fest, zu welchem Zeitpunkt Daten hineingeschoben oder gelöscht werden. Im InputTileMapping wird also für jeden möglichen Position in der Liste ein Eintrag angelegt. Gemäß der, vom InputMenuFactory erstellten Listener, wird dann das Historie- bzw. Stack-Tile an die ausgewählte Stelle gesetzt.
+
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{img/inputtilemapping-for-stack-with-3-tiles}
+	\caption[InputTileMapping for Stack with 3 tiles]{InputTileMapping for Stack with 3 tiles\footnotemark}
+\end{figure}
 
 \paragraph{Klasse: InputDouble [Gentges]}
 
