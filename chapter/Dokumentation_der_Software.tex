@@ -330,7 +330,7 @@ Auffallend ist hier der geringe Umfang der Schnittstelle der Operanden, da diese
 
 \paragraph{Klasse: ODouble [Meinerzhagen]}
 
-\textit{Wrapper für ein \code{Double}}
+\textit{Wrapper für ein} \code{Double}
 
 Eine Dezimalzahl, welche intern einen \code{double} zur Datenspeicherung verwendet.
 
@@ -473,33 +473,33 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 
 \textbf{Rückgabewerte:} Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes.
  
-\textbf{Beschreibung: }Die Klasse verfügt über 14 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Bevor die Berechnung durchgeführt wird, wird bestimmt ob der Divisor null ist. Wenn ja wird eine Fehlermeldung ausgegeben. Andernfalls wird die Berechnung durchgeführt. 
+\textbf{Beschreibung: }Die Klasse verfügt über 14 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Bevor die Berechnung durchgeführt wird, wird bestimmt ob der Divisor \code{0} ist. Wenn ja wird eine Fehlermeldung ausgegeben. Andernfalls wird die Berechnung durchgeführt. 
 
 \paragraph{Klasse: Times [Falk]}
 
-\textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Multiplikator, der zweite Wert der Multiplikand. Die erlaubten Kombinationen sind: 
+\textbf{Eingabeparameter:} Zwei Werte, der erste Wert ist der Multiplikator, der zweite Wert der Multiplikand. Die erlaubten Kombinationen sind: 
 
 \begin{itemize}
-\item ODouble und ODouble
-\item ODouble und OFraction
-\item OFraction und ODouble
-\item ODouble und OSet
-\item OSet und ODouble
-\item ODouble und OMatrix
-\item OMatrix und ODouble
-\item ODouble und OPolynom
-\item OPolynom und ODouble
-\item ODouble und OTupel,
-\item OTupel und ODouble
-\item OFraction und OFraction
-\item OFraction und OSet
-\item OFraction und OMatrix
-\item OMatrix und OFraction
-\item OFraction und OPolynom
-\item OFraction und OTupel
-\item OMatrix und OMatrix
-\item OPolynom und OPolynom 
-\item OTupel und OTupel 
+\item \code{ODouble} und \code{ODouble}
+\item \code{ODouble} und \code{OFraction}
+\item \code{OFraction} und \code{ODouble}
+\item \code{ODouble} und \code{OSet}
+\item \code{OSet} und \code{ODouble}
+\item \code{ODouble} und \code{OMatrix}
+\item \code{OMatrix} und \code{ODouble}
+\item \code{ODouble} und \code{OPolynom}
+\item \code{OPolynom} und \code{ODouble}
+\item \code{ODouble} und \code{OTupel}
+\item \code{OTupel} und \code{ODouble}
+\item \code{OFraction} und \code{OFraction}
+\item \code{OFraction} und \code{OSet}
+\item \code{OFraction} und \code{OMatrix}
+\item \code{OMatrix} und \code{OFraction}
+\item \code{OFraction} und \code{OPolynom}
+\item \code{OFraction} und \code{OTupel}
+\item \code{OMatrix} und \code{OMatrix}
+\item \code{OPolynom} und \code{OPolynom} 
+\item \code{OTupel} und \code{OTupel}
 \end{itemize}
 
 \textbf{Rückgabewerte: }Der berechnete Wert. 
@@ -511,12 +511,12 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 \textbf{Eingabeparameter: }Zwei Werte, der erste Wert ist der Radikand, der zweite Wert der Wurzelexponent. Die erlaubten Kombinationen sind: 
 
 \begin{itemize}
-\item ODouble und ODouble
-\item ODouble und OFraction
-\item OFraction und ODouble 
-\item OFraction und OFraction
-\item OMatrix und ODouble
-\item OMatrix und OFraction
+\item \code{ODouble} und \code{ODouble}
+\item \code{ODouble} und \code{OFraction}
+\item \code{OFraction} und \code{ODouble} 
+\item \code{OFraction} und \code{OFraction}
+\item \code{OMatrix} und \code{ODouble}
+\item \code{OMatrix} und \code{OFraction}
 \end{itemize}
 
 \textbf{Rückgabewerte:} Der berechnete Wert, Datentyp ist der des Radikanden. 
@@ -535,7 +535,7 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 
 \textbf{Eingabeparameter: }Eine Funktion des Typs \code{OPolynom}
 
-\textbf{Rückgabewerte:} Ein Set des Typs \code{OSet} mit den berechneten Nullstellen. Die Nullstellen werden als \code{Set} zurückgegeben, da so verhindert wird das für Funktionen wie \code{x\^2+0*x+0} zweimal die gleiche Nullstelle zurückgegeben wird. 
+\textbf{Rückgabewerte:} Ein Set des Typs \code{OSet} mit den berechneten Nullstellen. Die Nullstellen werden als \code{Set} zurückgegeben, da so verhindert wird das für Funktionen wie \code{x\^{}2+0*x+0} zweimal die gleiche Nullstelle zurückgegeben wird. 
 
 \textbf{Einstieg in die Klasse:} Öffentliche Methode, die die übergebenen Parameter entgegennimmt. Die weiteren Methoden für die Berechnung werden anschließend von der Öffentlichen Methode aus aufgerufen. 
 Methoden der Klasse \code{Zeros}:
@@ -575,7 +575,7 @@ Einstieg in die Klasse: Öffentliche Methode, die die übergebenen Parameter ent
 
 \textbf{Methoden der Klasse \code{HighAndLowPoints}:}
 
-\code{getHighAndLowPoints}: Einstiegspunkt der Klasse, ruft die Methode \code{calculateHighAndLowPoints} für die weitere Berechnung der Extremwerte auf. Gibt sie als Double Array zurück. 
+\code{getHighAndLowPoints}: Einstiegspunkt der Klasse, ruft die Methode \code{calculate}\linebreak\code{HighAndLowPoints} für die weitere Berechnung der Extremwerte auf. Gibt sie als \code{Double}-\code{Array} zurück. 
 
 \code{getFunctionAsDouble}: Wandelt eine übergebene Funktion vom Typ \code{OPolynom} in ein Double Array um.
 
@@ -595,9 +595,9 @@ Die Tests waren erfolgreich.
 
 \paragraph{Logarithm [Keienburg]}
 
-\textbf{Eingabeparameter:} Ein Wert des Typs ODouble oder zwei Werte vom Typ ODouble (erster ist die Basis) 
+\textbf{Eingabeparameter:} Ein Wert des Typs \code{ODouble} oder zwei Werte vom Typ \code{ODouble} (erster ist die Basis) 
 
-\textbf{Rückgabewerte:} Ein Wert des Typs ODouble
+\textbf{Rückgabewerte:} Ein Wert des Typs \code{ODouble}
 
 \textbf{Beschreibung:} Die Klasse berechnet den Logarithmus. Die Art des Logarithmus ist abhängig von den übergebenen Parametern. Wird nur ein Wert übergeben, wird der natürliche Logarithmus der Zahl berechnet. Wenn zwei Parameter übergeben werden, ist der erste Parameter die Basis des Logarithmus, der zweite der Wert, zu für den der Logarithmus berechnet werden soll. 
 
@@ -619,11 +619,11 @@ Die Tests waren erfolgreich.
 
 \paragraph{Logarithm10 [Keienburg]}
 
-\textbf{Eingabeparameter:} Ein Wert des Typs ODouble
+\textbf{Eingabeparameter:} Ein Wert des Typs \code{ODouble}
 
-\textbf{Ausgabeparameter:} Ein Wert des Typs ODouble
+\textbf{Ausgabeparameter:} Ein Wert des Typs \code{ODouble}
 
-\textbf{Beschreibung:} Die Klasse berechnet den Logarithmus zur Basis 10. Wenn ein Wert kleiner gleich null eingegeben wird, wird eine Fehlermeldung ausgegeben. 
+\textbf{Beschreibung:} Die Klasse berechnet den Logarithmus zur Basis 10. Wenn ein Wert kleiner gleich 0 eingegeben wird, wird eine Fehlermeldung ausgegeben. 
 
 Unit-Tests für die Klasse: 
 
@@ -637,19 +637,19 @@ Die Tests waren erfolgreich.
 
 \paragraph{Derivation [Keienburg]}
 
-\textbf{Eingabeparameter: }Eine Funktion des Typs OPolynom
+\textbf{Eingabeparameter: }Eine Funktion des Typs \code{OPolynom}
 
-\textbf{Rückgabewert:} Eine Funktion des Typs OPolynom
+\textbf{Rückgabewert:} Eine Funktion des Typs \code{OPolynom}
 
-\textbf{Beschreibung:} Die Klasse berechnet die Ableitung zu einer übergebenen Funktion des Typs OPolynom und gibt sie als Funktion vom Typ OPolynom zurück. 
+\textbf{Beschreibung:} Die Klasse berechnet die Ableitung zu einer übergebenen Funktion des Typs \code{OPolynom} und gibt sie als Funktion vom Typ \code{OPolynom} zurück. 
 
 \textbf{Einstieg in die Klasse: }Öffentliche Methode, die die übergebenen Parameter entgegennimmt. Die weiteren Methoden für die Berechnung werden anschließend von der Öffentlichen Methode aus aufgerufen. 
 
 \textbf{Methoden der Klasse Derivation: }
 
-\code{getFunctionAsDouble:} Wandelt eine gegebene Funktion vom Typ OPolynom in ein Double Array um. 
+\code{getFunctionAsDouble:} Wandelt eine gegebene Funktion vom Typ \code{OPolynom} in ein \code{Double}-\code{Array} um. 
 
-\code{derivate: }Berechnet die Ableitung einer gegebenen Funktion. Die Funktion wird zuerst in ein Double Array umgewandelt, anschließend abgeleitet und als Funktion vom Typ OPolynom zurückgegeben. 
+\code{derivate: }Berechnet die Ableitung einer gegebenen Funktion. Die Funktion wird zuerst in ein \code{Double}-\code{Array} umgewandelt, anschließend abgeleitet und als Funktion vom Typ \code{OPolynom} zurückgegeben. 
 
 Unit-Tests für die Klasse: 
 
@@ -664,30 +664,43 @@ Die Tests waren erfolgreich.
 
 \paragraph{Integral [Istogu]}
 
-Diese Klasse erbt von der Klasse ‘‘Action’‘. Daher sind die Methoden „with()“ bereits implementiert. Diese Klasse berechnet entweder die Stammfunktion von dem übergebene Polynomialfunktion oder das Integral der Funktion. 
+Diese Klasse erbt von der Klasse \code{Action}. Daher sind die Methoden \code{with() }bereits implementiert. Diese Klasse berechnet entweder die Stammfunktion von dem übergebene Polynomialfunktion oder das Integral der Funktion. 
 
-Für die Bildung der Stammfunktion benötigt die Methode „getAntiderivative()“ eine „OPolynom“ und gibt die Stammfunktion als Typ „OPolynom“ zurück. Beim „Aufleiten“ entsteht eine Konstante, die jede Wert annehmen kann. In der App wird festgelegt, dass diese Konstante immer 0 ist. Zweck hinter der Definition ist, dass mit dem OPolynom weitergerechnet werden kann, da diese nicht mit weiteren Variablen arbeiten kann.
+Für die Bildung der Stammfunktion benötigt die Methode \code{getAntiderivative()} eine \code{OPolynom} und gibt die Stammfunktion als Typ \code{OPolynom} zurück. Beim Aufleiten entsteht eine Konstante, die jede Wert annehmen kann. In der App wird festgelegt, dass diese Konstante immer 0 ist. Zweck hinter der Definition ist, dass mit dem \code{OPolynom} weitergerechnet werden kann, da diese nicht mit weiteren Variablen arbeiten kann.
 
-Für das Berechnen des Integrals getSimpsonIntegrator() werden folgende Parametertypen erwartet: OPolynom oPolynom, double lowerBound, double upperBound. Das Integral für den vorgegebenen Bereich wird als ODouble zurückgegeben. Diese Methode realisiert die Simpsonregel für die Integration von realen Funktionen, die in dem genutzten Mathebibliothek als Klasse SimpsonIntegrator implementiert wurde. 
+Für das Berechnen des Integrals \code{getSimpsonIntegrator()} werden folgende Parametertypen erwartet: 
+
+\begin{itemize}
+	\item \code{OPolynom oPolynom}
+	\item \code{double lowerBound}
+	\item \code{double upperBound}
+\end{itemize}
+
+Das Integral für den vorgegebenen Bereich wird als \code{ODouble} zurückgegeben. Diese Methode realisiert die Simpsonregel für die Integration von realen Funktionen, die in dem genutzten Mathebibliothek als Klasse \code{SimpsonIntegrator} implementiert wurde. 
 
 Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
 
 \code{getSimpsonsIntegrator()}
-\quad 1.	Eingabe: OPolynom: x\^{}2 – 8x + 17, untere Grenze: 2, obere Grenze 5
 
-\quad Erwartetes Ergebnis: 6
+\quad \quad \textbf{ Eingabe:} \code{OPolynom}: \code{x\^{}2 – 8x + 17}, untere Grenze: 2, obere Grenze 5
+
+\quad \quad \textbf{Erwartetes Ergebnis:} 6
 
 \code{getAntiderivative()}
-1.	Eingabe: OPolynom: -3,21x\^{}3 + 3x + 7
-Erwartetes Ergebnis: OPolynom: -0,8025x\^{}4 + 1,5x\^{}2 + 7x + c
 
-\textbf{Bestimmung des Grenzwertes einer Funktion [Istogu]}
+\quad \quad \textbf{Eingabe:} \code{OPolynom}: \code{-3,21x\^{}3 + 3x + 7}
 
-Für die Umsetzung wurde die Funktion ‘‘value(double x)’‘ der Klasse ‘‘PolynomialFunction’‘ verwendet, die aus der Mathebibliothek ‘‘Apache Commons Math’‘ hervorgeht. Zudem bietet die Double-Klasse die Repräsentierung von positiv und negativ Unendlich an, die auch für die Methoden verwendet wurde.
+\quad \quad \textbf{Erwartetes Ergebnis}: \code{OPolynom}: \code{-0,8025x\^{}4 + 1,5x\^{}2 + 7x + c}
 
-Für die Bestimmung des Grenzwertes wurde sich an der Methode der numerischen Annäherung orientiert. Hierbei wird der Grenzwert durch die Annäherung von links und rechts des untersuchten Punktes bestimmt. Daher wurde die Anforderung in drei Methoden untergliedert, einmal die Methode ‘‘limitFromBelow(…)’‘ und ‘‘limitFromAbove(…)’‘, die jeweils die Annäherung von verschiedenen Richtung bestimmt. Die Rückgabewerte der beiden Methoden werden in der Methode ‘‘limit(…)’‘ miteinander verglichen. Zweck der Vergleichsabfrage ist es Definitionslücken abzufangen. Als Beispiel wird folgende Funktion angenommen:
+\vspace{1em}
 
-f(x)=1/x
+\paragraph{Bestimmung des Grenzwertes einer Funktion [Istogu]}
+
+Für die Umsetzung wurde die Funktion \code{value(double x)} der Klasse \code{PolynomialFunction} verwendet, die aus der Mathebibliothek \textit{Apache Commons Math} hervorgeht. Zudem bietet die \code{Double}-Klasse die Repräsentierung von positiv und negativ Unendlich an, die auch für die Methoden verwendet wurde.
+
+Für die Bestimmung des Grenzwertes wurde sich an der Methode der numerischen Annäherung orientiert. Hierbei wird der Grenzwert durch die Annäherung von links und rechts des untersuchten Punktes bestimmt. Daher wurde die Anforderung in drei Methoden untergliedert, einmal die Methode \code{limitFromBelow(…)} und \code{limitFromAbove(…)}, die jeweils die Annäherung von verschiedenen Richtung bestimmt. Die Rückgabewerte der beiden Methoden werden in der Methode \code{limit(…)} miteinander verglichen. Zweck der Vergleichsabfrage ist es Definitionslücken abzufangen. Als Beispiel wird folgende Funktion angenommen:
+
+\code{f(x)=1/x}
 
 \begin{figure}[!h]
 	\includegraphics[scale=1]{img/funktion-grafik}
@@ -695,22 +708,22 @@ f(x)=1/x
 \end{figure}
 \footnotetext{eigene Darstellung}
 
-xxx Das diagramm schneidet auf die nächste Seite
-
 Wenn für die Funktion sowohl der linksseitige als auch der rechtsseitige Grenzwert bestimmt wird, folgt folgendes:  
+
 \begin{figure}[!h]
 	\includegraphics[width=\columnwidth]{img/limes-funktionen}
 	\caption[Limes Funktion]{Limes Funktion\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
 
-Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweisen definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode ‘‘limit(…)’‘ berücksichtigt.
+Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweisen definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode \code{limit(…)} berücksichtigt.
 
 Für die jeweilige Annäherung wurde die Überlegung getätigt, welche Fälle in der Grenzwertbestimmung von Funktionen vorkommen können. Dabei wurden folgende Lösungsmöglichkeiten festgestellt:
 \begin{itemize}
 	\item Positive unendlich
 	\item Negativ unendlich
 	\item Nicht definiert
-	\item xxx war Zeichen (Ubiquator Teilmenge von Realer Zahlenraum)
+	\item \code{xxx} war Zeichen (Ubiquator Teilmenge von Realer Zahlenraum)
 \end{itemize}
 
 Darauf aufbauend wurde ein Struktogramm angefertigt, auch als Nassi-Shneiderman-Diagramm bekannt. Dabei wird die Annäherung von unten veranschaulicht, weil die Annäherung von oben nach dem gleichen Grundprinzip erfolgt. 
@@ -719,30 +732,34 @@ Darauf aufbauend wurde ein Struktogramm angefertigt, auch als Nassi-Shneiderman-
 	\includegraphics[scale=1]{img/struktogramm-limit}
 	\caption[Struktogramm für die Methode limit]{Struktogramm für die Methode limit\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+
 
 \begin{figure}[!h]
 	\includegraphics[scale=1]{img/struktogramm-limitFromLeft}
 	\caption[Struktogramm für die Methode limitFromLeft]{Struktogramm für die Methode limitFromLeft\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
-Die Klasse ‘‘Limes’‘ erbt von der Klasse ‘‘Actions’‘. Dahin gehend besitzt die Klasse die Methode ‘‘with()’‘, welche die Methode ‘‘on()’‘ aufruft. Da diese Klasse keine Methodenüberladung für ‘‘on()’‘ hat, wird kein Nutzen durch diese Art der Implementierung gewonnen, jedoch bietet es die Möglichkeit der Erweiterung an. In der Methode ‘‘on()’‘ wird die Methode ‘‘limit()’‘ aufgerufen.
+Die Klasse \code{Limes} erbt von der Klasse \code{Action}. Dahin gehend besitzt die Klasse die Methode \code{with()}, welche die Methode \code{on()} aufruft. Da diese Klasse keine Methodenüberladung für \code{on()} hat, wird kein Nutzen durch diese Art der Implementierung gewonnen, jedoch bietet es die Möglichkeit der Erweiterung an. In der Methode \code{on()} wird die Methode \code{limit()} aufgerufen.
 
-Methode: on()
+\textbf{Methode:} \code{on()}
 
-Eingabeparameter: Objekt des Typs OPolynom, Wert (Stelle an der, der Grenzwert berechnet wird) des Typs ODouble
+\textbf{Eingabeparameter: }Objekt des Typs \code{OPolynom}, Wert (Stelle an der, der Grenzwert berechnet wird) des Typs \code{ODouble}
 
-Rückgabewerte: Einzelner Wert des Typs ODouble
+\textbf{Rückgabewerte: }Einzelner Wert des Typs \code{ODouble}
 
 Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren.
+
 \begin{enumerate}
-	\item Eingabe: OPolynom: x\^2 + 1, Stelle: 26 \\
+	\item Eingabe: \code{OPolynom}: x\^{}2 + 1, Stelle: 26 \\
 	Erwartetes Ergebnis: 26 
-	\item Eingabe: -0.3333x\^3 + 2x, Stelle: pos. Unendlich \\
+	\item Eingabe: -0.3333x\^{}3 + 2x, Stelle: pos. Unendlich \\
 	Erwartetes Ergebnis: neg. Unendlich
-	\item Eingabe: 3x\^3, Stelle: pos. Unendlich \\
+	\item Eingabe: 3x\^{}3, Stelle: pos. Unendlich \\
 	Erwartetes Ergebnis: pos. Unendlich
 \end{enumerate}
-xxx hoch zeichen in echt machen
 
 \paragraph{Klasse: Sinus [Keienburg]}
 \textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
