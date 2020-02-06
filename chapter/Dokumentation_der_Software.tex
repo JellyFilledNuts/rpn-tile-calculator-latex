@@ -522,11 +522,11 @@ Einstieg in die Klasse: Öffentliche Methode, die die übergebenen Parameter ent
 
 Unit-Tests für die Klasse:
 
-\begin{itemize}
+\begin{enumerate}
 \item Eingabe Funktion: 2x\^{}2+4x+6. Erwartetes Ergebnis: (-1|4)
 \item Eingabe Funktion: 3x\^{}2+6x-4. Erwartetes Ergebnis: (-1|-7)
 \item Eingabe Funktion: -2*x\^{}2+4x+12. Erwartetes Ergebnis: (1|14)
-\end{itemize}
+\end{enumerate}
 
 Die Tests waren erfolgreich.
 
@@ -542,7 +542,7 @@ Der Einstieg in die Klasse erfolgt über zwei öffentliche Methoden. Die Methode
 
 Unit-Tests für die Klasse: 4 Unit-Test für die Berechnung der des natürlichen Logarithmus (ersten 4), 3 Unit-Tests für die Berechnung des Logarithmus für eine beliebige Basis. 
 
-\begin{itemize}
+\begin{enumerate}
 \item Eingabe 10. Erwartetes Ergebnis: 2.302585092994046
 \item Eingabe: 5. Erwartetes Ergebnis: 1.6094379124341003
 \item Eingabe: 97. Erwartetes Ergebnis: 4.574710978503383
@@ -550,7 +550,7 @@ Unit-Tests für die Klasse: 4 Unit-Test für die Berechnung der des natürlichen
 \item Eingabe: Basis 5, Wert 10. Erwartetes Ergebnis: 1.4306765580733933
 \item Eingabe: Basis 10, Wert 10. Erwartetes Ergebnis: 1
 \item Eingabe: Basis e, Wert 10. Erwartetes Ergebnis: 2.302585092994046
-\end{itemize}
+\end{enumerate}
 
 Die Tests waren erfolgreich.
 
@@ -564,11 +564,11 @@ Die Tests waren erfolgreich.
 
 Unit-Tests für die Klasse: 
 
-\begin{itemize}
+\begin{enumerate}
 \item Eingabe 10. Erwartetes Ergebnis: 1
 \item Eingabe: 5. Erwartetes Ergebnis: 0.6989700043360189
 \item Eingabe: 97. Erwartetes Ergebnis: 1.9867717342662448
-\end{itemize}
+\end{enumerate}
 
 Die Tests waren erfolgreich.
 
@@ -590,12 +590,12 @@ Die Tests waren erfolgreich.
 
 Unit-Tests für die Klasse: 
 
-\begin{itemize}
+\begin{enumerate}
 \item Eingabe 2x\^{}2+4x+6. Erwartetes Ergebnis: 4x+4
 \item Eingabe: 7x+9. Erwartetes Ergebnis: 7
 \item Eingabe: 12x\^{}2-3+12. Erwartetes Ergebnis: 24x-1
 \item Eingabe: 1.5x\^{}2+2x+7. Erwartetes Ergebnis: 2.25x+2
-\end{itemize}  
+\end{enumerate}  
 
 Die Tests waren erfolgreich.
 
@@ -632,78 +632,270 @@ f(x)=1/x
 \end{figure}
 \footnotetext{eigene Darstellung}
 
+xxx Das diagramm schneidet auf die nächste Seite
+
 Wenn für die Funktion sowohl der linksseitige als auch der rechtsseitige Grenzwert bestimmt wird, folgt folgendes:  
+\begin{figure}[!h]
+	\includegraphics[width=\columnwidth]{img/limes-funktionen}
+	\caption[Limes Funktion]{Limes Funktion\footnotemark}
+\end{figure}
+
+Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweisen definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode ‘‘limit(…)’‘ berücksichtigt.
+
+Für die jeweilige Annäherung wurde die Überlegung getätigt, welche Fälle in der Grenzwertbestimmung von Funktionen vorkommen können. Dabei wurden folgende Lösungsmöglichkeiten festgestellt:
+\begin{itemize}
+	\item Positive unendlich
+	\item Negativ unendlich
+	\item Nicht definiert
+	\item xxx war Zeichen (Ubiquator Teilmenge von Realer Zahlenraum)
+\end{itemize}
+
+Darauf aufbauend wurde ein Struktogramm angefertigt, auch als Nassi-Shneiderman-Diagramm bekannt. Dabei wird die Annäherung von unten veranschaulicht, weil die Annäherung von oben nach dem gleichen Grundprinzip erfolgt. 
+
+\begin{figure}[!h]
+	\includegraphics[scale=1]{img/struktogramm-limit}
+	\caption[Struktogramm für die Methode limit]{Struktogramm für die Methode limit\footnotemark}
+\end{figure}
+
+\begin{figure}[!h]
+	\includegraphics[scale=1]{img/struktogramm-limitFromLeft}
+	\caption[Struktogramm für die Methode limitFromLeft]{Struktogramm für die Methode limitFromLeft\footnotemark}
+\end{figure}
+
+Die Klasse ‘‘Limes’‘ erbt von der Klasse ‘‘Actions’‘. Dahin gehend besitzt die Klasse die Methode ‘‘with()’‘, welche die Methode ‘‘on()’‘ aufruft. Da diese Klasse keine Methodenüberladung für ‘‘on()’‘ hat, wird kein Nutzen durch diese Art der Implementierung gewonnen, jedoch bietet es die Möglichkeit der Erweiterung an. In der Methode ‘‘on()’‘ wird die Methode ‘‘limit()’‘ aufgerufen.
+
+Methode: on()
+
+Eingabeparameter: Objekt des Typs OPolynom, Wert (Stelle an der, der Grenzwert berechnet wird) des Typs ODouble
+
+Rückgabewerte: Einzelner Wert des Typs ODouble
+
+Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren.
+\begin{enumerate}
+	\item Eingabe: OPolynom: x\^2 + 1, Stelle: 26 \\
+	Erwartetes Ergebnis: 26 
+	\item Eingabe: -0.3333x\^3 + 2x, Stelle: pos. Unendlich \\
+	Erwartetes Ergebnis: neg. Unendlich
+	\item Eingabe: 3x\^3, Stelle: pos. Unendlich \\
+	Erwartetes Ergebnis: pos. Unendlich
+\end{enumerate}
+xxx hoch zeichen in echt machen
+
+\paragraph{Klasse: Sinus [Keienburg]}
+\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+
+\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode Math.toRadians in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.sin der Sinus berechnet und als ODouble zurückgegeben.  
+
+Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Sinus berechnet. 
+
+Unit-Tests für die Klasse: 	
+\begin{enumerate}
+	\item Eingabe:  10 Erwartetes Ergebnis: 0.17364817766693033
+	\item Eingabe:  45 Erwartetes Ergebnis: 0.7071067811865475
+	\item Eingabe: -45 Erwartetes Ergebnis: -0.7071067811865475
+\end{enumerate}
+Die Tests waren erfolgreich.
+
+\paragraph{Klasse: ArcSinus [Keienburg]}
+\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+
+\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode Math.toRadians in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.asin die Inverse des Sinus berechnet und als ODouble zurückgegeben.  
+
+Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Arkussinus berechnet. 
+
+Unit-Tests für die Klasse: 	
+\begin{enumerate}
+	\item Eingabe:  10 Erwartetes Ergebnis: 0.17543139267904395
+	\item Eingabe:  45 Erwartetes Ergebnis: 0.9033391107665127
+	\item Eingabe: -45 Erwartetes Ergebnis: -0.9033391107665127
+\end{enumerate}
+Die Tests waren erfolgreich.
+
+\paragraph{Klasse: Cosinus [Keienburg]}
+\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+	
+\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+	
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode Math.toRadians in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.cos der Cosinus berechnet und als ODouble zurückgegeben.  Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Cosinus berechnet. 
+	
+Unit-Tests für die Klasse: 	
+\begin{enumerate}
+	\item Eingabe:  10 Erwartetes Ergebnis: 0.984807753012208
+	\item Eingabe:  45 Erwartetes Ergebnis: 0.7071067811865476
+	\item Eingabe: -45 Erwartetes Ergebnis: -0.7071067811865476
+\end{enumerate}
+Die Tests waren erfolgreich.
+
+\paragraph{Klasse: ArcCosinus [Keienburg]}
+\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+
+\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode Math.toRadians in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.acos die Inverse des Cosinus berechnet und als ODouble zurückgegeben.  
+
+Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Arkuscosinus berechnet. 
+
+Unit-Tests für die Klasse: 	
+\begin{enumerate}
+	\item Eingabe:  10 Erwartetes Ergebnis: 1.3953649341158527
+	\item Eingabe:  45 Erwartetes Ergebnis: 0.6674572160283838
+	\item Eingabe: -45 Erwartetes Ergebnis: 2.4741354375614093
+\end{enumerate}
+Die Tests waren erfolgreich.
+
+\paragraph{Klasse: Tangens [Keienburg]}
+\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+
+\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.tan der Tangens berechnet und als ODouble zurückgegeben.  
+
+Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Tangens berechnet. 
+
+Unit-Tests für die Klasse: 	
+\begin{enumerate}
+	\item Eingabe:  10 Erwartetes Ergebnis: 0.17632698070846498
+	\item Eingabe:  45 Erwartetes Ergebnis: 0.9999999999999999
+	\item Eingabe: -45 Erwartetes Ergebnis -0.9999999999999999
+\end{enumerate}
+Die Tests waren erfolgreich.
+
+\paragraph{Klasse: ArcTangens [Keienburg]}
+\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+
+\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+
+\textbf{Beschreibung: }Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode \code{Math.atan} die Inverse des Tangens berechnet und als ODouble zurückgegeben. 
+ 
+Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Arkustangens berechnet. 
+
+Unit-Tests für die Klasse: 	
+\begin{enumerate}
+	\item Eingabe:  10 Erwartetes Ergebnis: 0.1727924348551592
+	\item Eingabe:  45 Erwartetes Ergebnis: 0.6657737500283538
+	\item Eingabe: -45 Erwartetes Ergebnis: -0.6657737500283538
+\end{enumerate}
+Die Tests waren erfolgreich.
+
+\subsubsection{Lösen von Gleichungssystemen [Istogu]}
+
+Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse „MatrixUtil“ mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist…
+
+\begin{figure}[h]
+	\includegraphics[scale=1]{img/gleichungssystem-loesen}
+	\caption[Aufbau lineares Gleichungssystem]{Aufbau lineares Gleichungssystem\footnotemark}
+\end{figure}
+
+lösen. Dabei ist A eine quadratische Matrix (n x n) und b ein Vektor (n).
+Die Klasse besitzt eine „on“ Methode, die dann solveLinearSystem() aufruft. Dabei erwartet die Methode „on“ jeweils ein Objekt des Typs OMatrix und OTuple und gibt ein OTuple zurück. 
+
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{img/solveLinearSystem}
+	\caption[Struktogramm für die Methode solveLinearSystem]{Struktogramm für die Methode solveLinearSystem\footnotemark}
+\end{figure}
+
+Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überprüfung der Parameter nach ihrer richtigen Form. 
+
+Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
+\begin{enumerate}
+	\item Eingabe: Matrix: xxx  Vektor: xxx Erwartetes Ergebnis: xxx
+	\item Eingabe: Matrix: xxx Vektor: xxx Erwartetes Ergebnis: xxx
+\end{enumerate}
 
 
+\subsubsection{Stackhandhabung [Keienburg]}
+
+Ein integraler Bestandteil eines RPN-Taschenrechners stellt der Stack für die Haltung der Operanden dar. Im Rahmen der Projektplanung ist festgestellt worden, dass die in Java vorhandenen Implementationen eines Stacks die Anforderungen des Projekts nicht erfüllen. Gesondert genannt werden soll hier nochmals die Möglichkeit mit einer beliebigen Anzahl von Objekten auf dem Stack gleichzeitig zu arbeiten. Aufgrund dessen wurde entschieden eine eigene Umsetzung eines Stacks zu entwickeln. Der Entwurf des neuen Stacks erfolgte mithilfe der Java-Schnittstelle \code{StackInterface}, welche im Folgenden (leicht vereinfacht) dargestellt ist.
+void push(T value);
+void push(T[] values);
 
 
+T pop();\\
+List<T> pop(int max);\\
+<G extends T> G pop(Class<G> type);\\
+<G extends T> List<G> pop(int max, Class<G> type);\\
+T peek();\\
+List<T> peek(int max); \\
+<G extends T> G peek(Class<G> type); \\
+<G extends T> List<G> peek(int max, Class<G> type); \\
+boolean contains(T object); \\
+void clear(); \\
+T[] get(); \\
+<G extends T> List<G> get(Class<G> type);\\
+int size();
+
+\code{T} und \code{G} werden in dem Interface als generische Typparameter genutzt. Das macht es möglich das Interface bzw. den Stack mit verschiedensten Implementationen zu nutzen. So kann man bei Bedarf nicht nur die einen Stack für Operanden, sondern auch für andere Klassen implementieren. Bei der Implementation wird der Typ-Paramter \code{T} durch eine konkrete Klasse (z.B. \code{Operand}, ersetzt. Ein Neuentwurf der Schnittstelle ist nicht notwendig. 
+
+Der größte Unterschied zu anderen Stack-Interfaces ist, dass die drei bekannten Stack-Operationen push, pop und peek sowohl einzelne Parameter als auch Sammlungen von Parametern unterstützen. So kann man sich zum Beispiel die ersten 4 Objekte einer bestimmten Klasse mit einem einzigen Methodenaufruf von pop vom Stack entfernen. Bei einem normalen Stack sind eine ganze Reihe von Operationen dafür notwendig. Der Stack muss Element um Element auseinandergenommen, die ungewünschten Objekte entfernt, die anderen zwischengespeichert und anschließend wieder zusammengebaut werden.
+
+Implementiert wird StackInterface von der Klasse OperandStack. Technisch ist der Stack als LinkedList umgesetzt. Um weitere Methoden außerhalb der LinkedList-Klasse auf dem Objekt nutzen zu können, wird das Objekt weiteren Klassenvariablen vom Typ List und Deque zugewiesen. Das ist möglich, weil all diese Klassen vom Typ Collections erben. Je nach Anforderung werden unterschiedliche Interfaces der Collection verwendet. So wird für ein klassisches pop das Interface einer Deque verwendet, während für ein peek bei dem die gewünschte Klasse und maximale Anzahl zurückgegebener Objekte angegeben werden kann die Methoden einer ArrayList genutzt werden. So entsteht ein auf das Projekt optimal angepasstes Stack.
+
+\subsubsection{Settings[Falk]}
+
+Die meisten der Funktionen eines Taschenrechners wurden bereits beschrieben, doch nicht alle Funktionalitäten können mit der Kombination aus Operation und Operand beschrieben werden. So gibt es beispielsweise Sondertasten, die Eingaben manipulieren, besondere Operationen durchführen oder gänzlich von jeglicher Berechnung abweichen. Diese Sondertasten werden als Setting beschrieben und einem simplen, parameterfreiem Methodenaufruf angesprochen. Der Umgang mit dem erhaltenen Aufruf obliegt allein der implementierten Sondertaste.
 
 
+\para{Abstrakte Klasse: Setting}
+\textit{Abstrakte Überklasse jeglicher Sondertasten und Settings}
+
+Definiert die abstrakte Methode call(), die aufgerufen wird.
+\para{Klasse: AllClear}
+\textit{AC }
+
+xxx die textit sind irgendwie eingerückt... weg machen?
+
+Leert den gesamten aktuellen Input im Presenter
+\para{Klasse: DeleteEntry}
+\textit{DELETE} 
+
+Löscht den zuletzt eingegebenen Input
+\para{Klasse: ClearHistory}
+\textit{CLEAR HISTORY}
+
+Leert die gesamte Historie
+\para{Klasse: Enter}
+\textit{ENTER}
+
+Finalisiert eingegebene Operanden, sodass sie nicht mehr bearbeitet werden können und fügt sie zur Historie hinzu
+\para{Klasse: Dot}
+\textit{.}
+
+Ermöglicht die Eingabe von Nachkommastellen am aktuellen Input.
+\para{Klasse: Inverse}
+\textit{1/x}
+
+Berechnet die Inverse des letzten Operanden im Stack.
+\para{Klasse: Split}
+\textit{SPLIT}
+
+Trennt Operanden vom Typ OTuple, OSet und OMatrix in einzelne Operanden vom Typ ODouble.
+\para{Klasse: Swap}
+\textit{SWAP}
+
+Tauscht die letzten beiden Operanden miteinander.
+\para{Klasse: ToTuple}
+\textit{TO TUPLE}
+
+Fügt so viele Operanden wie möglich zu einem OTuple Operand zusammen.
+\para{Klasse: TurnAroundSign}
+\textit{+/-}
+
+Vorzeichenwechselkriterium.
+\para{Klasse: LoadLayout}
+\textit{LOAD LAYOUT}
+
+Öffnet ein Menü zum Laden von Layouts.
+\para{Klasse: SaveLayout}
+\textit{SAVE LAYOUT}
+
+Öffnet ein Menü zum Speichern des aktuellen Layouts.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Überblick über die Activities der App bzw. der Funktionen}
-
-\subsection{Dokumentation der Navigation zwischen Activities}
-
-\subsection{Dokumentation der Activity-übergreifenden, persistenten Datenhaltung}
-
-\subsection{Dokumentation der programmatischen Beiträge der Teammitglieder}
-
-\subsubsection{Tom Bockhorn}
-
-\newpage
-
-\subsubsection{Hendrik Falk}
-
-\newpage
-
-\subsubsection{Dennis Gentges}
-
-\newpage
-
-\subsubsection{Getuart Istogu}
-
-\newpage
-
-\subsubsection{Jannis Keienburg}
-
-\newpage
-
-\subsubsection{Tim Jonas Meinerzhagen}
-
-\newpage
-
-\subsubsection{Khang Pham}
-
-\newpage
-
-\subsubsection{Tim Schwenke}
-
-\para{Generische Kalkulationsorchestrierung}
+\subsubsection{Generische Kalkulationsorchestrierung [Schwenke]}
 
 Wie schon im Kapitel zur Projektplanung erwähnt, stellt die Strukturierung und Architektur der Rechnungsumsetzung im Backend eine der vielen Anforderungen des Projekts dar. Identifiziert wurden zwei Hauptarten von Kalkulationen. 
 
@@ -718,9 +910,9 @@ Implementiert ist die Reflektion in der abstrakten Klasse \code{Action}. Die Kla
 	caption=Methodenkopf der generischen Schnittstelle,
 	label=list:methodenkopf-der-generischen-schnittstelle,
 	language=Java]
-@Contract(pure = true) public @NotNull 
-Operand with(@NotNull Operand... operands) 
-throws CalculationException
+	@Contract(pure = true) public @NotNull 
+	Operand with(@NotNull Operand... operands) 
+	throws CalculationException
 	\end{lstlisting}    
 \end{figure}
 
@@ -731,67 +923,86 @@ Die erste Zeile definiert einige Eigenschaften der Methode. \code{@Contract} sag
 	caption=Implementierung der generischen Schnittstelle,
 	label=list:implementierung-der-generischen-schnittstelle,
 	language=Java]
-Class[] operandClasses = new Class[operands.length];
-Operand resultOperand;
-
-for (int i = 0; i < operands.length; i++)
+	Class[] operandClasses = new Class[operands.length];
+	Operand resultOperand;
+	
+	for (int i = 0; i < operands.length; i++)
 	operandClasses[i] = operands[i].getClass();
-
-try {
+	
+	try {
 	resultOperand = (Operand) scopedAction.getClass()
-		.getDeclaredMethod("on", operandClasses)
-		.invoke(scopedAction, (Object[]) operands);
-} catch (SeveralExceptions e) {
+	.getDeclaredMethod("on", operandClasses)
+	.invoke(scopedAction, (Object[]) operands);
+	} catch (SeveralExceptions e) {
 	throw new CalculationException(e.getMessage());
-}
-
-if (resultOperand != null) return resultOperand;
-else throw new CalculationException();
+	}
+	
+	if (resultOperand != null) return resultOperand;
+	else throw new CalculationException();
 	\end{lstlisting}    
 \end{figure}
 
 Die Reflektion in Listing~\ref{list:implementierung-der-generischen-schnittstelle} beginnt mit der Extraktion der Klasse jedes übergebenen Operands. Das kann z.B. die Klasse \code{Matrix} oder \code{Fraction} sein, die alle von \code{Operand} erben. Die extrahierten Klassen werden in Array \code{operandClasses} gespeichert. Die hier vorliegende Sequenz liefert die Antwort auf die Frage, welche konkrete Methode aufgerufen werden soll. Die Entscheidung basiert alleine auf dieser Sequenz und der konkreten \code{Action} auf die \code{scopedAction} zeigt. Aus letzterer Variable wird die Klasse extrahiert und die Methode \code{getDeclaredMethod()} aufgerufen. Damit kann man eine Methode in einer Klasse auf Basis des Namens (in unserem Falle immer \code{on}) und eine Sequenz von Parametertypen finden. Diese wird anschlie"send mit \code{invoke()} aufgerufen, wobei die Operanden übergeben werden. Kommt es zu einem Fehler werden alle Fehlertypen in \code{CalculationException} zusammengefasst und weitergegeben. Ansonsten wird das Ergebnis zurückgegeben.
 
-\newpage
+\subsection{Dokumentation des Presenters [Meinerzhagen]}
 
+Der Presenter wurde als zentrales Bindeglied für die View und das Model konzipiert. Konkret wird die Datenhaltung, das Click Handling der Kacheln und die damit verbundene Ausführung der Aktionen betrachtet.
+	
+\subsubsection{Datenhaltung}
 
+Zur Datenhaltung werden im Presenter drei Variablen geführt. Das sind der Operand Stack, der History Stack und der Input Term.
 
+Der Operand Stack ist der zentrale Stack, auf dem die eigentliche Rechnungen durchgeführt werden. Auf diesem werden neue Operanden über Input Term hinzugefügt.
+Auf dem History Stack werden die vorherigen eingaben aus Input Term, sowie die verrechneten Operanden aus dem Operand Stack eingefügt.
 
+Im String Builder Input Term wird die aktuelle Eingabe eines Operanden auf den Operand Stack festgehalten. Zusätzlich wird die variable finalized geführt, welche definiert, ob der Nutzer aktuell in den Input Term hineinschreiben kann.
 
+\subsubsection{Click Handling}
 
+Im Presenter wird ein ClickListener implementiert, wodurch ein Klick auf eine der Kacheln das Event onClick ausführt. Dieses Event unterscheidet im nächsten Schritt zwischen den verschiedenen Kachelarten.
 
+Bei den Setting-Kacheln muss lediglich die hinterlegte Aktion aufgerufen werden. Bei einer Operand-Kachel wird über die interne Funkion tryAppending versucht den Operanden auf den Stack zu legen. Für Action-Kacheln wird die definierte Zahl von Operatoren vom Operand Stack mit der definierten Operation in calculate ausgerechnet. Dabei wird versucht die höchste mögliche Zahl von Operatoren zu verwenden.
 
+\subsubsection{Calculate}
 
+Zum Ausrechnen von Aktionen wird die Funktion calculate aufgerufen. Dort wird versucht mit der größten definierten Anzahl von Operanten vom Operand Stack eine Operation durchzuführen. Wenn eine Operation erfolgreich ausgeführt werden konnte werden die verwendeten Operanden vom Operand Stack gelöscht und das ermittelte Ergebnis wird anschließend dort hinzugefügt.
 
+\subsection{Dokumentation der persistenten Datenhaltung [Meinerzhagen]}
 
+Das Speichern der Layouts wurde wie geplant durch die Ablage von CSV Dateien im internen Speicher des Gerätes durchgeführt. 
 
-\subsection{Beschreibung von Problemen}
+Beispielhaft wird die Speicherung nachfolgend an einem Layout vorgestellt. Dazu wird das minimale Layout in Abbildung x betrachtet.  
 
-\para{Nutzung von Stack für Notation [Schwenke]}
-
-Der Taschenrechner soll als Eingabelogik für die Anwendung von Operationen die umgekehrte polnische Notation verwenden. Hierbei werden immer zunächst die Operanden und im Anschluss daran die darauf auszuführenden Operatoren angegeben. Dieser Ansatz ermöglicht eine stapelbasierte Abarbeitung. 
-
-Stacks werden, wie von den meisten Programmiersprachen, auch in Java in der Standardbibliothek unterstützt. Mit dabei sind Methoden wie \code{push} (für das Ablegen eines Objekts auf dem Stapel), \code{pop} (für das Entfernen und die Wiedergabe eines Objekts auf dem Stapel), \code{peek} (für die Wiedergabe ohne Entfernen eines Objekts auf dem Stapel) und \code{empty} (für das Leeren des Stapels). 
-
-Jedoch müssen hierbei die besonderen Anforderungen des Taschenrechners beachtet werden. Operanden können von gänzlich unterschiedlichem Typus sein, zum Beispiel eine einfache Dezimalzahl oder auch ein Tupel, und viele Operationen benötigen mehr als die ersten (maximal zwei) Operanden auf dem Stack. Möchte man Elemente vom Stapel entfernen, kann man \code{pop} mehrmals aufrufen. Aufwändiger hingegen wird es bei \code{peek}. Möchte man mehrere Elemente vom Stapel einsehen ohne diese zu entfernen, muss man bei der Arbeit mit dem vorhandenen Stack einen weiteren bereithalten, nur um zwischengespeicherte Elemente lagern zu können. Anders ist es nicht möglich \code{peek} auf mehrere Elemente gleichzeitig anzuwenden. Gerade das ist aber bei der App notwendig. Weitere Methoden, die bei der umgekehrten polnischen Notation oft benötigt werden, aber nicht implementiert sind, sind \code{reverse} (für die Vertauschung der ersten zwei Elemente auf dem Stack, was wichtig für nicht-kommutative Operationen ist), \code{rollUp} (das unterste Elemente wird an den ersten Platz geschoben, das erste Element an den zweiten Platz usw.) und \code{rollDown} (das unterste Elemente wird an den ersten Platz geschoben, das erste Element an den zweiten Platz usw.).
-
-Aufgrund dessen soll für dieses Projekt ein eigener Stapel implementiert werden. Dieser soll die zuvor genannten Funktionen mit unterschiedlichen Parametertypen unterstützen. Dabei ist darauf zu achten, dass die Programmierung generisch erfolgt und das Stack nicht nur alle Typen von Operanden unterstützt, sondern auch für gänzlich andere Klassenbäume in der App verwendet werden kann.
-
-\para{Ansatz der Kalkulationsorchestrierung [Schwenke]}
-
-Die App soll den Umgang mit unterschiedlichen Operanden-Typen beherrschen. Die Addition zweier Matrizen funktioniert anders als die Addition von zwei einfachen Dezimalzahlen. Java verfügt nativ weder über die entsprechenden Operanden noch über die Methoden für die Kalkulation. Auch die ausgewählte Bibliothek ist nicht ohne weiteres in der Lage Operationen auf alle Kombinationen von Operanden im folgenden Format einheitlich anzuwenden:
-
-\begin{figure}[bht]
-	\begin{lstlisting}[caption=Konzept für Nutzung generischer Schnittstelle, label=list:konzept-fuer-nutzung-generischer-schnittstelle]
-	Operation.mit(matrixOperand, dezimalOperand, dezimalOperand)
-	\end{lstlisting}    
+\begin{figure}[h]
+	\includegraphics[scale=1]{img/beispiellayout-zum-speichern}
+	\caption[Beispiellayout zum Speichern]{Beispiellayout zum Speichern\footnotemark}
 \end{figure}
 
-Einheitlichkeit ist notwendig, damit im Frontend der Applikation keine Logik vorhanden sein muss, die entscheidet wie genau (auf Basis der Operanden-Typen) eine Operation umgesetzt wird. Deswegen muss eine einfache Schnittstelle entwickelt werden, die für den Nutzer nur zwei Drehschrauben bereitstellt. Dies ist zunächst die Auswahl der gewünschten Operation. Das kann z.B. das Symbol \code{+} als übliches Zeichen für Addition sein. Anschließend wird eine Reihe von Operanden übergeben. Dieser Aufruf sollte schließlich das Ergebnis in Form eines Operanden zurückgeben. Im Fall der Addition einer Matrix mit einer rationalen Zahl wäre dies wiederrum eine Matrix. Die korrekte Kalkulation soll also dynamisch bestimmt werden. Wichtig zu klären ist hier auch das Verhalten im Falle eines Fehlschlags. Nicht alle Kombinationen von Operanden können unterstützt werden. Die Verwendung von \textit{Optionals} (ein \code{Optional} ist ein Objekt, das man sich als Datenbehälter vorstellen kann, der entweder einen Wert enthält oder leer – aber nicht \code{null} sein kann) bietet sich hier zwar an, wird jedoch von Java in der verwendeten Android API-Version nicht unterstützt. Deswegen ist hier geplant sogenannte \textit{checked Exceptions} zu verwenden. Diese müssen bei der Verwendung explizit aufgefangen und weiterverarbeitet werden. Die Abbildung einer Operanden-Kombination auf die entsprechende konkrete Kalkulationsmethode muss dementsprechend zur Laufzeit des Programms erfolgen. Ein solches Mapping ist in Java nur mithilfe des Reflection-Pakets möglich. Reflektion ermöglicht den Einblick in ein Objekt (neben der Nutzung des Punkt-Operators) in eine Klasse. Zum Beispiel kann man eine Methode anhand einer Kombination von Parametertypen finden und aufrufen. Es ist geplant diesen Ansatz für die Orchestrierung der Kalkulationen in der App zu verwenden. Auch ist es nicht notwendig nur eine vordefinierte Anzahl an Argumente anzunehmen. So kann es sinnvoll sein, dass eine Methode zur Erstellung eines Tupels eine beliebige Anzahl an Operanden annimmt. Auch das lässt sich mit Reflektion umsetzen.
+Die Kacheln sind in einem vier-mal-vier Format angelegt. Sie bestehen aus drei Stack-Kacheln, neun Operanden-Kacheln mit einzelnen Zahlen und vier Operatoren-Kacheln. Diese sind repräsentativ für dieses Beispiel, da der Speicherprozess für alle Inhalte einer Art gleich gehandhabt wird.
 
-Der große Vorteil dabei ist, dass nirgendwo explizit in einer Abfrage entschieden werden muss, welche Kombination von Operanden an welche Methode weitergeleitet werden soll. Die Zuordnung erfolgt rein über die Deklaration der Parametertypen in der Methode selbst. Das macht das Ändern und Erweitern der Rechenfunktionalitäten einfach. Es muss lediglich die entsprechende Klasse herausgesucht und eine Methode im korrekten Format hinzugefügt werden. 
+Nachfolgend ist die CSV-Repräsentation des obigen Layouts abgebildet. 
 
-Zu entscheiden ist ebenfalls, ob das Gros der Rechenmethoden innerhalb der jeweiligen Operanden-Klassen oder dedizierten Klassen für die Kalkulation angesiedelt sind. Die erste Option hat neben der stärkeren Objektorientierung den Vorteil, dass immer klar ist, dass eine Methode mit den übergebenen Argumenten auf dem jeweiligen Objekt ausgeführt wird. Andererseits erhöht dies die Komplexität der Operanden-Klassen deutlich. Unterstützt man wie geplant 5 bis 7 dedizierte Typen von Operanden und 10 Kalkulationsarten, muss jede Klasse potenziell dutzende Methoden für die Rechnung enthalten. Die andere, und bevorzugte Option, ist die Auslagerung der Kalkulationsmethoden in eigenständige Klassen. Dies reduziert zwar nicht die Anzahl benötigter Methoden, isoliert die Rechenlogik jedoch in Klassen. Innerhalb dieser Klassen wird prozedural programmiert.  Eine typische Charakteristik von Objekten und deren Methoden ist \textit{Mutability}. Eine Methode bekommt ein Objekt und kann dieses verändern. Dies kann Testen unter Umständen aufwändiger gestalten. Durch Isolierung der Rechnungen in eigenen Klassen kann hingegen sichergestellt werden, dass jede Methode \textit{immutable}, also unveränderlich, ist. Das macht das Schreiben von Tests einfach. In Java kann Immutability durch die Verwendung von Annotationen sichergestellt werden. 
+\begin{figure}[h]
+	\includegraphics[scale=1]{img/csv-repraesentation-layout}
+	\caption[CSV-Repräsentation des Beispiellayouts]{CSV-Repräsentation des Beispiellayouts\footnotemark}
+\end{figure}
 
+Entsprechend den CSV-Konventionen beschreibt ein Line Break („\\n“) das Ende einer Reihe des Layouts. Ein Semikolon („;“) beschreibt das Ende einer Spalte. Innerhalb einer einzelnen Zelle werden die Informationen über eine Kachel durch ein Tupel gehalten. Innerhalb des Tupels werden die einzelnen Werte durch ein Komma („,“) getrennt.
 
+In der Regel werden pro Kachel zwei Informationen gespeichert: Die Art der Kachel und der Inhalt oder anzuzeigende Text. So beschreibt das Tupel „O\_DOUBLE,1“ eine Kachel vom Typ ODouble mit dem Inhalt „1“. Lediglich bei Stack- und HistoryStack-Kacheln muss ein Tupel mit vier Inhalten gespeichert werden. Der erst Wert beschreibt auch dort die Art der Kachel. Im zweiten Wert wird der Rang des Stacks, also welche Nummer es im Stack hat, gespeichert. Anschließend wird der enthaltene Operand gespeichert. 
 
+\subsubsection{Klasse: TileLayoutManager}
+Das Speichern und Laden von CSV Dateien wird durch diese Klasse implementiert.
+
+\textit{loadLayout}: Laden eines Standardlayouts oder verweis auf den internen Speicher \\
+\textit{saveLayout}: Speichert eine CSV in dem internen Speicher \\
+\textit{wirteLayout}: Speichert eine CSV in dem internen Speicher \\
+\textit{readLayout}: Liest eine CSV aus dem internen Speicher ein \\
+\textit{getSavedLayouts}: Gibt eine Liste der gespeicherten Layouts und Standardlayouts (Für Presenter) \\
+\textit{clearLayouts}: Löscht alle gespeicherten Layouts (Für Presenter)
+
+\subsubsection{Klasse: TileLayoutFactory}
+Die Umformatierung einer CSV Eingabe in ein TileLayout wird in dieser Klasse implementiert.
+
+\textit{createLayout()}: orchestriert das einlesen der CSV Datei und der Erstellung des TileLayouts. \\
+\textit{loadLayout()}: Erstellen des TileLayouts aus der CSV
