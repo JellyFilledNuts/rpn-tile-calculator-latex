@@ -3,8 +3,85 @@
 
 \subsection{Tatsächliche Aufgabenverteilung im Team}
 
-XXX
 
+{\def\arraystretch{1.25}\tabcolsep=5pt
+	\begin{longtable}{|l|p{26em}|}
+		\hline
+		\textbf{Name} & \textbf{Aufgaben}
+		\\ \hline \hline
+		\endfirsthead
+		
+		\hline
+		\endhead
+		
+		\hline
+		\endfoot
+		
+		\textbf{Tim Schwenke} 
+		& Einrichtung, Verwaltung und Bereitstellung der Versionsverwaltung mit Git \\
+		& Architekturentwurf im Implementierung der Kalkulationsorchestrierung \\
+		& Konzeptionierung Implementierung der Superklasse Operator \\
+		& LaTeX-Beauftragter \\
+		& Projekttagebuch führen \\
+		& Dokumentation anfertigen \\
+		\hline
+		\textbf{Hendrik Falk}
+		& Gruppenweite Koordination des Projektes \\
+		& Erstellung der simplen Berechnungen im Model \\
+		& Architekturentwurf der Front-End- und Back-End-Kommunikation \\
+		& Projekttagebuch führen \\
+		& Dokumentation anfertigen \\
+		\hline
+		\textbf{Tim Jonas Meinerzhagen}
+		& Erstellung und Integration des Presenters \\
+		& Implementieren der einzelnen Operanden \\
+		& Auswahl der zu verwendenden Math Bibliothek \\
+		& Implementierung der Sondertasten im Model \\
+		& Speichern und Laden von Layouts \\
+		& Projekttagebuch führen \\
+		& Dokumentation anfertigen \\
+		\hline
+		\textbf{Getuart Istogu}
+		& Model: Matrizen und Polynomfunktionen \\
+		& Implementierung Util Funktionen im Model \\
+		& Menügestaltung in der GUI \\
+		& Usability Testing in der GUI \\
+		& Spezifikation und Dokumentation des Datenmodells und der Datenschnittstellen \\
+		& Projekttagebuch führen \\
+		& Dokumentation anfertigen \\
+		\hline
+		\textbf{Dennis Gentges}
+		& Planung der Navigation zwischen den Activities und die einen Activity-Wechsel auslösenden Ereignisse \\
+		& Projektplanung \\
+		& Konzeptionierung der Benutzeroberfläche \\
+		& Implementierung der Operandeneingabe in der GUI \\
+		& Projekttagebuch führen \\
+		& Dokumentation anfertigen \\
+		\hline
+		\textbf{Tom Bockhorn}
+		& Konzeptionierung der Benutzeroberfläche \\
+		& Übertragung der Struktur der Benutzeroberfläche in Android Studio \\
+		& Implementieren der MainActivity \\
+		& Implementieren des dynamischen Aufbaus der Layouts \\
+		& Projekttagebuch führen \\
+		& Dokumentation anfertigen \\
+		\hline
+		\textbf{Khang Pham}
+		& Verantwortlichkeit für Erscheinungsbild der Arbeit, Vollständigkeit gemäß Gliederungsstruktur, Formatierung des Quellcodes im Anhang. \\
+		& Konzeptionierung der Benutzeroberfläche \\
+		& Implementierung des TileMappings der View \\
+		& Implementierung der Eingaben in der GUI für Stack \\
+		& Projekttagebuch führen \\
+		& Dokumentation anfertigen \\
+		\hline
+		\textbf{Jannis Luca Keienburg}
+		& Model: Funktionen \\
+		& Stackgestaltung \\
+		& LaTeX-Beauftragter \\
+		& Zusammenführung der Teilergebnisse der Dokumentation \\
+		& Projekttagebuch führen \\
+		& Dokumentation anfertigen \\
+	\end{longtable}
 \clearpage
 
 \subsection{Teammeeting-Protokolle}
@@ -225,7 +302,7 @@ XXX
 			\\ & &
 			\small{\textit{Teilnehmer: Bockhorn, Falk, Istogu, Meinerzhagen, Schwenke Herr Prof. Dr. Seifert}}
 			\\ & &
-			Gespräch mit Herr Prof. Dr. Thomas Seifert über den aktuellen Stand des Projekts und im Anschluss daran eine Nachbesprechung innerhalb des Teams.
+			Gespräch mit Herr Prof. Dr. Thomas Seifert über den aktuellen Stand des Projektes und im Anschluss daran eine Nachbesprechung innerhalb des Teams.
 			\\ & &
 			Vorstellung:
 			\begin{itemize}\renewcommand\labelitemi{--}
@@ -281,7 +358,7 @@ XXX
 			\\ & &
 			Neues Kapitel ''Einleitung'' mit Motivation.
 			\\ & &
-			Anpassung einiger Kapitelbezeichnungen an Gegebenheiten des Projekts.
+			Anpassung einiger Kapitelbezeichnungen an Gegebenheiten des Projektes.
 			\\ & &
 			Koordination der Ausarbeitung.
 		\\ \cline{2-3}
@@ -444,7 +521,7 @@ XXX
 		& \textbf{\hfill 180} & Erstellung der simplen Kalkulation (Klasse: Modulo)
 		\\ \hline \textbf{05.01.2020}
 		& \textbf{\hfill 120} & Gruppenmeeting 6  \\\cline{2-3}
-		& \textbf{\hfill 120} & Weitere Besprechung zur Gestaltung der Kommunikation innerhalb des Projekts
+		& \textbf{\hfill 120} & Weitere Besprechung zur Gestaltung der Kommunikation innerhalb des Projektes
 		\\ \hline \textbf{06.01.2020}
 		& \textbf{\hfill 30} & Planung von Meetings und Organisation
 		\\ \hline \textbf{07.01.2020}
@@ -994,7 +1071,7 @@ Beim Arbeiten mit Double Werten ist im Entwicklungsprozess immer wieder aufgefal
 
 Dies ist durch das verbreitete IEE 754 Format für die Implementierung von Dezimalzahlen zu erklären. Dies hat zur Folge, dass Konversionen und Änderungen einer konkreten Dezimalzahl zu Rundungsfehlern führen. Das ist auch in Java der Fall.
 
-Da innerhalb dieses Projekts alles auf Doubles basiert ist es notwendig für dieses Problem eine Lösung zu finden. So wurde die neue Klasse DoubleComparator erstellt. Alle Vergleiche müssen über diese Klasse erfolgen.
+Da innerhalb dieses Projektes alles auf Doubles basiert ist es notwendig für dieses Problem eine Lösung zu finden. So wurde die neue Klasse DoubleComparator erstellt. Alle Vergleiche müssen über diese Klasse erfolgen.
 
 \subsubsection{Teamkommunikation in unterschiedlichen Umgebungen [Falk]}
 

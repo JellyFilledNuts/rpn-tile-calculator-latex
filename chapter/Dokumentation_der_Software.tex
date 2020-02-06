@@ -385,7 +385,7 @@ Zentrale Anlaufstelle um \code{Doubles} in einen formattierten String umzuwandel
 
 Dezimalzahlen sind in den meisten Sprachen in dem IEE 754 Format implementiert. Das hat zur Folge, dass Konversionen und Änderungen einer konkreten Dezimalzahl zu Rundungsfehlern führen. Das ist auch in Java der Fall. Möchte man nun die beiden Dezimalzahlen \code{1.1} und \code{1.1} mit der Standardmethode in Java vergleichen, wird man in fast allen Fällen ein \code{false} zurückbekommen. Das liegt an den zuvor angesprochenen Rundungsfehlern. 
 
-Da innerhalb dieses Projekts alles auf \code{Doubles} basiert ist es notwendig für dieses Problem eine Lösung zu finden. Dafür wurde diese Klasse entwickelt. Alle Vergleiche müssen über diese Klasse erfolgen.
+Da innerhalb dieses Projektes alles auf \code{Doubles} basiert ist es notwendig für dieses Problem eine Lösung zu finden. Dafür wurde diese Klasse entwickelt. Alle Vergleiche müssen über diese Klasse erfolgen.
 
 \code{Boolean isEqual(double d1, double d2)} vergleicht zwei \code{Doubles} miteinander. Dies erfolgt über ein Delta. Zunächst wird die Differenz zwischen beiden Zahlen berechnet und anschließend überprüft, ob die Differenz unter einer definierten Grenze liegt. Alle weiteren Methoden in dieser Klasse benutzen diese Methode.
 
@@ -703,21 +703,25 @@ Für die Umsetzung wurde die Funktion \code{value(double x)} der Klasse \code{Po
 
 Für die Bestimmung des Grenzwertes wurde sich an der Methode der numerischen Annäherung orientiert. Hierbei wird der Grenzwert durch die Annäherung von links und rechts des untersuchten Punktes bestimmt. Daher wurde die Anforderung in drei Methoden untergliedert, einmal die Methode \code{limitFromBelow(…)} und \code{limitFromAbove(…)}, die jeweils die Annäherung von verschiedenen Richtung bestimmt. Die Rückgabewerte der beiden Methoden werden in der Methode \code{limit(…)} miteinander verglichen. Zweck der Vergleichsabfrage ist es Definitionslücken abzufangen. Als Beispiel wird folgende Funktion angenommen:
 
-\code{f(x)=1/x}
+\[f(x) = \frac{1}{x}\]
 
 \begin{figure}[!h]
 	\includegraphics[scale=1]{img/funktion-grafik}
 	\caption[Grafische Darstellung der Funktion]{Grafische Darstellung der Funktion\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{Darstellung von der Googlesuch}
 
 Wenn für die Funktion sowohl der linksseitige als auch der rechtsseitige Grenzwert bestimmt wird, folgt folgendes:  
+
+$\lim_{x\to\0+} \frac{1}{x}\ = infty$
+
+$\lim_{x\to\0-} \frac{1}{x}\ = - infty$
 
 \begin{figure}[!h]
 	\includegraphics[width=\columnwidth]{img/limes-funktionen}
 	\caption[Limes Funktion]{Limes Funktion\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{Darstellung von der Googlesuche}
 
 Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweisen definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode \code{limit(…)} berücksichtigt.
 
@@ -736,6 +740,7 @@ Darauf aufbauend wurde ein Struktogramm angefertigt, auch als Nassi-Shneiderman-
 	\caption[Struktogramm für die Methode limit]{Struktogramm für die Methode limit\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
+\FloatBarrier
 
 
 \begin{figure}[!h]
@@ -867,13 +872,7 @@ Die Tests waren erfolgreich.
 \subsubsection{Lösen von Gleichungssystemen [Istogu]}
 
 Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse \code{MatrixUtil} mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist.
-
-\begin{figure}[h]
-	\includegraphics[scale=1]{img/gleichungssystem-loesen}
-	\caption[Aufbau lineares Gleichungssystem]{Aufbau lineares Gleichungssystem\footnotemark}
-\end{figure}
-\footnotetext{eigene Darstellung}
-
+\[A*x=b\]
 lösen. Dabei ist A eine quadratische Matrix (n x n) und b ein Vektor (n).
 Die Klasse besitzt eine „on“ Methode, die dann solveLinearSystem() aufruft. Dabei erwartet die Methode „on“ jeweils ein Objekt des Typs OMatrix und OTuple und gibt ein OTuple zurück. 
 
@@ -983,7 +982,7 @@ Vorzeichenwechselkriterium.
 
 \subsubsection{Generische Kalkulationsorchestrierung [Schwenke]}
 
-Wie schon im Kapitel zur Projektplanung erwähnt, stellt die Strukturierung und Architektur der Rechnungsumsetzung im Backend eine der vielen Anforderungen des Projekts dar. Identifiziert wurden zwei Hauptarten von Kalkulationen. 
+Wie schon im Kapitel zur Projektplanung erwähnt, stellt die Strukturierung und Architektur der Rechnungsumsetzung im Backend eine der vielen Anforderungen des Projektes dar. Identifiziert wurden zwei Hauptarten von Kalkulationen. 
 
 Die erste Art ist generisch und wird in einer großen Anzahl benötigt. Ein Beispiel dafür ist die Addition. Da der Taschenrechner viele unterschiedliche Operanden-Typen unterstützt (Matrizen, Brüche, Mengen, usw.) sind enorm viele Methoden notwendig, um alle Möglichkeiten der Addition abdecken zu können. Auch muss irgendwo vom Programm entschieden werden, welche Methode genau aufgerufen werden soll. Statt dies mit komplexen If-Else-Bedingungen zu lösen, wurde in der Planungsphase entschieden Reflektion zu nutzen. Somit kann man in sich geschlossene kleine Methoden programmieren, die - sofern die Schnittstellenanforderungen erfüllt sind - automatisch erkannt und von der Reflektionsmethode aufgerufen werden können. Der Nutzer im Frontend muss lediglich entscheiden, was für eine Art von generischer Kalkulation er ausführen möchte. Zum Beispiel Addition oder Multiplikation. 
 
