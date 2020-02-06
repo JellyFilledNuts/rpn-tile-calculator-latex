@@ -385,7 +385,7 @@ Zentrale Anlaufstelle um \code{Doubles} in einen formattierten String umzuwandel
 
 Dezimalzahlen sind in den meisten Sprachen in dem IEE 754 Format implementiert. Das hat zur Folge, dass Konversionen und Änderungen einer konkreten Dezimalzahl zu Rundungsfehlern führen. Das ist auch in Java der Fall. Möchte man nun die beiden Dezimalzahlen \code{1.1} und \code{1.1} mit der Standardmethode in Java vergleichen, wird man in fast allen Fällen ein \code{false} zurückbekommen. Das liegt an den zuvor angesprochenen Rundungsfehlern. 
 
-Da innerhalb dieses Projekts alles auf \code{Doubles} basiert ist es notwendig für dieses Problem eine Lösung zu finden. Dafür wurde diese Klasse entwickelt. Alle Vergleiche müssen über diese Klasse erfolgen.
+Da innerhalb dieses Projektes alles auf \code{Doubles} basiert ist es notwendig für dieses Problem eine Lösung zu finden. Dafür wurde diese Klasse entwickelt. Alle Vergleiche müssen über diese Klasse erfolgen.
 
 \code{Boolean isEqual(double d1, double d2)} vergleicht zwei \code{Doubles} miteinander. Dies erfolgt über ein Delta. Zunächst wird die Differenz zwischen beiden Zahlen berechnet und anschließend überprüft, ob die Differenz unter einer definierten Grenze liegt. Alle weiteren Methoden in dieser Klasse benutzen diese Methode.
 
@@ -896,7 +896,7 @@ Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-K
 
 \subsubsection{Stackhandhabung [Keienburg]}
 
-Ein integraler Bestandteil eines RPN-Taschenrechners stellt der Stack für die Haltung der Operanden dar. Im Rahmen der Projektplanung ist festgestellt worden, dass die in Java vorhandenen Implementationen eines Stacks die Anforderungen des Projekts nicht erfüllen. Gesondert genannt werden soll hier nochmals die Möglichkeit mit einer beliebigen Anzahl von Objekten auf dem Stack gleichzeitig zu arbeiten. Aufgrund dessen wurde entschieden eine eigene Umsetzung eines Stacks zu entwickeln. Der Entwurf des neuen Stacks erfolgte mithilfe der Java-Schnittstelle \code{StackInterface}, welche im Folgenden (leicht vereinfacht) dargestellt ist.
+Ein integraler Bestandteil eines RPN-Taschenrechners stellt der Stack für die Haltung der Operanden dar. Im Rahmen der Projektplanung ist festgestellt worden, dass die in Java vorhandenen Implementationen eines Stacks die Anforderungen des Projektes nicht erfüllen. Gesondert genannt werden soll hier nochmals die Möglichkeit mit einer beliebigen Anzahl von Objekten auf dem Stack gleichzeitig zu arbeiten. Aufgrund dessen wurde entschieden eine eigene Umsetzung eines Stacks zu entwickeln. Der Entwurf des neuen Stacks erfolgte mithilfe der Java-Schnittstelle \code{StackInterface}, welche im Folgenden (leicht vereinfacht) dargestellt ist.
 void push(T value);
 void push(T[] values);
 
@@ -984,7 +984,7 @@ Vorzeichenwechselkriterium.
 
 \subsubsection{Generische Kalkulationsorchestrierung [Schwenke]}
 
-Wie schon im Kapitel zur Projektplanung erwähnt, stellt die Strukturierung und Architektur der Rechnungsumsetzung im Backend eine der vielen Anforderungen des Projekts dar. Identifiziert wurden zwei Hauptarten von Kalkulationen. 
+Wie schon im Kapitel zur Projektplanung erwähnt, stellt die Strukturierung und Architektur der Rechnungsumsetzung im Backend eine der vielen Anforderungen des Projektes dar. Identifiziert wurden zwei Hauptarten von Kalkulationen. 
 
 Die erste Art ist generisch und wird in einer großen Anzahl benötigt. Ein Beispiel dafür ist die Addition. Da der Taschenrechner viele unterschiedliche Operanden-Typen unterstützt (Matrizen, Brüche, Mengen, usw.) sind enorm viele Methoden notwendig, um alle Möglichkeiten der Addition abdecken zu können. Auch muss irgendwo vom Programm entschieden werden, welche Methode genau aufgerufen werden soll. Statt dies mit komplexen If-Else-Bedingungen zu lösen, wurde in der Planungsphase entschieden Reflektion zu nutzen. Somit kann man in sich geschlossene kleine Methoden programmieren, die - sofern die Schnittstellenanforderungen erfüllt sind - automatisch erkannt und von der Reflektionsmethode aufgerufen werden können. Der Nutzer im Frontend muss lediglich entscheiden, was für eine Art von generischer Kalkulation er ausführen möchte. Zum Beispiel Addition oder Multiplikation. 
 
