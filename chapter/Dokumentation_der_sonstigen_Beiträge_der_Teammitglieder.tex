@@ -15,16 +15,15 @@ Schon kurz nach der initialen Erstellung des Git-Repositories und des Projektes 
 
 Der Gitflow-Workflow definiert ein strenges Branching-Model und gibt jedem Typ von Branch (lediglich differenziert durch ihre Namen) eine spezifische Rolle. \code{Master} wird verwendet, um die Release-History festzuhalten. Hier finden sich Versionen des Projekts, die lauffähig sind und für sich alleine stehen (können). \code{Development} fungiert ähnlich wie \code{Master}, nur enthält es die gesamte Entwicklungshistorie des Projekts. Nun kommen die sogenannten \code{Feature}-Branches ins Spiel. Benannt werden Features hierarchisch. Im Projekt werden folgende zwei Gruppen verwendet:
  
-\vspace{1em}
+\vspace{0.5em}
 \begin{minipage}{\textwidth}
 	\texttt{feature/\textbf{backend}/<konkretes-feature>}
+	
 	\texttt{feature/\textbf{frontend}/<konkretes-feature>}
 \end{minipage}
-\vspace{1em}
+\vspace{0.5em}
 \\
-Jedes Feature wird einem Verantwortlichen zugeteilt und wird meist auch von diesem bearbeitet. Sobald ein Feature fertig ist, wird es in \code{Development} zusammengeführt. Somit werden die Abstände zwischen Zusammenführungen verringert und der Arbeitsablauf wird einfacher. Schließlich gibt es auch noch einen Hotfix-Branch für dringende Änderungen.
-
-Im Laufe der Entwicklung haben sich die Vorteile dieser Herangehensweise für das Team deutlich gezeigt. Unterschiedliche Features konnten, nachdem eine grundlegende Programmarchitektur umgesetzt worden ist, meist ohne Probleme zusammengeführt werden. 
+Jedes Feature wird einem Verantwortlichen zugeteilt und wird meist auch von diesem bearbeitet. Sobald ein Feature fertig ist, wird es in \code{Development} zusammengeführt. Somit werden die Abstände zwischen Zusammenführungen verringert und der Arbeitsablauf wird einfacher. Schließlich gibt es auch noch einen Hotfix-Branch für dringende Änderungen.Im Laufe der Entwicklung haben sich die Vorteile dieser Herangehensweise für das Team deutlich gezeigt. Unterschiedliche Features konnten, nachdem eine grundlegende Programmarchitektur umgesetzt worden ist, meist ohne Probleme zusammengeführt werden. 
 
 \clearpage
 
@@ -33,7 +32,7 @@ Im Laufe der Entwicklung haben sich die Vorteile dieser Herangehensweise für da
 \subsubsection{Arbeiten mit \LaTeX}
 
 Bei der Erstellung der Projekttagebücher ist die Gruppe folgendermaßen vorgegangen: 
-Mit der Webseite \textbf{Tabels Generator (https://www.tablesgenerator.com/)} erstellte jedes Teammitglied eine eigene Tabelle, die das individuelle Tagebuch des Mitgliedes bildete. In der Tabelle wurden drei Spalten angegeben: ''Datum'', ''Dauer'' und ''Beschreibung''. Der Inhalt der jeweiligen Zeile konnte anschließend eingetragen werde. Das Tagebuch konnte als \code{tng}-Datei heruntergeladen oder online gespeichert werden. Aus der erstellten Tabelle wurde dann der zugehörige \LaTeX-Code generiert. Mit \hyperlink{https://www.authorea.com/}{Authorea} (https://www.authorea.com/) können LaTeX-Dokumente (unter Verwendung des passenden \LaTeX-Codes) erstellt werden. Der mithilfe von Tables Generator erstellte \LaTeX-Code wurde in ein leeres Dokument eingefügt und die Tabelle daraus erstellt. Anschließend wurde das Dokument noch mit einem Titel versehen und heruntergeladen.  
+Mit der Webseite Tabels Generator (https://www.tablesgenerator.com/) erstellte jedes Teammitglied eine eigene Tabelle, die das individuelle Tagebuch des Mitgliedes bildete. In der Tabelle wurden drei Spalten angegeben: ''Datum'', ''Dauer'' und ''Beschreibung''. Der Inhalt der jeweiligen Zeile konnte anschließend eingetragen werde. Das Tagebuch konnte als \code{tng}-Datei heruntergeladen oder online gespeichert werden. Aus der erstellten Tabelle wurde dann der zugehörige \LaTeX-Code generiert. Mit \hyperlink{https://www.authorea.com/}{Authorea} (https://www.authorea.com/) können LaTeX-Dokumente (unter Verwendung des passenden \LaTeX-Codes) erstellt werden. Der mithilfe von Tables Generator erstellte \LaTeX-Code wurde in ein leeres Dokument eingefügt und die Tabelle daraus erstellt. Anschließend wurde das Dokument noch mit einem Titel versehen und heruntergeladen.  
 
 \begin{figure}[!h]
 	\includegraphics[scale=1]{img/tabels-generator-erstellen}
@@ -69,7 +68,7 @@ Nach dem der Paper-Prototype erstellt war, wurde das Design des Taschenrechners 
 
 Um nun Eingaben an dem Prototyp zu ermöglichen, wurden Hyperlinks auf die jeweiligen Form-Objekte gelegt, welche dann auf verschiedene Folien weiterleiteten. Wenn ein Nutzer die PowerPoint-Präsentation startet, kann er nun mit dem Prototypen interagieren. Klickt er beispielsweise auf das Form-Objekt, welches die Zahl Eins darstellt, wird er über den Hyperlink auf eine identische Folie weitergeleitet, in welcher jedoch die Eins im Stack abgebildet ist. 
 
-Klickt ein Benutzer auf AC, wird er auf die erste Folie weitergeleitet, in der der Stack leer ist. Mithilfe der beschriebenen Methode wurden nun die verschiedenen identifizierten Use-Cases nachmodelliert um den Interaktiven Prototypen zu erstellen. Dadurch konnten dann am Prototyp Eingaben getätigt werden, und somit das Konzept der Applikation ausgetestet werden. Beispielsweise das ändern einer Kachel, durch das Gedrückthalten der Taste konnte im Prototyp ausprobiert werden. Auch die Funktionsweise und das Konzept der sogenannten \code{HistoryStack} konnten anhand des interaktiven Prototypens jedem Teammitglied leicht erklärt werden. 
+Klickt ein Benutzer auf \code{AC}, wird er auf die erste Folie weitergeleitet, in der der Stack leer ist. Mithilfe der beschriebenen Methode wurden nun die verschiedenen identifizierten Use-Cases nachmodelliert um den Interaktiven Prototypen zu erstellen. Dadurch konnten dann am Prototyp Eingaben getätigt werden, und somit das Konzept der Applikation ausgetestet werden. Beispielsweise das ändern einer Kachel, durch das Gedrückthalten der Taste konnte im Prototyp ausprobiert werden. Auch die Funktionsweise und das Konzept der sogenannten \code{HistoryStack} konnten anhand des interaktiven Prototypens jedem Teammitglied leicht erklärt werden. 
 
 \clearpage
 
@@ -190,13 +189,13 @@ Für die Erstellung des Prototyps wurden auf einer Folie einzelne Form-Objekte a
 
 Bezüglich der Farbwahl der Kacheln, sollte der Stack des Taschenrechners mit Hilfe grüner Kacheln abgebildet werden, Operanden in weißen Kacheln dargestellt werden, Operatoren in blauen Kacheln und jegliche Einstellungs-Knöpfe (Wie z.B. \code{All Clear} oder \code{Enter}) eine graue Kachelfarbe erhalten. Weiterhin wurde eine weitere Kachelart konzipiert, um der Anforderung einer möglichst geringen Klickzahl für Interaktionen, gerecht zu werden: Der sogenannte \code{History Stack} sollte eine orange Kachelfarbe erhalten. Das Konzept des History Stacks ist, dass jegliche Zwischenergebnisse in diesem gespeichert werden, so dass ein Benutzer bereits einmal verwendete Zahlen nicht erneut eintippen muss, auch wenn diese bereits aus dem Stack verschwunden sind. Das Besondere an dem History Stack ist dabei, dass nicht nur Zwischenergebnisse, sondern auch alle Eingabewerte wie Zahlen, Gleichungen oder Matrizen in diesem gespeichert werden. Beispielsweise wenn ein Nutzer die Zahl 25,5 eintippt wird diese in dem normalen Stack gespeichert, gleichzeitig erscheint die 25,5 aber auch im History Stack (vorausgesetzt die Taste 25,5 existiert zu diesem Zeitpunkt noch nicht). Addiert der Nutzer nun fünf, verschwindet die 25,5 aus dem normalen Stack, da dort nun das Ergebnis 30,5 angezeigt wird. Im History Stack ist die 25,5 jedoch immer noch vorhanden, so dass der Nutzer, sollte er die 25,5 nochmals verwenden wollen, jederzeit über einen einzelnen Tastendruck 25,5 in den normalen Stack ablegen kann. Darüber hinaus wurde noch ein Standardlayout für den ''Porträtmodus'' des Tabletts entwickelt. Bei einer vertikalen Ausrichtung sollte automatisch dieses Design geladen werden. 
 
+Es wurde sich dazu entschieden, dass die Anzahl an Kacheln im vertikalen Modus für eine verbesserte Übersichtlichkeit verringert werden sollte. Die Kachelfarben sollten jedoch identisch bleiben um den Wiedererkennungswert der Kacheln zu erhöhen und somit für eine verbesserte Usability zu sorgen.
+
 \begin{figure}[!h]
 	\includegraphics[scale=1]{img/erster-entwurf-mid-fidelty-prototyp-hoch}
 	\caption[Entwurf des Taschenrechners im Mid-Fidelity-Prototyp Hochkant]{Entwurf des Taschenrechners im Mid-Fidelity-Prototyp Hochkant\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
-
-Es wurde sich dazu entschieden, dass die Anzahl an Kacheln im vertikalen Modus für eine verbesserte Übersichtlichkeit verringert werden sollte. Die Kachelfarben sollten jedoch identisch bleiben um den Wiedererkennungswert der Kacheln zu erhöhen und somit für eine verbesserte Usability zu sorgen.
 
 \FloatBarrier
 
