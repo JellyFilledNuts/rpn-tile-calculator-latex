@@ -709,19 +709,14 @@ Für die Bestimmung des Grenzwertes wurde sich an der Methode der numerischen An
 	\includegraphics[scale=1]{img/funktion-grafik}
 	\caption[Grafische Darstellung der Funktion]{Grafische Darstellung der Funktion\footnotemark}
 \end{figure}
-\footnotetext{Darstellung von der Googlesuch}
+\footnotetext{Darstellung von der Googlesuche}
 
 Wenn für die Funktion sowohl der linksseitige als auch der rechtsseitige Grenzwert bestimmt wird, folgt folgendes:  
 
-$\lim_{x\to\0+} \frac{1}{x}\ = infty$
+%$\lim_{x\to\0+} \frac{1}{x}\ = infty$
 
-$\lim_{x\to\0-} \frac{1}{x}\ = - infty$
+%$\lim_{x\to\0-} \frac{1}{x}\ = - infty$
 
-\begin{figure}[!h]
-	\includegraphics[width=\columnwidth]{img/limes-funktionen}
-	\caption[Limes Funktion]{Limes Funktion\footnotemark}
-\end{figure}
-\footnotetext{Darstellung von der Googlesuche}
 
 Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweisen definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode \code{limit(…)} berücksichtigt.
 
@@ -894,7 +889,9 @@ Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-K
 
 \subsubsection{Stackhandhabung [Keienburg]}
 
-Ein integraler Bestandteil eines RPN-Taschenrechners stellt der Stack für die Haltung der Operanden dar. Im Rahmen der Projektplanung ist festgestellt worden, dass die in Java vorhandenen Implementationen eines Stacks die Anforderungen des Projektes nicht erfüllen. Gesondert genannt werden soll hier nochmals die Möglichkeit mit einer beliebigen Anzahl von Objekten auf dem Stack gleichzeitig zu arbeiten. Aufgrund dessen wurde entschieden eine eigene Umsetzung eines Stacks zu entwickeln. Der Entwurf des neuen Stacks erfolgte mithilfe der Java-Schnittstelle \code{StackInterface}, welche im Folgenden (leicht vereinfacht) dargestellt ist.
+Ein integraler Bestandteil eines RPN-Taschenrechners stellt der Stack für die Haltung der Operanden dar. Im Rahmen der Projektplanung ist festgestellt worden, dass die in Java vorhandenen Implementationen eines Stacks die Anforderungen des Projekts nicht erfüllen. Gesondert genannt werden soll hier nochmals die Möglichkeit mit einer beliebigen Anzahl von Objekten auf dem Stack gleichzeitig zu arbeiten. Aufgrund dessen wurde entschieden eine eigene Umsetzung eines Stacks zu entwickeln. Der Entwurf des neuen Stacks erfolgte mithilfe der Java-Schnittstelle \code{StackInterface}, welche im Folgenden (leicht vereinfacht) dargestellt ist.
+
+\begin{lstlisting}[caption=Stackinterface,label=list:stackinterface,language=Java]
 void push(T value);
 void push(T[] values);
 
@@ -912,69 +909,67 @@ void clear(); \\
 T[] get(); \\
 <G extends T> List<G> get(Class<G> type);\\
 int size();
+\end{lstlisting}
 
 \code{T} und \code{G} werden in dem Interface als generische Typparameter genutzt. Das macht es möglich das Interface bzw. den Stack mit verschiedensten Implementationen zu nutzen. So kann man bei Bedarf nicht nur die einen Stack für Operanden, sondern auch für andere Klassen implementieren. Bei der Implementation wird der Typ-Paramter \code{T} durch eine konkrete Klasse (z.B. \code{Operand}, ersetzt. Ein Neuentwurf der Schnittstelle ist nicht notwendig. 
 
-Der größte Unterschied zu anderen Stack-Interfaces ist, dass die drei bekannten Stack-Operationen push, pop und peek sowohl einzelne Parameter als auch Sammlungen von Parametern unterstützen. So kann man sich zum Beispiel die ersten 4 Objekte einer bestimmten Klasse mit einem einzigen Methodenaufruf von pop vom Stack entfernen. Bei einem normalen Stack sind eine ganze Reihe von Operationen dafür notwendig. Der Stack muss Element um Element auseinandergenommen, die ungewünschten Objekte entfernt, die anderen zwischengespeichert und anschließend wieder zusammengebaut werden.
+Der größte Unterschied zu anderen Stack-Interfaces ist, dass die drei bekannten Stack-Operationen \code{push}, \code{pop} und \code{peek} sowohl einzelne Parameter als auch Sammlungen von Parametern unterstützen. So kann man sich zum Beispiel die ersten 4 Objekte einer bestimmten Klasse mit einem einzigen Methodenaufruf von \code{pop} vom Stack entfernen. Bei einem normalen Stack sind eine ganze Reihe von Operationen dafür notwendig. Der Stack muss Element um Element auseinandergenommen, die ungewünschten Objekte entfernt, die anderen zwischengespeichert und anschließend wieder zusammengebaut werden.
 
-Implementiert wird StackInterface von der Klasse OperandStack. Technisch ist der Stack als LinkedList umgesetzt. Um weitere Methoden außerhalb der LinkedList-Klasse auf dem Objekt nutzen zu können, wird das Objekt weiteren Klassenvariablen vom Typ List und Deque zugewiesen. Das ist möglich, weil all diese Klassen vom Typ Collections erben. Je nach Anforderung werden unterschiedliche Interfaces der Collection verwendet. So wird für ein klassisches pop das Interface einer Deque verwendet, während für ein peek bei dem die gewünschte Klasse und maximale Anzahl zurückgegebener Objekte angegeben werden kann die Methoden einer ArrayList genutzt werden. So entsteht ein auf das Projekt optimal angepasstes Stack.
+Implementiert wird \code{StackInterface} von der Klasse \code{OperandStack}. Technisch ist der Stack als \code{LinkedList} umgesetzt. Um weitere Methoden außerhalb der \code{LinkedList}-Klasse auf dem Objekt nutzen zu können, wird das Objekt weiteren Klassenvariablen vom Typ \code{List} und \code{Deque} zugewiesen. Das ist möglich, weil all diese Klassen vom Typ \code{Collections} erben. Je nach Anforderung werden unterschiedliche Interfaces der \code{Collection} verwendet. So wird für ein klassisches \code{pop} das Interface einer \code{Deque} verwendet, während für ein \code{peek} bei dem die gewünschte Klasse und maximale Anzahl zurückgegebener Objekte angegeben werden kann die Methoden einer \code{ArrayList} genutzt werden. So entsteht ein auf das Projekt optimal angepasstes Stack.
 
-\subsubsection{Settings[Falk]}
+\subsubsection{Settings [Falk]}
 
 Die meisten der Funktionen eines Taschenrechners wurden bereits beschrieben, doch nicht alle Funktionalitäten können mit der Kombination aus Operation und Operand beschrieben werden. So gibt es beispielsweise Sondertasten, die Eingaben manipulieren, besondere Operationen durchführen oder gänzlich von jeglicher Berechnung abweichen. Diese Sondertasten werden als Setting beschrieben und einem simplen, parameterfreiem Methodenaufruf angesprochen. Der Umgang mit dem erhaltenen Aufruf obliegt allein der implementierten Sondertaste.
 
-
-\para{Abstrakte Klasse: Setting}
+\paragraph{Abstrakte Klasse: Setting}
 \textit{Abstrakte Überklasse jeglicher Sondertasten und Settings}
 
-Definiert die abstrakte Methode call(), die aufgerufen wird.
-\para{Klasse: AllClear}
-\textit{AC }
-
-xxx die textit sind irgendwie eingerückt... weg machen?
+Definiert die abstrakte Methode \code{call()}, die aufgerufen wird.
+\paragraph{Klasse: \code{AllClear}}
+\textit{AC}
 
 Leert den gesamten aktuellen Input im Presenter
-\para{Klasse: DeleteEntry}
+\paragraph{Klasse: DeleteEntry}
 \textit{DELETE} 
 
 Löscht den zuletzt eingegebenen Input
-\para{Klasse: ClearHistory}
+\paragraph{Klasse: ClearHistory}
 \textit{CLEAR HISTORY}
 
 Leert die gesamte Historie
-\para{Klasse: Enter}
+\paragraph{Klasse: Enter}
 \textit{ENTER}
 
 Finalisiert eingegebene Operanden, sodass sie nicht mehr bearbeitet werden können und fügt sie zur Historie hinzu
-\para{Klasse: Dot}
+\paragraph{Klasse: Dot}
 \textit{.}
 
 Ermöglicht die Eingabe von Nachkommastellen am aktuellen Input.
-\para{Klasse: Inverse}
+\paragraph{Klasse: Inverse}
 \textit{1/x}
 
 Berechnet die Inverse des letzten Operanden im Stack.
-\para{Klasse: Split}
+\paragraph{Klasse: Split}
 \textit{SPLIT}
 
-Trennt Operanden vom Typ OTuple, OSet und OMatrix in einzelne Operanden vom Typ ODouble.
-\para{Klasse: Swap}
+Trennt Operanden vom Typ \code{OTuple}, \code{OSet} und \code{OMatrix} in einzelne Operanden vom Typ \code{ODouble}.
+\paragraph{Klasse: Swap}
 \textit{SWAP}
 
 Tauscht die letzten beiden Operanden miteinander.
-\para{Klasse: ToTuple}
+\paragraph{Klasse: ToTuple}
 \textit{TO TUPLE}
 
-Fügt so viele Operanden wie möglich zu einem OTuple Operand zusammen.
-\para{Klasse: TurnAroundSign}
+Fügt so viele Operanden wie möglich zu einem \code{OTuple} Operand zusammen.
+\paragraph{Klasse: TurnAroundSign}
 \textit{+/-}
 
 Vorzeichenwechselkriterium.
-\para{Klasse: LoadLayout}
+\paragraph{Klasse: LoadLayout}
 \textit{LOAD LAYOUT}
 
 Öffnet ein Menü zum Laden von Layouts.
-\para{Klasse: SaveLayout}
+\paragraph{Klasse: SaveLayout}
 \textit{SAVE LAYOUT}
 
 Öffnet ein Menü zum Speichern des aktuellen Layouts.
@@ -1012,14 +1007,14 @@ Die erste Zeile definiert einige Eigenschaften der Methode. \code{@Contract} sag
 	Operand resultOperand;
 	
 	for (int i = 0; i < operands.length; i++)
-	operandClasses[i] = operands[i].getClass();
+		operandClasses[i] = operands[i].getClass();
 	
 	try {
-	resultOperand = (Operand) scopedAction.getClass()
-	.getDeclaredMethod("on", operandClasses)
-	.invoke(scopedAction, (Object[]) operands);
+		resultOperand = (Operand) scopedAction.getClass()
+			.getDeclaredMethod("on", operandClasses)
+			.invoke(scopedAction, (Object[]) operands);
 	} catch (SeveralExceptions e) {
-	throw new CalculationException(e.getMessage());
+		throw new CalculationException(e.getMessage());
 	}
 	
 	if (resultOperand != null) return resultOperand;
@@ -1035,34 +1030,37 @@ Der Presenter wurde als zentrales Bindeglied für die View und das Model konzipi
 	
 \subsubsection{Datenhaltung}
 
-Zur Datenhaltung werden im Presenter drei Variablen geführt. Das sind der Operand Stack, der History Stack und der Input Term.
+Zur Datenhaltung werden im Presenter drei Variablen geführt. Das sind der \code{OperandStack}, der \code{HistoryStack} und der \code{InputTerm}.
 
-Der Operand Stack ist der zentrale Stack, auf dem die eigentliche Rechnungen durchgeführt werden. Auf diesem werden neue Operanden über Input Term hinzugefügt.
-Auf dem History Stack werden die vorherigen eingaben aus Input Term, sowie die verrechneten Operanden aus dem Operand Stack eingefügt.
+Der \code{OperandStack} ist der zentrale Stack, auf dem die eigentliche Rechnungen durchgeführt werden. Auf diesem werden neue Operanden über \code{InputTerm} hinzugefügt.
 
-Im String Builder Input Term wird die aktuelle Eingabe eines Operanden auf den Operand Stack festgehalten. Zusätzlich wird die variable finalized geführt, welche definiert, ob der Nutzer aktuell in den Input Term hineinschreiben kann.
+Auf dem \code{HistoryStack} werden die vorherigen eingaben aus Input Term, sowie die verrechneten Operanden aus dem \code{OperandStack} eingefügt.
+
+Im \code{StringBuilder} \code{InputTerm} wird die aktuelle Eingabe eines Operanden auf den \code{OperandStack} festgehalten. Zusätzlich wird die Bariable \code{finalized} geführt, welche definiert, ob der Nutzer aktuell in den \code{InputTerm} hineinschreiben kann.
 
 \subsubsection{Click Handling}
 
-Im Presenter wird ein ClickListener implementiert, wodurch ein Klick auf eine der Kacheln das Event onClick ausführt. Dieses Event unterscheidet im nächsten Schritt zwischen den verschiedenen Kachelarten.
+Im Presenter wird ein \code{ClickListener} implementiert, wodurch ein Klick auf eine der Kacheln das Event \code{onClick()} ausführt. Dieses Event unterscheidet im nächsten Schritt zwischen den verschiedenen Kachelarten.
 
-Bei den Setting-Kacheln muss lediglich die hinterlegte Aktion aufgerufen werden. Bei einer Operand-Kachel wird über die interne Funkion tryAppending versucht den Operanden auf den Stack zu legen. Für Action-Kacheln wird die definierte Zahl von Operatoren vom Operand Stack mit der definierten Operation in calculate ausgerechnet. Dabei wird versucht die höchste mögliche Zahl von Operatoren zu verwenden.
+Bei den Setting-Kacheln muss lediglich die hinterlegte Aktion aufgerufen werden. Bei einer Operand-Kachel wird über die interne Funkion \code{tryAppending()} versucht den Operanden auf den Stack zu legen. Für Action-Kacheln wird die definierte Zahl von Operatoren vom \code{OperandStack} mit der definierten Operation in \code{calculate()} ausgerechnet. Dabei wird versucht die höchste mögliche Zahl von Operatoren zu verwenden.
 
 \subsubsection{Calculate}
 
-Zum Ausrechnen von Aktionen wird die Funktion calculate aufgerufen. Dort wird versucht mit der größten definierten Anzahl von Operanten vom Operand Stack eine Operation durchzuführen. Wenn eine Operation erfolgreich ausgeführt werden konnte werden die verwendeten Operanden vom Operand Stack gelöscht und das ermittelte Ergebnis wird anschließend dort hinzugefügt.
+Zum Ausrechnen von Aktionen wird die Funktion \code{calculate()} aufgerufen. Dort wird versucht mit der größten definierten Anzahl von Operanten vom \code{OperandStack} eine Operation durchzuführen. Wenn eine Operation erfolgreich ausgeführt werden konnte werden die verwendeten Operanden vom \code{OperandStack} gelöscht und das ermittelte Ergebnis wird anschließend dort hinzugefügt.
 
 \subsection{Dokumentation der persistenten Datenhaltung [Meinerzhagen]}
 \label{subsection:dokumentation-der-persistenten-datenhaltung}
 
-Das Speichern der Layouts wurde wie geplant durch die Ablage von CSV Dateien im internen Speicher des Gerätes durchgeführt. 
+Das Speichern der Layouts wurde wie geplant durch die Ablage von CSV-Dateien im internen Speicher des Gerätes durchgeführt. 
 
-Beispielhaft wird die Speicherung nachfolgend an einem Layout vorgestellt. Dazu wird das minimale Layout in Abbildung x betrachtet.  
+Beispielhaft wird die Speicherung nachfolgend an einem Layout vorgestellt. Dazu wird das minimale Layout in der folgenden Abbildung betrachtet.  
 
 \begin{figure}[h]
 	\includegraphics[scale=1]{img/beispiellayout-zum-speichern}
 	\caption[Beispiellayout zum Speichern]{Beispiellayout zum Speichern\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
 Die Kacheln sind in einem vier-mal-vier Format angelegt. Sie bestehen aus drei Stack-Kacheln, neun Operanden-Kacheln mit einzelnen Zahlen und vier Operatoren-Kacheln. Diese sind repräsentativ für dieses Beispiel, da der Speicherprozess für alle Inhalte einer Art gleich gehandhabt wird.
 
@@ -1072,23 +1070,30 @@ Nachfolgend ist die CSV-Repräsentation des obigen Layouts abgebildet.
 	\includegraphics[scale=1]{img/csv-repraesentation-layout}
 	\caption[CSV-Repräsentation des Beispiellayouts]{CSV-Repräsentation des Beispiellayouts\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
-Entsprechend den CSV-Konventionen beschreibt ein Line Break („\\n“) das Ende einer Reihe des Layouts. Ein Semikolon („;“) beschreibt das Ende einer Spalte. Innerhalb einer einzelnen Zelle werden die Informationen über eine Kachel durch ein Tupel gehalten. Innerhalb des Tupels werden die einzelnen Werte durch ein Komma („,“) getrennt.
+Entsprechend den CSV-Konventionen beschreibt ein Line Break \code{\\n} das Ende einer Reihe des Layouts. Ein Semikolon \code{;} beschreibt das Ende einer Spalte. Innerhalb einer einzelnen Zelle werden die Informationen über eine Kachel durch ein Tupel gehalten. Innerhalb des Tupels werden die einzelnen Werte durch ein Komma \code{,} getrennt.
 
-In der Regel werden pro Kachel zwei Informationen gespeichert: Die Art der Kachel und der Inhalt oder anzuzeigende Text. So beschreibt das Tupel „O\_DOUBLE,1“ eine Kachel vom Typ ODouble mit dem Inhalt „1“. Lediglich bei Stack- und HistoryStack-Kacheln muss ein Tupel mit vier Inhalten gespeichert werden. Der erst Wert beschreibt auch dort die Art der Kachel. Im zweiten Wert wird der Rang des Stacks, also welche Nummer es im Stack hat, gespeichert. Anschließend wird der enthaltene Operand gespeichert. 
+In der Regel werden pro Kachel zwei Informationen gespeichert: Die Art der Kachel und der Inhalt oder anzuzeigende Text. So beschreibt das Tupel \code{O\_DOUBLE,1} eine Kachel vom Typ \code{ODouble} mit dem Inhalt \code{1}. Lediglich bei \code{Stack}- und \code{HistoryStack}-Kacheln muss ein Tupel mit vier Inhalten gespeichert werden. Der erst Wert beschreibt auch dort die Art der Kachel. Im zweiten Wert wird der Rang des Stacks, also welche Nummer es im Stack hat, gespeichert. Anschließend wird der enthaltene Operand gespeichert. 
 
 \subsubsection{Klasse: TileLayoutManager}
-Das Speichern und Laden von CSV Dateien wird durch diese Klasse implementiert.
+Das Speichern und Laden von CSV-Dateien wird durch diese Klasse implementiert.
 
-\textit{loadLayout}: Laden eines Standardlayouts oder verweis auf den internen Speicher \\
-\textit{saveLayout}: Speichert eine CSV in dem internen Speicher \\
-\textit{wirteLayout}: Speichert eine CSV in dem internen Speicher \\
-\textit{readLayout}: Liest eine CSV aus dem internen Speicher ein \\
-\textit{getSavedLayouts}: Gibt eine Liste der gespeicherten Layouts und Standardlayouts (Für Presenter) \\
-\textit{clearLayouts}: Löscht alle gespeicherten Layouts (Für Presenter)
+\code{loadLayout()}: Laden eines Standardlayouts oder verweis auf den internen Speicher
+
+\code{saveLayout()}: Speichert eine CSV in dem internen Speicher 
+
+\code{wirteLayout()}: Speichert eine CSV in dem internen Speicher 
+
+\code{readLayout()}: Liest eine CSV aus dem internen Speicher ein 
+
+\code{getSavedLayouts()}: Gibt eine Liste der gespeicherten Layouts und Standardlayouts (Für Presenter) 
+
+\code{clearLayouts()}: Löscht alle gespeicherten Layouts (Für Presenter)
 
 \subsubsection{Klasse: TileLayoutFactory}
-Die Umformatierung einer CSV Eingabe in ein TileLayout wird in dieser Klasse implementiert.
+Die Umformatierung einer CSV-Eingabe in ein \code{TileLayout} wird in dieser Klasse implementiert.
 
-\textit{createLayout()}: orchestriert das einlesen der CSV Datei und der Erstellung des TileLayouts. \\
-\textit{loadLayout()}: Erstellen des TileLayouts aus der CSV
+\code{createLayout()}: Orchestriert das einlesen der CSV Datei und der Erstellung des TileLayouts. \\
+\code{loadLayout()}: Erstellen des TileLayouts aus der CSV
