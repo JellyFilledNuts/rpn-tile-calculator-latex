@@ -719,9 +719,9 @@ Für die Bestimmung des Grenzwertes wurde sich an der Methode der numerischen An
 
 Wenn für die Funktion sowohl der linksseitige als auch der rechtsseitige Grenzwert bestimmt wird, folgt folgendes:  
 
-%$\lim_{x\to\0+} \frac{1}{x}\ = infty$
+$\lim_{x\to\ 0+} \frac{1}{x}\ = \infty$
 
-%$\lim_{x\to\0-} \frac{1}{x}\ = - infty$
+$\lim_{x\to\ 0-} \frac{1}{x}\ = - \infty$
 
 
 Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweise definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode \code{limit(…)} berücksichtigt.
@@ -730,9 +730,10 @@ Für die jeweilige Annäherung wurde die Überlegung getätigt, welche Fälle in
 \begin{itemize}
 	\item Positiv unendlich
 	\item Negativ unendlich
-	\item Nicht definiert
-	\item \code{xxx} war Zeichen (Ubiquator Teilmenge von Realer Zahlenraum)
+	\item Nicht definiert	
+	\item $ x \in \mathbb{R}$
 \end{itemize}
+	
 
 Darauf aufbauend wurde ein Struktogramm angefertigt, auch als Nassi-Shneiderman-Diagramm bekannt. Dabei wird die Annäherung von unten veranschaulicht, weil die Annäherung von oben nach dem gleichen Grundprinzip erfolgt. 
 
@@ -872,7 +873,7 @@ Die Tests waren erfolgreich.
 
 \subsubsection{Lösen von Gleichungssystemen [Istogu]}
 
-Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse \code{MatrixUtil} mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist.\footnote{\cite[vgl.][]{gordoncollegemathematicscomputersciencedepartment2019}}
+Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse \code{MatrixUtil} mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist.
 \[A*x=b\]
 zu lösen. Dabei ist A eine quadratische Matrix (n x n) und b ein Vektor (n).
 Die Klasse besitzt eine ''on'' Methode, die dann solveLinearSystem() aufruft. Dabei erwartet die Methode ''on'' jeweils ein Objekt des Typs OMatrix und OTuple und gibt ein OTuple zurück. 
@@ -883,7 +884,7 @@ Die Klasse besitzt eine ''on'' Methode, die dann solveLinearSystem() aufruft. Da
 \end{figure}
 \footnotetext{eigene Darstellung}
 
-Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überprüfung der Parameter nach ihrer richtigen Form. 
+Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überprüfung der Parameter nach ihrer richtigen Form. Die Methode \code{solveLGSForX(A, b)} löst mit Hilfe der LR-Zerlegung (auch als Dreieckszerlegung bekannt) mit Spaltenpivotsuche. Diese Funktionalität wird nicht von \textit{Apache Commons Math} unterstützt. Es beschränkt sich nur auf das Lösen einer Matrix, wenn die gegebene quadratische Matrix eine Dreiecksmatrix ist. Für die Implementierung der Methode wurde sich nach dem Pseudocode orientiert.\footnote{\cite[vgl.][]{gordoncollegemathematicscomputersciencedepartment2019}}
 
 Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
 \begin{enumerate}
