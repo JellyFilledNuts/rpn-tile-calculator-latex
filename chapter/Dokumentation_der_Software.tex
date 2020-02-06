@@ -1,7 +1,7 @@
 %!TEX root = ../Thesis.tex
 \section{Dokumentation der Software}
 
-\subsection{Dokumentation der Paketstruktur des Android-Projektes [Falk]}
+\subsection{Dokumentation der Paketstruktur des Android-Projektes [Schwenke]}
 
 Die Applikation liegt im Paket \code{de.fhdw.wip.rpntilecalculator} vor und ist mit verschiedenen Klassen realisiert, welche in eine Paketstruktur eingebettet sind. Diese Paketstruktur orientiert sich an dem gewählten UI Design Pattern MVP. 
 
@@ -22,6 +22,8 @@ Im \code{Presenter}-Paket befindet sich lediglich der Presenter. Dieser wird ver
 	\caption[Ordnerstruktur Schema]{Ordnerstruktur Schema\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
+
+\FloatBarrier
 
 \subsection{Dokumentation der View}
 
@@ -270,6 +272,8 @@ Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFractio
 
 Die korrespondierende Java-Datei liest nach dem Bestätigen des Buttons den Wert aus dem \code{EditText} und kreiert ein \code{ODouble}-Objekt. Dieses Objekt wird mit seinem zugehörigen \code{TileMapping} einem \code{TileScheme} zugewiesen. Das vorher ausgewählte \code{Tile} aktualisiert seinen \code{TileScheme}. Abschließend schließt der Konstruktor die Dialoge über die Methode \code{dismissAll()}, die vorher erklärt wurde.
 
+\clearpage
+
 \paragraph{Klasse: InputFraction [Gentges]}
 
 Diese Klasse deckt die Funktionalität der Benutzereingabe von Brüchen. Dabei ähnelt sie der Klasse \code{InputDouble}. Die Unterschiede beruhen dahingehend, dass ein zweites \code{EditText} integriert wurde, um sowohl als Zähler als auch Nenner abzufragen. Der ausgewählten \code{Tile} wird respektiv ein \code{TileScheme} mit \code{OFraction} übergeben. 
@@ -280,8 +284,6 @@ Diese Klasse deckt die Funktionalität der Benutzereingabe von Brüchen. Dabei �
 \end{figure}
 \footnotetext{eigene Darstellung in AndroidStudio}
 \FloatBarrier
-
-\clearpage
 
 \paragraph{Klasse: InputPolynomial [Gentges]}
 
@@ -693,15 +695,15 @@ Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-K
 
 \code{getSimpsonsIntegrator()}
 
-\quad \quad \textbf{ Eingabe:} \code{OPolynom}: \code{x\^{}2 – 8x + 17}, untere Grenze: 2, obere Grenze 5
+\quad \quad \textbf{ Eingabe:} \code{OPolynom}: x\^{}2 – 8x + 17, untere Grenze: 2, obere Grenze 5
 
 \quad \quad \textbf{Erwartetes Ergebnis:} 6
 
 \code{getAntiderivative()}
 
-\quad \quad \textbf{Eingabe:} \code{OPolynom}: \code{-3,21x\^{}3 + 3x + 7}
+\quad \quad \textbf{Eingabe:} \code{OPolynom}: -3,21x\^{}3 + 3x + 7
 
-\quad \quad \textbf{Erwartetes Ergebnis}: \code{OPolynom}: \code{-0,8025x\^{}4 + 1,5x\^{}2 + 7x + c}
+\quad \quad \textbf{Erwartetes Ergebnis}: \code{OPolynom}: -0,8025x\^{}4 + 1,5x\^{}2 + 7x + c
 
 \vspace{1em}
 
@@ -904,19 +906,23 @@ Ein integraler Bestandteil eines RPN-Taschenrechners stellt der Stack für die H
 void push(T value);
 void push(T[] values);
 
+T pop();
+List<T> pop(int max);
+<G extends T> G pop(Class<G> type);
+<G extends T> List<G> pop(int max, Class<G> type);
 
-T pop();\\
-List<T> pop(int max);\\
-<G extends T> G pop(Class<G> type);\\
-<G extends T> List<G> pop(int max, Class<G> type);\\
-T peek();\\
-List<T> peek(int max); \\
-<G extends T> G peek(Class<G> type); \\
-<G extends T> List<G> peek(int max, Class<G> type); \\
-boolean contains(T object); \\
-void clear(); \\
-T[] get(); \\
-<G extends T> List<G> get(Class<G> type);\\
+T peek();
+List<T> peek(int max); 
+<G extends T> G peek(Class<G> type); 
+<G extends T> List<G> peek(int max, Class<G> type); 
+
+boolean contains(T object); 
+
+void clear(); 
+
+T[] get(); 
+<G extends T> List<G> get(Class<G> type);
+
 int size();
 \end{lstlisting}
 
@@ -983,6 +989,7 @@ Vorzeichenwechselkriterium.
 
 Öffnet ein Menü zum Speichern des aktuellen Layouts.
 
+\clearpage
 
 \subsubsection{Generische Kalkulationsorchestrierung [Schwenke]}
 
@@ -1022,7 +1029,7 @@ Die erste Zeile definiert einige Eigenschaften der Methode. \code{@Contract} sag
 		resultOperand = (Operand) scopedAction.getClass()
 			.getDeclaredMethod("on", operandClasses)
 			.invoke(scopedAction, (Object[]) operands);
-	} catch (SeveralExceptions e) {
+	} catch (SeveralExceptions e) { // Simplified for readability
 		throw new CalculationException(e.getMessage());
 	}
 	
@@ -1056,6 +1063,8 @@ Bei den Setting-Kacheln muss lediglich die hinterlegte Aktion aufgerufen werden.
 \subsubsection{Calculate}
 
 Zum Ausrechnen von Aktionen wird die Funktion \code{calculate()} aufgerufen. Dort wird versucht mit der größten definierten Anzahl von Operanten vom \code{OperandStack} eine Operation durchzuführen. Wenn eine Operation erfolgreich ausgeführt werden konnte, werden die verwendeten Operanden vom \code{OperandStack} gelöscht und das ermittelte Ergebnis wird anschließend dort hinzugefügt.
+
+\clearpage
 
 \subsection{Dokumentation der persistenten Datenhaltung [Meinerzhagen]}
 \label{subsection:dokumentation-der-persistenten-datenhaltung}
