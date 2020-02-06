@@ -190,7 +190,7 @@ Die Klasse erbt von der abstrakte Klasse \code{DialogMenu} und verweist über de
 
 Zu den Ressourcen zählen unteranderem Bilder, \code{XML}-Ansichten und deren Komponenten wie Buttons. Die Referenzen zu den Buttons werden danach verwendet, um auf die Objekte über die Methode \code{dialog.findViewById()} zuzugreifen. In dem Konstruktor werden zu den jeweiligen Buttons ein \code{OnClickListener} festgesetzt, der ein neues Objekt vom Typ \code{InputTileMapping} erzeugt.
 
-\paragraph{Klasse: InputTileMapping [Istogu]}
+\paragraph{Klasse: InputTileMapping [Bockhorn]}
 
 XXX
 
@@ -200,17 +200,34 @@ XXX
 
 \paragraph{Klasse: InputDouble [Gentges]}
 
-XXX
+Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFraction} und \code{OPolynom}) für die Eingabe vom User möglich sein. Die XML-Ansicht ist simpel gehalten und verwendet ein RelativeLayout hat, welches die relative Position zu den einzelnen Objekte verwendet. Dadurch wird die Layouthierarchie reduziert und die Performance der Applikation verbessert. Für das Eingabefeld wird ein EditText verwendet, das als Eingabetyp Dezimalzahlen unterstützt wird. In Android muss hier noch explizit erwähnt werden, dass erst über den Keyword „numberSigned“ auch die Eingabe von negative Zahlen möglich ist.
+
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{img/xml_InputDouble}
+	\caption[XML-Designer für die Klassen InputDouble]{XML-Designer für die Klasse InputDouble\footnotemark}
+\end{figure}
+
+Die korrespondierende Java-Datei liest nach dem Bestätigen des Buttons den Wert aus dem \code{EditText} und kreiert ein \code{ODouble}-Objekt. Dieses Objekt wird mit seinem zugehörigen \code{TileMapping} einem \code{TileScheme} zugewiesen. Das vorher ausgewählte \code{Tile} aktualisiert seinen \code{TileScheme}. Abschließend schließt der Konstruktor die Dialog über die Methode \code{dismissAll()}, die vorher erklärt wurde.
 
 \paragraph{Klasse: InputFraction [Gentges]}
 
-XXX
+Diese Klasse deckt die Funktionalität der Benutzereingabe von Brüchen. Dabei ähnelt sie der Klasse InputDouble. Die Unterschiede beruhen dahingehend, dass ein zweites EditText integriert wurde, um sowohl als Zähler als auch Nenner abzufragen. Der ausgewählten Tile wird respektiv ein TileScheme mit OFraction übergeben. 
+
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{img/xml_InputFraction}
+	\caption[XML-Designer für die Klasse InputFraction]{XML-Designer für die Klasse InputFraction\footnotemark}
+\end{figure}
 
 \paragraph{Klasse: InputPolynomial [Gentges]}
 
-XXX
+Die Klasse ist grundsätzlich gleich aufgebaut, wie die vorherigen Eingabeklassen der Operanden. In der Abbildung lässt sich erkennen, dass die einzelne Polynome vom Nutzer eingegeben werden können.
 
-\paragraph{Klasse: 6.2.5.8	Darstellung der Beziehungen von den Menüsteuerungsklassen [Gentges]}
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{img/xml_InputPolynomial}
+	\caption[XML-Designer für die Klasse InputPolynomial]{XML-Designer für die Klasse InputPolynomial\footnotemark}
+\end{figure}
+
+\paragraph{Klasse: 6.2.5.8	Darstellung der Beziehungen von den Menüsteuerungsklassen [Istogu]}
 
 XXX
 
