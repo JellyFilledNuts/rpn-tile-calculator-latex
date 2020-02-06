@@ -5,7 +5,7 @@ In den nachfolgenden Abschnitten wird die Planung des Projektes durchgeführt. E
 
 \subsection{Funktionsumfangs [Falk]}
 
-Im Rahmen dieses Projekts muss eine Android-App entwickelten werden, welche die Funktion eines kachelbasierten UPN-Taschenrechners zur Verfügung stellt. 
+Im Rahmen dieses Projektes muss eine Android-App entwickelten werden, welche die Funktion eines kachelbasierten UPN-Taschenrechners zur Verfügung stellt. 
 
 Dabei müssen drei verschiedene Kacheltypen implementiert werden: \textit{Operator}, \textit{Operand} und \textit{CalculatorFunction}. Ein Operator kann hier zum Beispiel die Wurzel oder Division sein und kann eine beliebige Stelligkeit aufweisen. Ein Beispiel für einen Operanden wären Dezimalzahlen oder Matrizen. Die CalculatorFunction-Kachel kann verschiedene Einstellungen bereitstellen. Dazu zählen u.a. Speicherung eines Layouts, Festlegung des Typs einer Kachel. Jede Kachel muss veränderbar sein und jede Rolle annehmen können. Eine Kachel darf nicht grundsätzlich gesperrt sein. 
 
@@ -23,7 +23,7 @@ Ein grober Überblick über die zu implementierenden Aktionen des Nutzers sind  
 
 \interfootnotelinepenalty=100
 
-Während der Bearbeitung des Projekts soll ein besonderes Augenmerk auf drei Aspekte gelegt werden. Der erste ist die komfortable Festlegung von Operanden-Kacheln. Dazu zählt auch das Ändern selbiger und derer Reigenfolge. Der zweite Punkt ist die Konfiguration der Ergebniskacheln. Der dritte Punkt sagt aus, dass die App so benutzerfreundlich wie möglich gestaltet werden soll. Dies soll zum Beispiel durch intuitive Bedienung, minimale Userinteraktion und übersichtliche Gestaltung erreicht werden. 
+Während der Bearbeitung des Projektes soll ein besonderes Augenmerk auf drei Aspekte gelegt werden. Der erste ist die komfortable Festlegung von Operanden-Kacheln. Dazu zählt auch das Ändern selbiger und derer Reigenfolge. Der zweite Punkt ist die Konfiguration der Ergebniskacheln. Der dritte Punkt sagt aus, dass die App so benutzerfreundlich wie möglich gestaltet werden soll. Dies soll zum Beispiel durch intuitive Bedienung, minimale Userinteraktion und übersichtliche Gestaltung erreicht werden. 
 
 Die App soll für Android in Java entwickelt werden. Prinzipien des objektorientierten Software Entwurfs sollen hierbei eingehalten werden. Während der Durchführung des Projektes soll das Team nach dem erweiterten Wasserfallmodell arbeiten. Nach Möglichkeit sollen etablierte Entwurfsmuster eingesetzt werden. Es soll eine strikte und stark ausgeprägte Modularisierung durchgeführt werden. Hierbei soll die App das Samsung Galaxy Note 8.0 unterstützten. Die Unterstützung weiterer Geräte ist optional. Sowohl der Portrait Modus als auch der Landscape Modus sollen unterstützt werden. Ein Wechsel während der Nutzung der App soll möglich sein. Generell sollen Änderungen der Konfiguration des Androidsystems während der App-Ausführung unterstützt werden. Das Projekt soll in Android Studio importiert werden können. Der Import soll lokal, das heißt ohne eine bestehende Netzwerkverbindung möglich sein.
 
@@ -69,7 +69,7 @@ Den einzelnen Arbeitspaketen und Teilaufgaben sind weitere, kleinere Arbeitspake
 
 % xxx @Dennis groeßer machen!
 \begin{figure}[!h]
-	\includegraphics[width=\textwidth,height=50em,keepaspectratio]{img/projektablaufplan-psp1}
+	\includegraphics[width=\textwidth,height=50em,keepaspectratio]{img/projektablaufplan-psp}
 	\caption[Projektstrukturplan]{Projektstrukturplan\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
@@ -121,7 +121,7 @@ GANTT Diagramme sind im Projektmanagement ein gängiges Tool, um Aktivitäten in
 
 % xxx @Dennis groeßer machen!
 \begin{figure}[!h]
-	\includegraphics[width=\textwidth,height=50em,keepaspectratio]{img/projektablaufplan-gantt1}
+	\includegraphics[width=\textwidth,height=50em,keepaspectratio]{img/projektablaufplan-gantt}
 	\caption[GANTT-Diagramm]{GANTT-Diagramm\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
@@ -344,26 +344,31 @@ Gründe für die Entscheidung Dialoge, statt weitere Aktivitäten zu verwenden, 
 	\endfoot
 
 	\textbf{Tim Schwenke} 
-		& Einrichtung, Verwaltung und Bereitstellung der Versionsverwaltung \\
+		& Einrichtung, Verwaltung und Bereitstellung der Versionsverwaltung mit Git \\
 		& Architekturentwurf der Kalkulationsorchestrierung \\
+		& Gestalten der Operanden \\
 		& LaTeX-Beauftragter \\
 		& Projekttagebuch führen \\
 		& Dokumentation anfertigen \\
 	\hline
 	\textbf{Hendrik Falk}
 		& Gruppenweite Koordination des Projektes \\
-		& Erstellung der simpelen Berechnungen und Sondertasten \\
+		& Erstellung der simplen Berechnungen \\
 		& Architekturentwurf der Front-End- und Back-End-Kommunikation \\
 		& Projekttagebuch führen \\
 		& Dokumentation anfertigen \\
 	\hline
- 	\textbf{Tim Meinerzhagen}
+ 	\textbf{Tim Jonas Meinerzhagen}
 		& Planung und Implementierung der Java-Schnittstelle \\
+		& Implementieren der einzelnen Operanden \\
 		& Auswahl der zu verwendenden Math Bibliothek \\
+		& Implementierung der Sondertasten im Model \\
 		& Projekttagebuch führen \\
 		& Dokumentation anfertigen \\
 	\hline
 	\textbf{Getuart Istogu}
+		& Model: Matrizen und Polynomfunktionen \\
+		& Implementierung Util Funktionen im Model \\
 		& Spezifikation und Dokumentation des Datenmodells und der Datenschnittstellen \\
 		& Projekttagebuch führen \\
 		& Dokumentation anfertigen \\
@@ -372,6 +377,7 @@ Gründe für die Entscheidung Dialoge, statt weitere Aktivitäten zu verwenden, 
 		& Planung der Navigation zwischen den Activities und die einen Activity-Wechsel auslösenden Ereignisse \\
 		& Projektplanung \\
 		& Konzeptionierung der Benutzeroberfläche \\
+		& Implementierung der Operandeneingabe in der GUI \\
 		& Paper Prototype \\
 		& Projekttagebuch führen \\
 		& Dokumentation anfertigen \\
@@ -379,16 +385,20 @@ Gründe für die Entscheidung Dialoge, statt weitere Aktivitäten zu verwenden, 
 	\textbf{Tom Bockhorn}
 		& Planung der Navigation zwischen den Activities und die einen Activity-Wechsel auslösenden Ereignisse \\
 		& Konzeptionierung der Benutzeroberfläche \\
+		& Übertragung der Struktur der Benutzeroberfläche in Android Studio \\
 		& Projekttagebuch führen \\
 		& Dokumentation anfertigen \\
 	\hline
 	\textbf{Khang Pham}
 		& Verantwortlichkeit für Erscheinungsbild der Arbeit, Vollständigkeit gemäß Gliederungsstruktur, Formatierung des Quellcodes im Anhang. \\
 		& Konzeptionierung der Benutzeroberfläche \\
+		& Hilfe bei der Implementierung in der GUI \\
 		& Projekttagebuch führen \\
 		& Dokumentation anfertigen \\
 	\hline
 	\textbf{Jannis Luca Keienburg}
+		& Model: Funktionen \\
+		& Stackgestaltung \\
 		& LaTeX-Beauftragter \\
 		& Projekttagebuch führen \\
 		& Dokumentation anfertigen \\
