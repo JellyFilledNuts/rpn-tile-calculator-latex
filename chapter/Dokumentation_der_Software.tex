@@ -259,7 +259,7 @@ Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFractio
 	\includegraphics[width=0.6\columnwidth]{img/xml_InputDouble}
 	\caption[XML-Designer für die Klassen InputDouble]{XML-Designer für die Klasse InputDouble\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{eigene Darstellung in Android Studio}
 \FloatBarrier
 
 Die korrespondierende Java-Datei liest nach dem Bestätigen des Buttons den Wert aus dem \code{EditText} und kreiert ein \code{ODouble}-Objekt. Dieses Objekt wird mit seinem zugehörigen \code{TileMapping} einem \code{TileScheme} zugewiesen. Das vorher ausgewählte \code{Tile} aktualisiert seinen \code{TileScheme}. Abschließend schließt der Konstruktor die Dialog über die Methode \code{dismissAll()}, die vorher erklärt wurde.
@@ -272,7 +272,7 @@ Diese Klasse deckt die Funktionalität der Benutzereingabe von Brüchen. Dabei �
 \includegraphics[width=0.5\columnwidth]{img/xml_InputFraction}
 \caption[XML-Designer für die Klasse InputFraction]{XML-Designer für die Klasse InputFraction\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{eigene Darstellung in AndroidStudio}
 \FloatBarrier
 
 \paragraph{Klasse: InputPolynomial [Gentges]}
@@ -283,20 +283,23 @@ Die Klasse ist grundsätzlich gleich aufgebaut, wie die vorherigen Eingabeklasse
 	\includegraphics[width=0.6\columnwidth]{img/xml_InputPolynomial}
 	\caption[XML-Designer für die Klasse InputPolynomial]{XML-Designer für die Klasse InputPolynomial\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{eigene Darstellung in AndroidStudio}
 \FloatBarrier
+\clearpage
 
-\paragraph{Darstellung der Beziehungen von den Menüsteuerungsklassen [Istogu]}
+\paragraph{Die Beziehungen von den Menüsteuerungsklassen [Istogu]}
 
 \begin{figure}[h]
 	\includegraphics[width=\columnwidth]{img/klassendiagramm_Menusteuerung}
 	\caption[Klassendiagramm: Menüsteuerung]{Klassendiagramm: Menüsteuerung\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
-Wie aus dem Klassendiagramm entnommen werden kann, wurde die Menüsteuerung soweit wie möglich dynamisch gestaltet. Somit wird die Erweiterbarkeit vereinfacht und es können dadurch weitere Funktionalitäten bzgl. Operanden bzw. Operationen hinzugefügt werden. Zusätzlich sind die einzelne Menüs wie folgt gestaltet. Die einzelne Menüs bauen aufeinander und somit ist der Ablauf der einzelnen Menüs definiert. 
+Wie aus dem Klassendiagramm entnommen werden kann, wurde die Menüsteuerung soweit wie möglich dynamisch gestaltet. Somit können dadurch weitere Funktionalitäten bzgl. Operanden bzw. Operationen hinzugefügt werden.  Zusätzlich sind die einzelne Menüs wie folgt gestaltet. Die einzelne Menüs bauen aufeinander und somit ist der Ablauf der einzelnen Menüs definiert. Abhängig von der ausgewählte Kachel werden \code{OnClickListener} gesetzt. Dies ist unter anderem aus dem Klassendiagramm bei der Implementierung von \code{View.OnClickListener} in der Klasse \code{DialogMenu} zu sehen. 
 \clearpage
 
-\subsection{Dokumentation der Models }
+\subsection{Dokumentation der Models}
 
 \subsubsection{Operanden [Schwenke]}
 
@@ -714,7 +717,7 @@ Wenn für die Funktion sowohl der linksseitige als auch der rechtsseitige Grenzw
 	\includegraphics[width=\columnwidth]{img/limes-funktionen}
 	\caption[Limes Funktion]{Limes Funktion\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{Darstellung von der Googlesuche}
 
 Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweisen definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode \code{limit(…)} berücksichtigt.
 
@@ -733,6 +736,7 @@ Darauf aufbauend wurde ein Struktogramm angefertigt, auch als Nassi-Shneiderman-
 	\caption[Struktogramm für die Methode limit]{Struktogramm für die Methode limit\footnotemark}
 \end{figure}
 \footnotetext{eigene Darstellung}
+\FloatBarrier
 
 
 \begin{figure}[!h]
@@ -762,11 +766,11 @@ Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-K
 \end{enumerate}
 
 \paragraph{Klasse: Sinus [Keienburg]}
-\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+\textbf{Eingabeparameter: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+\textbf{Rückgabewerte: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode Math.toRadians in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.sin der Sinus berechnet und als ODouble zurückgegeben.  
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp \code{ODouble} übergeben. Der Winkel wird in einen Wert des Typs \code{Double} konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode \code{Math.sin} der Sinus berechnet und als \code{ODouble} zurückgegeben.  
 
 Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Sinus berechnet. 
 
@@ -779,11 +783,11 @@ Unit-Tests für die Klasse:
 Die Tests waren erfolgreich.
 
 \paragraph{Klasse: ArcSinus [Keienburg]}
-\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+\textbf{Eingabeparameter: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+\textbf{Rückgabewerte: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode Math.toRadians in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.asin die Inverse des Sinus berechnet und als ODouble zurückgegeben.  
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp \code{ODouble} übergeben. Der Winkel wird in einen Wert des Typs \code{Double} konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode \code{Math.asin} die Inverse des Sinus berechnet und als \code{ODouble} zurückgegeben.  
 
 Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Arkussinus berechnet. 
 
@@ -796,11 +800,11 @@ Unit-Tests für die Klasse:
 Die Tests waren erfolgreich.
 
 \paragraph{Klasse: Cosinus [Keienburg]}
-\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+\textbf{Eingabeparameter: } Einzelner Wert des Typs \code{ODouble}
 	
-\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+\textbf{Rückgabewerte: } Einzelner Wert des Typs \code{ODouble}
 	
-\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode Math.toRadians in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.cos der Cosinus berechnet und als ODouble zurückgegeben.  Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Cosinus berechnet. 
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp \code{ODouble} übergeben. Der Winkel wird in einen Wert des Typs \code{Double} konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode \code{Math.cos} der Cosinus berechnet und als \code{ODouble} zurückgegeben.  Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Cosinus berechnet. 
 	
 Unit-Tests für die Klasse: 	
 \begin{enumerate}
@@ -811,11 +815,11 @@ Unit-Tests für die Klasse:
 Die Tests waren erfolgreich.
 
 \paragraph{Klasse: ArcCosinus [Keienburg]}
-\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+\textbf{Eingabeparameter: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+\textbf{Rückgabewerte: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode Math.toRadians in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.acos die Inverse des Cosinus berechnet und als ODouble zurückgegeben.  
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp \code{ODouble} übergeben. Der Winkel wird in einen Wert des Typs \code{Double} konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode \code{Math.acos} die Inverse des Cosinus berechnet und als \code{ODouble} zurückgegeben.  
 
 Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Arkuscosinus berechnet. 
 
@@ -828,11 +832,11 @@ Unit-Tests für die Klasse:
 Die Tests waren erfolgreich.
 
 \paragraph{Klasse: Tangens [Keienburg]}
-\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+\textbf{Eingabeparameter: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+\textbf{Rückgabewerte: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode Math.tan der Tangens berechnet und als ODouble zurückgegeben.  
+\textbf{Beschreibung: } Der Klasse wird ein Winkel vom Datentyp \code{ODouble} übergeben. Der Winkel wird in einen Wert des Typs \code{Double} konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode \code{Math.tan} der Tangens berechnet und als \code{ODouble} zurückgegeben.  
 
 Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Tangens berechnet. 
 
@@ -845,11 +849,11 @@ Unit-Tests für die Klasse:
 Die Tests waren erfolgreich.
 
 \paragraph{Klasse: ArcTangens [Keienburg]}
-\textbf{Eingabeparameter: } Einzelner Wert des Typs ODouble
+\textbf{Eingabeparameter: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Rückgabewerte: } Einzelner Wert des Typs ODouble
+\textbf{Rückgabewerte: } Einzelner Wert des Typs \code{ODouble}
 
-\textbf{Beschreibung: }Der Klasse wird ein Winkel vom Datentyp ODouble übergeben. Der Winkel wird in einen Wert des Typs Double konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode \code{Math.atan} die Inverse des Tangens berechnet und als ODouble zurückgegeben. 
+\textbf{Beschreibung: }Der Klasse wird ein Winkel vom Datentyp \code{ODouble} übergeben. Der Winkel wird in einen Wert des Typs \code{Double} konvertiert, anschließend mithilfe der Methode \code{Math.toRadians} in ein Winkelmaß. Von diesem Winkelmaß wird dann mit der Methode \code{Math.atan} die Inverse des Tangens berechnet und als \code{ODouble} zurückgegeben. 
  
 Die Klasse wird über eine Öffentliche Methode aufgerufen. In der Methode selbst wird der Arkustangens berechnet. 
 
@@ -863,12 +867,13 @@ Die Tests waren erfolgreich.
 
 \subsubsection{Lösen von Gleichungssystemen [Istogu]}
 
-Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse „MatrixUtil“ mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist…
+Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse \code{MatrixUtil} mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist.
 
 \begin{figure}[h]
 	\includegraphics[scale=1]{img/gleichungssystem-loesen}
 	\caption[Aufbau lineares Gleichungssystem]{Aufbau lineares Gleichungssystem\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
 
 lösen. Dabei ist A eine quadratische Matrix (n x n) und b ein Vektor (n).
 Die Klasse besitzt eine „on“ Methode, die dann solveLinearSystem() aufruft. Dabei erwartet die Methode „on“ jeweils ein Objekt des Typs OMatrix und OTuple und gibt ein OTuple zurück. 
@@ -877,13 +882,15 @@ Die Klasse besitzt eine „on“ Methode, die dann solveLinearSystem() aufruft. 
 	\includegraphics[width=\columnwidth]{img/solveLinearSystem}
 	\caption[Struktogramm für die Methode solveLinearSystem]{Struktogramm für die Methode solveLinearSystem\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
 
 Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überprüfung der Parameter nach ihrer richtigen Form. 
 
 Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
 \begin{enumerate}
-	\item Eingabe: Matrix: xxx  Vektor: xxx Erwartetes Ergebnis: xxx
-	\item Eingabe: Matrix: xxx Vektor: xxx Erwartetes Ergebnis: xxx
+	\item Eingabe - Matrix: $$ A= \left(\begin{matrix}3&-7&0&-6\\2&-8&-1&4\\0&9&-7&9\\-4&5&-3&-8\end{matrix}\right) $$
+  Eingabe - Vektor: $$ b= \left(\begin{matrix} 8\\1\\-7\\-1\end{matrix}\right) $$ Erwartetes Ergebnis: $$ x= \left(\begin{matrix} 1.197\\-0.1285\\0.0828\\-0.5849\end{matrix}\right) $$
+	
 \end{enumerate}
 
 
