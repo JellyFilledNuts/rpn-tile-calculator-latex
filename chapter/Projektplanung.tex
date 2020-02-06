@@ -274,10 +274,7 @@ Auf Grund der tabellenähnlichen Struktur der zu speichernden Daten wurde zum Sp
 
 \clearpage
 
-\subsubsection{Planung des Presenters [Tom]}
-
-XXX
-
+\subsubsection{Planung des Presenters [Meinerzhagen]}
 Der Presenter agiert als Bindeglied zwischen der View und dem Model, sodass alle Bereiche ihre Funktionalitäten im vollen Maß erfüllen können und eine Separierung der Anwenderschnittstelle und der Geschäftslogik gewährleistet werden kann. Der Presenter koordiniert die Kommunikation zwischen View und Model, also steuert Rechnungen im Backend und sorgt für die korrekte Darstellung der Ergebnisse in den einzelnen Kacheln der View.
 
 Mit der View kommuniziert er über eine Container Klasse (XXX), welche die einzelnen Kacheln koordiniert. Aufrufe der View in Richtung des Presenters werden durch Events realisiert. Dabei wird die in Android native Listener Funktionalität verwendet, wobei der Presenter als \code{OnClickListener} dient. Er ist sich über die Instanz der Container Klasse bewusst und interagiert direkt mit dessen Attributen und Methoden.
