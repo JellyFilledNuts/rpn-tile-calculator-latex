@@ -34,13 +34,6 @@
 \input{chapter/Titelseite}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Draft-Einstellungen
-%%
-%% Für die finale Version auskommentieren!
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \fancyhead[L]{\color{red} Stand: \today~-~\currenttime}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Verzeichnisse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -48,13 +41,13 @@
 \setcounter{tocdepth}{3}
 \tableofcontents\newpage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Verzeichnisse
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % Abbildungsverzeichnis
 \fancyhead[R]{\listfigurename}
 \listoffigures\newpage
+
+% Tabellenverzeichnis
+\fancyhead[R]{\listtablename}
+\listoftables\newpage
 
 % Quelltextverzeichnis
 \fancyhead[R]{\lstlistlistingname}
