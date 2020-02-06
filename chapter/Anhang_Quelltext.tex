@@ -20,6 +20,7 @@ import java.util.List;
 /**
  * Summary: The framework for defining Actions. Actions are able to work with operands from the stack or executor functions.
  * Author:  Tim Schwenke
+ * Date:    2020/01/04
  */
 public abstract class Action {
 
@@ -49,7 +50,7 @@ public abstract class Action {
         return with(target);
     }
 
-	/**
+    /**
      * Leverages reflection for matching given arguments to a calculation method.
      *
      * @param operands List of operands.
@@ -103,6 +104,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Defines the arc Cosinus action.
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/04
  */
 
 public class ArcCosinus extends Action {
@@ -111,7 +113,7 @@ public class ArcCosinus extends Action {
     private static final ArcCosinus ARC_COSINUS = new ArcCosinus();
 
     /*
-     * Singleton for COSINUS
+     * Singleton for ARc COSINUS
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static ArcCosinus getInstance() { return ARC_COSINUS; }
@@ -137,6 +139,53 @@ public class ArcCosinus extends Action {
 }
 \end{lstlisting}    
 
+\begin{lstlisting}[caption=ArcCosinusTest (Keienburg),label=list:ArcCosinusTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the arc cosinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class ArcCosinusTest {
+    private ArcCosinus ARC_COSINUS = ArcCosinus.getInstance();
+
+    @Test
+    public void arcCosinusAngle_isCorrect1() {
+        System.out.println(ARC_COSINUS.on(
+                new ODouble(10)));
+        assertTrue(ARC_COSINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(1.3953649341158527))
+        );
+    }
+
+    @Test
+    public void arcCosinusAngle_isCorrect2() {
+        System.out.println(ARC_COSINUS.on(
+                new ODouble(45)));
+        assertTrue(ARC_COSINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.6674572160283838))
+        );
+    }
+
+    @Test
+    public void arcCosinusAngle_isCorrect3() {
+        System.out.println(ARC_COSINUS.on(
+                new ODouble(-45)));
+        assertTrue(ARC_COSINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.6674572160283838))
+        );
+    }
+}
+\end{lstlisting} 
+
 \begin{lstlisting}[caption=ArcSinus (Keienburg),label=list:ArcSinus,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
@@ -149,6 +198,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Defines the arc Sinus action.
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/04
  */
 
 public class ArcSinus extends Action {
@@ -157,7 +207,7 @@ public class ArcSinus extends Action {
     private static final ArcSinus ARC_SINUS = new ArcSinus();
 
     /*
-     * Singleton for SINUS
+     * Singleton for ARC SINUS
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static ArcSinus getInstance() { return ARC_SINUS; }
@@ -178,6 +228,53 @@ public class ArcSinus extends Action {
 }
 \end{lstlisting}    
 
+\begin{lstlisting}[caption=ArcSinusTest (Keienburg),label=list:ArcSinusTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the arc sinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class ArcSinusTest {
+    private ArcSinus ARC_SINUS = ArcSinus.getInstance();
+
+    @Test
+    public void arcSinusAngle_isCorrect1() {
+        System.out.println(ARC_SINUS.on(
+                new ODouble(10)));
+        assertTrue(ARC_SINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.17543139267904395))
+        );
+    }
+
+    @Test
+    public void arcSinusAngle_isCorrect2() {
+        System.out.println(ARC_SINUS.on(
+                new ODouble(45)));
+        assertTrue(ARC_SINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.9033391107665127))
+        );
+    }
+
+    @Test
+    public void arcSinusAngle_isCorrect3() {
+        System.out.println(ARC_SINUS.on(
+                new ODouble(-45)));
+        assertTrue(ARC_SINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.9033391107665127))
+        );
+    }
+}
+\end{lstlisting}    
+
 \begin{lstlisting}[caption=ArcTangens (Keienburg),label=list:ArcTangens,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
@@ -190,6 +287,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Defines the arc Tangens action.
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/04
  */
 
 public class ArcTangens  extends Action {
@@ -198,7 +296,7 @@ public class ArcTangens  extends Action {
     private static final ArcTangens ARC_TANGENS = new ArcTangens();
 
     /*
-     * Singleton for SINUS
+     * Singleton for ARC TANGENS
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static ArcTangens getInstance() { return ARC_TANGENS; }
@@ -212,9 +310,56 @@ public class ArcTangens  extends Action {
         return super.with(operands);
     }
 
-    // Calculates the tangens with a given angle.
+    // Calculates the arc tangens with a given angle.
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble angle) {
         return new ODouble(Math.atan(Math.toRadians((angle.getDouble()))));
+    }
+}
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=ArcTangensTest (Keienburg),label=list:ArcTangensTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the arc tangens function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class ArcTangensTest {
+    private ArcTangens ARC_TANGENS = ArcTangens.getInstance();
+
+    @Test
+    public void arcTangensAngle_isCorrect1() {
+        System.out.println(ARC_TANGENS.on(
+                new ODouble(10)));
+        assertTrue(ARC_TANGENS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.1727924348551592))
+        );
+    }
+
+    @Test
+    public void arcTangensAngle_isCorrect2() {
+        System.out.println(ARC_TANGENS.on(
+                new ODouble(45)));
+        assertTrue(ARC_TANGENS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.6657737500283538))
+        );
+    }
+
+    @Test
+    public void arcTangensAngle_isCorrect3() {
+        System.out.println(ARC_TANGENS.on(
+                new ODouble(-45)));
+        assertTrue(ARC_TANGENS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.6657737500283538))
+        );
     }
 }
 \end{lstlisting}    
@@ -225,6 +370,7 @@ package de.fhdw.wip.rpntilecalculator.model.calculation;
 /**
  * Summary: Main Exception for a failed Calculation
  * Author:  Tim Schwenke
+ * Date:    2020/01/04
  */
 public class CalculationException extends Exception {
 
@@ -242,6 +388,7 @@ public class CalculationException extends Exception {
     public CalculationException() {
         this("Not supported");
     }
+
 }
 \end{lstlisting}    
 
@@ -257,6 +404,7 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Defines the Cosinus action.
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/04
  */
 @SuppressWarnings({"unused"})
 public class Cosinus extends Action {
@@ -286,6 +434,50 @@ public class Cosinus extends Action {
 }
 \end{lstlisting}    
 
+\begin{lstlisting}[caption=CosinusTest (Keienburg),label=list:CosinusTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the cosinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class CosinusTest {
+    private Cosinus COSINUS = Cosinus.getInstance();
+
+    @Test public void cosinusAngle_isCorrect1() {
+        System.out.println(COSINUS.on(
+                new ODouble(10)));
+        assertTrue(COSINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.984807753012208))
+        );
+    }
+
+    @Test public void cosinusAngle_isCorrect2() {
+        System.out.println(COSINUS.on(
+                new ODouble(45)));
+        assertTrue(COSINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.7071067811865476))
+        );
+    }
+
+    @Test public void cosinusAngle_isCorrect3() {
+        System.out.println(COSINUS.on(
+                new ODouble(-45)));
+        assertTrue(COSINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(2.4741354375614093))
+        );
+    }
+}
+\end{lstlisting} 
+
 \begin{lstlisting}[caption=Derivation (Keienburg),label=list:Derivation,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
@@ -300,6 +492,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the derivate of a function
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/14
  */
 
 public class Derivation extends Action {
@@ -346,12 +539,68 @@ public class Derivation extends Action {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=HighAndLowPoints (Keienburg),label=list:HighAndLowPoints,language=Java]
+\begin{lstlisting}[caption=DerivationTest (Keienburg),label=list:DerivationTest,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.junit.Test;
 
-import org.intellij.lang.annotations.JdkConstants;
+import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the derivation
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
+
+public class DerivationTest {
+    private Derivation DERIVATION = Derivation.getInstance();
+
+    @Test
+    public void derivation_isCorrect1() {
+        double[] functionValues = new double[] {2, 4, 6};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {4, 4};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+
+    @Test
+    public void derivation_isCorrect2() {
+        double[] functionValues = new double[] {7, 9};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {7};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+
+    @Test
+    public void derivation_isCorrect3() {
+        double[] functionValues = new double[] {12, -3, 12};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {24, -3};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+
+    @Test
+    public void derivation_isCorrect5() {
+        double[] functionValues = new double[] {1.5, 2, 7};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[] {2,25, 2};
+        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
+        assertEquals(DERIVATION.on(function), derivation);
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=HighAndLowPoints (Keienburg),label=list:HighAndLowPoints,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -362,6 +611,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the high and the low points of a function( up to third grade)
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/16
  */
 
 public class HighAndLowPoints extends Action {
@@ -411,16 +661,13 @@ public class HighAndLowPoints extends Action {
         double [] functionAsDouble = getFunctionAsDouble(oPolynom);
 
         // Calculates the y values of the zeros.
-        double [] valuesXY = new double[] {};
+        double [] valuesXY = new double[2*zeros.length];
         int position = -1;
         for(int counter = 0; counter < zeros.length; counter++)
         {
             double currentZero = zeros[counter];
             double yValue = 0;
-            for(int counter2 = 0; counter < functionAsDouble.length; counter2++)
-            {
-                yValue += functionAsDouble[counter] * Math.pow(currentZero,(functionAsDouble.length - counter2 - 1));
-            }
+            yValue = functionAsDouble[0] + functionAsDouble[1] * currentZero + Math.pow(currentZero, 2) * functionAsDouble[2];
             position++;
             valuesXY[position] = currentZero;
             position++;
@@ -430,6 +677,55 @@ public class HighAndLowPoints extends Action {
     }
 }
 \end{lstlisting}    
+
+\begin{lstlisting}[caption=HighAndLowPointsTest (Keienburg),label=list:HighAndLowPointsTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+
+import static org.junit.Assert.assertEquals;
+
+/*
+ * Summary: Unit test for the calculation of high and low points
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
+
+public class HighAndLowPointsTest {
+    private HighAndLowPoints HIGHANDLOWPOINTS = HighAndLowPoints.getInstance();
+
+    @Test
+    public void highAndLowPoints_isCorrect1() {
+        double[] functionValues = new double[]{2, 4, 6};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[]{-1, 4};
+        OTuple extremPoints = new OTuple(resultValues);
+        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
+    }
+
+    @Test
+    public void highAndLowPoints_isCorrect2() {
+        double[] functionValues = new double[]{3, 6,-4};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[]{-1, -7};
+        OTuple extremPoints = new OTuple(resultValues);
+        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
+    }
+
+    @Test
+    public void highAndLowPoints_isCorrect3() {
+        double[] functionValues = new double[]{-2, 4, 12};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        double[] resultValues = new double[]{1, 14};
+        OTuple extremPoints = new OTuple(resultValues);
+        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
+    }
+}
+\end{lstlisting} 
 
 \begin{lstlisting}[caption=Integral (Istogu),label=list:Integral,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
@@ -447,6 +743,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Calculate the antiderivative and integral
  * Author:  Getuart Istogu
+ * Date:    2020/01/27
  */
 
 public class Integral extends Action {
@@ -523,6 +820,7 @@ import static org.junit.Assert.*;
 /*
  * Summary: Test for the class 'Integral'
  * Author:  Getuart Istogu
+ * Date:    2020/01/27
  */
 
 public class IntegralTest {
@@ -574,6 +872,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Determine limit
  * Author:  Getuart Istogu
+ * Date:    2020/01/04
  */
 public class Limes extends Action {
 
@@ -676,6 +975,7 @@ import static org.junit.Assert.assertEquals;
 /*
  * Summary: Test for the class 'Limes'
  * Author:  Getuart Istogu
+ * Date:    2020/01/27
  */
 
 public class LimesTest {
@@ -712,6 +1012,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the natural logarithm.
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/19
  */
 public class Logarithm extends Action {
 
@@ -747,7 +1048,100 @@ public class Logarithm extends Action {
         return new ODouble(Math.log(logartihmOf.getDouble()) / Math.log(base.getDouble()));
     }
 }
+
 \end{lstlisting}    
+
+\begin{lstlisting}[caption=LogarithmTest (Keienburg),label=list:LogarithmTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the natural logarithm and logatithm with specific base
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class LogarithmTest {
+    private Logarithm LOGARITHM = Logarithm.getInstance();
+
+    @Test
+    public void naturalLogarithm_isCorrect1() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(10)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(10)).equalsValue(new ODouble(2.302585092994046))
+        );
+    }
+
+    @Test
+    public void naturalLogarithm_isCorrect2() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(5)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(5)).equalsValue(new ODouble(1.6094379124341003))
+        );
+    }
+
+    @Test
+    public void naturalLogarithm_isCorrect3() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(97)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(97)).equalsValue(new ODouble(4.574710978503383))
+        );
+    }
+
+    @Test
+    public void naturalLogarithm_isCorrect4() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(Math.exp(1))));
+        assertTrue(LOGARITHM.on(
+                new ODouble(Math.exp(1))).equalsValue(new ODouble(1))
+        );
+    }
+
+    @Test
+    public void logarithmOfChoosenBase_isCorrect1() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(5),
+                new ODouble(10)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(5),
+                new ODouble(10))
+                .equalsValue(new ODouble(1.4306765580733933))
+        );
+    }
+
+    @Test
+    public void logarithmOfChoosenBase_isCorrect2() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(10),
+                new ODouble(10)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(10),
+                new ODouble(10))
+                .equalsValue(new ODouble(1.0))
+        );
+    }
+
+    @Test
+    public void logarithmOfChoosenBase_isCorrect3() {
+        System.out.println(LOGARITHM.on(
+                new ODouble(Math.exp(1)),
+                new ODouble(10)));
+        assertTrue(LOGARITHM.on(
+                new ODouble(Math.exp(1)),
+                new ODouble(10))
+                .equalsValue(new ODouble(2.302585092994046))
+        );
+    }
+}
+\end{lstlisting} 
 
 \begin{lstlisting}[caption=Logarithm10 (Keienburg),label=list:Logarithm10,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
@@ -758,8 +1152,9 @@ import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
- * Summary: A Class that can calculate the natural logarithm.
+ * Summary: A Class that can calculate the logarith to the base of 10. 
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/19
  */
 public class Logarithm10 extends Action {
 
@@ -790,6 +1185,51 @@ public class Logarithm10 extends Action {
 }
 \end{lstlisting}  
 
+\begin{lstlisting}[caption=Logarithm10Test (Keienburg),label=list:Logarithm10Test,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the logarithm with base 10. 
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class Logarithm10Test {
+    private Logarithm10 LOGARITHM10 = Logarithm10.getInstance();
+
+    @Test
+    public void logarithm10_isCorrect1() {
+        System.out.println(LOGARITHM10.on(
+                new ODouble(10)));
+        assertTrue(LOGARITHM10.on(
+                new ODouble(10)).equalsValue(new ODouble(1.0))
+        );
+    }
+
+    @Test
+    public void logarithm10_isCorrect2() {
+        System.out.println(LOGARITHM10.on(
+                new ODouble(5)));
+        assertTrue(LOGARITHM10.on(
+                new ODouble(5)).equalsValue(new ODouble(0.6989700043360189))
+        );
+    }
+
+    @Test
+    public void logarithm10_isCorrect3() {
+        System.out.println(LOGARITHM10.on(
+                new ODouble(97)));
+        assertTrue(LOGARITHM10.on(
+                new ODouble(97)).equalsValue(new ODouble(1.9867717342662448))
+        );
+    }
+}
+\end{lstlisting} 
+
 \begin{lstlisting}[caption=MatrixUtil (Istogu),label=list:MatrixUtil,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
@@ -804,6 +1244,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: Solving systems of linear equations with "LR decomposition with column pivot search"
  * Author:  Getuart Istogu
+ * Date:    2020/01/27
  */
 
 public class MatrixUtil extends Action {
@@ -819,7 +1260,7 @@ public class MatrixUtil extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull OTuple on (@NotNull OMatrix A, OTuple b) {
+    @Contract(pure = true) @NotNull OTuple on (@NotNull OMatrix A, @NotNull OTuple b) throws CalculationException {
         return solveLinearSystem(A, b);
     }
     /**
@@ -828,15 +1269,16 @@ public class MatrixUtil extends Action {
      * @param b Solution vector
      * @return Returns the vector 'x'
      */
-    public OTuple solveLinearSystem(OMatrix A, OTuple] b)
+    public OTuple solveLinearSystem(@NotNull OMatrix A, OTuple b) throws CalculationException
     {
-        if(A.getMatrix().isSquare()) { 
-        	if (b.getTuple().length == A.getMatrix().getRowDimension()) {
-        		return new OTuple(solveLGSForX(A.getMatrix().getData(), b.getTuple()));
-        	}
-        	throw new CalculationException("A should have the same number of rows/columns as b values.");
-         }
+        if(A.getMatrix().isSquare()) {
+            if (b.getTuple().length == A.getMatrix().getRowDimension()) {
+                return new OTuple(solveLGSForX(A.getMatrix().getData(), b.getTuple()));
+            }
+            throw new CalculationException("A should have the same number of rows/columns as b values.");
+        }
         throw new CalculationException("A isn't a square matrix");
+
     }
 
     /**
@@ -844,7 +1286,7 @@ public class MatrixUtil extends Action {
      * @param A The linear system in double[][]
      * @return
      */
-    private int[] pivot(double A[][])
+    private int[] pivot(@NotNull double A[][])
     {
         int n = A.length;
         int[] pivot = new int[n];
@@ -914,12 +1356,14 @@ package de.fhdw.wip.rpntilecalculator.model.calculation;
 import org.junit.Test;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.OMatrix;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 
 import static org.junit.Assert.assertEquals;
 
 /*
  * Summary: Test for the class 'MatrixUtil'
  * Author:  Getuart Istogu
+ * Date:    2020/01/27
  */
 
 public class MatrixUtilTest {
@@ -934,16 +1378,21 @@ public class MatrixUtilTest {
                 {-4, 5, -3, -8}};
 
         OMatrix aMatrix = new OMatrix(A);
-        double[] b = {8, 1, -7, -1};
+        OTuple b = new OTuple(new double[]{8, 1, -7, -1});
 
         double[] exptectedX = {1.1970139565076277, -0.12852969814995122, 0.08276533592989294, -0.5848750405712432};
 
-        double[] x = MATRIX_UTIL.solveLinearSystem(aMatrix, b).getTuple();
+        OTuple x = new OTuple();
+        try {
+            x = MATRIX_UTIL.solveLinearSystem(aMatrix, b);
+        } catch (CalculationException e) {
+            e.printStackTrace();
+        }
 
-        assertEquals(x[0], exptectedX[0], 0.001);
-        assertEquals(x[1], exptectedX[1], 0.001);
-        assertEquals(x[2], exptectedX[2], 0.001);
-        assertEquals(x[3], exptectedX[3], 0.001);
+        assertEquals(x.getTuple()[0], exptectedX[0], 0.001);
+        assertEquals(x.getTuple()[1], exptectedX[1], 0.001);
+        assertEquals(x.getTuple()[2], exptectedX[2], 0.001);
+        assertEquals(x.getTuple()[3], exptectedX[3], 0.001);
     }
 
 }
@@ -966,6 +1415,7 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Defines the Minus click. Lets the user subtract operands.
  * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 public class Minus extends Action {
 
@@ -1073,10 +1523,11 @@ public class Minus extends Action {
     }
 
     //endregion
+
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=MinusTest (Schwenke),label=list:MinusTest,language=Java]
+\begin{lstlisting}[caption=MinusTest (Falk),label=list:MinusTest,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import org.junit.Test;
@@ -1092,10 +1543,13 @@ import static org.junit.Assert.*;
 
 
 /*
- * Summary: Test for the class 'MinusTest'
- * Author:  Tim Schwenke
+ * Summary: Unit test for the action "Minus"
+ * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 
+
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class MinusTest {
 
     private Minus MINUS = Minus.getInstance();
@@ -1252,8 +1706,7 @@ public class MinusTest {
                 new OFraction(1, 1)
         ).equalsValue(new OTuple(0, 1)));
     }
-}
-\end{lstlisting} 
+}\end{lstlisting} 
 
 \begin{lstlisting}[caption=Modulo (Falk),label=list:Modulo,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
@@ -1267,6 +1720,7 @@ import org.jetbrains.annotations.Contract;
 /*
  * Summary: Defines the Modulo click.
  * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 public class Modulo extends Action {
     @NotNull private static final Modulo MODULO = new Modulo();
@@ -1295,7 +1749,7 @@ public class Modulo extends Action {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Plus (Schwenke),label=list:Plus,language=Java]
+\begin{lstlisting}[caption=Plus (Falk),label=list:Plus,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
@@ -1315,7 +1769,8 @@ import java.util.Set;
 
 /*
  * Summary: Defines the Plus click. Lets the user subtract operands.
- * Author:  Tim Schwenke
+ * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 public class Plus extends Action {
 
@@ -1456,7 +1911,7 @@ public class Plus extends Action {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=PlusTest (Schwenke),label=list:PlusTest,language=Java]
+\begin{lstlisting}[caption=PlusTest (Falk),label=list:PlusTest,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import org.junit.Test;
@@ -1471,10 +1926,12 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import static org.junit.Assert.*;
 
 /*
- * Summary: Test for the class 'PlusTest'
- * Author:  Tim Schwenke
+ * Summary: Unit test for the action "Plus"
+ * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 
+@SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 public class PlusTest {
 
     private Plus PLUS = Plus.getInstance();
@@ -1722,6 +2179,7 @@ import org.jetbrains.annotations.Contract;
 /*
  * Summary: Defines the Power click.
  * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 
 public class Power extends Action{
@@ -1817,6 +2275,7 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Defines the Sinus action.
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/04
  */
 public class Sinus extends Action {
 
@@ -1845,6 +2304,48 @@ public class Sinus extends Action {
 }
 \end{lstlisting}    
 
+\begin{lstlisting}[caption=SinusTest (Keienburg),label=list:SinusTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the sinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class SinusTest {
+    private Sinus SINUS = Sinus.getInstance();
+
+    @Test public void sinusAngle_isCorrect1() {
+        System.out.println(SINUS.on(
+                new ODouble(10)));
+        assertTrue(SINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.17364817766693033))
+        );
+    }
+
+    @Test public void sinusAngle_isCorrect2() {
+        System.out.println(SINUS.on(
+                new ODouble(45)));
+        assertTrue(SINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.7071067811865475))
+        );
+    }
+
+    @Test public void sinusAngle_isCorrect3() {
+        System.out.println(SINUS.on(
+                new ODouble(-45)));
+        assertTrue(SINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.7071067811865475))
+        );
+    }
+}
+\end{lstlisting} 
+
 \begin{lstlisting}[caption=Slash (Falk),label=list:Slash,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
@@ -1861,8 +2362,9 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /*
- * Summary: Defines the Slash action.
+ * Summary: Defines the Sinus action.
  * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 public class Slash extends Action {
 
@@ -1995,6 +2497,7 @@ public class Slash extends Action {
     }
 
     //endregion
+
 }
 \end{lstlisting}    
 
@@ -2013,10 +2516,12 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import static org.junit.Assert.*;
 
 /*
- * Summary: Test for the class 'SlashTest'
- * Author:  Tim Schwenke
+ * Summary: Unit test for the action "Slash"
+ * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class SlashTest {
 
     private Slash SLASH = Slash.getInstance();
@@ -2208,6 +2713,7 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Defines the Tangens action.
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/04
  */
 public class Tangens extends Action {
 
@@ -2215,7 +2721,7 @@ public class Tangens extends Action {
     private static final Tangens TANGENS = new Tangens();
 
     /*
-     * Singleton for SINUS
+     * Singleton for TANGENS
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static Tangens getInstance() { return TANGENS; }
@@ -2235,6 +2741,51 @@ public class Tangens extends Action {
     }
 }
 \end{lstlisting}    
+
+\begin{lstlisting}[caption=TangensTest (Keienburg),label=list:TangensTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.junit.Test;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the tangens
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
+public class TangensTest {
+    private Tangens TANGENS = Tangens.getInstance();
+
+    @Test
+    public void tangensAngle_isCorrect1() {
+        System.out.println(TANGENS.on(
+                new ODouble(10)));
+        assertTrue(TANGENS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.17632698070846498))
+        );
+    }
+
+    @Test
+    public void tangensAngle_isCorrect2() {
+        System.out.println(TANGENS.on(
+                new ODouble(45)));
+        assertTrue(TANGENS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.9999999999999999))
+        );
+    }
+
+    @Test
+    public void tangensAngle_isCorrect3() {
+        System.out.println(TANGENS.on(
+                new ODouble(-45)));
+        assertTrue(TANGENS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.9999999999999999))
+        );
+    }
+}
+\end{lstlisting} 
 
 \begin{lstlisting}[caption=Times (Falk),label=list:Times,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
@@ -2256,7 +2807,8 @@ import java.util.Set;
 
 /*
  * Summary: Defines the Times click. Lets the user Multiplies operands.
- * Author:  Hendrik
+ * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 @SuppressWarnings({"unused"})
 public class Times extends Action {
@@ -2500,8 +3052,9 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import static org.junit.Assert.*;
 
 /*
- * Summary: Test for the class 'TimesTest'
- * Author:  Tim Schwenke
+ * Summary: Unit test for the action "Slash"
+ * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 
 public class TimesTest {
@@ -2664,14 +3217,18 @@ package de.fhdw.wip.rpntilecalculator.model.calculation;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
+
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OSet;
 import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
  * Summary: A Class that can calculate the zeros of functions and quadratic functions.
  * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/15
  */
 public class Zeros extends Action {
 
@@ -2686,9 +3243,11 @@ public class Zeros extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull OTuple on(@NotNull OPolynom oPolynom) {
+    @Contract(pure = true) @NotNull OSet on(@NotNull OPolynom oPolynom) throws CalculationException {
         double[] results = calculateZeros(oPolynom);
-        return new OTuple(results);
+        for(double result : results) if(Double.isNaN(result))
+            throw new CalculationException("Could not calculate Zero with " + result);
+        return new OSet(results);
     }
 
     // Function that calculates the zeros when called
@@ -2724,7 +3283,7 @@ public class Zeros extends Action {
     private double[] zerosTypeOne(double [] functionAsDouble)
     {
         double [] zeros = new double[1];
-        zeros[0] = (functionAsDouble[1] * (-1)) / functionAsDouble[0];
+        zeros[0] = (functionAsDouble[0] * (-1)) / functionAsDouble[1];
         return zeros;
     }
 
@@ -2734,16 +3293,76 @@ public class Zeros extends Action {
     private double[] zerosTypeTwo(double [] functionAsDouble)
     {
         double [] zeros = new double[2];
-        zeros[0] = -functionAsDouble[1]
-                - Math.sqrt(((functionAsDouble[1] * functionAsDouble[1]) - (4 * functionAsDouble[0] * functionAsDouble[2])) )
-                / (2 * functionAsDouble[0]);
-        zeros[1] = -functionAsDouble[1]
-                + Math.sqrt(((functionAsDouble[1] * functionAsDouble[1]) - (4 * functionAsDouble[0] * functionAsDouble[2])) )
-                / (2 * functionAsDouble[0]);
+        double part1 = Math.sqrt((Math.pow(functionAsDouble[1], 2) - (4 * functionAsDouble[2] * functionAsDouble[0])));
+        zeros[0] = (-functionAsDouble[1] - part1) / (2 * functionAsDouble[2]);
+        zeros[1] = (-functionAsDouble[1] + part1) / (2 * functionAsDouble[2]);
         return zeros;
     }
 }
 \end{lstlisting}    
+
+\begin{lstlisting}[caption=ZerosTest (Keienburg),label=list:ZerosTest,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.junit.Test;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the calculation of the zeros
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
+
+public class ZerosTest {
+    private Zeros ZEROS = Zeros.getInstance();
+
+    @Test
+    public void zeros_isCorrect1() {
+        double[] functionValues = new double[] {2, 4};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        OTuple result = new OTuple(-2);
+        try {
+            System.out.println(ZEROS.on(function));
+            assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
+                    .equalsValue(result));
+        } catch (CalculationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void zeros_isCorrect2() {
+        double[] functionValues = new double[] {2, 4, 0};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        OTuple result = new OTuple(-2, 0);
+        try {
+            System.out.println(ZEROS.on(function));
+            assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
+                    .equalsValue(result));
+        } catch (CalculationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void zeros_isCorrect3() {
+        double[] functionValues = new double[] {1, 4, -4};
+        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
+        OTuple result = new OTuple(-4.828, 0.828);
+        try {
+            System.out.println(ZEROS.on(function));
+            assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
+                    .equalsValue(result));
+        } catch (CalculationException e) {
+            e.printStackTrace();
+        }
+    }
+}
+\end{lstlisting} 
 
 \begin{lstlisting}[caption=Root (Falk),label=list:Root,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.calculation;
@@ -2759,6 +3378,7 @@ import org.jetbrains.annotations.Contract;
 /*
  * Summary: Defines the Root click.
  * Author:  Hendrik Falk
+ * Date:    2020/01/04
  */
 
 public class Root extends Action{
@@ -2806,8 +3426,9 @@ public class Root extends Action{
     @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix radicand, @NotNull OFraction exponent) {
         return POWER.on(radicand, new ODouble(1/exponent.getDouble()));
     }
-}
 
+
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=RootTest (Pham),label=list:RootTest,language=Java]
@@ -2847,102 +3468,86 @@ public class RootTest {
 \subsubsection{Operands}
 
 \begin{lstlisting}[caption=DoubleComparator (Schwenke),label=list:DoubleComparator,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.operands;
+package de.fhdw.wip.rpntilecalculator.model.calculation;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.Set;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
-/*
- * Summary: Utility to compare Doubles.
+/**
+ * Summary: The framework for defining Actions. Actions are able to work with operands from the stack or executor functions.
  * Author:  Tim Schwenke
+ * Date:    2020/01/04
  */
-public class DoubleComparator {
+public abstract class Action {
 
     /**
-     * Check if two doubles are equal (with a certain margin).
-     * @param d1 First double
-     * @param d2 Second double
-     * @return Boolean
+     * Must be set by inheriting classes of {@link Action} for reflection to work.
      */
-    @Contract(pure = true) public static boolean isEqual(double d1, double d2) {
-        return Math.abs(d1 - d2) < 0.000001;
+    protected Action scopedAction;
+
+    /**
+     * Must be overridden in case the required number of operands is a fixed amount.
+     */
+    protected int[] requiredNumOfOperands = new int[]{-1};
+
+    /**
+     * Leverages reflection for matching given arguments to a calculation method.
+     *
+     * @param operands List of operands.
+     * @return Always a valid Operand.
+     * @throws CalculationException In case the result cannot be computed.
+     */
+    @Contract(pure = true)
+    public @NotNull Operand with(@NotNull List<Operand> operands) throws CalculationException {
+        Operand[] target = new Operand[operands.size()];
+        for (int i = 0; i < target.length; i++) {
+            target[i] = operands.get(i);
+        }
+        return with(target);
     }
 
     /**
-     * Compares two arrays of Double.
-     * @param d1 First double array.
-     * @param d2 Second double array
-     * @return Boolean
+     * Leverages reflection for matching given arguments to a calculation method.
+     *
+     * @param operands List of operands.
+     * @return Always a valid Operand.
+     * @throws CalculationException In case the result cannot be computed.
      */
-    @Contract(pure = true) public static boolean isEqual(
-            @NotNull double[] d1,
-            @NotNull double[] d2
-    ) {
-        if (d1.length != d2.length) return false;
-        if (Arrays.equals(d1, d2)) return true;
+    @Contract(pure = true) public @NotNull Operand with(@NotNull Operand... operands) throws CalculationException {
+        Class[] operandClasses = new Class[operands.length];
+        Operand resultOperand;
 
-        for (int i = 0; i < d1.length; i++)
-            if (!isEqual(d1[i], d2[i])) return false;
+        for (int i = 0; i < operands.length; i++)
+            operandClasses[i] = operands[i].getClass();
 
-        return true;
+        try {
+            resultOperand = (Operand) scopedAction.getClass()
+                    .getDeclaredMethod(
+                            "on",
+                            operandClasses
+                    ).invoke(
+                            scopedAction,
+                            (Object[]) operands
+                    );
+        } catch (RuntimeException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            throw new CalculationException(e.getMessage());
+        }
+
+        if (resultOperand != null) return resultOperand;
+        else throw new CalculationException();
     }
 
     /**
-     * Compares two matrices of doubles for equality.
-     * @param d1 First matrix
-     * @param d2 Second matrix
-     * @return Boolean
+     * @return Number of required operands for the concrete {@link Action}. If {@code -1}
+     * the number of operands required is variable.
      */
-    @Contract(pure = true) public static boolean isEqual(
-            @NotNull double[][] d1,
-            @NotNull double[][] d2
-    ) {
-        if (d1.length != d2.length) return false;
-        for (int i = 0; i < d1.length; i++)
-            if (d1[i].length != d2[i].length) return false;
-
-        for (int i = 0; i < d1.length; i++)
-            if (!isEqual(d1[i], d2[i])) return false;
-
-        return true;
-    }
-
-    /**
-     * Compares two sets of Doubles for equality.
-     * @param d1 First set
-     * @param d2 Second set
-     * @return Boolean
-     */
-    @Contract(pure = true) public static boolean isEqual(
-            @NotNull Set<Double> d1,
-            @NotNull Set<Double> d2
-    ) {
-        Double[] d1Array = new Double[d1.size()];
-        d1.toArray(d1Array);
-
-        Double[] d2Array = new Double[d2.size()];
-        d2.toArray(d2Array);
-
-        double[] d1ArrayPrim = new double[d1.size()];
-        for (int i = 0; i < d1.size(); i++) d1ArrayPrim[i] = d1Array[i];
-
-        double[] d2ArrayPrim = new double[d2.size()];
-        for (int i = 0; i < d1.size(); i++) d2ArrayPrim[i] = d2Array[i];
-
-        return isEqual(d1ArrayPrim, d2ArrayPrim);
-    }
-
-    /**
-     * Check if double is about zero (margin).
-     * @param d Double to check
-     * @return Boolean
-     */
-    @Contract(pure = true) public static boolean isZero(double d) {
-        double delta = 0.00001;
-        return d < delta && d > -1d * delta;
+    public int[] getRequiredNumOfOperands() {
+        return requiredNumOfOperands;
     }
 
 }
@@ -2977,19 +3582,7 @@ public final class DoubleFormatter {
 
 \end{lstlisting} 
 
-\begin{lstlisting}[caption=Element (Schwenke),label=list:Element,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.operands;
-
-/*
- * Summary: Main Element Wrapper for all kinds
- * Author:  Tim Schwenke
- */
-public abstract class Element {
-
-}
-\end{lstlisting}    
-
-\begin{lstlisting}[caption=ODouble (Schwenke),label=list:ODouble,language=Java]
+\begin{lstlisting}[caption=ODouble (Meinerzhagen),label=list:ODouble,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.operands;
 
 import org.apache.commons.math3.primes.Primes;
@@ -2999,7 +3592,8 @@ import org.jetbrains.annotations.Nullable;
 
 /*
  * Summary: Wrapper for the Double Operand
- * Author:  Tim Schwenke
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/12
  */
 public class ODouble extends Operand {
 
@@ -3094,8 +3688,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /*
- * Summary: Wrapper for the Double Operand
+ * Summary: An Empty Operand
  * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/09/21
  */
 public class OEmpty extends Operand {
 
@@ -3145,7 +3740,7 @@ public class OEmpty extends Operand {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=OFraction (Schwenke),label=list:OFraction,language=Java]
+\begin{lstlisting}[caption=OFraction (Meinerzhagen),label=list:OFraction,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.operands;
 
 import org.apache.commons.math3.fraction.Fraction;
@@ -3154,7 +3749,8 @@ import org.jetbrains.annotations.NotNull;
 
 /*
  * Summary: Wrapper for the Fraction Operand
- * Author:  Tim Schwenke
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
 public class OFraction extends Operand {
 
@@ -3231,10 +3827,11 @@ public class OFraction extends Operand {
             return false;
         }
     }
+
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=OMatrix (Schwenke),label=list:OMatrix,language=Java]
+\begin{lstlisting}[caption=OMatrix (Meinerzhagen),label=list:OMatrix,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.operands;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -3248,9 +3845,9 @@ import java.util.regex.Pattern;
 
 /*
  * Summary: Wrapper for the Matrix Operand
- * Author:  Tim Schwenke
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
-@SuppressWarnings("unused")
 public class OMatrix extends Operand {
 
     @NotNull private RealMatrix matrix;
@@ -3349,10 +3946,11 @@ public class OMatrix extends Operand {
         builder.append("]");
         return builder.toString();
     }
+
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=OPolynom (Schwenke),label=list:OPolynom,language=Java]
+\begin{lstlisting}[caption=OPolynom (Meinerzhagen),label=list:OPolynom,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.operands;
 
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
@@ -3362,7 +3960,8 @@ import java.util.ArrayList;
 
 /*
  * Summary: Wrapper for the Polynom Operand
- * Author:  Tim Schwenke
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
 public class OPolynom extends Operand {
 
@@ -3443,7 +4042,7 @@ public class OPolynom extends Operand {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=OSet (Schwenke),label=list:OSet,language=Java]
+\begin{lstlisting}[caption=OSet (Meinerzhagen),label=list:OSet,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.operands;
 
 import org.jetbrains.annotations.NotNull;
@@ -3456,7 +4055,8 @@ import java.util.regex.Pattern;
 
 /*
  * Summary: Every entry can only exist one time
- * Author:  Tim Schwenke
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
 public class OSet extends Operand {
 
@@ -3568,7 +4168,7 @@ public class OSet extends Operand {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=OTuple (Schwenke),label=list:OTuple,language=Java]
+\begin{lstlisting}[caption=OTuple (Meinerzhagen),label=list:OTuple,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.operands;
 
 import org.jetbrains.annotations.NotNull;
@@ -3579,7 +4179,8 @@ import java.util.regex.Pattern;
 
 /*
  * Summary: Wrapper for the Tuple Operand
- * Author:  Tim Schwenke
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
 public class OTuple extends Operand {
 
@@ -3694,7 +4295,7 @@ public class OTuple extends Operand {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Operand (Schwenke),label=list:Operand,language=Java]
+\begin{lstlisting}[caption=Operand (Meinerzhagen),label=list:Operand,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.operands;
 
 import org.jetbrains.annotations.NotNull;
@@ -3702,8 +4303,9 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Main class for all operands that can be used for calculating
  * Author:  Tim Schwenke
+ * Date:    2019/11/12
  */
-public abstract class Operand extends Element {
+public abstract class Operand {
 
     /**
      * Multiplies all values of the {@link Operand} with {@code -1}.
@@ -3724,7 +4326,7 @@ public abstract class Operand extends Element {
 
 \subsubsection{Settings}
 
-\begin{lstlisting}[caption=AllClear (Falk),label=list:AllClear,language=Java]
+\begin{lstlisting}[caption=AllClear (Meinerzhagen),label=list:AllClear,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
@@ -3734,7 +4336,8 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Empties the stack of the presenter
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/26
  */
 public class AllClear extends Setting {
 
@@ -3746,16 +4349,17 @@ public class AllClear extends Setting {
      */
     @Override
     public boolean call() {
-        Presenter.OPERAND_STACK.clear();
-        Presenter.resetInputTerm(null);
-        Presenter.updateStack();
+        Presenter presenter = Presenter.getInstance();
+        presenter.getOperandStack().clear();
+        presenter.resetInputTerm(null);
+        presenter.updateStack();
         return true;
     }
 
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=ClearHistory (Falk),label=list:ClearHistory,language=Java]
+\begin{lstlisting}[caption=ClearHistory (Meinerzhagen),label=list:ClearHistory,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
@@ -3765,7 +4369,8 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Empties the history stack of the presenter
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/26
  */
 public class ClearHistory extends Setting {
 
@@ -3777,15 +4382,15 @@ public class ClearHistory extends Setting {
      */
     @Override
     public boolean call() {
-        Presenter.HISTORY_STACK.clear();
-        Presenter.updateHistoryStack();
+        Presenter presenter = Presenter.getInstance();
+        presenter.getHistoryStack().clear();
+        presenter.updateHistoryStack();
         return true;
     }
 }
-
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=DeleteEntry (Falk),label=list:DeleteEntry,language=Java]
+\begin{lstlisting}[caption=DeleteEntry (Meinerzhagen),label=list:DeleteEntry,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
@@ -3795,7 +4400,8 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Deletes the last input of the stack
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/26
  */
 public class DeleteEntry extends Setting {
 
@@ -3807,26 +4413,30 @@ public class DeleteEntry extends Setting {
      */
     @Override
     public boolean call() {
-        Presenter.OPERAND_STACK.pop();
-        Presenter.resetInputTerm(Presenter.OPERAND_STACK.peek());
-        Presenter.updateStack();
+        Presenter presenter = Presenter.getInstance();
+        presenter.getOperandStack().pop();
+        presenter.resetInputTerm(presenter.getOperandStack().peek());
+        presenter.updateStack();
+        presenter.finalizeInput();
         return true;
     }
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Dot (Falk),label=list:Dot,language=Java]
+\begin{lstlisting}[caption=Dot (Meinerzhagen),label=list:Dot,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Places a '.' in the input term to create decimal values
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/02/03
  */
 public class Dot extends Setting {
 
@@ -3835,19 +4445,22 @@ public class Dot extends Setting {
 
     @Override
     public boolean call() {
-        if(Presenter.INPUT_TERM.toString().equals(Presenter.INPUT_FINALIZED)) {
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.isInputFinalized() ||
+                presenter.getOperandStack().peek() instanceof OEmpty) {
             ODouble oDouble = new ODouble(0);
-            Presenter.resetInputTerm(oDouble);
-            Presenter.OPERAND_STACK.push(oDouble);
+            presenter.resetInputTerm(oDouble);
+            presenter.getOperandStack().push(oDouble);
         }
-        if(!Presenter.INPUT_TERM.toString().contains(".")) Presenter.INPUT_TERM.append(".");
-        Presenter.updateStack();
+        if(!presenter.getInputTerm().toString().contains(".") &&
+                !presenter.getInputTerm().toString().contains(",")) presenter.getInputTerm().append(".");
+        presenter.updateStack();
         return true;
     }
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Enter (Falk),label=list:Enter,language=Java]
+\begin{lstlisting}[caption=Enter (Meinerzhagen),label=list:Enter,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
@@ -3858,7 +4471,8 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Finishes the current input term so that a new input can be created
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/27
  */
 public class Enter extends Setting {
 
@@ -3870,18 +4484,18 @@ public class Enter extends Setting {
      */
     @Override
     public boolean call() {
-        Presenter.INPUT_TERM = new StringBuilder().append(Presenter.INPUT_FINALIZED);
-        if(Presenter.OPERAND_STACK.size() != 0) {
-            Presenter.add2History(Presenter.OPERAND_STACK.peek());
-            Presenter.updateHistoryStack();
+        Presenter presenter = Presenter.getInstance();
+        presenter.finalizeInput();
+        if(presenter.getOperandStack().size() != 0) {
+            presenter.add2History(presenter.getOperandStack().peek());
+            presenter.updateHistoryStack();
         }
         return true;
     }
 }
-
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Inverse (Falk),label=list:Inverse,language=Java]
+\begin{lstlisting}[caption=Inverse (Meinerzhagen),label=list:Inverse,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
@@ -3892,7 +4506,8 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /**
  * Summary: Calculates the inverse of an operand
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/29
  */
 public class Inverse extends Setting {
 
@@ -3904,13 +4519,15 @@ public class Inverse extends Setting {
      */
     @Override
     public boolean call() {
-        if(Presenter.OPERAND_STACK.size() == 0) return false;
-        Operand operand = Presenter.OPERAND_STACK.peek();
-        Presenter.OPERAND_STACK.pop();
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.getOperandStack().size() == 0) return false;
+        Operand operand = presenter.getOperandStack().peek();
+        presenter.getOperandStack().pop();
         Operand result = operand.inverseValue();
-        Presenter.OPERAND_STACK.push(result);
-        Presenter.resetInputTerm(result);
-        Presenter.updateStack();
+        presenter.getOperandStack().push(result);
+        presenter.resetInputTerm(result);
+        presenter.updateStack();
+        presenter.finalizeInput();
         return true;
     }
 }
@@ -3920,25 +4537,21 @@ public class Inverse extends Setting {
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-
-import androidx.appcompat.app.AlertDialog;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.MainActivity;
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 
 /**
  * Summary: Creates a load layout menu to load a new layout design
  * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/26
  */
 public class LoadLayout extends Setting {
 
@@ -3950,19 +4563,20 @@ public class LoadLayout extends Setting {
      */
     @Override
     public boolean call() {
-        final MainActivity activity = MainActivity.mainActivity;
+        final MainActivity activity = MainActivity.getInstance();
 
         final Dialog dialog = new Dialog(activity);
 
         LinearLayout l = new LinearLayout(activity.getBaseContext());
-        for(final String s : TileLayoutLoader.getSavedLayouts(activity.getBaseContext())){
+        for(final String s : TileLayoutLoader.getSavedLayouts(activity.getBaseContext(),
+                                                              activity.getTileLayout().getOrientation())){
             Button b = new Button(activity.getBaseContext());
             b.setText(s);
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     dialog.cancel();
-                    activity.setTileLayout(TileLayoutFactory.createLayout(activity.getBaseContext(), s));
+                    activity.setTileLayout(TileLayoutFactory.createLayout(activity, activity.getTileLayout().getOrientation().getIndicator() + "_" + s));
                 }
             });
             l.addView(b);
@@ -3990,15 +4604,15 @@ import android.widget.LinearLayout;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.MainActivity;
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 
 /**
  * Summary: Creates a save layout menu to save the current design
  * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/26
  */
 public class SaveLayout extends Setting {
 
@@ -4010,7 +4624,7 @@ public class SaveLayout extends Setting {
      */
     @Override
     public boolean call() {
-        final MainActivity activity = MainActivity.mainActivity;
+        final MainActivity activity = MainActivity.getInstance();
         final Dialog dialog = new Dialog(activity);
 
         LinearLayout l = new LinearLayout(activity.getBaseContext());
@@ -4041,14 +4655,15 @@ public class SaveLayout extends Setting {
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Setting (Falk),label=list:Setting,language=Java]
+\begin{lstlisting}[caption=Setting (Meinerzhagen),label=list:Setting,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
 
 /**
  * Summary: Super class for settings
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/26
  */
 public abstract class Setting {
 
@@ -4058,7 +4673,7 @@ public abstract class Setting {
 
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Split (Falk),label=list:Split,language=Java]
+\begin{lstlisting}[caption=Split (Meinerzhagen),label=list:Split,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.apache.commons.math3.linear.RealMatrix;
@@ -4079,7 +4694,8 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Splits the current loaded operand into several ODoubles
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/02/03
  */
 public class Split extends Setting {
 
@@ -4091,9 +4707,10 @@ public class Split extends Setting {
      */
     @Override
     public boolean call() {
-        if(Presenter.OPERAND_STACK.size() == 0) return false;
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.getOperandStack().size() == 0) return false;
 
-        Operand toSplit = Presenter.OPERAND_STACK.peek();
+        Operand toSplit = presenter.getOperandStack().peek();
         List<ODouble> operandList = new ArrayList<>();
 
         if(toSplit instanceof OMatrix) {
@@ -4118,23 +4735,25 @@ public class Split extends Setting {
         }
 
         if(operandList.size() != 0) {
-            Presenter.OPERAND_STACK.pop();
+            presenter.getOperandStack().pop();
 
             Collections.reverse((operandList));
             for(ODouble oDouble : operandList) {
-                Presenter.add2History(oDouble);
-                Presenter.OPERAND_STACK.push(oDouble);
+                presenter.add2History(oDouble);
+                presenter.getOperandStack().push(oDouble);
             }
 
-            Presenter.updateStack();
-            Presenter.updateHistoryStack();
+            presenter.resetInputTerm(operandList.get(operandList.size()-1));
+            presenter.updateStack();
+            presenter.updateHistoryStack();
+            presenter.finalizeInput();
         }
         return true;
     }
 }
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=Swap (Falk),label=list:Swap,language=Java]
+\begin{lstlisting}[caption=Swap (Meinerzhagen),label=list:Swap,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
@@ -4145,7 +4764,8 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /**
  * Summary: Swaps the last two stack operands
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/30
  */
 public class Swap extends Setting {
 
@@ -4157,23 +4777,72 @@ public class Swap extends Setting {
      */
     @Override
     public boolean call() {
-        if(Presenter.OPERAND_STACK.size() < 2) return false;
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.getOperandStack().size() < 2) return false;
 
-        Operand one = Presenter.OPERAND_STACK.pop();
-        Operand two = Presenter.OPERAND_STACK.pop();
+        Operand one = presenter.getOperandStack().pop();
+        Operand two = presenter.getOperandStack().pop();
 
-        Presenter.OPERAND_STACK.push(one);
-        Presenter.OPERAND_STACK.push(two);
-        Presenter.resetInputTerm(two);
+        presenter.getOperandStack().push(one);
+        presenter.getOperandStack().push(two);
+        presenter.resetInputTerm(two);
 
-        Presenter.updateStack();
+        presenter.updateStack();
+        presenter.finalizeInput();
         return true;
     }
 }
-
 \end{lstlisting}    
 
-\begin{lstlisting}[caption=TurnAroundSign (Falk),label=list:TurnAroundSign,language=Java]
+\begin{lstlisting}[caption=ToTuple (Meinerzhagen),label=list:ToTuple,language=Java]
+package de.fhdw.wip.rpntilecalculator.model.settings;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
+
+/**
+ * Summary: Loads as many values as possible as Tuple
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/02/04
+ */
+public class ToTuple extends Setting {
+
+    @Contract(pure = true) @NotNull
+    public static ToTuple getInstance() { return new ToTuple(); }
+
+    @Override
+    public boolean call() {
+        Presenter presenter = Presenter.getInstance();
+        OperandStack operandStack = presenter.getOperandStack();
+        List<Double> doubles = new ArrayList<>();
+        while(operandStack.peek() instanceof ODouble) {
+            double d = ((ODouble) operandStack.pop()).getDouble();
+            doubles.add(d);
+        }
+        if(doubles.size() < 2) return false;
+        double[] values = new double[doubles.size()];
+        for(int i = 0; i < doubles.size(); i++) values[i] = doubles.get(i);
+        OTuple tuple = new OTuple(values);
+        presenter.getOperandStack().push(tuple);
+        presenter.add2History(tuple);
+        presenter.resetInputTerm(tuple);
+        presenter.updateStack();
+        presenter.finalizeInput();
+        return true;
+    }
+}
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=TurnAroundSign (Meinerzhagen),label=list:TurnAroundSign,language=Java]
 package de.fhdw.wip.rpntilecalculator.model.settings;
 
 import org.jetbrains.annotations.Contract;
@@ -4184,7 +4853,8 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /**
  * Summary: Changes positive operands to negative ones and vice versa
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/30
  */
 public class TurnAroundSign extends Setting {
 
@@ -4196,13 +4866,14 @@ public class TurnAroundSign extends Setting {
      */
     @Override
     public boolean call() {
-        if(Presenter.OPERAND_STACK.size() == 0) return false;
-        Operand operand = Presenter.OPERAND_STACK.peek();
-        Presenter.OPERAND_STACK.pop();
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.getOperandStack().size() == 0) return false;
+        Operand operand = presenter.getOperandStack().peek();
+        presenter.getOperandStack().pop();
         Operand result = operand.turnAroundSign();
-        Presenter.OPERAND_STACK.push(result);
-        Presenter.resetInputTerm(result);
-        Presenter.updateStack();
+        presenter.getOperandStack().push(result);
+        presenter.resetInputTerm(result);
+        presenter.updateStack();
         return true;
     }
 }
@@ -4459,683 +5130,2824 @@ public final class OperandStack implements StackInterface<Operand> {
 }
 \end{lstlisting} 
 
-\begin{lstlisting}[caption=ArcCosinusTest (Keienburg),label=list:ArcCosinusTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.junit.Test;
-
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the arc cosinus function
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
- */
-
-public class ArcCosinusTest {
-    private ArcCosinus ARC_COSINUS = ArcCosinus.getInstance();
-
-    @Test
-    public void arcCosinusAngle_isCorrect1() {
-        System.out.println(ARC_COSINUS.on(
-                new ODouble(10)));
-        assertTrue(ARC_COSINUS.on(
-                new ODouble(10)).equalsValue(new ODouble(1.3953649341158527))
-        );
-    }
-
-    @Test
-    public void arcCosinusAngle_isCorrect2() {
-        System.out.println(ARC_COSINUS.on(
-                new ODouble(45)));
-        assertTrue(ARC_COSINUS.on(
-                new ODouble(45)).equalsValue(new ODouble(0.6674572160283838))
-        );
-    }
-
-    @Test
-    public void arcCosinusAngle_isCorrect3() {
-        System.out.println(ARC_COSINUS.on(
-                new ODouble(-45)));
-        assertTrue(ARC_COSINUS.on(
-                new ODouble(-45)).equalsValue(new ODouble(-0.6674572160283838))
-        );
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=ArcSinusTest (Keienburg),label=list:ArcSinusTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.junit.Test;
-
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the arc sinus function
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
- */
-
-public class ArcSinusTest {
-    private ArcSinus ARC_SINUS = ArcSinus.getInstance();
-
-    @Test
-    public void arcSinusAngle_isCorrect1() {
-        System.out.println(ARC_SINUS.on(
-                new ODouble(10)));
-        assertTrue(ARC_SINUS.on(
-                new ODouble(10)).equalsValue(new ODouble(0.17543139267904395))
-        );
-    }
-
-    @Test
-    public void arcSinusAngle_isCorrect2() {
-        System.out.println(ARC_SINUS.on(
-                new ODouble(45)));
-        assertTrue(ARC_SINUS.on(
-                new ODouble(45)).equalsValue(new ODouble(0.9033391107665127))
-        );
-    }
-
-    @Test
-    public void arcSinusAngle_isCorrect3() {
-        System.out.println(ARC_SINUS.on(
-                new ODouble(-45)));
-        assertTrue(ARC_SINUS.on(
-                new ODouble(-45)).equalsValue(new ODouble(-0.9033391107665127))
-        );
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=ArcTangensTest (Keienburg),label=list:ArcTangensTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.junit.Test;
-
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the arc tangens function
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
- */
-
-public class ArcTangensTest {
-    private ArcTangens ARC_TANGENS = ArcTangens.getInstance();
-
-    @Test
-    public void arcTangensAngle_isCorrect1() {
-        System.out.println(ARC_TANGENS.on(
-                new ODouble(10)));
-        assertTrue(ARC_TANGENS.on(
-                new ODouble(10)).equalsValue(new ODouble(0.1727924348551592))
-        );
-    }
-
-    @Test
-    public void arcTangensAngle_isCorrect2() {
-        System.out.println(ARC_TANGENS.on(
-                new ODouble(45)));
-        assertTrue(ARC_TANGENS.on(
-                new ODouble(45)).equalsValue(new ODouble(0.6657737500283538))
-        );
-    }
-
-    @Test
-    public void arcTangensAngle_isCorrect3() {
-        System.out.println(ARC_TANGENS.on(
-                new ODouble(-45)));
-        assertTrue(ARC_TANGENS.on(
-                new ODouble(-45)).equalsValue(new ODouble(-0.6657737500283538))
-        );
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=CosinusTest (Keienburg),label=list:CosinusTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.junit.Test;
-
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the cosinus function
- * Author:  Jannis Luca Keienburg
- */
-
-public class CosinusTest {
-    private Cosinus COSINUS = Cosinus.getInstance();
-
-    @Test public void cosinusAngle_isCorrect1() {
-        System.out.println(COSINUS.on(
-                new ODouble(10)));
-        assertTrue(COSINUS.on(
-                new ODouble(10)).equalsValue(new ODouble(0.984807753012208))
-        );
-    }
-
-    @Test public void cosinusAngle_isCorrect2() {
-        System.out.println(COSINUS.on(
-                new ODouble(45)));
-        assertTrue(COSINUS.on(
-                new ODouble(45)).equalsValue(new ODouble(0.7071067811865476))
-        );
-    }
-
-    @Test public void cosinusAngle_isCorrect3() {
-        System.out.println(COSINUS.on(
-                new ODouble(-45)));
-        assertTrue(COSINUS.on(
-                new ODouble(-45)).equalsValue(new ODouble(-0.7071067811865476))
-        );
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=DerivationTest (Keienburg),label=list:DerivationTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
-import org.junit.Test;
-
-import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
-import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the derivation
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23
- */
-
-public class DerivationTest {
-    private Derivation DERIVATION = Derivation.getInstance();
-
-    @Test
-    public void derivation_isCorrect1() {
-        double[] functionValues = new double[] {2, 4, 6};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[] {4, 4};
-        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
-        assertEquals(DERIVATION.on(function), derivation);
-    }
-
-    @Test
-    public void derivation_isCorrect2() {
-        double[] functionValues = new double[] {7, 9};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[] {7};
-        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
-        assertEquals(DERIVATION.on(function), derivation);
-    }
-
-    @Test
-    public void derivation_isCorrect3() {
-        double[] functionValues = new double[] {12, -3, 12};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[] {24, -3};
-        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
-        assertEquals(DERIVATION.on(function), derivation);
-    }
-
-    @Test
-    public void derivation_isCorrect5() {
-        double[] functionValues = new double[] {1.5, 2, 7};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[] {2,25, 2};
-        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
-        assertEquals(DERIVATION.on(function), derivation);
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=HighAndLowPointsTest (Keienburg),label=list:HighAndLowPointsTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
-import org.junit.Test;
-
-import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
-import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
-
-import static org.junit.Assert.assertEquals;
-
-/*
- * Summary: Unit test for the calculation of high and low points
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23
- */
-
-public class HighAndLowPointsTest {
-    private HighAndLowPoints HIGHANDLOWPOINTS = HighAndLowPoints.getInstance();
-
-    @Test
-    public void highAndLowPoints_isCorrect1() {
-        double[] functionValues = new double[]{2, 4, 6};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[]{-1, 4};
-        OTuple extremPoints = new OTuple(resultValues);
-        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
-    }
-
-    @Test
-    public void highAndLowPoints_isCorrect2() {
-        double[] functionValues = new double[]{3, 6,-4};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[]{-1, -7};
-        OTuple extremPoints = new OTuple(resultValues);
-        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
-    }
-
-    @Test
-    public void highAndLowPoints_isCorrect3() {
-        double[] functionValues = new double[]{-2, 4, 12};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[]{1, 14};
-        OTuple extremPoints = new OTuple(resultValues);
-        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=Logarithm10Test (Keienburg),label=list:Logarithm10Test,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.junit.Test;
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the logarithm with base 10. 
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
- */
-
-public class Logarithm10Test {
-    private Logarithm10 LOGARITHM10 = Logarithm10.getInstance();
-
-    @Test
-    public void logarithm10_isCorrect1() {
-        System.out.println(LOGARITHM10.on(
-                new ODouble(10)));
-        assertTrue(LOGARITHM10.on(
-                new ODouble(10)).equalsValue(new ODouble(1.0))
-        );
-    }
-
-    @Test
-    public void logarithm10_isCorrect2() {
-        System.out.println(LOGARITHM10.on(
-                new ODouble(5)));
-        assertTrue(LOGARITHM10.on(
-                new ODouble(5)).equalsValue(new ODouble(0.6989700043360189))
-        );
-    }
-
-    @Test
-    public void logarithm10_isCorrect3() {
-        System.out.println(LOGARITHM10.on(
-                new ODouble(97)));
-        assertTrue(LOGARITHM10.on(
-                new ODouble(97)).equalsValue(new ODouble(1.9867717342662448))
-        );
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=LogarithmTest (Keienburg),label=list:LogarithmTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.junit.Test;
-
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the natural logarithm and logatithm with specific base
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
- */
-
-public class LogarithmTest {
-    private Logarithm LOGARITHM = Logarithm.getInstance();
-
-    @Test
-    public void naturalLogarithm_isCorrect1() {
-        System.out.println(LOGARITHM.on(
-                new ODouble(10)));
-        assertTrue(LOGARITHM.on(
-                new ODouble(10)).equalsValue(new ODouble(2.302585092994046))
-        );
-    }
-
-    @Test
-    public void naturalLogarithm_isCorrect2() {
-        System.out.println(LOGARITHM.on(
-                new ODouble(5)));
-        assertTrue(LOGARITHM.on(
-                new ODouble(5)).equalsValue(new ODouble(1.6094379124341003))
-        );
-    }
-
-    @Test
-    public void naturalLogarithm_isCorrect3() {
-        System.out.println(LOGARITHM.on(
-                new ODouble(97)));
-        assertTrue(LOGARITHM.on(
-                new ODouble(97)).equalsValue(new ODouble(4.574710978503383))
-        );
-    }
-
-    @Test
-    public void naturalLogarithm_isCorrect4() {
-        System.out.println(LOGARITHM.on(
-                new ODouble(Math.exp(1))));
-        assertTrue(LOGARITHM.on(
-                new ODouble(Math.exp(1))).equalsValue(new ODouble(1))
-        );
-    }
-
-    @Test
-    public void logarithmOfChoosenBase_isCorrect1() {
-        System.out.println(LOGARITHM.on(
-                new ODouble(5),
-                new ODouble(10)));
-        assertTrue(LOGARITHM.on(
-                new ODouble(5),
-                new ODouble(10))
-                .equalsValue(new ODouble(1.4306765580733933))
-        );
-    }
-
-    @Test
-    public void logarithmOfChoosenBase_isCorrect2() {
-        System.out.println(LOGARITHM.on(
-                new ODouble(10),
-                new ODouble(10)));
-        assertTrue(LOGARITHM.on(
-                new ODouble(10),
-                new ODouble(10))
-                .equalsValue(new ODouble(1.0))
-        );
-    }
-
-    @Test
-    public void logarithmOfChoosenBase_isCorrect3() {
-        System.out.println(LOGARITHM.on(
-                new ODouble(Math.exp(1)),
-                new ODouble(10)));
-        assertTrue(LOGARITHM.on(
-                new ODouble(Math.exp(1)),
-                new ODouble(10))
-                .equalsValue(new ODouble(2.302585092994046))
-        );
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=SinusTest (Keienburg),label=list:SinusTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.junit.Test;
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the sinus function
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/22
- */
-
-public class SinusTest {
-    private Sinus SINUS = Sinus.getInstance();
-
-    @Test public void sinusAngle_isCorrect1() {
-        System.out.println(SINUS.on(
-                new ODouble(10)));
-        assertTrue(SINUS.on(
-                new ODouble(10)).equalsValue(new ODouble(0.17364817766693033))
-        );
-    }
-
-    @Test public void sinusAngle_isCorrect2() {
-        System.out.println(SINUS.on(
-                new ODouble(45)));
-        assertTrue(SINUS.on(
-                new ODouble(45)).equalsValue(new ODouble(0.7071067811865475))
-        );
-    }
-
-    @Test public void sinusAngle_isCorrect3() {
-        System.out.println(SINUS.on(
-                new ODouble(-45)));
-        assertTrue(SINUS.on(
-                new ODouble(-45)).equalsValue(new ODouble(-0.7071067811865475))
-        );
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=TangensTest (Keienburg),label=list:TangensTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.junit.Test;
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the tangens
- * Author:  Jannis Luca Keienburg
- */
-
-public class TangensTest {
-    private Tangens TANGENS = Tangens.getInstance();
-
-    @Test
-    public void tangensAngle_isCorrect1() {
-        System.out.println(TANGENS.on(
-                new ODouble(10)));
-        assertTrue(TANGENS.on(
-                new ODouble(10)).equalsValue(new ODouble(0.17632698070846498))
-        );
-    }
-
-    @Test
-    public void tangensAngle_isCorrect2() {
-        System.out.println(TANGENS.on(
-                new ODouble(45)));
-        assertTrue(TANGENS.on(
-                new ODouble(45)).equalsValue(new ODouble(0.9999999999999999))
-        );
-    }
-
-    @Test
-    public void tangensAngle_isCorrect3() {
-        System.out.println(TANGENS.on(
-                new ODouble(-45)));
-        assertTrue(TANGENS.on(
-                new ODouble(-45)).equalsValue(new ODouble(-0.9999999999999999))
-        );
-    }
-}
-\end{lstlisting} 
-
-\begin{lstlisting}[caption=ZerosTest (Keienburg),label=list:ZerosTest,language=Java]
-package de.fhdw.wip.rpntilecalculator.model.calculation;
-
-import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
-import org.junit.Test;
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
-import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
-import static org.junit.Assert.assertTrue;
-
-/*
- * Summary: Unit test for the calculation of the zeros
- * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23
- */
-
-public class ZerosTest {
-    private Zeros ZEROS = Zeros.getInstance();
-
-    @Test
-    public void zeros_isCorrect1() {
-        double[] functionValues = new double[] {2, 4};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        OTuple result = new OTuple(-2);
-        System.out.println(ZEROS.on(function));
-        assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
-                .equalsValue(result));
-    }
-
-    @Test
-    public void zeros_isCorrect2() {
-        double[] functionValues = new double[] {2, 4, 0};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        OTuple result = new OTuple(-2, 0);
-        System.out.println(ZEROS.on(function));
-        assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
-                .equalsValue(result));
-    }
-
-    @Test
-    public void zeros_isCorrect3() {
-        double[] functionValues = new double[] {1, 4, -4};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        OTuple result = new OTuple(-4.828, 0.828);
-        System.out.println(ZEROS.on(function));
-        assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
-                .equalsValue(result));
-    }
-}
-\end{lstlisting} 
-
 \subsection{View}
 
 \subsubsection{Layout}
 
 \begin{lstlisting}[caption=ScreenOrientation,label=list:ScreenOrientation,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.layout;
+
+import android.content.pm.ActivityInfo;
+
+/**
+ * Summary: Defines values for the screen orientation, used in layout
+ * Author: Tom Bockhorn
+ * Date: 2020/01/15
+ */
+public enum ScreenOrientation {
+
+    LANDSCAPE(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, 'h'),
+    PORTRAIT(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, 'v');
+
+    private char indicator;
+    private int orientation;
+    ScreenOrientation(int orientation, char indicator) {
+        this.indicator = indicator;
+        this.orientation = orientation;
+    }
+
+    public static boolean isOrientation(char indicator) {
+        return indicator == LANDSCAPE.getIndicator() || indicator == PORTRAIT.getIndicator();
+    }
+
+    public static ScreenOrientation getOrientation(char indicator) {
+        if(indicator == PORTRAIT.getIndicator()) return PORTRAIT;
+        else return LANDSCAPE;
+    }
+
+    public char getIndicator() {
+        return indicator;
+    }
+
+    public int getOrientation() {
+        return orientation;
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=StorageLoadingException,label=list:StorageLoadingException,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.layout;
+
+/**
+ * Summary: Exception that occurs when the layout files cannot be read
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/08
+ */
+public class StorageLoadingException extends Exception {
+
+    public StorageLoadingException(String msg) {
+        super(msg);
+    }
+
+    public StorageLoadingException() {
+        this("The internal storage could not be read.");
+    }
+
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=TileLayout,label=list:TileLayout,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.layout;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.util.SparseArray;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.schemes.HistoryTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.StackTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+
+/**
+ * Summary: Container for Tiles and acts as handler for visual updates
+ * Author:  Tom Bockhorn
+ * Date:    2020/01/05
+ */
+public class TileLayout {
+
+    private SparseArray<Tile> stack = new SparseArray<>();
+    private SparseArray<Tile> historyStack = new SparseArray<>();
+    private ArrayList<ArrayList<Tile>> tileLayout = new ArrayList<>();
+
+    private ArrayList<ArrayList<TileScheme>> schemeLayout; //outdated after a single operation
+    private ScreenOrientation orientation;
+    private String indicator;
+
+    TileLayout(String indicator, ArrayList<ArrayList<TileScheme>> schemeLayout, ScreenOrientation orientation) {
+        this.schemeLayout = schemeLayout;
+        this.orientation = orientation;
+        this.indicator = indicator;
+    }
+
+    /**
+     * Updates the stack and decides which ones are displayed
+     */
+    public void updateStack(OperandStack operandStack) {
+        @NotNull List<Operand> stackOperands = operandStack.peek(stack.size());
+        Presenter presenter = Presenter.getInstance();
+
+        for(int i = 0; i < stack.size(); i++) {
+            Tile stackTile = stack.valueAt(i);
+            Operand operand = null;
+            if(i < stackOperands.size()) operand = stackOperands.get(i);
+            stackTile.update(TileScheme.createTileScheme(TileMapping.S_STACK, operand, stack.keyAt(i)));
+
+            //Sonderfall erster Stack Tile
+            if(i == 0 && operand != null) {
+                if(operand instanceof ODouble)
+                    if(!presenter.isInputFinalized())
+                        stackTile.setText(presenter.getInputTerm().toString());
+            }
+        }
+    }
+
+    /**
+     * Updates the History Stack. if there are more values, the first ones are cut
+     */
+    public void updateHistoryStack(List<Operand> operandList) {
+        int overflow = operandList.size() - historyStack.size();
+        //Adjust to actual history stack size
+        for(int i = 0; i < overflow; i++) {
+            operandList.remove(0);
+        }
+        for(int i = 0; i < historyStack.size(); i++) {
+            Tile historyTile = historyStack.valueAt(i);
+            Operand operand = null;
+            if(i < operandList.size()) operand = operandList.get(i);
+            historyTile.update(TileScheme.createTileScheme(TileMapping.H_HISTORY, operand, i));
+        }
+    }
+
+    /**
+     * Transforms the layout array into a string
+     * @return text of layout
+     */
+    public String generateLayoutText() {
+        StringBuilder layoutText = new StringBuilder();
+        //layoutText.append(orientation.getIndicator());
+
+        for(ArrayList<Tile> row : tileLayout) {
+            for(Tile t : row) {
+                layoutText.append(t.getScheme().toString()).append(TileLayoutFactory.COLUMN_SEPERATOR);
+            }
+            layoutText.deleteCharAt(layoutText.length()-1);
+            layoutText.append(TileLayoutFactory.ROW_SEPERATOR);
+        }
+        //layoutText.deleteCharAt(layoutText.length()-1);
+        return layoutText.toString();
+    }
+
+    public String getIndicator() {
+        return indicator;
+    }
+    public void setIndicator(String indicator) { this.indicator = indicator; }
+
+    /**
+     * Creates the 2d ArrayList of Tiles, the stack list & the history stack list based on
+     * the before created TileScheme Layout
+     * @param context the context of the application
+     * @return a View object TableLayout that can be added to the screen
+     */
+    public TableLayout createView(@NotNull Context context) {
+        Presenter presenter = Presenter.getInstance();
+
+        //Create table by first creating one column as TableLayout
+        TableLayout tableView = new TableLayout(context);
+        tableView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        tableView.setBackgroundColor(Color.BLACK);
+
+        //Creating the in schemeLayout defined amount of rows
+        for(ArrayList<TileScheme> row : schemeLayout) {
+            ArrayList<Tile> tileRow = new ArrayList<>();
+            TableRow rowView = new TableRow(context);
+
+            rowView.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
+            rowView.setGravity(Gravity.CENTER);
+            rowView.setBackgroundColor(Color.WHITE);
+
+            //Creating buttons which amount defines the amount of columns
+            for(TileScheme tileScheme : row) {
+
+                //For the design of the Button TileScheme is used and for the button itself Tile
+                Tile tile = new Tile(context, tileScheme, this);
+                tile.setOnClickListener(presenter);
+                tile.enableMenuListener();
+
+                rowView.addView(tile);
+                tileRow.add(tile);
+
+                addToStacks(tile);
+            }
+            tableView.addView(rowView);
+            tileLayout.add(tileRow);
+        }
+
+        pushStack2Presenter();
+        pushHistoryStack2Presenter();
+
+        showAnimation(Tile.buttonLoad);
+
+        return tableView;
+    }
+
+    /**
+     * Sets the Stack of the Presenter
+     */
+    private void pushStack2Presenter() {
+        Presenter presenter = Presenter.getInstance();
+
+        presenter.getOperandStack().clear();
+        for(int i = stack.size()-1; i >= 0; i--) {
+            presenter.getOperandStack().push(((StackTileScheme)stack.valueAt(i).getScheme()).getOperand());
+        }
+    }
+
+    /**
+     * Sets the History Stack of the Presenter
+     */
+    private void pushHistoryStack2Presenter() {
+        Presenter presenter = Presenter.getInstance();
+
+        presenter.getHistoryStack().clear();
+        for(int i = 0; i < historyStack.size(); i++) {
+            Operand operand = ((HistoryTileScheme) historyStack.valueAt(i).getScheme()).getOperand();
+            if(!operand.equalsValue(new OEmpty()))
+                presenter.getHistoryStack().add(operand);
+        }
+    }
+
+    public ScreenOrientation getOrientation() {
+        return orientation;
+    }
+
+    /**
+     * Adds a tile to stack or history stack
+     */
+    public void addToStacks(Tile tile) {
+        if(tile.getScheme() instanceof HistoryTileScheme) {
+            updateStackOrder(tile, historyStack, TileMapping.H_HISTORY);
+            pushHistoryStack2Presenter();
+        }
+        else if(tile.getScheme() instanceof StackTileScheme) {
+            updateStackOrder(tile, stack, TileMapping.S_STACK);
+            pushStack2Presenter();
+        }
+    }
+
+    /**
+     * Updates the order of a stack and makes free room for a new one
+     */
+    private void updateStackOrder(Tile tile, SparseArray<Tile> stackType, TileMapping mapping) {
+        StackTileScheme scheme = (StackTileScheme) tile.getScheme();
+        if(stackType.get(scheme.getRank()) == null) {
+            stackType.append(scheme.getRank(), tile);
+            return;
+        }
+
+        //Test if stack tile is replaced with stack tile
+        Tile replaceTile = stackType.get(scheme.getRank());
+        if(replaceTile.getScheme() instanceof StackTileScheme) {
+            StackTileScheme replaceScheme = (StackTileScheme) replaceTile.getScheme();
+
+            TileScheme replaceScheme2 = TileScheme.createTileScheme(mapping, scheme.getOperand(), replaceScheme.getRank());
+            replaceTile.update(replaceScheme2);
+
+            TileScheme scheme2 = TileScheme.createTileScheme(mapping, replaceScheme.getOperand(), scheme.getRank());
+            tile.update(scheme2);
+        }
+
+        for(int i = stackType.size() -1; i >= scheme.getRank(); i--) {
+            Tile hisTile = stackType.get(i);
+            StackTileScheme hisScheme = (StackTileScheme) hisTile.getScheme();
+            TileScheme newScheme = TileScheme.createTileScheme(mapping, hisScheme.getOperand(), (i + 1));
+            hisTile.update(newScheme);
+            stackType.append((i+1), hisTile);
+        }
+        stackType.append(scheme.getRank(), tile);
+    }
+
+    /**
+     * Removes a tile form the stack or history stack
+     */
+    public void removeFromStacks(Tile tile) {
+        if(historyStack.indexOfValue(tile) >= 0)
+            historyStack.remove(historyStack.indexOfValue(tile)+1);
+        else if(stack.indexOfValue(tile) >= 0)
+            stack.remove(stack.indexOfValue(tile)+1);
+    }
+
+    public int getStackSize() {
+        return stack.size();
+    }
+
+    public int getHistoryStackSize() {
+        return historyStack.size();
+    }
+
+    /**
+     * Lets all tiles display a certain animation
+     * @param animation the animation to be displayed
+     */
+    public void showAnimation(Animation animation) {
+        for(ArrayList<Tile> tileRow: tileLayout) {
+            for(Tile tile : tileRow) tile.startAnimation(animation);
+        }
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=TileLayoutFactory,label=list:TileLayoutFactory,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.layout;
+
+import android.content.Context;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+
+/**
+ * Summary: Factory for TileLayout that creates loads from storage
+ * Author:  Tom Bockhorn
+ * Date:    2020/01/06
+ */
+public class TileLayoutFactory {
+
+    public final static String VALUE_SEPERATOR = ",";
+    public final static String COLUMN_SEPERATOR = ";";
+    public final static String ROW_SEPERATOR = "\n";
+
+    private static TileLayoutLoader layoutLoader = new TileLayoutLoader();
+
+    private static ArrayList<ArrayList<TileScheme>> tileLayout;
+    private static ScreenOrientation orientation = ScreenOrientation.PORTRAIT;
+    private static String layoutText;
+
+    public static TileLayout createLayout(@NotNull Context context, @NotNull String indicator) {
+        tileLayout = new ArrayList<>();
+        orientation = ScreenOrientation.getOrientation(indicator.charAt(0));
+
+        layoutText = layoutLoader.loadLayout(context, indicator);
+
+        if(layoutText != null)
+            loadLayout();
+
+        return new TileLayout(indicator, tileLayout, orientation);
+    }
+
+    private static void loadLayout() {
+
+        // Read the string and place it into the arraylist
+        String[] rows = layoutText.split(ROW_SEPERATOR);
+        for(String row : rows) {
+            String[] columns = row.split(COLUMN_SEPERATOR);
+            ArrayList<TileScheme> tileRow = new ArrayList<>();
+            for(String column : columns) {
+                String[] values = column.split(VALUE_SEPERATOR, 2);
+
+                //Convert string enum to real enum
+                TileMapping tileType = null;
+                try {
+                    tileType = Enum.valueOf(TileMapping.class, values[0]);
+                } catch (Exception e) {
+                    tileType = TileMapping.X_ERROR;
+                    values = new String[]{null, tileType.getActionText()};
+                    //throw new StorageLoadingException("The value " + values[0] + " could not be deciphered.");
+                }
+
+                //Add tilescheme to tilerow
+                TileScheme scheme = TileScheme.createTileScheme(tileType, values[1]);
+                tileRow.add(scheme);
+            }
+            //Add tilerow to tilerows
+            tileLayout.add(tileRow);
+        }
+    }
+
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=TileLayoutLoader,label=list:TileLayoutLoader,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.layout;
+
+import android.content.Context;
+import android.util.Log;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+
+/**
+ * Summary: Class that loads and saves tile layouts in csv
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/06
+ */
+public class TileLayoutLoader {
+
+    /**
+     * Loads a saved or hard coded layout
+     * @param context activity, from which to access storage
+     * @param indicator name of the layout
+     * @return TileLayout
+     */
+    public String loadLayout(@NotNull Context context, @NotNull String indicator) {
+        String layout = "";
+
+        if(indicator.equals("h_Morestack")) {
+            layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;A_PLUS,+;A_SIN,sin;H_HISTORY,1,O_Empty, ;H_HISTORY,6,O_Empty, ;H_HISTORY,11,O_Empty, \nO_SET,[1,2];O_TUPLE,(0,2);O_DOUBLE,3;A_MINUS,-;A_COS,cos;H_HISTORY,2,O_Empty, ;H_HISTORY,7,O_Empty, ;H_HISTORY,12,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_SLASH,/;A_TAN,tan;H_HISTORY,3,O_Empty, ;H_HISTORY,8,O_Empty, ;H_HISTORY,13,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_TIMES,*;A_MODULO,%;H_HISTORY,4,O_Empty, ;H_HISTORY,9,O_Empty, ;H_HISTORY,14,O_Empty, \nS_AC,AC;O_DOUBLE,0;S_ENTER,Enter;S_SPLIT,Split;A_ROOT,root;H_HISTORY,5,O_Empty, ;H_HISTORY,10,O_Empty, ;H_HISTORY,15,O_Empty, \nS_DEL,delete;S_TURNAROUNDSIGN,+/-;S_SWAP,Swap;S_INVERSE,1/x;A_POWER,pow;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
+        }
+        else if(indicator.equals("h_Standardlayout")) {
+            //layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;A_PLUS,+;A_SIN,sin;H_HISTORY,1,O_Empty, ;H_HISTORY,6,O_Empty, ;H_HISTORY,11,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;A_MINUS,-;A_COS,cos;H_HISTORY,2,O_Empty, ;H_HISTORY,7,O_Empty, ;H_HISTORY,12,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_SLASH,/;A_TAN,tan;H_HISTORY,3,O_Empty, ;H_HISTORY,8,O_Empty, ;H_HISTORY,13,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_TIMES,*;A_MODULO,%;H_HISTORY,4,O_Empty, ;H_HISTORY,9,O_Empty, ;H_HISTORY,14,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;S_INVERSE,1/x;A_ROOT,root;H_HISTORY,5,O_Empty, ;H_HISTORY,10,O_Empty, ;H_HISTORY,15,O_Empty, \nS_DOT,.;S_TURNAROUNDSIGN,+/-;S_SWAP,Swap;S_SPLIT,split;A_POWER,pow;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
+            layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;S_SWAP,Swap;S_SPLIT,split;H_HISTORY,1,O_Empty, ;H_HISTORY,5,O_Empty, ;H_HISTORY,9,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;A_PLUS,+;A_SIN,sin;H_HISTORY,2,O_Empty, ;H_HISTORY,6,O_Empty, ;H_HISTORY,10,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_MINUS,-;A_COS,cos;H_HISTORY,3,O_Empty, ;H_HISTORY,7,O_Empty, ;H_HISTORY,11,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_SLASH,/;A_LOG,ichundmeinlog;H_HISTORY,4,O_Empty, ;H_HISTORY,8,O_Empty, ;H_HISTORY,12,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;A_TIMES,*;A_MODULO,%;S_INVERSE,1/x;O_MATRIX,[[1, 2], [3, 4]];O_TUPLE,(1, 2)\nS_AC,AC;S_TURNAROUNDSIGN,+/-;S_DOT,.;A_ROOT,root;A_POWER,pow;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
+        }else if(indicator.equals("v_Standardlayout")) {
+            layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;S_STACK,4,O_Empty, \nA_PLUS,+;A_MINUS,-;A_SLASH,/;A_ROOT,root \nA_POWER,pow;A_MODULO,%;A_TIMES,*;A_LOG,ichundmeinlog\nS_AC,acorigins;S_DEL,Delete;S_INVERSE,1/x;H_HISTORY,1,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;H_HISTORY,2,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;H_HISTORY,3,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;H_HISTORY,4,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;H_HISTORY,5,O_Empty, \nS_LOADLAYOUT,Load;S_TURNAROUNDSIGN,+/-;S_SAVELAYOUT,Save;S_CLEARHISTORY,ifuknowwhatimean";
+        } else if(indicator.equals("h_Extended")) {
+            layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;A_ROOT,root;A_ZEROS,abc;S_SWAP,Swap;S_SPLIT,split;S_TOTUPLE,abc\nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;A_PLUS,+;A_HIGHLOW,abc;O_FRACTION,(1/2);O_FRACTION,(3/4);H_HISTORY,1,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_MINUS,-;A_INTEGRAL,abc;O_MATRIX,[[1, 2], [3, 4]];O_MATRIX,[[1, 0], [0, 1]];H_HISTORY,2,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_SLASH,/;A_LIMES,abc;O_POLYNOM, -4x^0 + 4x^1 + 1x^2;O_POLYNOM, 0x^0 + 4x^1 + 2x^2;H_HISTORY,3,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;A_TIMES,*;A_MATRIXUTIL,LGS loesen;O_TUPLE,(1, 2);O_TUPLE,(2, 0);H_HISTORY,4,O_Empty, \nS_AC,AC;S_TURNAROUNDSIGN,+/-;S_DOT,.;S_INVERSE,1/x;A_LOG,ichundmeinlog;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save;S_CLEARHISTORY,ifuknowwhatimean";
+        }else{
+            layout = readLayout(context, indicator);
+        }
+
+        return layout;
+    }
+
+    public static ArrayList<String> getSavedLayouts(@NotNull Context context, final ScreenOrientation orientation){
+        File[] files = context.getFilesDir().listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File file, String s) {
+                return s.endsWith(".csv") && (s.charAt(0) == orientation.getIndicator());
+            }
+        });
+
+        ArrayList<String> layouts = new ArrayList<>();
+        layouts.add("Standardlayout");
+        if(orientation == ScreenOrientation.LANDSCAPE)
+            layouts.add("Extended");
+        for(File f : files){
+            String name = f.getName();
+            layouts.add(name.substring(2, name.lastIndexOf(".")));
+        }
+        return layouts;
+    }
+
+    //Callable method to save a certain Layout
+    public static boolean saveLayout(@NotNull Context context, @NotNull TileLayout tileLayout) {
+        String layoutText = tileLayout.generateLayoutText();
+        return writeLayout(context, layoutText, tileLayout.getOrientation().getIndicator() + "_" + tileLayout.getIndicator());
+    }
+
+    //Callable method to clean all saved layouts
+    public static void clearLayouts(@NotNull Context context) {
+        File dir = context.getFilesDir();
+        String[] files = dir.list();
+        for(int i = 0; i < files.length; i++) {
+            new File(dir, files[i]).delete();
+        }
+    }
+
+
+    private static boolean writeLayout(Context context, String layoutText, String indicator) {
+        try {
+            //The path to the file is defined by its indicator, no doubles allowed!
+            //String filePath = FOLDER + indicator + ".txt";
+            OutputStreamWriter out = new OutputStreamWriter(context.openFileOutput(indicator + ".csv", Context.MODE_PRIVATE));
+            out.write(layoutText);
+            out.close();
+            return true;
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+            return false;
+        }
+    }
+
+    private static String readLayout(Context context, String indicator) {
+        //String filepath = FOLDER + indicator + ".txt";
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput(indicator + ".csv");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString;
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString + "\n");
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("Exception", "File not found: " + e.toString());
+            ret = null;
+        } catch (IOException e) {
+            Log.e("Exception", "Can not read file: " + e.toString());
+            ret = null;
+        }
+
+        return ret;
+    }
+
+}
 \end{lstlisting}   
 
 \subsubsection{Menu} 
 
-\begin{lstlisting}[caption=ChooseListMenu,label=list:ChooseListMenu,language=Java]
-XXX
-\end{lstlisting}    
-
 \begin{lstlisting}[caption=DialogMenu,label=list:DialogMenu,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.menu;
+
+import android.app.Dialog;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+
+import androidx.annotation.Nullable;
+
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+
+/**
+ * Summary: Super Class: Tile acts as button and forwards the connected type and click to the handler
+ * Author:  Getuart Istogu
+ * Date:    2020/01/29
+ **/
+
+public abstract class DialogMenu implements View.OnClickListener {
+
+    protected MainActivity context;
+    protected Dialog dialog;
+    @Nullable
+    protected DialogMenu last;
+    protected int contentView;
+    final protected Tile tile;
+
+    public DialogMenu(MainActivity context, Tile displayTile, DialogMenu last)
+    {
+        this.context = context;
+        this.last = last;
+        this.dialog = new Dialog(context);
+        this.dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        this.setContentView();
+        this.dialog.setContentView(contentView);
+
+
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        window.setAttributes(wlp);
+
+        this.tile = displayTile;
+    }
+
+    protected abstract void setContentView();
+
+
+    protected void dismissAll()
+    {
+        if(last != null) last.dismissAll();
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onClick(View v) {
+        dialog.show();
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=InputDouble,label=list:InputDouble,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.menu;
+
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
+import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+
+public class InputDouble extends DialogMenu {
+
+    private Button confirmButton = this.dialog.findViewById(R.id.enterButton3);
+    private EditText numberText = this.dialog.findViewById(R.id.oDouble_input);
+
+    public InputDouble(final MainActivity context, Tile displayTile, DialogMenu last)
+    {
+        super(context, displayTile, last);
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    double number = Double.parseDouble(numberText.getText().toString());
+                    ODouble oDouble = new ODouble(number);
+                    TileScheme newTileScheme = TileScheme.createTileScheme(TileMapping.O_DOUBLE, oDouble, 0);
+                    tile.update(newTileScheme);
+                    tile.getTileLayout().removeFromStacks(tile);
+                    dismissAll();
+                }catch (Exception e)
+                {
+                    Toast.makeText(context, "Please check your input", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void setContentView() {
+        contentView = R.layout.input_double;
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=InputFraction,label=list:InputFraction,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.menu;
+
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
+import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+
+/**
+ * Summary: Class responsible for input of fractions
+ * Author:  Dennis Gentges
+ * Date:    2020/01/29
+ **/
+
+public class InputFraction extends DialogMenu {
+
+    private Button confirmButton = this.dialog.findViewById(R.id.enterButton);
+    private EditText numeratorText = this.dialog.findViewById(R.id.numerator);
+    private EditText denumeratorText = this.dialog.findViewById(R.id.denumerator);
+
+   public InputFraction(final MainActivity context, Tile displayTile, DialogMenu last)
+   {
+       super(context, displayTile, last);
+       confirmButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               try {
+                   int nummerator = Integer.parseInt(numeratorText.getText().toString());
+                   int denumerator = Integer.parseInt(denumeratorText.getText().toString());
+                   OFraction oFraction = new OFraction(nummerator, denumerator);
+                   TileScheme newTileScheme = TileScheme.createTileScheme(TileMapping.O_FRACTION, oFraction, 0);
+                   tile.update(newTileScheme);
+                   tile.getTileLayout().removeFromStacks(tile);
+                   dismissAll();
+               }catch (Exception e)
+               {
+                   Toast.makeText(context, "Please check your input", Toast.LENGTH_SHORT).show();
+               }
+           }
+       });
+   }
+
+    @Override
+    protected void setContentView() {
+        contentView = R.layout.input_fraction;
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=InputMenuFactory,label=list:InputMenuFactory,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.menu;
+
+import android.view.View;
+import android.widget.Toast;
+
+import org.jetbrains.annotations.NotNull;
+
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+
+/**
+ * Summary: Factory for Menu Listeners for all dynamically created menus
+ * Author:  Tom Bockhorn
+ * Date:    2020/02/02
+ */
+public class InputMenuFactory {
+
+    private Tile displayTile;
+    private DialogMenu current;
+
+    public InputMenuFactory(@NotNull Tile displayTile,
+                            @NotNull DialogMenu current) {
+        this.displayTile = displayTile;
+        this.current = current;
+    }
+
+    /**
+     * Chooses the correct handling
+     * @return the correct class that handles the click
+     */
+    public View.OnClickListener createListener(@NotNull final MainActivity context, @NotNull TileMapping mapping) {
+        return createListener(context, mapping, 0);
+    }
+    public View.OnClickListener createListener(@NotNull final MainActivity context, @NotNull TileMapping mapping, int rank) {
+        if(mapping.getType().isOperand()) return createOperandListener(context, mapping);
+        else if(mapping.getType().isAction() || mapping.getType().isSetting())
+            return createAcSeListener(context, mapping);
+        else if(mapping.getType().isStack() || mapping.getType().isHistory())
+            return createStackListener(context, mapping, rank);
+        else return createNotFoundListener(context);
+    }
+
+    /**
+     * Creates the listeners for Stack and History-Stack by rank
+     */
+    private View.OnClickListener createStackListener(MainActivity context, final TileMapping mapping, final int rank) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TileScheme scheme = TileScheme.createTileScheme(mapping, null, rank);
+                displayTile.update(scheme);
+                displayTile.getTileLayout().removeFromStacks(displayTile);
+                displayTile.getTileLayout().addToStacks(displayTile);
+                current.dismissAll();
+            }
+        };
+    }
+
+    /**
+     * Creates the listeners for Actions and Settings by TileMapping
+     */
+    private View.OnClickListener createAcSeListener(final MainActivity context, final TileMapping mapping) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TileScheme scheme = TileScheme.createTileScheme(mapping, mapping.getMenuText());
+                displayTile.update(scheme);
+                displayTile.getTileLayout().removeFromStacks(displayTile);
+                current.dismissAll();
+            }
+        };
+    }
+
+    /**
+     * Creates listeners for Operands by TileMapping
+     */
+    private View.OnClickListener createOperandListener(final MainActivity context, TileMapping mapping) {
+        switch (mapping) {
+            case O_FRACTION:
+                return new InputFraction(context, displayTile, current);
+            case O_POLYNOM:
+                return new InputPolynomial(context, displayTile, current);
+            case O_DOUBLE:
+                return new InputDouble(context, displayTile, current);
+            default:
+                return createNotFoundListener(context);
+        }
+    }
+
+    /**
+     * Creates a listener when no other is found
+     */
+    private View.OnClickListener createNotFoundListener(final MainActivity context) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Not implemented yet.", Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=InputPolynomial,label=list:InputPolynomial,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.menu;
+
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
+import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+
+/**
+ * Summary: Input class for inputting polynomial functions
+ * Author:  Dennis Gentges
+ * Date:    2020/01/30
+ */
+public class InputPolynomial extends DialogMenu {
+
+    private Button confirmButton = this.dialog.findViewById(R.id.enterButton2);
+    private EditText coefficient_0_Txt = this.dialog.findViewById(R.id.coefficient_0);
+    private EditText coefficient_1_Txt = this.dialog.findViewById(R.id.coefficient_1);
+    private EditText coefficient_2_Txt = this.dialog.findViewById(R.id.coefficient_2);
+
+    public InputPolynomial(final MainActivity context, Tile displayTile, DialogMenu last)
+    {
+        super(context, displayTile, last);
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    double coefficient_0 = Double.parseDouble(coefficient_0_Txt.getText().toString());
+                    double coefficient_1 = Double.parseDouble(coefficient_1_Txt.getText().toString());
+                    double coefficient_2 = Double.parseDouble(coefficient_2_Txt.getText().toString());
+
+                    double[] coefficients = new double[]{coefficient_0, coefficient_1, coefficient_2};
+                    OPolynom oPolynom = new OPolynom(coefficients);
+                    TileScheme newTileScheme = TileScheme.createTileScheme(TileMapping.O_POLYNOM, oPolynom, 0);
+                    tile.update(newTileScheme);
+                    tile.getTileLayout().removeFromStacks(tile);
+                    dismissAll();
+                }catch (Exception e)
+                {
+                    Toast.makeText(context, "Please check your input", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+    }
+
+    @Override
+    protected void setContentView() {
+        contentView = R.layout.input_polynomial;
+    }
+}
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=InputTileMapping,label=list:InputTileMapping,language=Java]
+package de.fhdw.wip.rpntilecalculator.view.menu;
+
+import android.graphics.Color;
+import android.graphics.Point;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.util.ArrayList;
+
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
+import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.TileType;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+
+/**
+ * Summary: Dynamically created layout for choosing options of a variably long list of tiles
+ * Author:  Khang Pham
+ * Date:    2020/02/01
+ */
+public class InputTileMapping extends DialogMenu {
+
+    private ArrayList<TileMapping> tileOptions = new ArrayList<>();
+    private InputMenuFactory menuFactory;
+
+    /**
+     * Create a List Menu for putting in the type of a tile (action / setting / operand)
+     * @param type super-type that contains the mappings
+     * @param displayTile tile that should be edited
+     * @param last last menu to close at once
+     */
+    public InputTileMapping(MainActivity context, TileType type, Tile displayTile, DialogMenu last) {
+        super(context, displayTile, last);
+        menuFactory = new InputMenuFactory(displayTile, this);
+
+        adjustWindow(0.4, 0.8);
+
+        for(TileMapping mapping : TileMapping.values()) {
+            if(type == mapping.getType()) {
+                if(mapping != TileMapping.O_Empty) tileOptions.add(mapping);
+            }
+        }
+    }
+
+    /**
+     * Create a list Menu for deciding on the stack number
+     * @param type either stack or history-stack
+     * @param displayTile tile that should be edited
+     * @param last last menu to close at once
+     */
+    public InputTileMapping(MainActivity context, TileMapping type, Tile displayTile, DialogMenu last) {
+        super(context, displayTile, last);
+        menuFactory = new InputMenuFactory(displayTile, this);
+
+        adjustWindow(0.4, 0.8);
+
+        tileOptions.add(type);
+    }
+
+    /**
+     * Creates a 2d arraylist of buttons and sets their listener
+     */
+    public TableLayout createView(int rows) {
+
+        //Create table by first creating one column as TableLayout
+        TableLayout tableView = new TableLayout(context);
+        tableView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        tableView.setBackgroundResource(R.drawable.tile_operand_white);
+        tableView.setPadding(20, 20, 20, 20);
+
+        //Creating the defined amount of rows
+        int[] rowLengths = new int[rows];
+        for(int i = 0; i < rows; i++) {
+            int optionsInRow = tileOptions.size() / rows;
+            rowLengths[i] = i != rows-1 ? optionsInRow : tileOptions.size() - (optionsInRow * i);
+        }
+        int currentOption = 0;
+
+        for(int i = 0; i < rows; i++) {
+            TableRow rowView = new TableRow(context);
+            rowView.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
+            rowView.setGravity(Gravity.CENTER);
+            rowView.setBackgroundColor(Color.WHITE);
+
+            //Creating buttons which amount defines the amount of columns
+            for(int j = 0; j < rowLengths[i]; j++) {
+
+                Tile option = createOption(currentOption);
+
+                rowView.addView(option);
+                currentOption++;
+            }
+            tableView.addView(rowView);
+        }
+        return tableView;
+    }
+
+    /**
+     * Update the amount of stack tiles if it is to be changed
+     */
+    private void updateAmountIfStack() {
+        TileMapping mapping = tileOptions.get(0);
+        if(mapping.getType().isStack() || mapping.getType().isHistory()) {
+            tileOptions.clear();
+            tileOptions.add(mapping);
+        }
+        int amount = 0;
+        if(mapping.getType().isStack()) amount = tile.getTileLayout().getStackSize();
+        if(mapping.getType().isHistory()) amount = tile.getTileLayout().getHistoryStackSize();
+        for(int i = 0; i < amount; i++) //Add one more than amount (0) to allow expansion
+            tileOptions.add(tileOptions.get(0));
+    }
+
+    /**
+     * Creates the tile based on the mapping
+     */
+    private Tile createOption(int currentOption) {
+        TileMapping mapping = tileOptions.get(currentOption);
+        if(mapping.getType().isStack() || mapping.getType().isHistory())
+            return createStackOption(mapping, currentOption+1);
+        else return createOptionByMapping(mapping);
+    }
+
+    /**
+     * Creates option of certain non-Stack TileMappings and sets corresponding listener
+     */
+    private Tile createOptionByMapping(TileMapping mapping) {
+        TileScheme scheme = TileScheme.createTileScheme(mapping, mapping.getMenuText());
+
+        Tile tile = new Tile(context, scheme, null);
+
+        View.OnClickListener listener = menuFactory.createListener(context, mapping);
+        tile.setOnClickListener(listener);
+        tile.setText(mapping.getMenuText());
+        return tile;
+    }
+
+    /**
+     * Creates option of Stack TileMappings and sets corresponding listener
+     */
+    private Tile createStackOption(TileMapping mapping, int rank) {
+        TileScheme scheme = TileScheme.createTileScheme(mapping, null, rank);
+
+        Tile tile = new Tile(context, scheme, null);
+
+        View.OnClickListener listener = menuFactory.createListener(context, mapping, rank);
+        tile.setOnClickListener(listener);
+        tile.setText(String.valueOf(rank));
+        return tile;
+    }
+
+    /**
+     * Adjust the window size
+     */
+    private void adjustWindow(double heightInPercent, double widthInPercent) {
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        Point size = new Point();
+        context.getWindowManager().getDefaultDisplay().getSize(size);
+        wlp.height = (int) (size.y * heightInPercent);
+        wlp.width = (int) (size.x * widthInPercent);
+        window.setAttributes(wlp);
+    }
+
+    @Override
+    public void onClick(View v) {
+        updateAmountIfStack();
+        ConstraintLayout constraintLayout = this.dialog.findViewById(R.id.constraintLayout);
+        int rows = (tileOptions.size() / 6) + 1; //max. 5 tiles in one row
+        constraintLayout.addView(createView(rows));
+        dialog.show();
+    }
+
+    @Override
+    protected void setContentView() {
+        contentView = R.layout.activity_main;
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=InputTileType,label=list:InputTileType,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.menu;
+
+import android.graphics.Point;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
+import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.TileType;
+
+/**
+ * Summary: Menu for inputting the type of the tile
+ * Author:  Getuart Istogu
+ * Date:    2020/01/29
+ **/
+public class InputTileType extends DialogMenu implements View.OnLongClickListener {
+
+    private Button stackTypeButton = this.dialog.findViewById(R.id.stackTypeButton);
+    private Button operandTypeButton = this.dialog.findViewById(R.id.operandTypeButton);
+    private Button operatorTypeButton = this.dialog.findViewById(R.id.operatorTypeButton);
+    private Button settingTypeButton = this.dialog.findViewById(R.id.settingTypeButton);
+    private Button historyTypeButton = this.dialog.findViewById(R.id.historyTypeButton);
+
+    public InputTileType(MainActivity context, Tile displayTile)
+    {
+        super(context, displayTile, null);
+
+        // Special design and location
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.START | Gravity.TOP;
+        int[] location = new int[2];
+        tile.getLocationInWindow(location);
+        wlp.x = location[0];
+        wlp.y = location[1];
+        Point size = new Point();
+        context.getWindowManager().getDefaultDisplay().getSize(size);
+        wlp.height = size.y / 3;
+        wlp.width = size.x / 3;
+        window.setAttributes(wlp);
+
+
+        stackTypeButton.setOnClickListener(
+                new InputTileMapping(context, TileMapping.S_STACK, tile, this));
+
+        operandTypeButton.setOnClickListener(
+                new InputTileMapping(context, TileType.OPERAND, tile, this));
+
+        operatorTypeButton.setOnClickListener(
+                new InputTileMapping(context, TileType.ACTION, tile, this));
+
+        settingTypeButton.setOnClickListener(
+                new InputTileMapping(context, TileType.SETTING, tile, this));
+
+        historyTypeButton.setOnClickListener(
+                new InputTileMapping(context, TileMapping.H_HISTORY, tile, this));
+    }
+
+    @Override
+    protected void setContentView() {
+        contentView = R.layout.input_tile_type;
+    }
+
+    @Override
+    public boolean onLongClick(View view) {
+        dialog.show();
+        return true;
+    }
+}
 \end{lstlisting}    
 
-\subsubsection{Schemas}
+\subsubsection{Schemes}
 
 \begin{lstlisting}[caption=ActionTileScheme,label=list:ActionTileScheme,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.schemes;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+
+/**
+ * Summary: TileScheme for an Operator (Action)
+ * Author:  Dennis Gentges
+ * Date:    2020/01/08
+ */
+public class ActionTileScheme extends TileScheme {
+
+    @NotNull private Action action;
+
+    /**
+     * Creates a TileScheme for an Action
+     * @param tileType exact type of the scheme
+     * @param content display text (default is derived by type)
+     */
+    ActionTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
+        super(tileType, tileType.getActionText());
+        this.action = tileType.getActionType();
+    }
+
+    public Action getAction() {
+        return action;
+    }
+}
 \end{lstlisting}    
 
-\begin{lstlisting}[
-caption=ErrorTileScheme,
-label=list:ErrorTileScheme,
-language=Java]
-XXX
+\begin{lstlisting}[caption=ErrorTileScheme,label=list:ErrorTileScheme,language=Java]
+package de.fhdw.wip.rpntilecalculator.view.schemes;
+
+import org.jetbrains.annotations.NotNull;
+
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+
+/**
+ * Summary: TileScheme for wrongly loaded Tiles
+ * Author:  Dennis Gentges
+ * Date:    2020/01/06
+ */
+public class ErrorTileScheme extends TileScheme {
+
+    ErrorTileScheme(@NotNull TileMapping tileType, @NotNull String content) {
+        super(tileType, content);
+    }
+
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=HistoryTileScheme,label=list:HistoryTileScheme,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.schemes;
+
+import androidx.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.TileType;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
+
+/**
+ * Summary: TileScheme for a History-Stack Tile (extends from normal Stack-TileScheme)
+ * Author:  Dennis Gentges
+ * Date:    2020/01/10
+ */
+public class HistoryTileScheme extends StackTileScheme {
+
+    HistoryTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, int rank) {
+        super(tileMapping, content, rank);
+    }
+
+    HistoryTileScheme(@NotNull Operand operand, int rank) {
+        super(operand, rank);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "H_HISTORY"
+                + TileLayoutFactory.VALUE_SEPERATOR + this.getRank()
+                + TileLayoutFactory.VALUE_SEPERATOR + (this.getContent() == " " ? "O_Empty" : this.getTileType())
+                + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
+    }
+
+    public int getStyle() {
+        return TileType.HISTORY.getStyle();
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=OperandTileScheme,label=list:OperandTileScheme,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.schemes;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.lang.reflect.InvocationTargetException;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+
+/**
+ * Summary: TileScheme for an operand
+ * Author:  Dennis Gentges
+ * Date:    2020/01/08
+ */
+public class OperandTileScheme extends TileScheme {
+
+    private Operand operand = null;
+
+    /**
+     * Creates an OperandTileScheme with a valid operand
+     * @param tileType exact type of the scheme
+     * @param content operand value
+     */
+    OperandTileScheme(@NotNull TileMapping tileType, @NotNull String content) {
+        super(tileType, content);
+
+        // Ignore menu values
+        if(content.equals(tileType.getMenuText())) return;
+
+        Class<? extends Operand> operandClass = tileType.getOperandType();
+
+        try {
+            this.operand = operandClass.getConstructor(String.class).newInstance(content);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        //System.out.println("Created TileScheme: <Operand " + operandClass + ":" + content + ">");
+    }
+
+    OperandTileScheme(@NotNull TileMapping tileType, @NotNull Operand operand) {
+        super(tileType, operand.toString());
+        this.operand = operand;
+    }
+
+    public boolean hasOperand(){
+        return operand != null;
+    }
+
+    @Override
+    public @NotNull String getContent() {
+        return operand == null ? " " : operand.toString();
+    }
+
+    public Operand getOperand() {
+        return operand;
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=SettingTileScheme,label=list:SettingTileScheme,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.schemes;
+
+import org.jetbrains.annotations.NotNull;
+
+import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+
+/**
+ * Summary: TileScheme for a setting tile
+ * Author:  Dennis Gentges
+ * Date:    2020/01/08
+ */
+public class SettingTileScheme extends TileScheme {
+
+    @NotNull private Setting setting;
+
+    /**
+     * Crates an SettingTileScheme connected to a setting in it
+     * @param content rank of the stack field
+     */
+    SettingTileScheme(@NotNull TileMapping tileType, @NotNull String content) {
+        super(tileType, tileType.getSettingText());
+        this.setting = tileType.getSettingType();
+    }
+
+    @NotNull
+    public Setting getSetting() {
+        return setting;
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=StackTileScheme,label=list:StackTileScheme,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.schemes;
+
+import androidx.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
+
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.TileType;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
+
+/**
+ * Summary: TileScheme for stack tiles (extends Operand-TileScheme)
+ * Author:  Dennis Gentges
+ * Date:    2020/01/08
+ */
+public class StackTileScheme extends OperandTileScheme {
+
+    private int rank;
+
+    /**
+     * Crates an StackTileScheme with an operand in it
+     * @param content rank of the stack field
+     */
+    public StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, int rank) {
+        super(tileMapping, content);
+        this.rank = rank;
+    }
+
+    StackTileScheme(@NotNull Operand operand, int rank) {
+        super(TileMapping.O_DOUBLE, operand);
+        this.rank = rank;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public int getStyle() {
+        return TileType.STACK.getStyle();
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "S_STACK"
+                + TileLayoutFactory.VALUE_SEPERATOR + this.getRank()
+                + TileLayoutFactory.VALUE_SEPERATOR + (this.getContent() == " " ? "O_Empty" : this.getTileType())
+                + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=TileScheme,label=list:TileScheme,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view.schemes;
+
+/*
+  Summary: Contains information about tiles and is used to create tiles and save them
+  Author:  Dennis Gentges
+  Date: 2020/01/06
+ */
+import androidx.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
+
+public abstract class TileScheme {
+
+    @NotNull protected TileMapping tileType;
+    @NotNull private String content;
+
+    TileScheme(@NotNull TileMapping tileType, @NotNull String content) {
+        this.tileType = tileType;
+        this.content = content;
+    }
+
+    /**
+     * Factory method that creates a TileScheme depending on the type
+     * @param tileType exact type of the scheme (determines the subclass)
+     * @param content content
+     * @return Type of TileScheme that inherits TileScheme.class
+     */
+    public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
+        if(tileType.getType().isAction())
+            return new ActionTileScheme(tileType, content);
+        else if(tileType.getType().isOperand())
+            return new OperandTileScheme(tileType, content);
+        else if(tileType.getType().isStack() || tileType.getType().isHistory()) {
+            String[] a = content.split(TileLayoutFactory.VALUE_SEPERATOR);
+            if(tileType.getType().isHistory())
+                return new HistoryTileScheme(Enum.valueOf(TileMapping.class, a[1]), a[2], Integer.parseInt(a[0]));
+            if(tileType.getType().isStack())
+                return new StackTileScheme(Enum.valueOf(TileMapping.class, a[1]), a[2], Integer.parseInt(a[0]));
+        }
+        else if(tileType.getType().isSetting())
+            return new SettingTileScheme(tileType, content);
+        return new ErrorTileScheme(TileMapping.X_ERROR, "N/A");
+    }
+
+    public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable Operand operand, int rank) {
+        if(tileType.getType().isStack()) {
+            if(operand != null) return new StackTileScheme(operand, rank);
+            else return new StackTileScheme(new OEmpty(), rank);
+        }
+        else if(tileType.getType().isOperand()) {
+            assert operand != null;
+            return new OperandTileScheme(tileType, operand);
+        }
+        else if(tileType.getType().isHistory()) {
+            if(operand != null) return new HistoryTileScheme(operand, rank);
+            else return new HistoryTileScheme(new OEmpty(), rank);
+        }
+        else {return null;}
+    }
+
+    // gives back a drawable resource
+    public int getStyle() {
+        return tileType == TileMapping.X_ERROR ? R.drawable.tile_error : tileType.getType().getStyle();
+    }
+
+    @NotNull
+    public TileMapping getTileType() {
+        return tileType;
+    }
+
+    public void setTileType(@NotNull TileMapping tileType) {
+        this.tileType = tileType;
+    }
+
+    /**
+     * For internal use only
+     */
+    @NotNull
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     * Override if display text varies from normal text
+     */
+    @NotNull
+    public String toDisplayText() {
+        return getContent();
+    }
+
+    public void setContent(@NotNull String content) {
+        this.content = content;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        //O_DOUBLE;20
+        //A_MINUS;-
+        return tileType.toString() + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
+    }
+}
 \end{lstlisting}
 
-\subsubsection{Sonstiges}
+\subsubsection{Other}
 
 \begin{lstlisting}[caption=Tile,label=list:Tile,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TableRow;
+
+import androidx.appcompat.widget.AppCompatButton;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.menu.InputTileType;
+
+/**
+ * Summary: Tile acts as button and forwards the connected type and click to the handler
+ *          Info of the type of the tile is stored in its scheme
+ * Author:  Tom Bockhorn
+ * Date:    2020/01/05
+ **/
+@SuppressLint("ViewConstructor")
+public class Tile extends AppCompatButton implements TypeQuestionable {
+
+    private static final int TILE_MARGIN = 3;
+    public static Animation buttonClick;
+    public static Animation buttonLoad;
+    public static Animation buttonSave;
+
+    private MainActivity context;
+    private TileScheme scheme;
+    @Nullable private TileLayout tileLayout;
+
+    @Nullable
+    public TileLayout getTileLayout()
+    {
+        return tileLayout;
+    }
+
+    /**
+     * Creating a TileScheme in a TileLayout
+     * @param scheme what type of scheme it is going to be
+     * @param tileLayout the layout (if there is one)
+     */
+    public Tile(@NotNull Context context, @NotNull TileScheme scheme, @Nullable TileLayout tileLayout) {
+        super(context);
+
+        this.context = (MainActivity) context;
+        this.tileLayout = tileLayout;
+
+        buttonClick = AnimationUtils.loadAnimation(context, R.anim.button_bounce);
+        buttonLoad = AnimationUtils.loadAnimation(context, R.anim.button_load);
+        buttonSave = AnimationUtils.loadAnimation(context, R.anim.button_save);
+
+        update(scheme);
+    }
+
+    /**
+     * Updates the tile's display and text
+     * @param scheme new scheme
+     */
+    public void update(@Nullable TileScheme scheme) {
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
+        layoutParams.setMargins(TILE_MARGIN, TILE_MARGIN, TILE_MARGIN, TILE_MARGIN);
+        setLayoutParams(layoutParams);
+        setWidth(0);
+        setHeight(0);
+
+        if(scheme != null) {
+            this.scheme = scheme;
+            this.setBackgroundResource(getScheme().getStyle());
+            this.setText(scheme.toDisplayText());
+        } else {
+            //Could not draw Tile
+            update(TileScheme.createTileScheme(TileMapping.X_ERROR, scheme.getContent()));
+        }
+
+    }
+
+    /**
+     * Enables and sets the onLongClick function for the given tile
+     */
+    public void enableMenuListener() {
+        setOnLongClickListener(new InputTileType(context, this));
+    }
+
+    public TileScheme getScheme() {
+        return scheme;
+    }
+
+    @Override
+    public boolean isStack() {
+        return scheme.getTileType().getType().isStack();
+    }
+
+    @Override
+    public boolean isOperand() {
+        return scheme.getTileType().getType().isOperand();
+    }
+
+    @Override
+    public boolean isAction() {
+        return scheme.getTileType().getType().isAction();
+    }
+
+    @Override
+    public boolean isSetting() {
+        return scheme.getTileType().getType().isSetting();
+    }
+
+    @Override
+    public boolean isHistory() {
+        return scheme.getTileType().getType().isHistory();
+    }
+
+    /**
+     * Show an animation when clicked
+     */
+    public void showAnimation(Animation animation) {
+        startAnimation(animation);
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=TileMapping,label=list:TileMapping,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view;
+
+import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
+import de.fhdw.wip.rpntilecalculator.model.calculation.ArcCosinus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.ArcSinus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.ArcTangens;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Cosinus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Derivation;
+import de.fhdw.wip.rpntilecalculator.model.calculation.HighAndLowPoints;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Integral;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Limes;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Logarithm;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Logarithm10;
+import de.fhdw.wip.rpntilecalculator.model.calculation.MatrixUtil;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Minus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Modulo;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Plus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Power;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Root;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Sinus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Slash;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Tangens;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Times;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Zeros;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
+import de.fhdw.wip.rpntilecalculator.model.operands.OMatrix;
+import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OSet;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
+import de.fhdw.wip.rpntilecalculator.model.settings.AllClear;
+import de.fhdw.wip.rpntilecalculator.model.settings.ClearHistory;
+import de.fhdw.wip.rpntilecalculator.model.settings.DeleteEntry;
+import de.fhdw.wip.rpntilecalculator.model.settings.Dot;
+import de.fhdw.wip.rpntilecalculator.model.settings.Enter;
+import de.fhdw.wip.rpntilecalculator.model.settings.Inverse;
+import de.fhdw.wip.rpntilecalculator.model.settings.LoadLayout;
+import de.fhdw.wip.rpntilecalculator.model.settings.SaveLayout;
+import de.fhdw.wip.rpntilecalculator.model.settings.Split;
+import de.fhdw.wip.rpntilecalculator.model.settings.ToTuple;
+import de.fhdw.wip.rpntilecalculator.model.settings.TurnAroundSign;
+import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
+import de.fhdw.wip.rpntilecalculator.model.settings.Swap;
+
+/**
+ * Summary: definition of the different tiles and their display texts (used for loading and saving)
+ * Author:  Khang Pham
+ * Date:    2020/01/07
+ */
+public enum TileMapping {
+
+    O_DOUBLE(TileType.OPERAND, ODouble.class, "Zahl"),
+    O_FRACTION(TileType.OPERAND, OFraction.class, "Bruch"),
+    O_MATRIX(TileType.OPERAND, OMatrix.class, "Matrix"),
+    O_POLYNOM(TileType.OPERAND, OPolynom.class, "Funktion"),
+    O_SET(TileType.OPERAND, OSet.class, "Menge"),
+    O_TUPLE(TileType.OPERAND, OTuple.class, "Tuple"),
+    O_Empty(TileType.OPERAND, OEmpty.class, "Empty"),
+    
+    A_MINUS(TileType.ACTION, Minus.getInstance(), "-"),
+    A_PLUS(TileType.ACTION, Plus.getInstance(), "+"),
+    A_SLASH(TileType.ACTION, Slash.getInstance(), "/"),
+    A_TIMES(TileType.ACTION, Times.getInstance(), "*"),
+    A_MODULO(TileType.ACTION, Modulo.getInstance(), "%"),
+    A_LOG(TileType.ACTION, Logarithm.getInstance(), "log"),
+    A_LOG10(TileType.ACTION, Logarithm10.getInstance(), "log10"),
+    A_POWER(TileType.ACTION, Power.getInstance(), "b^n"),
+    A_ROOT(TileType.ACTION, Root.getInstance(), "root"),
+    A_DERIVE(TileType.ACTION, Derivation.getInstance(), "dy / dx"),
+    A_HIGHLOW(TileType.ACTION, HighAndLowPoints.getInstance(), "Extrema"),
+    A_ZEROS(TileType.ACTION, Zeros.getInstance(), "Zeros"),
+    A_INTEGRAL(TileType.ACTION, Integral.getInstance(), "Integral"),
+    A_LIMES(TileType.ACTION, Limes.getInstance(), "Limes"),
+    A_SIN(TileType.ACTION, Sinus.getInstance(), "sin"),
+    A_COS(TileType.ACTION, Cosinus.getInstance(), "cos"),
+    A_TAN(TileType.ACTION, Tangens.getInstance(), "tan"),
+    A_ASIN(TileType.ACTION, ArcSinus.getInstance(), "asin"),
+    A_ACOS(TileType.ACTION, ArcCosinus.getInstance(), "acos"),
+    A_ATAN(TileType.ACTION, ArcTangens.getInstance(), "atan"),
+    A_MATRIXUTIL(TileType.ACTION, MatrixUtil.getInstance(), "LGS loesen"),
+
+    S_AC(TileType.SETTING, AllClear.getInstance(), "AC"),
+    S_DEL(TileType.SETTING, DeleteEntry.getInstance(), "Delete"),
+    S_ENTER(TileType.SETTING, Enter.getInstance(), "Enter"),
+    S_SWAP(TileType.SETTING, Swap.getInstance(), "Swap"),
+    S_DOT(TileType.SETTING, Dot.getInstance(), "."),
+    S_TURNAROUNDSIGN(TileType.SETTING, TurnAroundSign.getInstance(), "+/-"),
+    S_INVERSE(TileType.SETTING, Inverse.getInstance(), "1/x"),
+    S_LOADLAYOUT(TileType.SETTING, LoadLayout.getInstance(), "Load Layout"),
+    S_SAVELAYOUT(TileType.SETTING, SaveLayout.getInstance(), "Save Layout"),
+    S_CLEARHISTORY(TileType.SETTING, ClearHistory.getInstance(), "Clear History"),
+    S_SPLIT(TileType.SETTING, Split.getInstance(), "Split"),
+    S_TOTUPLE(TileType.SETTING, ToTuple.getInstance(), "To tuple"),
+
+    S_STACK(TileType.STACK, ""),
+
+    H_HISTORY(TileType.HISTORY, ""),
+
+    X_ERROR(TileType.ERROR, "N/A");
+
+
+    private TileType type;
+    private Action actionType;
+    private String actionText;
+    private String settingText;
+    private Setting settingType;
+    private String menuText;
+    private Class<? extends Operand> operandType;
+
+    // Stack & Error
+    TileMapping(TileType type, String actionText) {
+        this.type = type;
+        this.actionText = actionText;
+        this.menuText = actionText;
+    }
+
+    // Setting
+    TileMapping(TileType type, Setting settingType, String settingText) {
+        this.type = type;
+        this.settingType = settingType;
+        this.settingText = settingText;
+        this.menuText = settingText;
+    }
+
+    // Action
+    TileMapping(TileType type, Action actionType, String actionText) {
+        this.type = type;
+        this.actionType = actionType;
+        this.actionText = actionText;
+        this.menuText = actionText;
+    }
+
+    // Operand
+    TileMapping(TileType type, Class<? extends Operand>  operandType, String menuText) {
+        this.type = type;
+        this.operandType = operandType;
+        this.menuText = menuText;
+    }
+
+    public TileType getType() {
+        return type;
+    }
+
+    public void setType(TileType type) {
+        this.type = type;
+    }
+
+    public Class<? extends Operand> getOperandType() {
+        return operandType;
+    }
+
+    public Action getActionType() {
+        return actionType;
+    }
+
+    public String getActionText() {
+        return actionText;
+    }
+
+    public String getSettingText() {
+        return settingText;
+    }
+
+    public Setting getSettingType() {
+        return settingType;
+    }
+
+    public String getMenuText() {
+        return menuText;
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=TileType,label=list:TileType,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view;
+
+import de.fhdw.wip.rpntilecalculator.R;
+
+/**
+ * Summary: definitions of the different available tile types
+ * Author:  Khang Pham
+ * Date:    2020/01/06
+ */
+public enum TileType implements TypeQuestionable {
+
+    STACK(R.drawable.tile_stack_green),
+    HISTORY(R.drawable.tile_operand_orange),
+    OPERAND(R.drawable.tile_operand_white),
+    ACTION(R.drawable.tile_operator_blue),
+    SETTING(R.drawable.tile_settings_grey),
+
+    ERROR(R.drawable.tile_error);
+
+    private int style;
+
+    TileType(int style) {
+        this.style = style;
+    }
+
+    public boolean isStack() {
+        return this == STACK;
+    }
+
+    public boolean isOperand() {
+        return this == OPERAND;
+    }
+
+    public boolean isAction() {
+        return this == ACTION;
+    }
+
+    public boolean isSetting() {
+        return this == SETTING;
+    }
+
+    public boolean isHistory() {
+        return this == HISTORY;
+    }
+
+    public int getStyle() {
+        return style;
+    }
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=TypeQuestionable,label=list:TypeQuestionable,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view;
+
+/**
+ * Summary: Questionable for the type to condense information on the type
+ * Author:  Khang Pham
+ * Date:    2020/01/15
+ */
+interface TypeQuestionable {
+
+    boolean isStack();
+
+    boolean isOperand();
+
+    boolean isAction();
+
+    boolean isSetting();
+
+    boolean isHistory();
+
+}
 \end{lstlisting}    
 
 \begin{lstlisting}[caption=MainActivity,label=list:MainActivity,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.view;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.OrientationEventListener;
+import android.view.WindowManager;
+import android.widget.TableLayout;
+import android.widget.Toast;
+
+import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
+import de.fhdw.wip.rpntilecalculator.view.layout.ScreenOrientation;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
+
+import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
+import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
+
+/**
+ * Summary: Starting activity that loads presenter and default layout
+ * Author:  Tom Bockhorn
+ * Date:    2019/09/04
+ */
+public class MainActivity extends AppCompatActivity {
+
+    private static MainActivity mainActivity = null;
+    private TileLayout tileLayout;
+    private OrientationEventListener orientationListener;
+    private int lastOrientation = ORIENTATION_PORTRAIT;
+    private static TileLayout v_standardlayout;
+    private static TableLayout v_tablelayout;
+    private static TileLayout h_standardlayout;
+    private static TableLayout h_tablelayout;
+    private static boolean loaded = false;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mainActivity = this;
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.setContentView(R.layout.activity_main);
+
+        if(!loaded) {
+            v_standardlayout = TileLayoutFactory.createLayout(this, "v_Standardlayout");
+            v_tablelayout = v_standardlayout.createView(this);
+            h_standardlayout = TileLayoutFactory.createLayout(this, "h_Standardlayout");
+            h_tablelayout = h_standardlayout.createView(this);
+            loaded = true;
+        }
+        lastOrientation = -1;
+        orientationListener = new OrientationEventListener(getApplicationContext()) {
+            @Override
+            public final void onOrientationChanged(int orientation) {
+                if (orientation < 0) {
+                    return; // Flip screen, Not take account
+                }
+                int curOrientation;
+
+                if (orientation <= 45) {
+                    curOrientation = ORIENTATION_PORTRAIT;
+                } else if (orientation <= 135) {
+                    curOrientation = ORIENTATION_LANDSCAPE; //reverse
+                } else if (orientation <= 225) {
+                    curOrientation = ORIENTATION_PORTRAIT; //reverse
+                } else if (orientation <= 315) {
+                    curOrientation = ORIENTATION_LANDSCAPE;
+                } else {
+                    curOrientation = ORIENTATION_PORTRAIT;
+                }
+                if (curOrientation != lastOrientation) {
+                    if(curOrientation == ORIENTATION_PORTRAIT) {
+                        adoptTileLayout(v_standardlayout, v_tablelayout);
+                        setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT);
+                    }else {
+                        adoptTileLayout(h_standardlayout, h_tablelayout);
+                        setRequestedOrientation(SCREEN_ORIENTATION_LANDSCAPE);
+                    }
+                    lastOrientation = curOrientation;
+                }
+            }
+        };
+        if (orientationListener.canDetectOrientation()) {
+            orientationListener.enable();
+        }
+        if(((ConstraintLayout)findViewById(R.id.constraintLayout)).getChildCount() == 0) {
+            lastOrientation = -1;
+            orientationListener.onOrientationChanged(getWindowManager().getDefaultDisplay().getRotation() * 90);
+        }
+    }
+
+    public static MainActivity getInstance(){
+        return mainActivity;
+    }
+
+    public void setTileLayout(TileLayout tileLayout) {
+        if(tileLayout == null){
+            Toast.makeText(getApplicationContext(), "Could not load Layout", Toast.LENGTH_LONG).show();
+
+        }else{
+           adoptTileLayout(tileLayout, tileLayout.createView(this));
+        }
+    }
+
+    public void adoptTileLayout(TileLayout tileLayout, TableLayout tableLayout) {
+        this.tileLayout = tileLayout;
+        Presenter presenter = Presenter.getInstance();
+        tileLayout.updateStack(presenter.getOperandStack());
+        tileLayout.updateHistoryStack(presenter.getHistoryStack());
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+        constraintLayout.removeAllViews();
+        constraintLayout.removeAllViewsInLayout();
+        constraintLayout.setBackgroundColor(Color.WHITE);
+        if(tableLayout.getParent() != null)
+            ((ConstraintLayout)tableLayout.getParent()).removeView(tableLayout);
+        constraintLayout.addView(tableLayout);
+        presenter.setCurrentLayout(tileLayout);
+    }
+
+    public TileLayout getTileLayout() {
+        return tileLayout;
+    }
+
+}
 \end{lstlisting} 
 
 \subsection{Presenter}
 
 \begin{lstlisting}[caption=Presenter,label=list:Presenter,language=Java]
-XXX
+package de.fhdw.wip.rpntilecalculator.presenter;
+
+
+import android.content.Context;
+import android.view.View;
+import android.widget.Toast;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.FactoryConfigurationError;
+
+import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
+import de.fhdw.wip.rpntilecalculator.model.calculation.CalculationException;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
+import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
+import de.fhdw.wip.rpntilecalculator.view.schemes.ActionTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.OperandTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.SettingTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.StackTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
+
+/**
+ * Summary: Used for communication between view and model and stack handling
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/14
+ */
+public class Presenter implements View.OnClickListener {
+
+    private static final Presenter PRESENTER = new Presenter();
+
+    @Contract(pure = true) @NotNull
+    public static Presenter getInstance() { return PRESENTER; }
+
+    private final OperandStack OPERAND_STACK = new OperandStack();
+    private ArrayList<Operand> HISTORY_STACK = new ArrayList<>();
+    private StringBuilder INPUT_TERM = new StringBuilder();
+
+    private TileLayout layout;
+    private Context context;
+
+    private boolean INPUT_FINALIZED = false;
+
+    /**
+     * Handles all tile input and decides on the follow up procedure
+     * First decides on the type of input
+     * @param v the tile view that has been clicked
+     */
+    @Override
+    public void onClick(View v) {
+        Tile tile = (Tile) v;
+        this.context = v.getContext();
+        tile.showAnimation(Tile.buttonClick);
+        if(tile.isOperand()) clickOperand(tile);
+        else if(tile.isAction()) clickAction(tile);
+        else if(tile.isStack() || tile.isHistory()) clickStackLike(tile);
+        else if(tile.isSetting()) clickSetting(tile);
+        else System.out.println("Handling exception when clicked on " + tile.getScheme());
+    }
+
+    /**
+     * Handles all stack operation (similar to clickOperand)
+     */
+    private void clickStackLike(@NotNull Tile tile) {
+        StackTileScheme stackTile = (StackTileScheme) tile.getScheme();
+        if(stackTile.hasOperand()) clickOperand(stackTile.getOperand());
+    }
+
+    /**
+     * Handles operand inputs coming from operand tiles
+     * @param tile operand tile
+     */
+    private void clickOperand(@NotNull Tile tile) {
+        Operand operand = ((OperandTileScheme) tile.getScheme()).getOperand();
+        clickOperand(operand);
+    }
+
+    /**
+     * Handles operand inputs coming from any tile
+     * @param operand operand that is added to stack
+     */
+    private void clickOperand(@NotNull Operand operand) {
+        if(operand instanceof OEmpty) return;
+        switch (tryAppending(operand)) {
+            case 0: // string finalized
+                resetInputTerm(operand);
+                break;
+            case 1: // not finalized, but pushed ahead
+                add2History(operand);
+                updateHistoryStack();
+                resetInputTerm(operand);
+                break;
+            case 2: //
+                OPERAND_STACK.pop();
+                operand = readCombinedOperand(INPUT_TERM).getOperand();
+                break;
+        }
+
+        OPERAND_STACK.push(operand);
+        updateStack();
+        //System.out.println("[Operand] " + operand.getClass());
+    }
+
+    /**
+     * Handles all action inputs
+     * @param tile the action tile itself
+     */
+    private void clickAction(@NotNull Tile tile) {
+        Action action = ((ActionTileScheme) tile.getScheme()).getAction();
+        int[] requiredNumOfOperands = action.getRequiredNumOfOperands();
+
+        if(action.getRequiredNumOfOperands()[0] != -1) {
+            //Create a list of all possible parameter lists
+            List<List<Operand>> operands = new ArrayList<>();
+            for(int num : requiredNumOfOperands) {
+                operands.add(OPERAND_STACK.peek(num));
+            }
+            //Try calculating using the given list
+            try {
+                calculate(action, operands);
+            } catch (CalculationException e) {
+                e.printStackTrace();
+            }
+        }
+        updateStack();
+        updateHistoryStack();
+        finalizeInput();
+    }
+
+    /**
+     * Calculates the result with highest possible number of parameters
+     * @param action action that is invoked
+     * @param possibleOperands list of lists of operands that will be tested from bottom upwards
+     * @return returns if the calculation has been successful
+     * @throws CalculationException thrown if no calculation is possible
+     */
+    private boolean calculate(@NotNull Action action, @NotNull List<List<Operand>> possibleOperands) throws CalculationException {
+        if(possibleOperands.size() == 0) {
+            // No calculation has been successful
+            Toast.makeText(context, "Calculation not possible", Toast.LENGTH_LONG).show();
+            throw new CalculationException("No calculation could be applied... :(");
+        }
+        int nextOperandsToTry = possibleOperands.size() - 1;
+        try {
+            //try the one with the highest number of parameters
+            List<Operand> operands = possibleOperands.get(nextOperandsToTry);
+            Operand result = action.with(operands);
+            OPERAND_STACK.pop(operands.size());
+            OPERAND_STACK.push(result);
+            add2History(result);
+            resetInputTerm(result);
+            return true;
+        } catch (CalculationException e) {
+            //try the next lower one
+            possibleOperands.remove(nextOperandsToTry);
+            return calculate(action, possibleOperands);
+        }
+    }
+
+    /**
+     * Handles all Settings (usually do their own thing)
+     * @param tile setting tile that has been clicked
+     */
+    private void clickSetting(@NotNull Tile tile) {
+        Setting setting = ((SettingTileScheme) tile.getScheme()).getSetting();
+        setting.call();
+    }
+
+    /**
+     * Checks if the new operand has to be seen as new term and add if it works
+     * @param operand operand that is added to the stack
+     * @return if the combination has been done or not
+     */
+    private int tryAppending(Operand operand) {
+        if(isInputFinalized()) return 0;
+
+        if(operand instanceof ODouble) {
+            Operand top = OPERAND_STACK.peek();
+            if(top instanceof OEmpty || top instanceof ODouble) {
+                String[] splits = (INPUT_TERM.toString() + operand.toString()).split(".");
+                if(splits.length < 3) {
+                    INPUT_TERM.append(operand);
+                    return 2;
+                }
+            }
+        }
+        return 1;
+    }
+
+    /**
+     * Try adding an operand to the history stack
+     * @param operand the operand ot be added
+     */
+    public void add2History(Operand operand) {
+        boolean add = true;
+        for(Operand op : HISTORY_STACK) {
+            if(op.equalsValue(operand)) add = false;
+        }
+        if(add) HISTORY_STACK.add(operand);
+    }
+
+    /**
+     * Reads the input term as a new operand (typically double)
+     * @param inputTerm current input term
+     * @return the operand that will be created as a result
+     */
+    private OperandTileScheme readCombinedOperand(StringBuilder inputTerm) {
+        return (OperandTileScheme) TileScheme.createTileScheme(TileMapping.O_DOUBLE, inputTerm.toString());
+    }
+
+    /**
+     * Clears the current input term
+     * @param operand one operand that should remain in the input term
+     */
+    public void resetInputTerm(@Nullable Operand operand) {
+        definalizeInput();
+        INPUT_TERM = new StringBuilder();
+        if(operand != null) INPUT_TERM.append(operand);
+    }
+
+    /**
+     * Set the layout that the controller can edit
+     * @param layout current layout
+     */
+    public void setCurrentLayout(TileLayout layout) {
+        this.layout = layout;
+    }
+
+    /**
+     * Lets the layout update its stack
+     */
+    public void updateStack() {
+        layout.updateStack(OPERAND_STACK);
+    }
+
+    /**
+     * Lets the layout update its history stack
+     */
+    public void updateHistoryStack() {
+        layout.updateHistoryStack(HISTORY_STACK);
+    }
+
+    public ArrayList<Operand> getHistoryStack() {
+        return HISTORY_STACK;
+    }
+
+    public StringBuilder getInputTerm () {
+        return INPUT_TERM;
+    }
+
+    public void setInputTerm(StringBuilder inputTerm) {
+        this.INPUT_TERM = inputTerm;
+    }
+
+    public OperandStack getOperandStack() {
+        return OPERAND_STACK;
+    }
+
+    public boolean isInputFinalized() {
+        return INPUT_FINALIZED;
+    }
+
+    public void finalizeInput() {
+        INPUT_FINALIZED = true;
+    }
+
+    private void definalizeInput() {
+        INPUT_FINALIZED = false;
+    }
+
+}
+\end{lstlisting}    
+
+\subsection{Resource}
+
+\begin{lstlisting}[caption=AndroidManifest.xml,label=list:AndroidManifest.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.fhdw.wip.rpntilecalculator">
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+\end{lstlisting}    
+
+\subsubsection{Animation}
+
+\begin{lstlisting}[caption=button\_bounce.xml,label=list:button_bounce.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <scale
+        android:duration="50"
+        android:fromXScale="1.0"
+        android:toXScale="0.9"
+        android:fromYScale="1.0"
+        android:toYScale="0.9"
+        android:pivotX="50%"
+        android:pivotY="50%" />
+
+</set>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=button\_load.xml,label=list:button_load.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <scale
+        android:duration="500"
+        android:fromXScale="0.1"
+        android:toXScale="1.0"
+        android:fromYScale="0.1"
+        android:toYScale="1.0"
+        android:pivotX="50%"
+        android:pivotY="50%" />
+
+</set>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=button\_save.xml,label=list:button_save.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <scale
+        android:duration="500"
+        android:fromXScale="1.0"
+        android:toXScale="0.1"
+        android:fromYScale="1.0"
+        android:toYScale="0.1"
+        android:pivotX="50%"
+        android:pivotY="50%" />
+
+</set>
+\end{lstlisting}    
+
+\subsubsection{Drawable}
+
+\begin{lstlisting}[caption=tile\_error.xml,label=list:tile_error.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stroke
+        android:width="1dp"
+        android:color="#c54646"/>
+    <corners
+        android:radius="7dp" />
+
+    <padding
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp"
+        android:bottom="1dp"/>
+
+    <solid android:color="#f3dada"/>
+</shape>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=tile\_operand\_orange.xml,label=list:tile_operand_orange.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stroke
+        android:width="1dp"
+        android:color="@color/operandOrangeBorder"/>
+    <corners
+        android:radius="7dp" />
+
+    <padding
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp"
+        android:bottom="1dp"/>
+
+    <solid android:color="@color/operandOrangeBackground"/>
+</shape>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=tile\_operand\_white.xml,label=list:tile_operand_white.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stroke
+        android:width="1dp"
+        android:color="@color/operandWhiteBorder"/>
+    <corners
+        android:radius="7dp" />
+
+    <padding
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp"
+        android:bottom="1dp"/>
+
+    <solid android:color="@color/operandWhiteBackground"/>
+</shape>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=tile\_operator\_blue.xml,label=list:tile_operator_blue.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stroke
+        android:width="1dp"
+        android:color="@color/operatorBlueBorder"/>
+    <corners
+        android:radius="7dp" />
+
+    <padding
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp"
+        android:bottom="1dp"/>
+
+    <solid android:color="@color/operatorBlueBackground"/>
+</shape>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=tile\_settings\_grey.xml,label=list:tile_settings_grey.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stroke
+        android:width="1dp"
+        android:color="@color/settingGreyBorder"/>
+    <corners
+        android:radius="7dp" />
+
+    <padding
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp"
+        android:bottom="1dp"/>
+
+    <solid android:color="@color/settingGreyBackground"/>
+</shape>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=tile\_stack\_green.xml,label=list:tile_stack_green.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stroke
+        android:width="1dp"
+        android:color="@color/stackGreenBorder"/>
+    <corners
+        android:radius="7dp" />
+
+    <padding
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp"
+        android:bottom="1dp"/>
+
+    <solid android:color="@color/stackGreenBackground"/>
+</shape>
+\end{lstlisting}    
+  
+\subsubsection{Layout}
+
+\begin{lstlisting}[caption=activity\_main.xml,label=list:activity_main.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity">
+</androidx.constraintlayout.widget.ConstraintLayout>
+\end{lstlisting} 
+
+\begin{lstlisting}[caption=input\_double.xml,label=list:input_double.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/enterButton3"
+        android:layout_width="119dp"
+        android:layout_height="69dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:background="@drawable/tile_operand_white"
+        android:text="Enter" />
+
+    <EditText
+        android:id="@+id/oDouble_input"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="89dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginRight="39dp"
+        android:layout_toStartOf="@+id/enterButton3"
+        android:layout_toLeftOf="@+id/enterButton3"
+        android:ems="10"
+        android:inputType="numberDecimal|numberSigned"
+        android:textSize="36sp" />
+</RelativeLayout>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=input\_fraction.xml,label=list:input_fraction.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp">
+
+    <EditText
+        android:id="@+id/numerator"
+        android:layout_width="254dp"
+        android:layout_height="142dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="Numerator"
+        android:inputType="numberDecimal|numberSigned"
+        android:textSize="36sp" />
+
+    <View
+        android:id="@+id/fraction_line"
+        android:layout_width="249dp"
+        android:layout_height="6dp"
+        android:layout_alignBottom="@id/numerator"
+        android:background="@android:color/darker_gray" />
+
+    <EditText
+        android:id="@+id/denumerator"
+        android:layout_width="254dp"
+        android:layout_height="152dp"
+        android:layout_alignTop="@+id/fraction_line"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="Denumerator"
+        android:inputType="numberDecimal|numberSigned"
+        android:textSize="36sp" />
+
+    <Button
+        android:background="@drawable/tile_operand_white"
+        android:id="@+id/enterButton"
+        android:layout_width="119dp"
+        android:layout_height="69dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="106dp"
+        android:layout_toRightOf="@id/fraction_line"
+        android:text="Enter" />
+
+</RelativeLayout>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=input\_polynomial.xml,label=list:input_polynomial.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp">
+
+    <Button
+        android:background="@drawable/tile_operand_white"
+        android:id="@+id/enterButton2"
+        android:layout_width="119dp"
+        android:layout_height="69dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="151dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="Enter" />
+
+    <EditText
+        android:id="@+id/coefficient_0"
+        android:layout_width="59dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
+        android:ems="10"
+        android:inputType="numberDecimal|numberSigned" />
+
+    <EditText
+        android:id="@+id/coefficient_1"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_toLeftOf="@+id/textView"
+        android:ems="10"
+        android:inputType="numberDecimal|numberSigned" />
+
+    <EditText
+        android:id="@+id/coefficient_2"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_toStartOf="@+id/textView2"
+        android:layout_toLeftOf="@+id/textView2"
+        android:ems="10"
+        android:inputType="numberDecimal|numberSigned" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_toStartOf="@+id/coefficient_0"
+        android:layout_toLeftOf="@+id/coefficient_0"
+        android:text="x + "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_toStartOf="@+id/coefficient_1"
+        android:layout_toLeftOf="@+id/coefficient_1"
+        android:text="x^2 + "
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+</RelativeLayout>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=input\_tile\_type.xml,label=list:input_tile_type.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/stackTypeButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tile_stack_green"
+            android:text="Stack" />
+
+        <Button
+            android:id="@+id/historyTypeButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tile_operand_orange"
+            android:text="Stack" />
+
+        <Button
+            android:id="@+id/operandTypeButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tile_operand_white"
+            android:text="Operand" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/operatorTypeButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tile_operator_blue"
+            android:text="Operator" />
+
+        <Button
+            android:id="@+id/settingTypeButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tile_settings_grey"
+            android:text="Setting" />
+    </LinearLayout>
+</LinearLayout>
+\end{lstlisting}    
+   
+\subsubsection{Values}
+
+\begin{lstlisting}[caption=colors.xml,label=list:colors.xml,language=XML]
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="operatorBlueBackground">#dae3f3</color>
+    <color name="operatorBlueBorder">#4472c4</color>
+    <color name="operandWhiteBackground">#ffffff</color>
+    <color name="operandWhiteBorder">#000000</color>
+    <color name="operandOrangeBackground">#fbe5d6</color>
+    <color name="operandOrangeBorder">#ed7d31</color>
+    <color name="stackGreenBackground">#e2f0d9</color>
+    <color name="stackGreenBorder">#70ad47</color>
+    <color name="settingGreyBorder">#a5a5a5</color>
+    <color name="settingGreyBackground">#e7e6e6</color>
+
+</resources>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=strings.xml,label=list:strings.xml,language=XML]
+<resources>
+    <string name="app_name">Taschenrechner des Volkes</string>
+</resources>
+\end{lstlisting}    
+
+\begin{lstlisting}[caption=styles.xml,label=list:styles.xml,language=XML]
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="PopMenuStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:itemBackground">@android:color/darker_gray</item>
+    </style>
+
+</resources>
 \end{lstlisting}    
