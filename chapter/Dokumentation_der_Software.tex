@@ -3,7 +3,13 @@
 
 \subsection{Dokumentation der Paketstruktur des Android-Projektes [Falk]}
 
-Die Applikation liegt im Paket \code{de.fhdw.wip.rpntilecalculator} und ist in einzelne Klassen unterteilt, welche in eine Ordnerstruktur eingebettet sind. Diese Ordnerstruktur orientiert sich an dem gewählten UI Design Pattern MVP. Dabei gibt es einen Model Ordner. Dieser ist in vier weitere Ordner unterteilt, welche den Kachelarten nachempfunden sind und einen für den Stack. In diesen befinden sich verschiedene Klassen, die zusammen das Model bilden. Im \code{Presenter}-Ordner befindet sich lediglich der Presenter. Der \code{View}-Ordner besteht wieder aus mehreren Teilen. Zum einen aus der \code{MainActivity}, welches die Hauptansicht der Appliaktion darstellt. Dazu befinden sich dort Typen und Grundklassen der Kacheln. Es gibt noch die drei Ordner \code{Layout}, \code{Menu} und \code{Schemes}. In \code{Layout} befinden sich Funktionen zum Darstellen, Speichern und Laden der Kacheln. In \code{Schemes} befinden sich Vorlagen für Tiles und in \code{Menu} sind sämtliche Menüs gespeichert. 
+Die Applikation liegt im Paket \code{de.fhdw.wip.rpntilecalculator} vor und ist mit verschiedenen Klassen realisiert, welche in eine Paketstruktur eingebettet sind. Diese Paketstruktur orientiert sich an dem gewählten UI Design Pattern MVP. 
+
+Eines dieser Pakete trägt den Namen \code{Model}. Dieses ist in vier weitere Unterpakete unterteilt, welche den verschiedenen Schemen nachempfunden sind sowie einen für den Stack. In diesen Unterpaketen befinden sich verschiedene Klassen, die zusammen das Model bilden. 
+
+Das \code{View}-Paket besteht ebenfalls aus mehreren Unterpaketen. Dort findet man zum einen die \code{MainActivity}, welche die Hauptaktivität der Applikation darstellt. Darüber hinaus befinden sich dort die Schemen und Util-Klassen der Kacheln. Es gibt noch die drei Pakete \code{Layout}, \code{Menu} und \code{Schemes}. In \code{Layout} befinden sich Funktionen zum Darstellen, Speichern und Laden der Kacheln. In \code{Schemes} befinden sich Vorlagen für Tiles und in \code{Menu} sind sämtliche Menüs gespeichert. 
+
+Im \code{Presenter}-Paket befindet sich lediglich der Presenter. Dieser wird verwendet, um die Einzelteile des \code{View}- und \code{View}-Pakets zu verbinden. 
 
 \begin{figure}[!h]
 	\includegraphics[scale=1]{img/ordnerstruktur}
@@ -31,7 +37,7 @@ Im MVP Pattern ist die \code{Activity} der View zugeordnet. Sie lädt unter ande
 
 \textbf{Beschreibung:} Activity, die beim Starten der Anwendung aufgerufen wird und das Layout \code{activity\_main.xml} aufruft. Dieses Layout ist jedoch leer, da alle Inhalte dynamisch geladen werden. Es lädt auch Taschenrechner-Layouts vor und stellt Methoden zur Darstellung dieser bereit.
 
-\textbf{Methode} \code{onCreate()} lädt die Layouts vor, erstellt einen \code{Listener} ob die Orientierung sich verändert und öffnet das erste Layout.
+Die \textbf{Methode} \code{onCreate()} lädt die Layouts vor, erstellt einen \code{Listener}, der überwacht ob sich die Orientierung verändert und öffnet daraufhin das erste Layout.
 
 \textbf{Methode} \code{setTileLayout()} lädt ein Layout in die View.
 
@@ -45,7 +51,7 @@ Als logische Abtrennung kann man sich merken, dass Kacheln (\code{Tiles}) ledigl
 
 Die Tiles werden mit Bezug auf den Kontext, also die aktuell dargestellte Activity, erstellt. Sie dienen als generische Kachelklasse, dessen Funktionalitäten unabhängig vom Kacheltypen gebraucht werden.
 
-Ein Tile, als Unterklasse des \code{AppCompatButton} von Android, wirft beim Anklicken ein Event, welches von registrierten \code{OnClickListenern} abgefangen werden kann. Für die einzelnen Tiles wird der \code{Presenter} als \code{OnClickListener} registriert, sodass dieser die vom Nutzer getätigten Klicke verarbeiten kann. Zusätzlich wird dem \code{Tile} als \code{OnLongClickListener} das Menü \code{TileTypeInput} übergeben, welches bei langem Klicken geöffnet wird und somit die Bearbeitung des Kacheltypen ermöglicht.
+Ein Tile, als Unterklasse des \code{AppCompatButton} von Android, entwirft beim Anklicken ein Event, welches von registrierten \code{OnClickListenern} abgefangen werden kann. Für die einzelnen Tiles wird der \code{Presenter} als \code{OnClickListener} registriert, sodass dieser die vom Nutzer getätigten Klicke verarbeiten kann. Zusätzlich wird dem \code{Tile} als \code{OnLongClickListener} das Menü \code{TileTypeInput} übergeben, welches bei langem Klicken geöffnet wird und somit die Bearbeitung des Kacheltypen ermöglicht.
 
 \begin{figure}[!h]
 	\includegraphics[scale=1]{img/listener-von-tile}
@@ -77,7 +83,7 @@ Die \code{TileSchemes} stehen in keiner Beziehung zum Kontext der Anwendung. Den
 	\item Ein \code{HistoryStackTile} ist ebenfalls so aufgebaut, wie ein \code{StackTileScheme}, und erbt daher dessen \code{Attribute}.
 \end{itemize}
 
-Die Erstellung einzelner \code{TileSchemes} erfolgt mithilfe des Factory-Method-Design-Pattern. Hierzu stellt die abtrakte Superklasse \code{TileScheme} zwei Methoden zur Verfügung. Innerhalb dieser Methoden wird anhand des \code{TileMappings} zwischen den verschiedenen Kachelarten differenziert und der passende Konstruktor der Unterklasse aufgerufen. In einer Methode erfolgt die Erstellung des \code{TileScheme} Inhalts durch die Einlese eines Zeichenkette. Dies findet beispielsweise bei der Kreierung von \code{TileSchemes}, nach der Auslese eines im internen Speicher gespeicherten Layouts, Anwendung. Als zweite Option kann aus einem bereits bestehenden Operanden ein \code{TileScheme} der Art Operand, Stack oder Historie erstellt werden. Dadurch, dass Stack und Historie eines Layouts regelmäßig aktualisiert werden müssen, bietet sich die performante Erstellung von \code{TileSchemes} mithilfe bestehender Operanden, gegenüber der aufwendigen erneuten Auslese aus einem String, an.
+Die Erstellung einzelner \code{TileSchemes} erfolgt mithilfe des Factory-Method-Design-Pattern. Hierzu stellt die abtrakte Superklasse \code{TileScheme} zwei Methoden zur Verfügung. Innerhalb dieser Methoden wird anhand des \code{TileMappings} zwischen den verschiedenen Kachelarten differenziert und der passende Konstruktor der Unterklasse aufgerufen. In einer Methode erfolgt die Erstellung des \code{TileScheme} Inhalts durch die Einlese einer Zeichenkette. Dies findet beispielsweise bei der Kreierung von \code{TileSchemes} oder nach der Auslese eines im internen Speicher gespeicherten Layouts, Anwendung. Als zweite Option kann aus einem bereits bestehenden Operanden ein \code{TileScheme} der Art Operand, Stack oder Historie erstellt werden. Dadurch, dass Stack und Historie eines Layouts regelmäßig aktualisiert werden müssen, bietet sich die performante Erstellung von \code{TileSchemes} mithilfe bestehender Operanden, gegenüber der aufwendigen erneuten Auslese aus einem String, an.
 
 Im Kontrast zu den Tiles, die eine Methode zum Aktualisieren der Inhalte bereitstellen, müssen \code{TileSchemes} mithilfe der genannten Methoden rekreiert werden. Kann eine Kachelart nicht identifiziert werden, oder sind die Angaben über den Inhalt der Kachel unkorrekt, so wird ein \code{ErrorTileScheme} erstellt, das visuell von jeder anderen Art zu unterscheiden ist und den Entwicklern somit über den Fehler Bescheid gibt.
 
@@ -131,17 +137,17 @@ Im Kontrast zu den Tiles, die eine Methode zum Aktualisieren der Inhalte bereits
 
 \subsubsection{Kacheltypdefinition durch Enumartion [Pham]}
 
-Wie zuvor erläutert, erstellt die Klasse \code{TileSchemes} ein passendes Schema anhand eines sogenannten \code{TileMappings}. Ein \code{TileMapping} ist im Endeffekt eine konkrete Definition einer Kachel im Frontend-System. Hierzu beinhaltet das entsprechende \code{TileMapping} jegliche Informationen, die für eine bestimmte Kachel von Relevanz ist. 
+Wie zuvor erläutert, erstellt die Klasse \code{TileSchemes} ein passendes Schema anhand eines sogenannten \code{TileMappings}. Ein \code{TileMapping} ist im Endeffekt eine konkrete Definition einer Kachel im Frontend-System. Hierzu beinhaltet das entsprechende \code{TileMapping} jegliche Informationen, die für eine bestimmte Kachel von Relevanz sind. 
 
 Durch die Deklaration als Enum werden diese Informationen mit einer Zeichenkette zur Einlese in Verbindung gebracht. 
 
 Für den Operator \code{-} (\code{Minus}) ist dies beispielsweise die Kachelart (\code{Action} / \code{Operator}), eine Referenz auf die passende \code{Action} Klasse und den Anzeigetext der Kachel \code{-}, die mit dem Text \code{A\_MINUS} betitelt werden. 
 
-Die einzelnen Definitionen liegen in Form einer Java-Enumeration vor, da diese Ein Beispiel für eine solche Definition sieht wie folgt aus:
+Die einzelnen Definitionen liegen in Form einer Java-Enumeration vor. Ein Beispiel für eine solche Definition sieht wie folgt aus:
 
 \code{A\_MINUS(TileType.ACTION, Minus.getInstance(), "-")}
 
-Neben Operatoren werden im Enum die anderen Datentypen ebenfalls angelegt. Technisch wurde dies durch die Verwendung von überladenen Konstruktoren ermöglicht und die \code{TileSchemes} wissen welche Informationen gebraucht werden. Zur Definition der Kachelart selbst wurde eine weitere Enumeration mit folgenden Werten angelegt:
+Neben Operatoren werden im Enum die anderen Datentypen ebenfalls angelegt. Technisch wurde dies durch die Verwendung von überladenen Konstruktoren ermöglicht und die \code{TileSchemes} wissen, welche Informationen gebraucht werden. Zur Definition der Kachelart selbst wurde eine weitere Enumeration mit folgenden Werten angelegt:
 
 \begin{itemize}
 	\item \code{Stack}
@@ -201,7 +207,7 @@ In diesem Abschnitt wird die Umsetzung der Planung für die Menüsteuerung aufge
 
 \paragraph{Klasse: Dialogmenu [Istogu]}
 
-Bei der \code{DialogMenu} handelt es sich um eine abstrakte Klasse, das von \code{View.OnClickListener} implementiert. Der Konstruktor erwartet folgende Parameter:
+Bei der \code{DialogMenu} handelt es sich um eine abstrakte Klasse, das von \code{View.OnClickListener} implementiert wird. Der Konstruktor erwartet folgende Parameter:  
 
 \begin{itemize}
 	\item \code{MainActivity context}
@@ -209,9 +215,9 @@ Bei der \code{DialogMenu} handelt es sich um eine abstrakte Klasse, das von \cod
 	\item \code{DialogMenu last}
 \end{itemize}
 
-In dem Konstruktor wird ein \code{Dialog}-Objekt erstellt. Dabei werden initial bestimmte Attribute für das \code{Dialog} festgelegt, die für alle nachfolgenden Menüs gelten soll. Als Beispiel kann hier aufgeführt werden, dass der Titel festgelegt wird. Zudem wird bestimmt, dass das Fenster zentral erscheint. Dieser Dialog wird erst angezeigt, wenn der \code{OnClickListener} ein Click vom vorherigen Dialog registriert. Zusätzlich wird \code{ContentViewID} über die Methode \code{setContentView()} festgelegt, die auf die einzelne \code{xml}-Dateien referenzieren. 
+In dem Konstruktor wird ein \code{Dialog}-Objekt erstellt. Dabei werden initial bestimmte Attribute für das \code{Dialog} festgelegt, die für alle nachfolgenden Menüs gelten sollen. Als Beispiel kann hier aufgeführt werden, dass der Titel festgelegt wird. Zudem wird bestimmt, dass das Fenster zentral erscheint. Dieser Dialog wird erst angezeigt, wenn der \code{OnClickListener} ein Click vom vorherigen Dialog registriert. Zusätzlich wird \code{ContentViewID} über die Methode \code{setContentView()} festgelegt, die auf die einzelne \code{xml}-Dateien referenzieren. 
 
-Die Methode \code{dismissAll()} sorgt dafür, dass beim Verlassen des Dialoges alle vorherigen Dialoge mitgeschlossen werden. Die Umsetzung des Schließens der vorherigen Dialogen erfolgt das rekursive Aufrufen der Methode \code{dismissAll()} von dem höheren gestellten Dialog-Objekt. Daher wird eine Referenz zu dem letzten Dialog benötigt. Der erste Dialog erhält ein \code{null}-Objekt, das bei der \code{dismissAll} überprüft wird.   
+Die Methode \code{dismissAll()} sorgt dafür, dass beim Verlassen des Dialoges alle vorherigen Dialoge mitgeschlossen werden. Durch die Umsetzung des Schließens der vorherigen Dialoge erfolgt das rekursive Aufrufen der Methode \code{dismissAll()} von dem höheren gestellten Dialog-Objekt. Daher wird eine Referenz zu dem letzten Dialog benötigt. Der erste Dialog erhält ein \code{null}-Objekt, das bei der \code{dismissAll} überprüft wird.   
 
 Grundsätzlich werden Dialoge geschlossen, wenn der Nutzer außerhalb des Dialoges mit der Benutzeroberfläche reagiert oder über den Quellcode \code{dialog.dismiss()} aufgerufen wird.  
 
@@ -232,7 +238,7 @@ Die Klasse \code{InputTileMapping} erbt ebenfalls vom \code{DialogMenu} und dien
 
 Dabei haben sich zwei Use Cases herauskristallisiert:
 
-Die Grundidee ist, dass alle in \code{TileMapping} definierten Kacheln eines bestimmten \code{TileTypes} dem Anwender zur Auswahl präsentiert werden. Diese werden dabei dynamisch aus der \code{TileMapping}-Klasse ausgelesen. Der passende \code{OnClickListener} wird mithilfe der \code{InputMenuFactory} gesetzt. Bei den Kacheltypen-Action und Einstellung wird lediglich die bearbeitete Kachel durch die neue, ausgewählte Kachel vom Typ \code{Action} oder Einstellung ersetzen. Bei der Eingabe eines Operanden wird jedoch ein weiteres Menü aufgerufen, welches dies handhabt. Erst nach erfolgreicher Eingabe kann die bearbeitete Kachel ersetzt werden.
+Die Grundidee ist, dass alle im \code{TileMapping} definierten Kacheln eines bestimmten \code{TileTypes} dem Anwender zur Auswahl präsentiert werden. Diese werden dabei dynamisch aus der \code{TileMapping}-Klasse ausgelesen. Der passende \code{OnClickListener} wird mithilfe der \code{InputMenuFactory} gesetzt. Bei den Kacheltypen-Action und Einstellung wird lediglich die bearbeitete Kachel durch die neue, ausgewählte Kachel vom Typ \code{Action} oder Einstellung ersetzen. Bei der Eingabe eines Operanden wird jedoch ein weiteres Menü aufgerufen, welches dies handhabt. Erst nach erfolgreicher Eingabe kann die bearbeitete Kachel ersetzt werden.
 
 \begin{figure}[h]
 	\includegraphics[width=\columnwidth]{img/inputtilemapping-for-operators}
@@ -253,7 +259,7 @@ Was bei der Erstellung von sowohl Stack, als auch Historie von Relevanz ist, ist
 
 \paragraph{Klasse: InputDouble [Gentges]}
 
-Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFraction} und \code{OPolynom}) für die Eingabe vom User möglich sein. Die XML-Ansicht ist simpel gehalten und verwendet ein \code{RelativeLayout} hat, welches die relative Position zu den einzelnen Objekte verwendet. Dadurch wird die Layout-Hierarchie reduziert und die Performance der Applikation verbessert. Für das Eingabefeld wird ein \code{EditText} verwendet, das als Eingabetyp Dezimalzahlen unterstützt wird. In Android muss hier noch explizit erwähnt werden, dass erst über den Keyword \code{numberSigned} auch die Eingabe von negative Zahlen möglich ist.
+Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFraction} und \code{OPolynom}) für die Eingabe vom User möglich sein. Die XML-Ansicht ist simpel gehalten und verwendet ein \code{RelativeLayout}, welches die relative Position zu den einzelnen Objekte verwendet. Dadurch wird die Layout-Hierarchie reduziert und die Performance der Applikation verbessert. Für das Eingabefeld wird ein \code{EditText} verwendet, das als Eingabetyp Dezimalzahlen unterstützt wird. In Android muss hier noch explizit erwähnt werden, dass erst über den Keyword \code{numberSigned} auch die Eingabe von negative Zahlen möglich ist.
 
 \begin{figure}[h]
 	\includegraphics[width=0.6\columnwidth]{img/xml_InputDouble}
@@ -262,7 +268,7 @@ Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFractio
 \footnotetext{eigene Darstellung in Android Studio}
 \FloatBarrier
 
-Die korrespondierende Java-Datei liest nach dem Bestätigen des Buttons den Wert aus dem \code{EditText} und kreiert ein \code{ODouble}-Objekt. Dieses Objekt wird mit seinem zugehörigen \code{TileMapping} einem \code{TileScheme} zugewiesen. Das vorher ausgewählte \code{Tile} aktualisiert seinen \code{TileScheme}. Abschließend schließt der Konstruktor die Dialog über die Methode \code{dismissAll()}, die vorher erklärt wurde.
+Die korrespondierende Java-Datei liest nach dem Bestätigen des Buttons den Wert aus dem \code{EditText} und kreiert ein \code{ODouble}-Objekt. Dieses Objekt wird mit seinem zugehörigen \code{TileMapping} einem \code{TileScheme} zugewiesen. Das vorher ausgewählte \code{Tile} aktualisiert seinen \code{TileScheme}. Abschließend schließt der Konstruktor die Dialoge über die Methode \code{dismissAll()}, die vorher erklärt wurde.
 
 \paragraph{Klasse: InputFraction [Gentges]}
 
@@ -305,7 +311,7 @@ Wie aus dem Klassendiagramm entnommen werden kann, wurde die Menüsteuerung sowe
 
 Für ein gut funktionierendes Backend ist ein einheitliches Datenmodel essenziell. So gibt es in der Kernbibliothek von Java einige Klassen für die Repräsentation von mathematischen Bausteinen, wie z.B. dem Bruch. Das gleiche gilt für \textit{Apache Commons Math}. 
 
-Jedoch sind die meisten dieser Klassen sehr spezialisiert und miteinander nicht kompatibel. Deswegen wurde innerhalb des Projektteams entschieden für jeden unterstützten Operanden eine eigene Klasse zu entwickeln, die jedoch alle von der gleichen abstrakten Klasse \code{Operand} erben sollen. 
+Jedoch sind die meisten dieser Klassen sehr spezialisiert und miteinander nicht kompatibel. Deswegen wurde innerhalb des Projektteams entschieden für jeden unterstützten Operanden eine eigene Klasse zu erstellen, die jedoch alle von der gleichen abstrakten Klasse \code{Operand} erben sollen. 
 
 Dadurch wird sichergestellt, dass es eine einheitliche Schnittstelle gibt, über die alle Operanden angesprochen werden können. Beschreiben kann man diese neuen Klassen auch als \textit{Wrapper}, da der Großteil der eigentlichen Funktionalitäten Teil der darunterliegenden Klassen ist. 
 
@@ -367,7 +373,7 @@ Implementierung einer Matrix. Das darunterliegende Objekt ist eine \code{RealMat
 
 \textit{Wrapper für eine Apache Commons} \code{PolynomialFunction}
 
-Implementierung eines Polynoms. Grundsätzlich entspricht das Polynom einer einer Sequenz von Dezimalzahlen. Abhängig von der Position in der Sequenz entscheidet sich, was der Exponent der jeweiligen Dezimalzahl ist. Somit müssen Funktionen immer in dieser Normalform vorliegen. Erstellen kann man ein \code{OPolynom} aus einem String oder einem \code{Array} von \code{Doubles}.
+Implementierung eines Polynoms. Grundsätzlich entspricht das Polynom einer Sequenz von Dezimalzahlen. Abhängig von der Position in der Sequenz entscheidet sich, was der Exponent der jeweiligen Dezimalzahl ist. Somit müssen Funktionen immer in dieser Normalform vorliegen. Erstellen kann man ein \code{OPolynom} aus einem String oder einem \code{Array} von \code{Doubles}.
 
 \paragraph{Klasse: OEmpty [Meinerzhagen]}
 
@@ -377,7 +383,7 @@ Ein leerer Operand. Da alle \code{Operand}-Klassen Wrapper sind, ist technisch a
 
 \paragraph{Klasse: DoubleFormatter [Meinerzhagen]}
 
-Zentrale Anlaufstelle um \code{Doubles} in einen formattierten String umzuwandeln. Die einzige hier enthaltene Methode ist 
+Zentrale Anlaufstelle um \code{Doubles} in einen formattierten String umzuwandeln. Die einzige hier enthaltene Methode wird verwendet, um die Darstellung der Doubles zu vereinheitlichen. 
 
 \code{String format(double d)}
 
@@ -540,7 +546,7 @@ Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
 
 \textbf{Rückgabewerte:} Ein Set des Typs \code{OSet} mit den berechneten Nullstellen. Die Nullstellen werden als \code{Set} zurückgegeben, da so verhindert wird das für Funktionen wie \code{x\^{}2+0*x+0} zweimal die gleiche Nullstelle zurückgegeben wird. 
 
-\textbf{Einstieg in die Klasse:} Öffentliche Methode, die die übergebenen Parameter entgegennimmt. Die weiteren Methoden für die Berechnung werden anschließend von der Öffentlichen Methode aus aufgerufen. 
+\textbf{Einstieg in die Klasse:} Öffentliche Methode, die die übergebenen Parameter entgegennimmt. Die weiteren Methoden für die Berechnung werden anschließend von der öffentlichen Methode aus aufgerufen. 
 Methoden der Klasse \code{Zeros}:
 
 \code{calculateZeros}: Die Methode erhält eine Funktion vom Typ \code{OPolynom}. Anschließend wird bestimmt, von welchem Grad die übergebene Funktion ist. Wenn die Funktion ersten Grades ist, wird die Methode \code{zerosTypeOne} aufgerufen, ansonsten die Methode \code{zerosTypeTwo}. Die beiden Methoden geben die gefundenen Nullstellen als 
@@ -602,7 +608,7 @@ Die Tests waren erfolgreich.
 
 \textbf{Rückgabewerte:} Ein Wert des Typs \code{ODouble}
 
-\textbf{Beschreibung:} Die Klasse berechnet den Logarithmus. Die Art des Logarithmus ist abhängig von den übergebenen Parametern. Wird nur ein Wert übergeben, wird der natürliche Logarithmus der Zahl berechnet. Wenn zwei Parameter übergeben werden, ist der erste Parameter die Basis des Logarithmus, der zweite der Wert, zu für den der Logarithmus berechnet werden soll. 
+\textbf{Beschreibung:} Die Klasse berechnet den Logarithmus. Die Art des Logarithmus ist abhängig von den übergebenen Parametern. Wird nur ein Wert übergeben, wird der natürliche Logarithmus der Zahl berechnet. Wenn zwei Parameter übergeben werden, ist der erste Parameter die Basis des Logarithmus, der zweite der Wert, für den der Logarithmus berechnet werden soll. 
 
 Der Einstieg in die Klasse erfolgt über zwei öffentliche Methoden. Die Methode wird anhand der übergebenen Parameter (ein oder zwei Werte vom Typ \code{ODouble}) ausgewählt. In der Öffentlichen Methode findet die Berechnung des Logarithmus (Natürlicher oder Logarithmus zu einer bestimmten Basis) statt. Wenn ein Wert kleiner gleich null eingegeben wird, wird eine Fehlermeldung ausgegeben.
 
@@ -679,7 +685,7 @@ Für das Berechnen des Integrals \code{getSimpsonIntegrator()} werden folgende P
 	\item \code{double upperBound}
 \end{itemize}
 
-Das Integral für den vorgegebenen Bereich wird als \code{ODouble} zurückgegeben. Diese Methode realisiert die Simpsonregel für die Integration von realen Funktionen, die in dem genutzten Mathebibliothek als Klasse \code{SimpsonIntegrator} implementiert wurde. 
+Das Integral für den vorgegebenen Bereich wird als \code{ODouble} zurückgegeben. Diese Methode realisiert die Simpsonregel für die Integration von reellen Funktionen, die in dem genutzten Mathebibliothek als Klasse \code{SimpsonIntegrator} implementiert wurde. 
 
 Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
 
@@ -701,7 +707,7 @@ Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-K
 
 Für die Umsetzung wurde die Funktion \code{value(double x)} der Klasse \code{PolynomialFunction} verwendet, die aus der Mathebibliothek \textit{Apache Commons Math} hervorgeht. Zudem bietet die \code{Double}-Klasse die Repräsentierung von positiv und negativ Unendlich an, die auch für die Methoden verwendet wurde.
 
-Für die Bestimmung des Grenzwertes wurde sich an der Methode der numerischen Annäherung orientiert. Hierbei wird der Grenzwert durch die Annäherung von links und rechts des untersuchten Punktes bestimmt. Daher wurde die Anforderung in drei Methoden untergliedert, einmal die Methode \code{limitFromBelow(…)} und \code{limitFromAbove(…)}, die jeweils die Annäherung von verschiedenen Richtung bestimmt. Die Rückgabewerte der beiden Methoden werden in der Methode \code{limit(…)} miteinander verglichen. Zweck der Vergleichsabfrage ist es Definitionslücken abzufangen. Als Beispiel wird folgende Funktion angenommen:
+Für die Bestimmung des Grenzwertes wurde sich an der Methode der numerischen Annäherung orientiert. Hierbei wird der Grenzwert durch die Annäherung von links und rechts des untersuchten Punktes bestimmt. Daher wurde die Anforderung in drei Methoden untergliedert, einmal die Methode \code{limitFromBelow(…)} und \code{limitFromAbove(…)}, die jeweils die Annäherung von verschiedenen Richtungen bestimmt. Die Rückgabewerte der beiden Methoden werden in der Methode \code{limit(…)} miteinander verglichen. Zweck der Vergleichsabfrage ist es Definitionslücken abzufangen. Als Beispiel wird folgende Funktion angenommen:
 
 \[f(x) = \frac{1}{x}\]
 
@@ -718,7 +724,7 @@ $\lim_{x\to\ 0+} \frac{1}{x}\ = \infty$
 $\lim_{x\to\ 0-} \frac{1}{x}\ = - \infty$
 
 
-Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweisen definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode \code{limit(…)} berücksichtigt.
+Wenn der linksseitige und rechtsseitige Grenzwert nicht übereinstimmen, ist der Grenzwert an dieser Stelle nicht existent. In dem Fall beruht es darauf, dass das Ergebnis einer Division mit dem Divisor null nicht definiert ist. Solche Unstimmigkeiten können unter anderem auch in abschnittsweise definierten Funktionen vorkommen, die im Funktionsumfang der App nicht integriert sind. Trotz dessen werden solche Fälle mit dem Vergleich zwischen dem linksseitigen und rechtsseitigen Grenzwert in der Methode \code{limit(…)} berücksichtigt.
 
 Für die jeweilige Annäherung wurde die Überlegung getätigt, welche Fälle in der Grenzwertbestimmung von Funktionen vorkommen können. Dabei wurden folgende Lösungsmöglichkeiten festgestellt:
 \begin{itemize}
@@ -754,7 +760,7 @@ Die Klasse \code{Limes} erbt von der Klasse \code{Action}. Dahin gehend besitzt 
 
 \textbf{Rückgabewerte: }Einzelner Wert des Typs \code{ODouble}
 
-Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren.
+Nach der Implementierung der Klasse wurde die dazu gehörig eine Unit-Test-Klasse erstellt. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren.
 
 \begin{enumerate}
 	\item Eingabe: \code{OPolynom}: x\^{}2 + 1, Stelle: 26 \\
@@ -867,9 +873,9 @@ Die Tests waren erfolgreich.
 
 \subsubsection{Lösen von Gleichungssystemen [Istogu]}
 
-Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse \code{MatrixUtil} mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist.\footnote{\cite[vgl.][]{gordoncollegemathematicscomputersciencedepartment2019}}
+Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse \code{MatrixUtil} mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist.
 \[A*x=b\]
-lösen. Dabei ist A eine quadratische Matrix (n x n) und b ein Vektor (n).
+zu lösen. Dabei ist A eine quadratische Matrix (n x n) und b ein Vektor (n).
 Die Klasse besitzt eine ''on'' Methode, die dann solveLinearSystem() aufruft. Dabei erwartet die Methode ''on'' jeweils ein Objekt des Typs OMatrix und OTuple und gibt ein OTuple zurück. 
 
 \begin{figure}[h]
@@ -878,7 +884,7 @@ Die Klasse besitzt eine ''on'' Methode, die dann solveLinearSystem() aufruft. Da
 \end{figure}
 \footnotetext{eigene Darstellung}
 
-Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überprüfung der Parameter nach ihrer richtigen Form. 
+Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überprüfung der Parameter nach ihrer richtigen Form. Die Methode \code{solveLGSForX(A, b)} löst mit Hilfe der LR-Zerlegung (auch als Dreieckszerlegung bekannt) mit Spaltenpivotsuche. Diese Funktionalität wird nicht von \textit{Apache Commons Math} unterstützt. Es beschränkt sich nur auf das Lösen einer Matrix, wenn die gegebene quadratische Matrix eine Dreiecksmatrix ist. Für die Implementierung der Methode wurde sich nach dem Pseudocode orientiert.\footnote{\cite[vgl.][]{gordoncollegemathematicscomputersciencedepartment2019}}
 
 Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
 \begin{enumerate}
@@ -916,7 +922,7 @@ int size();
 
 Der größte Unterschied zu anderen Stack-Interfaces ist, dass die drei bekannten Stack-Operationen \code{push}, \code{pop} und \code{peek} sowohl einzelne Parameter als auch Sammlungen von Parametern unterstützen. So kann man sich zum Beispiel die ersten 4 Objekte einer bestimmten Klasse mit einem einzigen Methodenaufruf von \code{pop} vom Stack entfernen. Bei einem normalen Stack sind eine ganze Reihe von Operationen dafür notwendig. Der Stack muss Element um Element auseinandergenommen, die ungewünschten Objekte entfernt, die anderen zwischengespeichert und anschließend wieder zusammengebaut werden.
 
-Implementiert wird \code{StackInterface} von der Klasse \code{OperandStack}. Technisch ist der Stack als \code{LinkedList} umgesetzt. Um weitere Methoden außerhalb der \code{LinkedList}-Klasse auf dem Objekt nutzen zu können, wird das Objekt weiteren Klassenvariablen vom Typ \code{List} und \code{Deque} zugewiesen. Das ist möglich, weil all diese Klassen vom Typ \code{Collections} erben. Je nach Anforderung werden unterschiedliche Interfaces der \code{Collection} verwendet. So wird für ein klassisches \code{pop} das Interface einer \code{Deque} verwendet, während für ein \code{peek} bei dem die gewünschte Klasse und maximale Anzahl zurückgegebener Objekte angegeben werden kann die Methoden einer \code{ArrayList} genutzt werden. So entsteht ein auf das Projekt optimal angepasstes Stack.
+Implementiert wird \code{StackInterface} von der Klasse \code{OperandStack}. Technisch ist der Stack als \code{LinkedList} umgesetzt. Um weitere Methoden außerhalb der \code{LinkedList}-Klasse auf dem Objekt nutzen zu können, wird das Objekt weiteren Klassenvariablen vom Typ \code{List} und \code{Deque} zugewiesen. Das ist möglich, weil all diese Klassen vom Typ \code{Collections} erben. Je nach Anforderung werden unterschiedliche Interfaces der \code{Collection} verwendet. So wird für ein klassisches \code{pop} das Interface einer \code{Deque} verwendet, während für ein \code{peek} bei dem die gewünschte Klasse und maximale Anzahl zurückgegebener Objekte angegeben werden kann, die Methoden einer \code{ArrayList} genutzt werden. So entsteht ein auf das Projekt optimal angepasstes Stack.
 
 \subsubsection{Settings [Falk]}
 
@@ -941,7 +947,7 @@ Leert die gesamte Historie
 \paragraph{Klasse: Enter}
 \textit{ENTER}
 
-Finalisiert eingegebene Operanden, sodass sie nicht mehr bearbeitet werden können und fügt sie zur Historie hinzu
+Finalisiert eingegebene Operanden, sodass sie nicht mehr bearbeitet werden können und fügt sie zur Historie hinzu.
 \paragraph{Klasse: Dot}
 \textit{.}
 
@@ -1047,7 +1053,7 @@ Bei den Setting-Kacheln muss lediglich die hinterlegte Aktion aufgerufen werden.
 
 \subsubsection{Calculate}
 
-Zum Ausrechnen von Aktionen wird die Funktion \code{calculate()} aufgerufen. Dort wird versucht mit der größten definierten Anzahl von Operanten vom \code{OperandStack} eine Operation durchzuführen. Wenn eine Operation erfolgreich ausgeführt werden konnte werden die verwendeten Operanden vom \code{OperandStack} gelöscht und das ermittelte Ergebnis wird anschließend dort hinzugefügt.
+Zum Ausrechnen von Aktionen wird die Funktion \code{calculate()} aufgerufen. Dort wird versucht mit der größten definierten Anzahl von Operanten vom \code{OperandStack} eine Operation durchzuführen. Wenn eine Operation erfolgreich ausgeführt werden konnte, werden die verwendeten Operanden vom \code{OperandStack} gelöscht und das ermittelte Ergebnis wird anschließend dort hinzugefügt.
 
 \subsection{Dokumentation der persistenten Datenhaltung [Meinerzhagen]}
 \label{subsection:dokumentation-der-persistenten-datenhaltung}
@@ -1063,7 +1069,7 @@ Beispielhaft wird die Speicherung nachfolgend an einem Layout vorgestellt. Dazu 
 \footnotetext{eigene Darstellung}
 \FloatBarrier
 
-Die Kacheln sind in einem vier-mal-vier Format angelegt. Sie bestehen aus drei Stack-Kacheln, neun Operanden-Kacheln mit einzelnen Zahlen und vier Operatoren-Kacheln. Diese sind repräsentativ für dieses Beispiel, da der Speicherprozess für alle Inhalte einer Art gleich gehandhabt wird.
+Die Kacheln sind in einem vier-mal-vier Format angelegt. Sie bestehen aus drei Stack-Kacheln, neun Operanden-Kacheln, mit einzelnen Zahlen, und vier Operatoren-Kacheln. Diese sind repräsentativ für dieses Beispiel, da der Speicherprozess für alle Inhalte einer Art gleich gehandhabt wird.
 
 Nachfolgend ist die CSV-Repräsentation des obigen Layouts abgebildet. 
 
