@@ -278,21 +278,7 @@ Auf Grund der tabellenähnlichen Struktur der zu speichernden Daten wurde zum Sp
 
 \clearpage
 
-\subsubsection{Planung der View [Tom]}
-
-Die Darstellung und Funktionsweise der bereits entstandenen Prototypen ermöglichten ein frühes Verständnis der notwendigen Architektur und Schnittstellen eines Frontends des Taschenrechners. Als Kernelemente des Frontends fungierten die Kacheln, die bei Berührung ein Event an den Presenter der Applikation senden würden. Für dieses Konzept wurde sich auf die Einbindung von sogenannten \code{OnClickListenern} geeinigt. \code{OnClickListener} sind von Android bereitgestellte Interfaces, die nach Belieben implementiert werden können, um auf das Klicken eines Buttons zu reagieren.
-
-Wie ein \code{OnClickListener} jedoch reagieren würde, war abhängig von der Art der Kachel. 
-Diese wird mithilfe eines Kachelschema festgelegt in dem Typ und Inhalt der Kachel definiert ist. Da es neben den unterschiedlichen Kachelarten, wie Settings und Operanden auch Unterschiede innerhalb der Art gab, wird nicht nur die Art, sondern eine genaue Definition der Kachel an das Schema weitergegeben. So sind zwar Kacheln für \code{Plus} und \code{Minus} beides Operationen, doch führen zu völlig unterschiedlichen Ergebnissen. 
-
-Ein Kachelschema ist im Gegensatz zu einem Button nicht an den Kontext der Applikation gebunden und kann so dynamisch vorgeladen werden. Zur Strukturierung und einheitlichen Adressierung passiert dies in einem sogenannten Kachelcontainer, der über die Aktualisierungen, das Speichern und das Laden aller Kacheln verantwortete. Ein Kachelcontainer hingegen würde mithilfe des Factory-Pattern aus einer Zeichenkette geladen und erstellt werden. 
-
-In diesem Zusammenhang war jedoch eine Kernfrage die Entscheidung, ob die Kacheln statisch oder dynamisch auf den Screen platziert würden. Obwohl die statische Implementierung zunächst für simpler angenommen wurde, überzeugte die mögliche Anpassungsfähigkeit einer dynamischen Lösung.
-
-\clearpage
-
-\subsubsection{Planung des Presenters [Bockhorn]}
-
+\subsubsection{Planung des Presenters [Meinerzhagen]}
 Der Presenter agiert als Bindeglied zwischen der View und dem Model, sodass alle Bereiche ihre Funktionalitäten im vollen Maß erfüllen können und eine Separierung der Anwenderschnittstelle und der Geschäftslogik gewährleistet werden kann. Der Presenter koordiniert die Kommunikation zwischen View und Model, also steuert Rechnungen im Backend und sorgt für die korrekte Darstellung der Ergebnisse in den einzelnen Kacheln der View.
 
 Mit der View kommuniziert er über eine Container-Klasse, welche die einzelnen Kacheln koordiniert. Aufrufe der View in Richtung des Presenters werden durch Events realisiert. Dabei wird die in Android native Listener Funktionalität verwendet, wobei der Presenter als \code{OnClickListener} dient. Er ist sich über die Instanz der Container Klasse bewusst und interagiert direkt mit dessen Attributen und Methoden.
