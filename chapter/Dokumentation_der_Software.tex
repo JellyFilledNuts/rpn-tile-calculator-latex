@@ -867,7 +867,7 @@ Die Tests waren erfolgreich.
 
 \subsubsection{Lösen von Gleichungssystemen [Istogu]}
 
-Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse \code{MatrixUtil} mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist.\footnote{\cite[vgl.][]{gordoncollegemathematicscomputersciencedepartment2019}}
+Da bereits die Grundrechenoperationen auch den Operand Matrix unterstützt, beschäftigt sich die Klasse \code{MatrixUtil} mit der Problemstellung ein lineares Gleichungssystem, die wie folgt aufgebaut ist.
 \[A*x=b\]
 lösen. Dabei ist A eine quadratische Matrix (n x n) und b ein Vektor (n).
 Die Klasse besitzt eine ''on'' Methode, die dann solveLinearSystem() aufruft. Dabei erwartet die Methode ''on'' jeweils ein Objekt des Typs OMatrix und OTuple und gibt ein OTuple zurück. 
@@ -878,7 +878,7 @@ Die Klasse besitzt eine ''on'' Methode, die dann solveLinearSystem() aufruft. Da
 \end{figure}
 \footnotetext{eigene Darstellung}
 
-Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überprüfung der Parameter nach ihrer richtigen Form. 
+Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überprüfung der Parameter nach ihrer richtigen Form. Die Methode \code{solveLGSForX(A, b)} löst mit Hilfe der LR-Zerlegung (auch als Dreieckszerlegung bekannt) mit Spaltenpivotsuche. Diese Funktionalität wird nicht von \textit{Apache Commons Math} unterstützt. Es beschränkt sich nur auf das Lösen einer Matrix, wenn die gegebene quadratische Matrix eine Dreiecksmatrix ist. Für die Implementierung der Methode wurde sich nach dem Pseudocode orientiert.\footnote{\cite[vgl.][]{gordoncollegemathematicscomputersciencedepartment2019}}
 
 Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
 \begin{enumerate}
