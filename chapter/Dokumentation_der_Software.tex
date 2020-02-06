@@ -1,7 +1,378 @@
 %!TEX root = ../Thesis.tex
 \section{Dokumentation der Software}
 
-\subsection{Dokumentation der Paketstruktur des Android-Projektes}
+\subsection{Dokumentation der Paketstruktur des Android-Projektes [Falk]}
+
+Die Applikation liegt im Paket \code{de.fhdw.wip.rpntilecalculator} und ist in einzelne Klassen unterteilt, welche in eine Ordnerstruktur eingebettet sind. Diese Ordnerstruktur orientiert sich an dem gewählten UI Design Pattern MVP. Dabei gibt es einen Model Ordner. Dieser ist in vier weitere Ordner unterteilt, welche den Kachelarten nachempfunden sind und einen für den Stack. In diesen befinden sich verschiedene Klassen, die zusammen das Model bilden. Im \code{Presenter}-Ordner befindet sich lediglich der Presenter. Der \code{View}-Ordner besteht wieder aus mehreren Teilen. Zum einen aus der \code{MainActivity}, welches die Hauptansicht der Appliaktion darstellt. Dazu befinden sich dort Typen und Grundklassen der Kacheln. Es gibt noch die drei Ordner \code{Layout}, \code{Menu} und \code{Schemes}. In \code{Layout} befinden sich Funktionen zum Darstellen, Speichern und Laden der Kacheln. In \code{Schemes} befinden sich Vorlagen für Tiles und in \code{Menu} sind sämtliche Menüs gespeichert. 
+
+\begin{figure}[!h]
+	\includegraphics[scale=1]{img/ordnerstruktur}
+	\caption[Ordnerstruktur]{Ordnerstruktur\footnotemark}
+\end{figure}
+\footnotetext{eigene Darstellung (Screenshot aus Android Studio)}
+
+\begin{figure}[!h]
+	\includegraphics[scale=1]{img/ordnerstruktur2}
+	\caption[Ordnerstruktur Schema]{Ordnerstruktur Schema\footnotemark}
+\end{figure}
+\footnotetext{eigene Darstellung}
+
+\subsection{Dokumentation der View}
+
+In den folgenden Kapiteln wird die Implementierung des Frontends der Applikation, der sogenannten View, und jeglichen zugehörigen Implementierungen, dargestellt.
+
+\subsubsection{Activities [Bockhorn]}
+
+Die Applikation wird durch den Aufruf der sogenannten \code{MainActivity} vom Android System beim Öffnen der Anwendung gestartet. Da die Menüführung nicht auf Activities basiert und jegliche Layouts dynamisch geladen werden, bleibt die \code{MainActivity} die einzige Activity der Applikation
+
+Im MVP Pattern ist die \code{Activity} der View zugeordnet. Sie lädt unter anderem vertikale und horizontale Layouts vor und stellt eine Methode zur Darstellung dieser bereit. Auch wird ein Listener erstellt, der nach Änderungen der Bildschirmausrichtung horcht und passende Layouts lädt.
+
+\paragraph{Klasse: MainActivity}
+
+\textbf{Beschreibung:} Activity, die beim Starten der Anwendung aufgerufen wird und das Layout \code{activity\_main.xml} aufruft. Dieses Layout ist jedoch leer, da alle Inhalte dynamisch geladen werden. Es lädt auch Taschenrechner-Layouts vor und stellt Methoden zur Darstellung dieser bereit.
+
+\textbf{Methode} \code{onCreate} lädt die Layouts vor, erstellt einen \code{Listener} ob die Orientierung sich verändert und öffnet das erste Layout.
+
+\textbf{Methode} \code{setTileLayout} lädt ein Layout in die View.
+
+\subsubsection{Generische Kachelgestaltung [Tom]}
+
+Die generische Gestaltung der Kacheln wurde gemäß dem Entwurf so umgesetzt, dass eine Trennung zwischen Kacheln, die als Buttons vom Kontext der Applikation abhängig sind, und Kacheln, die vom Kontext unabhängig sind, ermöglicht wird. Dies dient unter anderem dem Vorladen von Layouts zur Optimierung der Ladeperformance. Außerdem wird so die Definition des Kacheltypen und dessen spezialisierte Inhalte auf die vom Kontext unabhängigen Kachelschemata (\code{TileSchemes}) ausgelagert. 
+
+Als logische Abtrennung kann man sich merken, dass Kacheln (\code{Tiles}) lediglich für die Kommunikation mit dem Nutzer zuständig sind, während die \code{TileSchemes} die restliche Frontend-Logik beinhalten.
+
+\subsubsection{Kontextbezogene Kacheln [Bockhorn]}
+
+Die Tiles werden mit Bezug auf den Kontext, also die aktuell dargestellte Activity, erstellt. Sie dienen als generische Kachelklasse, dessen Funktionalitäten unabhängig vom Kacheltypen gebraucht werden.
+
+Ein Tile, als Unterklasse des \code{AppCompatButton} von Android, wirft beim Anklicken ein Event, welches von registrierten \code{OnClickListenern} abgefangen werden kann. Für die einzelnen Tiles wird der \code{Presenter} als \code{OnClickListener} registriert, sodass dieser die vom Nutzer getätigten Klicke verarbeiten kann. Zusätzlich wird dem \code{Tile} als \code{OnLongClickListener} das Menü \code{TileTypeInput} übergeben, welches bei langem Klicken geöffnet wird und somit die Bearbeitung des Kacheltypen ermöglicht.
+
+\begin{figure}[!h]
+	\includegraphics[scale=1]{img/listener-von-tile}
+	\caption[Listener von Tile]{Listener von Tile\footnotemark}
+\end{figure}
+\footnotetext{eigene Darstellung}
+
+Die Informationen über den Kacheltypen des \code{Tiles} befindet sich im \code{TileScheme} des \code{Tiles}. Werden nun die Inhalte, oder gar der Kacheltyp des \code{Tiles} verändert, so wird das Aussehen des \code{Tiles} anhand des aktuellen \code{TileSchemes} aktualisiert. Ähnlich stellt ein \code{Tile} verschiedene Animationen bereit, die zum Beispiel beim Laden oder Speichern des \code{Tiles} aufgerufen und abgespielt werden können.
+
+\paragraph{Tile [Bockhorn]}
+
+\textbf{Superklasse:} \code{AppCompatButton}
+
+\textbf{Beschreibung:} Agiert als Button auf einem Kontext, dessen Inhalt und Typ durch ein \code{TileScheme} definiert sind. Einfaches Klicken wird vom \code{Presenter} abgefangen und gedrückt halten öffnet ein Auswahlmenü für die Kachelart. 
+
+\textbf{Methode} \code{update} Aktualisiert das \code{Tile} mithilfe eines neuen \code{Schemes}. Setzt dabei Hintergrund Ressource und Text
+
+\textbf{Methode} \code{enableMenulistener} Aktiviert die Menüfunktion für dieses \code{Tile}
+
+\subsubsection{Kontextfremde Kacheln [Gentges]}
+
+Die \code{TileSchemes} stehen in keiner Beziehung zum Kontext der Anwendung. Dennoch wird in ihnen der Text und das Design des letztendlichen \code{Tiles} gespeichert. Im Gegensatz zu den \code{Tiles} differenzieren \code{TileSchemes} hier zwischen Kachelarten. Die Grundeigenschaften eines \code{TileSchemes}, also die Information darüber um welche Art von Kachel es sich handelt, und was genau der Inhalt ist, werden in der Superklasse \code{TileScheme} definiert. Ersteres liegt in Form eines sogenannten \code{TileMappings} vor, welches in einem folgenden Kapitel näher erläutert wird XXX. Für jede der bestehenden Kachelarten wurde eine Unterklasse implementiert, welche die Eigenschaften von \code{TileScheme} erbt und weitere artbezogene Inhalte definiert. In Kombination mit einem \code{Tile} können so andere Komponenten der Applikation, wie beispielsweise der \code{Presenter}, die Kachelart des \code{TileScheme} erfragen und den vorliegenden Inhalt für die auszuführenden Prozesse extrahieren.
+
+\begin{itemize}
+	\item Das \code{ActionTileScheme} ist die Implementierung eines \code{TileScheme} vom Typ Action, (auch \code{Operator}) der Inhalt und Typ um eine instanziierte Action erweitert. Dank der ähnlich polymorphen Struktur der \code{Action}s, kann so mit einem simplen Methodenaufruf jede Form von \code{Action}, die im Schema hinterlegt ist, angesprochen und ausgeführt werden.
+	\item Ein \code{SettingTileScheme} erbt ebenfalls von \code{TileScheme}, aber liefert zusätzlich Informationen über ein sogenanntes \code{Setting}, welches ähnlich wie eine \code{Action} über eine vererbte Methode anzusprechen ist.
+	\item Ein \code{OperandTileScheme} ist gleich aufgebaut, beinhaltet aber Operanden, die als Grundlage für die Kalkulation mit \code{Action}s dienen.
+	\item Das Klicken auf ein \code{Tile} des Stacks wird intern gleich gehandhabt, wie das Klicken eines Operanden. Jedoch besitzen Tiles aus dem Stack eine Reihenfolge, die im \code{StackTileScheme} als Rang hinterlegt wird. Um die gleiche Behandlung eines potenziellen Operanden im Stack zu gewährleisten, erbt \code{StackTileScheme} nicht von \code{TileScheme}, sondern von \code{OperandTileScheme}. 
+	\item Ein \code{HistoryStackTile} ist ebenfalls so aufgebaut, wie ein \code{StackTileScheme}, und erbt daher dessen \code{Attribute}.
+\end{itemize}
+
+Die Erstellung einzelner \code{TileSchemes} erfolgt mithilfe des Factory Method Design-Pattern. Hierzu stellt die abtrakte Superklasse \code{TileScheme} zwei Methoden zur Verfügung. Innerhalb dieser Methoden wird anhand des '\code{TileMappings} zwischen den verschiedenen Kachelarten differenziert und der passende Konstruktor der Unterklasse aufgerufen. In einer Methode erfolgt die Erstellung des \code{TileScheme} Inhalts durch die Einlese eines Zeichenkette. Dies findet beispielsweise bei der Kreierung von \code{TileSchemes}, nach der Auslese eines im internen Speicher gespeicherten Layouts, Anwendung. Als zweite Option kann aus einem bereits bestehenden Operanden ein \code{TileScheme} der Art Operand, Stack oder Historie erstellt werden. Dadurch, dass Stack und Historie eines Layouts regelmäßig aktualisiert werden müssen, bietet sich die performante Erstellung von \code{TileSchemes} mithilfe bestehender Operanden, gegenüber der aufwendigen erneuten Auslese aus einem String, an.
+
+Im Kontrast zu den Tiles, die eine Methode zum Aktualisieren der Inhalte bereitstellen, müssen \code{TileSchemes} mithilfe der genannten Methoden rekreiert werden. Kann eine Kachelart nicht identifiziert werden, oder sind die Angaben über den Inhalt der Kachel unkorrekt, so wird ein \code{ErrorTileScheme} erstellt, das visuell von jeder anderen Art zu unterscheiden ist und den Entwicklern somit über den Fehler Bescheid gibt.
+
+\paragraph{Abstrakte Klasse: TileScheme}
+
+\textbf{Beschreibung: }Abstrakte Superklasse, die neben den artübergreifenden Inhalten der \code{TileSchemes}, Methoden zur Kreierung dieser gemäß des Factory Method Design-Pattern bereitstellt.
+
+\textbf{Methode} \code{createTileScheme} liefert in Abhängigkeit vom angegebenen \code{TileMapping} eine Instanz einer Unterklasse des \code{TileSchemes}. Die Erstellung von \code{TileSchemes} für \code{Actions} und \code{Settings} ist lediglich durch die Eingabe von Zeichenketten möglich. \code{TileSchemes} der Arten \code{Operanden}, \code{Stack} und \code{Historie} können zusätzlich aus bestehenden \code{Operanden} erstellt werden. 
+
+\paragraph{Klasse: ActionTileScheme}
+
+\textbf{Superklasse:} \code{TileScheme}
+
+\textbf{Beschreibung:}\code{TileScheme} für Operatoren. \code{Action}, die ausgeführt werden soll, als Zusatzinformation. Inhalt ist der Text der Kachel.
+
+\paragraph{Klasse: SettingTileScheme}
+
+\textbf{Superklasse:} \code{TileScheme}
+
+\textbf{Beschreibung:} \code{TileScheme} für Einstellungen. \code{Settings}, die ausgeführt werden soll, als Zusatzinformation. Inhalt ist der Text der Kachel. 
+
+\paragraph{Klasse: OperandTileScheme}
+
+\textbf{Superklasse:} \code{TileScheme}
+
+\code{Beschreibung:} \code{TileScheme} für Operanden. Bei der Erstellung aus Text wird der String mithilfe Reflections (XXX) zu einem Operanden übersetzt.
+
+\paragraph{Klasse: StackTileScheme}
+
+\textbf{Superklasse:}\code{OperandTileScheme}
+
+\textbf{Beschreibung:}\code{TileScheme} für Operanden im Stack. Wird genauso behandelt wie ein \code{OperandTileScheme}, doch verfügt zusätzlich über eine Information über den Rang der Kachel im gesamten Stack.
+
+\paragraph{Klasse: StackTileScheme}
+
+\textbf{Superklasse:} \code{OperandTileScheme}
+
+\textbf{Beschreibung:} \code{TileScheme} für Operanden im Stack. Wird genauso behandelt wie ein \code{OperandTileScheme}, doch verfügt zusätzlich über eine Information über den Rang der Kachel im gesamten Stack.
+
+\paragraph{Klasse: HistoryTileScheme}
+
+\textbf{Superklasse:} \code{StackTileScheme}
+
+\textbf{Beschreibung: }\code{TileScheme} für Operanden in der Historie. Wird genauso behandelt wie ein \code{OperandTileScheme}, doch verfügt zusätzlich über eine Information über den Rang der Kachel im Gesamtstack.
+
+\paragraph{Klasse: ErrorTileScheme}
+
+\textbf{Superklasse:} \code{TileScheme}
+
+\textbf{Beschreibung: }\code{TileScheme} für die Ausnahmesituation, dass ein reguläres \code{TileScheme} nicht geladen werden konnte
+
+\subsubsection{Kacheltypdefinition durch Enumartion [Pham]}
+
+Wie zuvor erläutert, erstellt die Klasse \code{TileSchemes} ein passendes Schema anhand eines sogenannten \code{TileMappings}. Ein \code{TileMapping} ist im Endeffekt eine konkrete Definition einer Kachel im Frontend-System. Hierzu beinhaltet das entsprechende \code{TileMapping} jegliche Informationen, die für eine bestimmte Kachel von Relevanz ist. 
+
+Durch die Deklaration als Enum werden diese Informationen mit einer Zeichenkette zur Einlese in Verbindung gebracht. 
+
+Für den Operator \code{-} (\code{Minus}) ist dies beispielsweise die Kachelart (\code{Action} / \code{Operator}), eine Referenz auf die passende \code{Action} Klasse und den Anzeigetext der Kachel \code{-}, die mit dem Text \code{A\_MINUS} betitelt werden. 
+
+Die einzelnen Definitionen liegen in Form einer Java Enumeration vor, da diese Ein Beispiel für eine solche Definition sieht wie folgt aus:
+
+\code{A\_MINUS(TileType.ACTION, Minus.getInstance(), "-")}
+
+Neben Operatoren werden im Enum die anderen Datentypen ebenfalls angelegt. Technisch wurde dies durch die Verwendung von überladenen Konstruktoren ermöglicht und die \code{TileSchemes} wissen welche Informationen gebraucht werden. Zur Definition der Kachelart selbst wurde eine weitere Enumeration mit folgenden Werten angelegt:
+
+\begin{itemize}
+	\item \code{Stack}
+	\item \code{History}
+	\item \code{Operand}
+	\item \code{Action}
+	\item \code{Setting}
+	\item \code{Error}
+\end{itemize}
+
+Zu den Kachelarten sind Design Ressourcen hinterlegt, welche die Gestaltung der Kacheln je nach Typ definiert.
+
+\paragraph{Enumeration: TileMapping}
+
+\textbf{Beschreibung: }Definiert Kacheln und dessen wichtigste Elemente. Wird außerdem zur Einlese von Texten genutzt.
+
+\textbf{Bsp:} \code{A\_MINUS(TileType.Action, Minus.getInstance(), '' -'')}
+
+\paragraph{Enumeration: TileType}
+
+\textbf{Beschreibung: }Definiert die verschiedenen Kachelarten und ihre Design Ressourcen
+
+\textbf{Bsp:} \code{ACTION(R.drawable.tile \_operator \_blue)}
+
+\subsubsection{Gruppierung der Kacheln im Layout Container [Bockhorn]}
+
+XXX
+
+\subsubsection{Implementierung der Menüsteuerung [Istogu]}
+
+In diesem Abschnitt wird die Umsetzung der Planung für die Menüsteuerung aufgegriffen. Als erstes wird die Architektur des Quellcodes näher dargelegt. Darauf anschließend wird sich mit der Implementierung der Zwischenmenüs und der Eingabeansicht für eine Auswahl an Operanden befasst.
+
+\paragraph{Klasse: Dialogmenu [Istogu]}
+
+Bei der \code{DialogMenu} handelt es sich um eine abstrakte Klasse, das von \code{View.OnClickListener} implementiert. Der Konstruktor erwartet folgende Parameter: \code{MainActivity} \code{context}, \code{Tile}, \code{displayTile}, \code{DialogMenu}, \code{last}).
+
+In dem Konstruktor wird ein \code{Dialog}-Objekt erstellt. Dabei werden initial bestimmte Attribute für das \code{Dialog} festgelegt, die für alle nachfolgenden Menüs gelten soll. Als Beispiel kann hier aufgeführt werden, dass der Titel festgelegt wird. Zudem wird bestimmt, dass das Fenster zentral erscheint. Dieser Dialog wird erst angezeigt, wenn der \code{OnClickListener} ein Click vom vorherigen Dialog registriert. Zusätzlich wird \code{ContentViewID} über die Methode \code{setContentView()} festgelegt, die auf die einzelne \code{xml}-Dateien referenzieren. 
+
+Die Methode \code{dismissAll()} sorgt dafür, dass beim Verlassen des Dialoges alle vorherigen Dialoge mitgeschlossen werden. Die Umsetzung des Schließens der vorherigen Dialogen erfolgt das rekursive Aufrufen der Methode \code{dismissAll()} von dem höheren gestellten Dialog-Objekt. Daher wird eine Referenz zu dem letzten Dialog benötigt. Der erste Dialog erhält ein \code{null}-Objekt, das bei der \code{dismissAll} überprüft wird.   
+
+Grundsätzlich werden Dialoge geschlossen, wenn der Nutzer außerhalb des Dialoges mit der Benutzeroberfläche reagiert oder über den Quellcode \code{dialog.dismiss()} aufgerufen wird.  
+
+\paragraph{Klasse: InputTileType [Istogu]}
+
+Die Klasse erbt von der abstrakte Klasse \code{DialogMenu} und verweist über den \code{contentView} auf die \code{xml}-Datei. Dabei werden die Layouts (\code{xml}) mithilfe der Klasse \code{R.java} verbunden. Diese Klasse wird während des Kompilierens Referenzen zu den Ressourcen der Applikation erstellt. 
+
+Zu den Ressourcen zählen unteranderem Bilder, \code{XML}-Ansichten und deren Komponenten wie Buttons. Die Referenzen zu den Buttons werden danach verwendet, um auf die Objekte über die Methode \code{dialog.findViewById()} zuzugreifen. In dem Konstruktor werden zu den jeweiligen Buttons ein \code{OnClickListener} festgesetzt, der ein neues Objekt vom Typ \code{InputTileMapping} erzeugt.
+
+\paragraph{Klasse: InputTileMapping [Istogu]}
+
+XXX
+
+\paragraph{Klasse: InputMenuFactory [Bockhorn]}
+
+XXX
+
+\paragraph{Klasse: InputDouble [Gentges]}
+
+XXX
+
+\paragraph{Klasse: InputFraction [Gentges]}
+
+XXX
+
+\paragraph{Klasse: InputPolynomial [Gentges]}
+
+XXX
+
+\paragraph{Klasse: 6.2.5.8	Darstellung der Beziehungen von den Menüsteuerungsklassen [Gentges]}
+
+XXX
+
+\clearpage
+
+\subsection{Dokumentation der Models }
+
+\subsubsection{Operanden [Schwenke]}
+
+Für ein gut funktionierendes Backend ist ein einheitliches Datenmodel essenziell. So gibt es in der Kernbibliothek von Java einige Klassen für die Repräsentation von mathematischen Bausteinen, wie z.B. dem Bruch. Das gleiche gilt für \textit{Apache Commons Math}. 
+
+Jedoch sind die meisten dieser Klassen sehr spezialisiert und miteinander nicht kompatibel. Deswegen wurde innerhalb des Projektteams entschieden für jeden unterstützten Operanden eine eigene Klasse zu entwickeln, die jedoch alle von der gleichen abstrakten Klasse \code{Operand} erben sollen. 
+
+Dadurch wird sichergestellt, dass es eine einheitliche Schnittstelle gibt, über die alle Operanden angesprochen werden können. Beschreiben kann man diese neuen Klassen auch als \textit{Wrapper}, da der Großteil der eigentlichen Funktionalitäten Teil der darunterliegenden Klassen ist. 
+
+So soll z.B. \code{OMatrix} ein Wrapper um die Klasse \code{Array2DRowRealMatrix} sein. Damit kann man einerseits das einfache und einheitliche Interface nutzen und falls notwendig direkt auf das darunterliegende Objekt zugreifen, um spezielle Operationen durchführen zu können. 
+
+Ein wichtiger Bestandteil dieser Wrapper sind auch die unterschiedlichen Konstruktoren. So kann jeder Operand aus einem einzelnen String konstruiert werden. 
+
+Im Folgenden wird die gemeinsame Schnittstelle dargestellt. Gemeinsam haben alle diese Methoden, dass sie ohne Seiteneffekte auskommen. Statt das vorliegende Objekt zu verändern wird ein neues Objekt erstellt und zurückgegeben. Dies macht das Umkehren von Methodenaufrufen einfach. Man muss lediglich das zurückgegebene Objekt entfernen und das alte weiternutzen.
+
+\paragraph{Klasse: Operand [Schwenke]}
+
+\code{Operand turnAroundSign()}: Dreht alle Vorzeichen im Operand um. Erreicht wird das grundsätzlich durch Multiplikation mit \code{-1}. Konkreter muss dafür z.B. bei einer Matrix eine Multiplikation mit einem Skalar durchgeführt werden.
+
+\code{Operand negateValue()}: Negiert den Operanden unabhängig von den Vorzeichen. Bei einer Matrix werden also alle Elemente negativ.
+
+\code{Operand inverseValue()}: Die Inverse (wenn vorhanden) des jeweiligen Operanden wird berechnet.
+
+\code{Boolean equalsValue(Operand o)}: Vergleicht den aktuellen Operanden mit einem übergebenen Operanden.
+
+\code{String toString()}: Wandelt das Objekt in eine String-Repräsentation um.
+
+\code{<T extends Object> get()}: Gibt das darunterliegende Objekt zurück. Im Falle von \code{OMatrix} ist dies eine \code{Array2DRowRealMatrix}. Bei einem Tupel ein \code{Array} von \code{Doubles}.
+
+Auffallend ist hier der geringe Umfang der Schnittstelle der Operanden, da diese doch eigentlich die Grundlage für einen Taschenrechner bilden sollten. So kann man eine Matrix multiplizieren, addieren, dividieren und das alles in unterschiedlichsten Kombinationen mit anderen Arten von Operanden. Tatsächlich sind die meisten Kalkulationen – wie in der Projektplanung entworfen – in eigenen Klassen angelegt. Somit besteht eine Trennung zwischen Datenhaltung (den Operanden) und den Operationen, die auf den Daten ausgeführt werden können (Actions).
+
+\paragraph{Klasse: ODouble [Meinerzhagen]}
+
+\textit{Wrapper für ein \code{Double}}
+
+Eine Dezimalzahl, welche intern einen \code{double} zur Datenspeicherung verwendet.
+
+
+\paragraph{Klasse: OFraction [Meinerzhagen]}
+
+\textit{Wrapper für Common Math Fraction}
+
+Implementierung eines Bruchs. Die Zähler und Nenner sind durch \code{Doubles} umgesetzt. Im Gegensatz zu den meisten anderen Operanden gibt es hier mehr als zwei Konstruktoren. So kann man einmal Zähler und Nenner als zwei ganze Zahlen übergeben. Wird ein einzelnes \code{Double} übergeben, wird daraus automatisch ein Bruch erstellt. Alternativ kann direkt eine \code{Fraction} übergeben werden.
+
+\paragraph{Klasse: OSet [Meinerzhagen]}
+
+\textit{Wrapper für ein \code{Double}-\code{Set}}
+
+Implementierung einer Menge. Das gleiche Element kann nicht mehrmals enthalten sein. Die Reihenfolge spielt keine Rolle. Umgesetzt ist die Klasse mit einem angepassten \code{Set}. Erstellen kann man ein \code{OSet} aus einem \code{Array} von \code{Doubles} oder einem String.
+
+\paragraph{Klasse: OTuple [Meinerzhagen]}
+
+\textit{Wrapper für ein \code{Double}-\code{Array}}
+
+Implementierung eines Tupels. Das gleiche Element kann mehrmals enthalten sein. Die Reihenfolge spielt eine Rolle. Erstellen kann man ein \code{OTuple} aus einer übergebenen Liste oder einem String.
+
+\paragraph{Klasse: OMatrix [Meinerzhagen]}
+
+\textit{Wrapper für eine Apache Commons \code{Array2DRowRealMatrix}}
+
+Implementierung einer Matrix. Das darunterliegende Objekt ist eine \code{RealMatrix}, die wiederrum eine \code{Array2DRowRealMatrix} enthält. Die Matrix an sich ist in einem zweidimensionalen Array von \code{Doubles} umgesetzt. Erstellen kann man eine \code{OMatrix} aus einem String oder einem zweidimensionalen \code{Array} von \code{Doubles}.
+
+
+\paragraph{Klasse: OPolynom [Meinerzhagen]}
+
+\textit{Wrapper für eine Apache Commons \code{PolynomialFunction}}
+
+Implementierung eines Polynoms. Grundsätzlich entspricht das Polynom einer einer Sequenz von Dezimalzahlen. Abhängig von der Position in der Sequenz entscheidet sich, was der Exponent der jeweiligen Dezimalzahl ist. Somit müssen Funktionen immer in dieser Normalform vorliegen. Erstellen kann man ein \code{OPolynom} aus einem String oder einem \code{Array} von \code{Doubles}.
+
+\paragraph{Klasse: OEmpty [Meinerzhagen]}
+
+Leerer Wrapper
+
+Ein leerer Operand. Da alle \code{Operand}-Klassen Wrapper sind, ist technisch auch ein leerer Wrapper notwendig. Die hier implementierten Methoden aus der Schnittstelle stellen lediglich \textit{Stubs} dar und haben keine Funktion.
+
+\paragraph{Klasse: DoubleFormatter [Meinerzhagen]}
+
+Zentrale Anlaufstelle um \code{Doubles} in einen formattierten String umzuwandeln. Die einzige hier enthaltene Methode ist 
+
+\code{String format(double d)}
+
+\paragraph{Klasse: DoubleComparator [Meinerzhagen]}
+
+Dezimalzahlen sind in den meisten Sprachen in dem IEE 754 Format implementiert. Das hat zur Folge, dass Konversionen und Änderungen einer konkreten Dezimalzahl zu Rundungsfehlern führen. Das ist auch in Java der Fall. Möchte man nun die beiden Dezimalzahlen \code{1.1} und \code{1.1} mit der Standardmethode in Java vergleichen, wird man in fast allen Fällen ein \code{false} zurückbekommen. Das liegt an den zuvor angesprochenen Rundungsfehlern. 
+
+Da innerhalb dieses Projekts alles auf \code{Doubles} basiert ist es notwendig für dieses Problem eine Lösung zu finden. Dafür wurde diese Klasse entwickelt. Alle Vergleiche müssen über diese Klasse erfolgen.
+
+\code{Boolean isEqual(double d1, double d2)} vergleicht zwei \code{Doubles} miteinander. Dies erfolgt über ein Delta. Zunächst wird die Differenz zwischen beiden Zahlen berechnet und anschließend überprüft, ob die Differenz unter einer definierten Grenze liegt. Alle weiteren Methoden in dieser Klasse benutzen diese Methode.
+
+Weitere Methoden vergleichen \code{Arrays} und \code{Sets} miteinander.
+
+\subsubsection{Operationen}
+
+\paragraph{Plus [Falk]}
+
+Eingabeparameter: Zwei Werte, der erste Wert ist der erste Summand, der zweite der zweite Summand. Die erlaubten Kombinationen sind: 
+
+\begin{itemize}
+	\item \code{ODouble} und \code{ODouble}
+	\item \code{ODouble} und \code{OFraction}
+	\item \code{OFraction} und \code{ODouble}
+	\item \code{ODouble} und \code{OSet}
+	\item \code{OSet} und \code{ODouble}
+	\item \code{ODouble} und \code{OMatrix}
+	\item \code{OMatrix} und \code{ODouble}
+	\item \code{ODouble} und \code{OPolynom}
+	\item \code{OPolynom} und \code{ODouble}
+	\item \code{ODouble} und \code{OTupel}
+	\item \code{OTupel} und \code{ODouble}
+	\item \code{OFraction} und \code{OFraction}
+	\item \code{OFraction} und \code{OSet}
+	\item \code{OSet} und \code{OFraction}
+	\item \code{OFraction} und \code{OMatrix}
+	\item \code{OMatrix} und \code{OFraction}
+	\item \code{OFraction} und \code{OPolynom}
+	\item \code{OPolynom} und \code{OFraction}
+	\item \code{OFraction} und \code{OTuple}
+	\item \code{OTupel} und \code{OFraction}
+	\item \code{OMatrix} und \code{OMatrix}
+	\item \code{OPolynom} und \code{OPoylnom}
+	\item \code{OTuple} und \code{OTuple}
+\end{itemize}
+
+Rückgabewerte: Der berechnete Wert mit dem Datentyp des ersten Summanden. 
+Beschreibung: Die Klasse verfügt über 23 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Anschließend wird die Berechnung durchgeführt. 
+
+\paragraph{Minus [Falk]}
+
+Eingabeparameter: Zwei Werte, der erste Wert ist der Minuend, der zweite der Subtrahend. Die erlaubten Kombinationen sind: 
+•	ODouble und ODouble 
+•	ODouble und OFraction
+•	OFraction und OFraction 
+•	OFraction und ODouble 
+•	OSet und ODouble
+•	OSet und OFraction 
+•	OMatrix und OMatrix
+•	OMatrix und ODouble
+•	OMatrix und OFraction
+•	OPolynom und OPolynom 
+•	OPolynom und ODouble
+•	OPolynom und OFraction 
+•	OTuple und OTuple
+•	OTuple und ODouble
+•	OTuple und OFraction 
+Rückgabewerte: Der berechnete Wert mit dem Datentyp des ersten, übergebenen Wertes. 
+Beschreibung: Die Klasse verfügt über 15 öffentlich ansprechbare Methoden. Je nach übergebenen Parametern wird bestimmt, welche öffentliche Methode gemeint ist. Anschließend wird die Berechnung durchgeführt. 
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Überblick über die Activities der App bzw. der Funktionen}
 
