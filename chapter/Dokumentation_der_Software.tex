@@ -259,7 +259,7 @@ Für die Applikationen werden folgende Operanden (\code{ODouble}, \code{OFractio
 	\includegraphics[width=0.6\columnwidth]{img/xml_InputDouble}
 	\caption[XML-Designer für die Klassen InputDouble]{XML-Designer für die Klasse InputDouble\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{eigene Darstellung in Android Studio}
 \FloatBarrier
 
 Die korrespondierende Java-Datei liest nach dem Bestätigen des Buttons den Wert aus dem \code{EditText} und kreiert ein \code{ODouble}-Objekt. Dieses Objekt wird mit seinem zugehörigen \code{TileMapping} einem \code{TileScheme} zugewiesen. Das vorher ausgewählte \code{Tile} aktualisiert seinen \code{TileScheme}. Abschließend schließt der Konstruktor die Dialog über die Methode \code{dismissAll()}, die vorher erklärt wurde.
@@ -272,7 +272,7 @@ Diese Klasse deckt die Funktionalität der Benutzereingabe von Brüchen. Dabei �
 \includegraphics[width=0.5\columnwidth]{img/xml_InputFraction}
 \caption[XML-Designer für die Klasse InputFraction]{XML-Designer für die Klasse InputFraction\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{eigene Darstellung in AndroidStudio}
 \FloatBarrier
 
 \paragraph{Klasse: InputPolynomial [Gentges]}
@@ -283,20 +283,23 @@ Die Klasse ist grundsätzlich gleich aufgebaut, wie die vorherigen Eingabeklasse
 	\includegraphics[width=0.6\columnwidth]{img/xml_InputPolynomial}
 	\caption[XML-Designer für die Klasse InputPolynomial]{XML-Designer für die Klasse InputPolynomial\footnotemark}
 \end{figure}
-\footnotetext{eigene Darstellung}
+\footnotetext{eigene Darstellung in AndroidStudio}
 \FloatBarrier
+\clearpage
 
-\paragraph{Darstellung der Beziehungen von den Menüsteuerungsklassen [Istogu]}
+\paragraph{Die Beziehungen von den Menüsteuerungsklassen [Istogu]}
 
 \begin{figure}[h]
 	\includegraphics[width=\columnwidth]{img/klassendiagramm_Menusteuerung}
 	\caption[Klassendiagramm: Menüsteuerung]{Klassendiagramm: Menüsteuerung\footnotemark}
 \end{figure}
+\footnotetext{eigene Darstellung}
+\FloatBarrier
 
-Wie aus dem Klassendiagramm entnommen werden kann, wurde die Menüsteuerung soweit wie möglich dynamisch gestaltet. Somit wird die Erweiterbarkeit vereinfacht und es können dadurch weitere Funktionalitäten bzgl. Operanden bzw. Operationen hinzugefügt werden. Zusätzlich sind die einzelne Menüs wie folgt gestaltet. Die einzelne Menüs bauen aufeinander und somit ist der Ablauf der einzelnen Menüs definiert. 
+Wie aus dem Klassendiagramm entnommen werden kann, wurde die Menüsteuerung soweit wie möglich dynamisch gestaltet. Somit können dadurch weitere Funktionalitäten bzgl. Operanden bzw. Operationen hinzugefügt werden.  Zusätzlich sind die einzelne Menüs wie folgt gestaltet. Die einzelne Menüs bauen aufeinander und somit ist der Ablauf der einzelnen Menüs definiert. Abhängig von der ausgewählte Kachel werden \code{OnClickListener} gesetzt. Dies ist unter anderem aus dem Klassendiagramm bei der Implementierung von \code{View.OnClickListener} in der Klasse \code{DialogMenu} zu sehen. 
 \clearpage
 
-\subsection{Dokumentation der Models }
+\subsection{Dokumentation der Models}
 
 \subsubsection{Operanden [Schwenke]}
 
@@ -884,8 +887,9 @@ Aus der Abbildung geht die geplante bzw. realisierte Umsetzung für die Überpr�
 
 Nach der Implementierung der Klasse erstellte ich dazu gehörig eine Unit-Test-Klasse. Im Nachfolgenden werden die Ergebnisse dargestellt, die alle erfolgreich waren. 
 \begin{enumerate}
-	\item Eingabe: Matrix: xxx  Vektor: xxx Erwartetes Ergebnis: xxx
-	\item Eingabe: Matrix: xxx Vektor: xxx Erwartetes Ergebnis: xxx
+	\item Eingabe - Matrix: $$ A= \left(\begin{matrix}3&-7&0&-6\\2&-8&-1&4\\0&9&-7&9\\-4&5&-3&-8\end{matrix}\right) $$
+  Eingabe - Vektor: $$ b= \left(\begin{matrix} 8\\1\\-7\\-1\end{matrix}\right) $$ Erwartetes Ergebnis: $$ x= \left(\begin{matrix} 1.197\\-0.1285\\0.0828\\-0.5849\end{matrix}\right) $$
+	
 \end{enumerate}
 
 
