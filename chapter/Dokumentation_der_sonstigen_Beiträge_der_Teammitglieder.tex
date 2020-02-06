@@ -80,7 +80,7 @@ Zur Implementierung der verschiedenen Operanden und ihrer Funktionen haben wir u
 
 Nach einer allgemeinen Recherche über solche Bibliotheken haben wir die beiden Mathebibliotheken \textit{Apache Commons Math} und \textit{JScience} genauer betrachtet. 
 
-\textit{JScience} ist eine der umfangreichsten Java Bibliotheken für wissenschaftliche Anwendungsbereiche und bietet eine Vielzahl Designmodulen für spezielle Anwendungsfälle. Darunter etwa physikalische Modelle, spezielle Methoden zur Berechnung von Brennwerten oder Modellen der Quantum Physik. Solche wurden allerdings für unsere Applikation nicht benötigt. Die letzte Aktualisierung der \textit{JScience}-Bibliothek fand im Jahr 2011 statt, was darauf hinweist. Daraus ist erkenntlich, dass die Bibliothek nicht mehr aktiv weiterentwickelt wird.\footnote{\cite[vgl.][]{dautelle2014}}
+\textit{JScience} ist eine der umfangreichsten Java Bibliotheken für wissenschaftliche Anwendungsbereiche und bietet eine Vielzahl Designmodulen für spezielle Anwendungsfälle. Darunter etwa physikalische Modelle, spezielle Methoden zur Berechnung von Brennwerten oder Modellen der Quantum Physik. Solche wurden allerdings für unsere Applikation nicht benötigt. Die letzte Aktualisierung der \textit{JScience}-Bibliothek fand im Jahr 2011 statt. Daraus ist erkenntlich, dass die Bibliothek nicht mehr aktiv weiterentwickelt wird.\footnote{\cite[vgl.][]{dautelle2014}}
 
 Zum anderen wurde die Bibliothek \textit{Apache Commons Math} betrachtet. Dieses bietet Vorteile dadurch, dass sie keine externe Abhängigkeit besitzt, abgesehen zu den \textit{Commons}-Komponenten und der Java-Kern-Plattform. \textit{Apache Commons Math} benötigt lediglich Java 5 oder höher für die 2.0 Version der Mathebibliothek. Ein weiteres Argument für \textit{Apache Commons Math} ist, dass die Bibliothek auf kleineren, leicht integrierbaren Komponenten aufgebaut ist und keine komplexeren Abhängigkeiten zwischen den einzelnen Komponenten bestehen. Auch eine aufwendige Konfigurierung der Bibliothek ist nicht notwendig.\footnote{\cite[vgl.][]{Apache2016}}
 
@@ -92,7 +92,8 @@ Aufgrund der oberen genannten Gründe entschieden wir uns für die Benutzung der
 
 \subsubsection{Blackbox Test – Usability Test}
 
-''Usability beschreibt die Nutzbarkeit eines Produktes oder Dienstes. Gute Usability heißt, dass ein Nutzer schnell und einfach das gewünschte Ergebnis erreicht.'' xxx quelle 
+''Usability beschreibt die Nutzbarkeit eines Produktes oder Dienstes. Gute Usability heißt, dass ein Nutzer schnell und einfach das gewünschte Ergebnis erreicht.'' \footnote{\cite[][]{msodigital}} 
+
 Der folgende Usability Test baute dabei auf den zuvor durchgeführten Cognitive Walkthrough von meinem Kollegen Getuart Istogu auf.
 
 Da der Test nur mit wenigen weiteren Benutzern durchgeführt wurde, bot sich ein einfaches Testkonzept an. Basierend auf meiner Erfahrung aus dem Arbeitsumfeld entschied ich mich für das klassische Moderator-Tester Setup. Hierbei gibt es zwei einfache Rollen, den Moderator und die Testperson. Die Testperson soll während des gesamten Testverfahrens ''laut denken''. Alle Reaktionen oder Emotionen, wie z.B. Verärgerung, weil eine Funktionalität nicht so funktioniert wie gewünscht, sollen somit dokumentiert und näher beleuchtet werden. Der Moderator wiederum soll den Testteilnehmer nicht beeinflussen, weder durch Gestik/Mimik oder durch Äußerungen. Der Testteilnehmer wird ausschließlich beobachtet und mit offenen Fragen zu weiteren Äußerungen motiviert. 
